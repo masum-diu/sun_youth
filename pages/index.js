@@ -12,7 +12,7 @@ function Home() {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           width: '100%',
-          // minHeight: '60vh',
+          minHeight: '65vh',
           display: 'flex',
           alignItems: 'flex-end',
           justifyContent: 'center',
