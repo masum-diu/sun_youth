@@ -1,6 +1,9 @@
 import React from 'react'
 import Button from '@mui/material/Button'
-import { Box, Grid, Paper, Stack, Typography, Container } from '@mui/material'
+import { Box, Grid, Paper, Stack, Typography, Container, TextField } from '@mui/material'
+import { useInView } from 'react-intersection-observer'
+import DemographicCards from './components/DemographicCards'
+import theme from '@/utils/theme'
 
 function Home() {
   const getInvolvedOptions = [
@@ -21,18 +24,60 @@ function Home() {
       image: "/assets/governace.jpg", title: "Focal Points", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "Read More"
     },
   ]
-  const latestNews=[
+  const latestNews = [
     {
-    image:"/assets/governace.jpg",title:"GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action",description:"Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.",button:"By GSO Admin . October 12, 2023",subtile:"News"
-  },
+      image: "/assets/governace.jpg", title: "GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "By GSO Admin . October 12, 2023", subtile: "News"
+    },
     {
-    image:"/assets/governace.jpg",title:"GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action",description:"Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.",button:"By GSO Admin . October 12, 2023",subtile:"News"
-  },
+      image: "/assets/governace.jpg", title: "GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "By GSO Admin . October 12, 2023", subtile: "News"
+    },
     {
-    image:"/assets/governace.jpg",title:"GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action",description:"Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.",button:"By GSO Admin . October 12, 2023",subtile:"News"
-  },
-    
-]
+      image: "/assets/governace.jpg", title: "GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "By GSO Admin . October 12, 2023", subtile: "News"
+    },
+    {
+      image: "/assets/governace.jpg", title: "GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "By GSO Admin . October 12, 2023", subtile: "News"
+    },
+
+  ]
+
+  const stats = [
+    { num: 98, label: 'Projects' },
+    { num: 65, label: 'Locations' },
+    { num: 10, label: 'Years' },
+    { num: 15, label: 'Countries' },
+  ],
+    features = [
+      {
+        icon: '/assets/goal.png',
+        title: 'Lorem Ipsum is simply dummy',
+        desc:
+          'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+      },
+      {
+        icon: '/assets/goal.png',
+        title: 'Lorem Ipsum is simply dummy',
+        desc:
+          'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+      },
+      {
+        icon: '/assets/goal.png',
+        title: 'Lorem Ipsum is simply dummy',
+        desc:
+          'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+      },
+      {
+        icon: '/assets/goal.png',
+        title: 'Lorem Ipsum is simply dummy',
+        desc:
+          'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+      },
+    ];
+
+
+  const { ref: genderRatioRef, inView: genderRatioInView } = useInView({
+    triggerOnce: true, // The animation will only trigger once
+    threshold: 0.3,    // Trigger when 30% of the component is visible
+  });
   return (
     <Box bgcolor={"#fff"}>
       <Box
@@ -222,59 +267,239 @@ function Home() {
         <Typography variant="body1" sx={{ mt: 25, }} color="#fff" fontWeight={500} fontSize={40} textAlign={"center"}>How Many Youths Have Been Trained </Typography>
         <Grid container spacing={3} sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", mb: 4 }} >
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
-             <img src="/assets/icons2.png" alt="" style={{border:"3px solid #fff",padding:10,borderRadius:"50%"}}/>
+            <img src="/assets/icons2.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
             <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>5000+</Typography>
             <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Volunteer Helpers </Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
-              <img src="/assets/icons1.png" alt=""style={{border:"3px solid #fff",padding:10,borderRadius:"50%"}} />
+            <img src="/assets/icons1.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
             <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>1200+</Typography>
             <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Donated</Typography>
           </Grid>
-          <Grid size={{ xs: 12, sm: 6, md: 3 }}textAlign={"center"} >
-              <img src="/assets/icons3.png" alt="" style={{border:"3px solid #fff",padding:10,borderRadius:"50%"}} />
+          <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"} >
+            <img src="/assets/icons3.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
             <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>300+</Typography>
             <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Products & Gifts</Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"} >
-            <img src="/assets/icons2.png" alt="" style={{border:"3px solid #fff",padding:10,borderRadius:"50%"}} />
+            <img src="/assets/icons2.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
             <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>50+</Typography>
             <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Volunteer Helpers</Typography>
           </Grid>
         </Grid>
       </Paper>
-         <Box sx={{ py: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
+      <Box sx={{ py: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
 
-        <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, mb: 4 ,textTransform:"capitalize",fontSize:40}}>
+        <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, mb: 4, textTransform: "capitalize", fontSize: 40 }}>
           Impact Stories
         </Typography>
 
         <Grid container spacing={3} >
-          {latestNews.map((option, index) => (<Grid size={{ xs: 12, sm: 6, md: 4 }} key={index} >
-           
-              <Box>
-                <img src={option.image} alt={option.title}  width={"100%"} />
-              </Box>
-              <Stack direction="column" spacing={2} >
-                <Typography variant="h6" sx={{ mt: 2, fontWeight: 700,  fontSize: 17, color: '#f5821f' }}>
-                  {option.subtile}
-                </Typography>
-                <Typography variant="h6" sx={{ mt: 2, fontWeight: 700,  fontSize: 20 }}>
-                  {option.title}
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
-                  {option.button}
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
-                  {option.description}
-                </Typography>
-              </Stack>
-             
-            
+          {latestNews.slice(0, 3).map((option, index) => (<Grid size={{ xs: 12, sm: 6, md: 4 }} key={index} >
+
+            <Box>
+              <img src={option.image} alt={option.title} width={"100%"} />
+            </Box>
+            <Stack direction="column" spacing={2} >
+              <Typography variant="h6" sx={{ mt: 2, fontWeight: 700, fontSize: 17, color: '#f5821f' }}>
+                {option.subtile}
+              </Typography>
+              <Typography variant="h6" sx={{ mt: 2, fontWeight: 700, fontSize: 20 }}>
+                {option.title}
+              </Typography>
+              <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
+                {option.button}
+              </Typography>
+              <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
+                {option.description}
+              </Typography>
+            </Stack>
+
+
           </Grid>))}
 
 
 
+        </Grid>
+        <Typography variant="h4" sx={{ mt: 8, textAlign: 'center', fontWeight: 500, textTransform: "capitalize", fontSize: 40 }}>
+          Gender Ratio
+        </Typography>
+        <Grid container spacing={2} ref={genderRatioRef}>
+
+          <Grid size={{ md: 6, xs: 12 }} >
+            <DemographicCards Title={" Training "} inView={genderRatioInView} />
+          </Grid>
+          <Grid size={{ md: 6, xs: 12 }} >
+            <DemographicCards Title={"Beneficiary"} inView={genderRatioInView} />
+          </Grid>
+        </Grid>
+        
+          {/* Heading */}
+          <Typography variant="h4" align="center" sx={{ fontWeight: 700, my: { xs: 4, md: 8 } }}>
+            Youth Organizations Involved
+          </Typography>
+
+          {/* Top stats row */}
+          <Grid container spacing={2} justifyContent="center" sx={{ mb: { xs: 6, md: 10 } }}>
+            {stats.map((s, idx) => (
+              <Grid key={idx} size={{ xs: 12, sm: 6, md: 3 }} sx={{ position: 'relative', minHeight: 90 }}>
+                {/* big faded number */}
+                <Typography
+                  sx={{
+                    position: 'absolute',
+                    top: -10,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    fontSize: { xs: 64, md: 120 },
+                    fontWeight: 800,
+                    color: 'text.primary',
+                    opacity: 0.07,
+                    lineHeight: 1,
+                    userSelect: 'none',
+                    pointerEvents: 'none',
+                  }}
+                >
+                  {s.num}
+                </Typography>
+
+                {/* label centered */}
+                <Box sx={{ position: 'relative', zIndex: 2, textAlign: 'center', mt: { xs: 4, md: 4 } }}>
+                  <Typography sx={{ fontWeight: 700 }}>{s.label}</Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+
+          {/* Features row: icons + title + desc */}
+          <Grid container spacing={4} justifyContent="center">
+            {features.map((f, idx) => (
+              <Grid key={idx} size={{ xs: 12, sm: 6, md: 3 }}>
+                <Box sx={{ textAlign: 'center', px: 2 }}>
+                  {/* circular icon */}
+                  <Box
+                    sx={{
+                      width: 120,
+                      height: 120,
+                      borderRadius: '50%',
+                      mx: 'auto',
+                      mb: 3,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      bgcolor: theme.palette.action.hover, // soft background
+                      boxShadow: 1,
+                    }}
+                  >
+                    <img
+                      src={f.icon}
+                      alt={f.title}
+                      style={{ width: 56, height: 56, objectFit: 'contain' }}
+                    />
+                  </Box>
+
+                  <Typography sx={{ fontWeight: 700, color: theme.palette.primary.main, mb: 1 }}>
+                    {f.title}
+                  </Typography>
+
+                  <Typography sx={{ color: 'text.secondary', fontSize: 13, lineHeight: 1.6 }}>
+                    {f.desc}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+         <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, my: 8, textTransform: "capitalize", fontSize: 40 }}>
+         Resources
+        </Typography>
+         <Typography variant="h6" sx={{ textAlign: 'center', fontWeight: 400, my: 6, }}>
+         Information collected from or submitted by, the Civil Society network and other relevant stakeholders.
+        </Typography>
+
+        <Grid container spacing={3} >
+          {latestNews.map((option, index) => (<Grid size={{ xs: 12, sm: 6, md: 3 }} key={index} >
+
+            <Box>
+              <img src={option.image} alt={option.title} width={"100%"} />
+            </Box>
+            <Stack direction="column" spacing={2} >
+              <Typography variant="h6" sx={{ mt: 2, fontWeight: 700, fontSize: 17, color: '#f5821f' }}>
+                {option.subtile}
+              </Typography>
+              <Typography variant="h6" sx={{ mt: 2, fontWeight: 700, fontSize: 20 }}>
+                {option.title}
+              </Typography>
+              <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
+                {option.button}
+              </Typography>
+              <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
+                {option.description}
+              </Typography>
+            </Stack>
+
+
+          </Grid>))}
+
+
+
+        </Grid>
+
+
+         <Grid container spacing={5} justifyContent="center" sx={{ mt: 12 }}>
+         <Grid  size={{ xs: 12, sm: 6, md: 6 }} > 
+          <img src="/assets/femle.png" alt=""  width={"100%"}/>
+           </Grid>
+         <Grid  size={{ xs: 12, sm: 6, md: 6 }} sx={{display:"flex",justifyContent:"center",alignItems:"center", flexDirection:"column",gap:4}}  > 
+          <Stack direction={"column"} spacing={2}>
+           <Stack direction={"row"} spacing={2} alignItems={"center"} mb={2} >
+            <Box sx={{width:45,height:45,bgcolor:"  #f5821f",borderRadius:"50%"}}></Box>
+            <Typography variant="h5" fontWeight={700} fontSize={30} color='#f5821f'> Female-Headed Households and Food Security</Typography></Stack> 
+            <Typography variant="body1" fontWeight={500} fontSize={16}  >
+            In many parts of the world, female        
+            -headed households face unique challenges that can impact their food security. Studies have shown that these households are often more vulnerable to food insecurity due to factors such as lower income levels, limited access to resources, and social stigmas. Addressing the specific
+
+            needs of  </Typography>
+          </Stack>
+          <Stack direction={"column"}>
+           <Stack direction={"row"} spacing={2} alignItems={"center"} mb={2} >
+            <Box sx={{width:45,height:45,bgcolor:"  #f5821f",borderRadius:"50%"}}></Box>
+            <Typography variant="h5" fontWeight={700} fontSize={30} color='#f5821f'> Female-Headed Households and Food Security</Typography></Stack> 
+            <Typography variant="body1" fontWeight={500} fontSize={16}  >
+            In many parts of the world, female        
+            -headed households face unique challenges that can impact their food security. Studies have shown that these households are often more vulnerable to food insecurity due to factors such as lower income levels, limited access to resources, and social stigmas. Addressing the specific
+
+            needs of  </Typography>
+          </Stack>
+          <Stack direction={"column"}>
+           <Stack direction={"row"} spacing={2} alignItems={"center"} mb={2} >
+            <Box sx={{width:45,height:45,bgcolor:"  #f5821f",borderRadius:"50%"}}></Box>
+            <Typography variant="h5" fontWeight={700} fontSize={30} color='#f5821f'> Female-Headed Households and Food Security</Typography></Stack> 
+            <Typography variant="body1" fontWeight={500} fontSize={16}  >
+            In many parts of the world, female        
+            -headed households face unique challenges that can impact their food security. Studies have shown that these households are often more vulnerable to food insecurity due to factors such as lower income levels, limited access to resources, and social stigmas. Addressing the specific
+
+            needs of  </Typography>
+          </Stack>
+           </Grid>
+        </Grid>
+      </Box>
+       <Box  >
+        <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, my: 6, textTransform: "capitalize", fontSize: 40 }} >
+          Get In Tuch
+        </Typography>
+        <Grid container spacing={3}  >
+         
+          <Grid size={{ xs: 12, sm: 6, md: 12 }} >
+            <Stack maxWidth={900} mx={"auto"} direction={"column"} spacing={4} justifyContent={"center"} alignItems={"center"} height={"100%"} >
+              <Typography variant="body1"  fontWeight={500} fontSize={20}>Information collected from or submitted by, the Civil Society network and other relevant stakeholders.</Typography>
+             <Stack direction={"row"} spacing={2} width={"100%"} > 
+              <TextField type="text"  placeholder="Your Name"   fullWidth sx={{color:"#fff"}}/>
+              <TextField type="email"  placeholder="Your Email"  fullWidth /></Stack> 
+              <textarea placeholder="Your Message"  style={{ width: "100%", height: 150, borderRadius: 5, border: "1px solid #ccc", padding: 10 }} />
+              <Button variant="contained"size="small" color="error" fontWeight={500} sx={{ width: 178, height: 48, backgroundColor: '#f5821f', '&:hover': { backgroundColor: '#f5821f' } }} >
+                Send Message
+              </Button>
+            </Stack>
+          </Grid>
         </Grid>
         </Box>
     </Box>
