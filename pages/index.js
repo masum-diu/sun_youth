@@ -449,34 +449,47 @@ function Home() {
           <img src="/assets/femle.png" alt=""  width={"100%"}/>
            </Grid>
          <Grid  size={{ xs: 12, sm: 6, md: 6 }} sx={{display:"flex",justifyContent:"center",alignItems:"center", flexDirection:"column",gap:2}}  > 
-          <Stack direction={"column"} spacing={2}>
-           <Stack direction={"row"} spacing={2} alignItems={"center"} mb={2} >
+           <Stack direction={"column"}> 
+           <Stack direction={"row"} spacing={3}  mb={2} width={"100%"} >
             <Box sx={{width:45,height:45,bgcolor:"  #f5821f",borderRadius:"50%"}}></Box>
-            <Typography variant="h5" fontWeight={700} fontSize={20} color='#f5821f'> Female-Headed Households and Food Security</Typography></Stack> 
-            <Typography variant="body1" fontWeight={500} fontSize={16}  >
-            In many parts of the world, female        
-            -headed households face unique challenges that can impact their food security. Studies have 
-
-            needs of  </Typography>
-          </Stack>
-          <Stack direction={"column"}>
-           <Stack direction={"row"} spacing={2} alignItems={"center"} mb={2} >
-            <Box sx={{width:45,height:45,bgcolor:"  #f5821f",borderRadius:"50%"}}></Box>
-            <Typography variant="h5" fontWeight={700} fontSize={20} color='#f5821f'> Female-Headed Households and Food Security</Typography></Stack> 
-            <Typography variant="body1" fontWeight={500} fontSize={16}  >
-            In many parts of the world, female        
-            -headed households face unique challenges that can impact their food security. Studies have 
-
-            needs of  </Typography>
-          </Stack>
-          <Stack direction={"column"}>
-           <Stack direction={"row"} spacing={2} alignItems={"center"} mb={2} >
-            <Box sx={{width:45,height:45,bgcolor:"  #f5821f",borderRadius:"50%"}}></Box>
-            <Typography variant="h5" fontWeight={700} fontSize={20} color='#f5821f'> Female-Headed Households and Food Security</Typography></Stack> 
-            <Typography variant="body1" fontWeight={500} fontSize={16}  >
-            In many parts of the world, female        
-            -headed households face unique challenges that can impact their food security. Studies have 
+            <Stack direction={"column"}  width={"100%"}>
+            <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Mollis Mattis</Typography>
+            <Typography variant="body1" fontWeight={400} fontSize={14}  >
+            In many parts of the world, female  
+             In many parts of the world, female        
+            -headed households face unique challenges that can impact their food security.      
+            -headed households face unique 
           </Typography>
+          </Stack> 
+           </Stack>
+          </Stack>
+          <Stack direction={"column"} alignItems={"center"}>
+           <Stack direction={"row"} spacing={3}  mb={2} width={"100%"} >
+            <Box sx={{width:45,height:45,bgcolor:"  #f5821f",borderRadius:"50%"}}></Box>
+            <Stack direction={"column"} width={"100%"}>
+            <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Ullamcorper Mattis Etiam</Typography>
+            <Typography variant="body1" fontWeight={400} fontSize={14}  >
+            In many parts of the world, female  
+             In many parts of the world, female        
+            -headed households face unique challenges that can impact their food security.      
+            -headed households face unique 
+          </Typography>
+          </Stack> 
+           </Stack>
+          </Stack>
+          <Stack direction={"column"}>
+           <Stack direction={"row"} spacing={3}  mb={2} width={"100%"} >
+            <Box sx={{width:45,height:45,bgcolor:"  #f5821f",borderRadius:"50%"}}></Box>
+            <Stack direction={"column"} width={"100%"}>
+            <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Mattis Etiam Justo</Typography>
+            <Typography variant="body1" fontWeight={400} fontSize={14}  >
+            In many parts of the world, female  
+             In many parts of the world, female        
+            -headed households face unique challenges that can impact their food security.      
+            -headed households face unique 
+          </Typography>
+          </Stack> 
+           </Stack>
           </Stack>
            </Grid>
         </Grid>
