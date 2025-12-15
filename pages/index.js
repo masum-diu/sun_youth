@@ -41,9 +41,9 @@ function Home() {
   ]
 
   const stats = [
-    { num: 98, label: 'Projects' },
-    { num: 65, label: 'Locations' },
-    { num: 10, label: 'Years' },
+    { num: "", label: 'Projects' },
+    { num: "", label: 'Locations' },
+    { num: "10", label: 'Years' },
     { num: 15, label: 'Countries' },
   ],
     features = [
@@ -268,22 +268,22 @@ function Home() {
         <Grid container spacing={3} sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", mb: 4 }} >
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
             <img src="/assets/icons2.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
-            <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>5000+</Typography>
+            {/* <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>5000+</Typography> */}
             <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Volunteer Helpers </Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
             <img src="/assets/icons1.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
-            <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>1200+</Typography>
+            {/* <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>1200+</Typography> */}
             <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Donated</Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"} >
             <img src="/assets/icons3.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
-            <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>300+</Typography>
+            {/* <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>300+</Typography> */}
             <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Products & Gifts</Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"} >
             <img src="/assets/icons2.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
-            <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>50+</Typography>
+            {/* <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>50+</Typography> */}
             <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Volunteer Helpers</Typography>
           </Grid>
         </Grid>
@@ -333,86 +333,86 @@ function Home() {
             <DemographicCards Title={"Beneficiary"} inView={genderRatioInView} />
           </Grid>
         </Grid>
-        
-          {/* Heading */}
-          <Typography variant="h4" align="center" sx={{ fontWeight: 700, my: { xs: 4, md: 8 } }}>
-            Youth Organizations Involved
-          </Typography>
 
-          {/* Top stats row */}
-          <Grid container spacing={2} justifyContent="center" sx={{ mb: { xs: 6, md: 10 } }}>
-            {stats.map((s, idx) => (
-              <Grid key={idx} size={{ xs: 12, sm: 6, md: 3 }} sx={{ position: 'relative', minHeight: 90 }}>
-                {/* big faded number */}
-                <Typography
+        {/* Heading */}
+        <Typography variant="h4" align="center" sx={{ fontWeight: 700, my: { xs: 4, md: 8 } }}>
+          Youth Organizations Involved
+        </Typography>
+
+        {/* Top stats row */}
+        {/* <Grid container spacing={2} justifyContent="center" sx={{ mb: { xs: 6, md: 10 } }}>
+          {stats.map((s, idx) => (
+            <Grid key={idx} size={{ xs: 12, sm: 6, md: 3 }} sx={{ position: 'relative', minHeight: 90 }}>
+            
+              <Typography
+                sx={{
+                  position: 'absolute',
+                  top: -10,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  fontSize: { xs: 64, md: 120 },
+                  fontWeight: 800,
+                  color: 'text.primary',
+                  opacity: 0.07,
+                  lineHeight: 1,
+                  userSelect: 'none',
+                  pointerEvents: 'none',
+                }}
+              >
+                {s.num}
+              </Typography>
+
+            
+              <Box sx={{ position: 'relative', zIndex: 2, textAlign: 'center', mt: { xs: 4, md: 4 } }}>
+                <Typography sx={{ fontWeight: 700 }}>{s.label}</Typography>
+              </Box>
+            </Grid>
+          ))}
+        </Grid> */}
+
+        {/* Features row: icons + title + desc */}
+        <Grid container spacing={4} justifyContent="center">
+          {features.map((f, idx) => (
+            <Grid key={idx} size={{ xs: 12, sm: 6, md: 3 }}>
+              <Box sx={{ textAlign: 'center', px: 2 }}>
+                {/* circular icon */}
+                <Box
                   sx={{
-                    position: 'absolute',
-                    top: -10,
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    fontSize: { xs: 64, md: 120 },
-                    fontWeight: 800,
-                    color: 'text.primary',
-                    opacity: 0.07,
-                    lineHeight: 1,
-                    userSelect: 'none',
-                    pointerEvents: 'none',
+                    width: 120,
+                    height: 120,
+                    borderRadius: '50%',
+                    mx: 'auto',
+                    mb: 3,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    bgcolor: theme.palette.action.hover, // soft background
+                    boxShadow: 1,
                   }}
                 >
-                  {s.num}
+                  <img
+                    src={f.icon}
+                    alt={f.title}
+                    style={{ width: 56, height: 56, objectFit: 'contain' }}
+                  />
+                </Box>
+
+                <Typography sx={{ fontWeight: 700, color: theme.palette.primary.main, mb: 1 }}>
+                  {f.title}
                 </Typography>
 
-                {/* label centered */}
-                <Box sx={{ position: 'relative', zIndex: 2, textAlign: 'center', mt: { xs: 4, md: 4 } }}>
-                  <Typography sx={{ fontWeight: 700 }}>{s.label}</Typography>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-
-          {/* Features row: icons + title + desc */}
-          <Grid container spacing={4} justifyContent="center">
-            {features.map((f, idx) => (
-              <Grid key={idx} size={{ xs: 12, sm: 6, md: 3 }}>
-                <Box sx={{ textAlign: 'center', px: 2 }}>
-                  {/* circular icon */}
-                  <Box
-                    sx={{
-                      width: 120,
-                      height: 120,
-                      borderRadius: '50%',
-                      mx: 'auto',
-                      mb: 3,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      bgcolor: theme.palette.action.hover, // soft background
-                      boxShadow: 1,
-                    }}
-                  >
-                    <img
-                      src={f.icon}
-                      alt={f.title}
-                      style={{ width: 56, height: 56, objectFit: 'contain' }}
-                    />
-                  </Box>
-
-                  <Typography sx={{ fontWeight: 700, color: theme.palette.primary.main, mb: 1 }}>
-                    {f.title}
-                  </Typography>
-
-                  <Typography sx={{ color: 'text.secondary', fontSize: 13, lineHeight: 1.6 }}>
-                    {f.desc}
-                  </Typography>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-         <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, my: 8, textTransform: "capitalize", fontSize: 40 }}>
-         Resources
+                <Typography sx={{ color: 'text.secondary', fontSize: 13, lineHeight: 1.6 }}>
+                  {f.desc}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+        <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, my: 8, textTransform: "capitalize", fontSize: 40 }}>
+          Resources
         </Typography>
-         <Typography variant="h6" sx={{ textAlign: 'center', fontWeight: 400, my: 6, }}>
-         Information collected from or submitted by, the Civil Society network and other relevant stakeholders.
+        <Typography variant="h6" sx={{ textAlign: 'center', fontWeight: 400, my: 6, }}>
+          Information collected from or submitted by, the Civil Society network and other relevant stakeholders.
         </Typography>
 
         <Grid container spacing={3} >
@@ -444,76 +444,76 @@ function Home() {
         </Grid>
 
 
-         <Grid container spacing={5} justifyContent="center" sx={{ mt: 12 }}>
-         <Grid  size={{ xs: 12, sm: 6, md: 6 }} > 
-          <img src="/assets/femle.png" alt=""  width={"100%"}/>
-           </Grid>
-         <Grid  size={{ xs: 12, sm: 6, md: 6 }} sx={{display:"flex",justifyContent:"center",alignItems:"center", flexDirection:"column",gap:2}}  > 
-           <Stack direction={"column"}> 
-           <Stack direction={"row"} spacing={3}  mb={2} width={"100%"} >
-            <Box sx={{width:45,height:45,bgcolor:"  #f5821f",borderRadius:"50%"}}></Box>
-            <Stack direction={"column"}  width={"100%"}>
-            <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Mollis Mattis</Typography>
-            <Typography variant="body1" fontWeight={400} fontSize={14}  >
-            In many parts of the world, female  
-             In many parts of the world, female        
-            -headed households face unique challenges that can impact their food security.      
-            -headed households face unique 
-          </Typography>
-          </Stack> 
-           </Stack>
-          </Stack>
-          <Stack direction={"column"} alignItems={"center"}>
-           <Stack direction={"row"} spacing={3}  mb={2} width={"100%"} >
-            <Box sx={{width:45,height:45,bgcolor:"  #f5821f",borderRadius:"50%"}}></Box>
-            <Stack direction={"column"} width={"100%"}>
-            <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Ullamcorper Mattis Etiam</Typography>
-            <Typography variant="body1" fontWeight={400} fontSize={14}  >
-            In many parts of the world, female  
-             In many parts of the world, female        
-            -headed households face unique challenges that can impact their food security.      
-            -headed households face unique 
-          </Typography>
-          </Stack> 
-           </Stack>
-          </Stack>
-          <Stack direction={"column"}>
-           <Stack direction={"row"} spacing={3}  mb={2} width={"100%"} >
-            <Box sx={{width:45,height:45,bgcolor:"  #f5821f",borderRadius:"50%"}}></Box>
-            <Stack direction={"column"} width={"100%"}>
-            <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Mattis Etiam Justo</Typography>
-            <Typography variant="body1" fontWeight={400} fontSize={14}  >
-            In many parts of the world, female  
-             In many parts of the world, female        
-            -headed households face unique challenges that can impact their food security.      
-            -headed households face unique 
-          </Typography>
-          </Stack> 
-           </Stack>
-          </Stack>
-           </Grid>
+        <Grid container spacing={5} justifyContent="center" sx={{ mt: 12 }}>
+          <Grid size={{ xs: 12, sm: 6, md: 6 }} >
+            <img src="/assets/femle.png" alt="" width={"100%"} />
+          </Grid>
+          <Grid size={{ xs: 12, sm: 6, md: 6 }} sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap: 2 }}  >
+            <Stack direction={"column"}>
+              <Stack direction={"row"} spacing={3} mb={2} width={"100%"} >
+                <Box sx={{ width: 45, height: 45, bgcolor: "  #f5821f", borderRadius: "50%" }}></Box>
+                <Stack direction={"column"} width={"100%"}>
+                  <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Mollis Mattis</Typography>
+                  <Typography variant="body1" fontWeight={400} fontSize={14}  >
+                    In many parts of the world, female
+                    In many parts of the world, female
+                    -headed households face unique challenges that can impact their food security.
+                    -headed households face unique
+                  </Typography>
+                </Stack>
+              </Stack>
+            </Stack>
+            <Stack direction={"column"} alignItems={"center"}>
+              <Stack direction={"row"} spacing={3} mb={2} width={"100%"} >
+                <Box sx={{ width: 45, height: 45, bgcolor: "  #f5821f", borderRadius: "50%" }}></Box>
+                <Stack direction={"column"} width={"100%"}>
+                  <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Ullamcorper Mattis Etiam</Typography>
+                  <Typography variant="body1" fontWeight={400} fontSize={14}  >
+                    In many parts of the world, female
+                    In many parts of the world, female
+                    -headed households face unique challenges that can impact their food security.
+                    -headed households face unique
+                  </Typography>
+                </Stack>
+              </Stack>
+            </Stack>
+            <Stack direction={"column"}>
+              <Stack direction={"row"} spacing={3} mb={2} width={"100%"} >
+                <Box sx={{ width: 45, height: 45, bgcolor: "  #f5821f", borderRadius: "50%" }}></Box>
+                <Stack direction={"column"} width={"100%"}>
+                  <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Mattis Etiam Justo</Typography>
+                  <Typography variant="body1" fontWeight={400} fontSize={14}  >
+                    In many parts of the world, female
+                    In many parts of the world, female
+                    -headed households face unique challenges that can impact their food security.
+                    -headed households face unique
+                  </Typography>
+                </Stack>
+              </Stack>
+            </Stack>
+          </Grid>
         </Grid>
       </Box>
-       <Box  >
+      <Box  >
         <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, my: 6, textTransform: "capitalize", fontSize: 40 }} >
           Get In Tuch
         </Typography>
         <Grid container spacing={3}  >
-         
+
           <Grid size={{ xs: 12, sm: 6, md: 12 }} >
             <Stack maxWidth={900} mx={"auto"} direction={"column"} spacing={4} justifyContent={"center"} alignItems={"center"} height={"100%"} >
-              <Typography variant="body1"  fontWeight={500} fontSize={20}>Information collected from or submitted by, the Civil Society network and other relevant stakeholders.</Typography>
-             <Stack direction={"row"} spacing={2} width={"100%"} > 
-              <TextField type="text"  placeholder="Your Name"   fullWidth sx={{color:"#fff"}}/>
-              <TextField type="email"  placeholder="Your Email"  fullWidth /></Stack> 
-              <textarea placeholder="Your Message"  style={{ width: "100%", height: 150, borderRadius: 5, border: "1px solid #ccc", padding: 10 }} />
-              <Button variant="contained"size="small" color="error" fontWeight={500} sx={{ width: 178, height: 48, backgroundColor: '#f5821f', '&:hover': { backgroundColor: '#f5821f' } }} >
+              <Typography variant="body1" fontWeight={500} fontSize={20}>Information collected from or submitted by, the Civil Society network and other relevant stakeholders.</Typography>
+              <Stack direction={"row"} spacing={2} width={"100%"} >
+                <TextField type="text" placeholder="Your Name" fullWidth sx={{ color: "#fff" }} />
+                <TextField type="email" placeholder="Your Email" fullWidth /></Stack>
+              <textarea placeholder="Your Message" style={{ width: "100%", height: 150, borderRadius: 5, border: "1px solid #ccc", padding: 10 }} />
+              <Button variant="contained" size="small" color="error" fontWeight={500} sx={{ width: 178, height: 48, backgroundColor: '#f5821f', '&:hover': { backgroundColor: '#f5821f' } }} >
                 Send Message
               </Button>
             </Stack>
           </Grid>
         </Grid>
-        </Box>
+      </Box>
     </Box>
   )
 }
