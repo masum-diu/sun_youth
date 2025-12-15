@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import Button from '@mui/material/Button'
-import { AppBar, Toolbar, Typography, Box, Link as MuiLink, Menu, MenuItem } from '@mui/material'
+import { AppBar, Toolbar, Typography, Box, Link as MuiLink, Menu, MenuItem, Dialog, DialogTitle, DialogContent, IconButton, Grid, Card, CardActionArea, CardContent } from '@mui/material'
 import NextLink from 'next/link';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CloseIcon from '@mui/icons-material/Close';
+import GroupIcon from '@mui/icons-material/Group';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 
 const navLinks = [
     { title: 'Home', path: '/', active: true },
@@ -28,6 +31,7 @@ const linkStyles = {
 function Header() {
     const [anchorEl, setAnchorEl] = useState(null);
     const [openMenu, setOpenMenu] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleMenuOpen = (event, title) => {
         setAnchorEl(event.currentTarget);
@@ -37,6 +41,14 @@ function Header() {
     const handleMenuClose = () => {
         setAnchorEl(null);
         setOpenMenu(null);
+    };
+
+    const handleModalOpen = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleModalClose = () => {
+        setIsModalOpen(false);
     };
     return (
         <Box>
@@ -102,14 +114,63 @@ function Header() {
                                 ))}
                             </Box>
 
-                            <Button variant="contained" color="primary" sx={{ width: 232, height: 56, fontSize: 18, fontWeight: '700', backgroundColor: '#f5821f', '&:hover': { backgroundColor: '#d4701c' } }}>
+                            <Button onClick={handleModalOpen} variant="contained" color="primary" sx={{ width: 232, height: 56, fontSize: 18, fontWeight: '700', backgroundColor: '#f5821f', '&:hover': { backgroundColor: '#d4701c' } }}>
                                 Join the network
                             </Button>
                         </Box>
                     </Box>
                 </Toolbar>
 
-            </AppBar></Box>
+            </AppBar>
+            <Dialog open={isModalOpen} onClose={handleModalClose} maxWidth="sm" fullWidth>
+                <DialogTitle sx={{ m: 0, p: 2, fontWeight: 'bold' }}>
+                    Join Our Network
+                    <IconButton
+                        aria-label="close"
+                        onClick={handleModalClose}
+                        sx={{
+                            position: 'absolute',
+                            right: 8,
+                            top: 8,
+                            color: (theme) => theme.palette.grey[500],
+                        }}
+                    >
+                        <CloseIcon />
+                    </IconButton>
+                </DialogTitle>
+                <DialogContent dividers>
+                    <Typography gutterBottom sx={{ mb: 3 }}>
+                        We are excited to have you. Choose how you would like to get involved with our network.
+                    </Typography>
+                    <Grid container spacing={2}>
+                        <Grid size={{ xs: 12, sm: 6 }}>
+                            <Card variant="outlined" sx={{ height: '100%' }}>
+                                <CardActionArea sx={{ p: 3, textAlign: 'center', height: '100%' }}>
+                                    <GroupIcon sx={{ fontSize: 48, color: '#f5821f' }} />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h6" component="div">
+                                            Join as Youth Organization
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </Grid>
+                        <Grid size={{ xs: 12, sm: 6 }}>
+                            <Card variant="outlined" sx={{ height: '100%' }}>
+                                <CardActionArea sx={{ p: 3, textAlign: 'center', height: '100%' }}>
+                                    <VolunteerActivismIcon sx={{ fontSize: 48, color: '#f5821f' }} />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h6" component="div">
+                                            Join as Volunteer
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </Grid>
+                    </Grid>
+                </DialogContent>
+            </Dialog>
+        </Box>
     )
 }
 
