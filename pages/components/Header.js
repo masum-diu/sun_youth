@@ -9,7 +9,13 @@ import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 
 const navLinks = [
     { title: 'Home', path: '/', active: true },
-    { title: 'About Us', path: '/about' },
+    { title: 'About Us', children: [
+            { title: 'SUN Youth Network Bangladesh Brief', path: '/about-us/sun-youth-network-brief' },
+            { title: 'Government (MoHFW)', path: '/about-us/government-mohfw' },
+            { title: 'SUN Movement', path: '/about-us/sun-movement' },
+            { title: 'Secretariat (GAIN) info and logo', path: '/about-us/secretariat-gain' },
+           
+        ] },
     { title: 'What We Do', path: '/what-we-do' },
     { title: 'Impact Stories', path: '/impact-stories' },
     {
@@ -25,7 +31,7 @@ const navLinks = [
 ];
 
 const linkStyles = {
-    cursor: 'pointer', '&:hover': { textDecoration: 'underline' }, fontWeight: '500', fontSize: 20, textDecoration: 'none'
+    cursor: 'pointer', '&:hover': { textDecoration: 'underline' }, fontWeight: '500', fontSize: 16, textDecoration: 'none'
 };
 
 function Header() {
@@ -81,6 +87,7 @@ function Header() {
                             <Box component="ul" sx={{ display: 'flex', gap: 4, alignItems: 'center', listStyle: 'none', p: 0, m: 0 }}>
                                 {navLinks.map((link) => (
                                     <li
+                                   
                                         key={link.title}
                                         onMouseEnter={link.children ? (e) => handleMenuOpen(e, link.title) : undefined}
                                         onMouseLeave={link.children ? handleMenuClose : undefined}
