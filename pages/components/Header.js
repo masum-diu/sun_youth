@@ -79,7 +79,7 @@ function Header() {
             </Typography>
             <AppBar position="static" sx={{ bgcolor: '#f0eee2', color: '#000000' }}>
 
-                <Toolbar sx={{ pl: 0, py: 2, width: "95%", maxWidth: "1700px", margin: "0 auto" }}>
+                <Toolbar disableGutters sx={{ pl: 0, py: 2, width: "95%", maxWidth: "1700px", margin: "0 auto" }}>
 
                     <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', justifyContent: 'space-between', width: '100%', }}>
                         <img src="/assets/logo.png" alt="" width={233} />

@@ -321,7 +321,7 @@ function Home() {
 
 
         </Grid>
-        <Typography variant="h4" sx={{ mt: 8, textAlign: 'center', fontWeight: 500, textTransform: "capitalize", fontSize: 40 }}>
+        {/* <Typography variant="h4" sx={{ mt: 8, textAlign: 'center', fontWeight: 500, textTransform: "capitalize", fontSize: 40 }}>
           Gender Ratio
         </Typography>
         <Grid container spacing={2} ref={genderRatioRef}>
@@ -332,7 +332,7 @@ function Home() {
           <Grid size={{ md: 6, xs: 12 }} >
             <DemographicCards Title={"Beneficiary"} inView={genderRatioInView} />
           </Grid>
-        </Grid>
+        </Grid> */}
 
         {/* Heading */}
         <Typography variant="h4" align="center" sx={{ fontWeight: 700, my: { xs: 4, md: 8 } }}>
@@ -494,8 +494,21 @@ function Home() {
           </Grid>
         </Grid>
       </Box>
-      <Box  >
-        <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, my: 6, textTransform: "capitalize", fontSize: 40 }} >
+        <Box sx={{
+                py: 6,
+                color: "#fff",
+                backgroundImage: `
+    linear-gradient(
+      rgba(178, 9, 51, 0.6),
+      rgba(178, 9, 51, 0.6)
+    ),
+    url('/assets/sky-lac-leman.jpg')
+  `,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+            }}>
+        <Typography variant="h4" sx={{ textAlign: 'center', mb: 4, fontWeight: 500, textTransform: "capitalize", fontSize: 40 }} >
           Get In Tuch
         </Typography>
         <Grid container spacing={3}  >
@@ -504,8 +517,52 @@ function Home() {
             <Stack maxWidth={900} mx={"auto"} direction={"column"} spacing={4} justifyContent={"center"} alignItems={"center"} height={"100%"} >
               <Typography variant="body1" fontWeight={500} fontSize={20}>Information collected from or submitted by, the Civil Society network and other relevant stakeholders.</Typography>
               <Stack direction={"row"} spacing={2} width={"100%"} >
-                <TextField type="text" placeholder="Your Name" fullWidth sx={{ color: "#fff" }} />
-                <TextField type="email" placeholder="Your Email" fullWidth /></Stack>
+                <TextField
+                  type="text"
+                  placeholder="Full Name"
+                  fullWidth
+                  variant="outlined"
+                  sx={{
+                    input: { color: "#fff" },
+                    "& .MuiOutlinedInput-root fieldset": {
+                      borderColor: "#fff",
+                    },
+                    "& .MuiOutlinedInput-root:hover fieldset": {
+                      borderColor: "#fff",
+                    },
+                    "& .MuiOutlinedInput-root.Mui-focused fieldset": {
+                      borderColor: "#fff",
+                    },
+                    "& input::placeholder": {
+                      color: "#fff",
+                      opacity: 0.7,
+                    },
+                  }}
+                />
+
+                <TextField
+                  type="email"
+                  placeholder="Your Email"
+                  fullWidth
+                  variant="outlined"
+                  sx={{
+                    input: { color: "#fff" },
+                    "& .MuiOutlinedInput-root fieldset": {
+                      borderColor: "#fff",
+                    },
+                    "& .MuiOutlinedInput-root:hover fieldset": {
+                      borderColor: "#fff",
+                    },
+                    "& .MuiOutlinedInput-root.Mui-focused fieldset": {
+                      borderColor: "#fff",
+                    },
+                    "& input::placeholder": {
+                      color: "#fff",
+                      opacity: 0.7,
+                    },
+                  }}
+                />
+              </Stack>
               <textarea placeholder="Your Message" style={{ width: "100%", height: 150, borderRadius: 5, border: "1px solid #ccc", padding: 10 }} />
               <Button variant="contained" size="small" color="error" fontWeight={500} sx={{ width: 178, height: 48, backgroundColor: '#f5821f', '&:hover': { backgroundColor: '#f5821f' } }} >
                 Send Message

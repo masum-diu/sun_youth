@@ -7,7 +7,7 @@ import InstagramIcon from '@mui/icons-material/Instagram'
 
 function Footer() {
     return (
-        <Box component="footer" sx={{ backgroundColor: '#36383A', color: '#eee', mt: 6, }}>
+        <Box component="footer" sx={{ backgroundColor: '#36383A', color: '#eee',  }}>
             <Box sx={{ py: 8, width: '95%', margin: '0 auto', maxWidth: '1700px' }}>
                 <Grid container spacing={4}>
                     <Grid size={{ xs: 12, md: 4 }}>

@@ -82,6 +82,7 @@ const theme = createTheme({
     },
   },
   components: {
+    
     MuiBadge: {
       styleOverrides: {
         badge: {
