@@ -16,7 +16,13 @@ const navLinks = [
             { title: 'Secretariat (GAIN) info and logo', path: '/about-us/secretariat-gain' },
            
         ] },
-    { title: 'What We Do', path: '/what-we-do' },
+    { title: 'What We Do', path: '/what-we-do', children: [
+            { title: 'Gallery', path: '/what-we-do/gallery' },
+            { title: 'BKBT', path: '/what-we-do/bkbt' },
+            { title: 'Food Systems Youth Leadership Training', path: '/what-we-do/food-systems-youth-leadership-training' },
+            { title: 'Youth Voices Summit', path: '/what-we-do/youth-voices-summit' },
+            { title: 'IMPACT Fellowship', path: '/what-we-do/impact-fellowship' },
+        ] },
     { title: 'Impact Stories', path: '/impact-stories' },
     {
         title: 'Resources',
