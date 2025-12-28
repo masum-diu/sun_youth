@@ -30,7 +30,7 @@ function Home() {
       image: "/assets/governace.jpg", title: "Focal Points", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "Read More"
     },
   ]
-  const latestNews = [
+  const     latestNews = [
     {
       image: "/assets/governace.jpg", title: "GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "By GSO Admin . October 12, 2023", subtile: "News"
     },
@@ -94,231 +94,231 @@ function Home() {
   });
 
   // Sample data for divisions, you can replace this with your actual data
- const divisionData = {
-  Rangpur: [
-    {
-      category: "Food Systems Youth Leadership Training (Community Level Training)",
-      location: "Panchagarh",
-      district: "Panchagarh",
-      date: "22, 23, 24 February 2024",
-      participants: 30,
-    },
-    {
-      category: "Training of Trainers (TOT)",
-      location: "Rangpur",
-      district: "Rangpur",
-      date: "30 April – 03 May 2025",
-      participants: 30,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Lalmonirhat",
-      district: "Lalmonirhat",
-      date: "10, 11, 12 April 2025",
-      participants: 30,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Dinajpur",
-      district: "Dinajpur",
-      date: "05, 06, 07 September 2025",
-      participants: 30,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Bogura",
-      district: "Bogura",
-      date: "06, 07, 08 November 2025",
-      participants: 30,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Begum Rokeya University, Rangpur",
-      district: "Rangpur",
-      date: "23, 24, 25 November 2026",
-      participants: 36,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Carmichael College, Rangpur",
-      district: "Rangpur",
-      date: "02, 03, 04 December 2025",
-      participants: 35,
-    },
-  ],
+  const divisionData = {
+    Rangpur: [
+      {
+        category: "Food Systems Youth Leadership Training (Community Level Training)",
+        location: "Panchagarh",
+        district: "Panchagarh",
+        date: "22, 23, 24 February 2024",
+        participants: 30,
+      },
+      {
+        category: "Training of Trainers (TOT)",
+        location: "Rangpur",
+        district: "Rangpur",
+        date: "30 April – 03 May 2025",
+        participants: 30,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Lalmonirhat",
+        district: "Lalmonirhat",
+        date: "10, 11, 12 April 2025",
+        participants: 30,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Dinajpur",
+        district: "Dinajpur",
+        date: "05, 06, 07 September 2025",
+        participants: 30,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Bogura",
+        district: "Bogura",
+        date: "06, 07, 08 November 2025",
+        participants: 30,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Begum Rokeya University, Rangpur",
+        district: "Rangpur",
+        date: "23, 24, 25 November 2026",
+        participants: 36,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Carmichael College, Rangpur",
+        district: "Rangpur",
+        date: "02, 03, 04 December 2025",
+        participants: 35,
+      },
+    ],
 
-  Dhaka: [
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Bishwo Shahitto Kendro",
-      district: "Dhaka",
-      date: "14, 15, 16 September 2024",
-      participants: 30,
-    },
-    {
-      category: "Training of Trainers (TOT)",
-      location: "Dhaka",
-      district: "Dhaka",
-      date: "06–09 December 2024",
-      participants: 25,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Daffodil International University",
-      district: "Dhaka",
-      date: "26–28 January 2025",
-      participants: 30,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Sher-e-Bangla Agricultural University",
-      district: "Dhaka",
-      date: "10–12 April 2025",
-      participants: 30,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "DUET, Gazipur",
-      district: "Gazipur",
-      date: "12–14 April 2025",
-      participants: 33,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "State University",
-      district: "Dhaka",
-      date: "09–11 October 2025",
-      participants: 30,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Manikganj",
-      district: "Manikganj",
-      date: "14–16 November 2025",
-      participants: 35,
-    },
-  ],
+    Dhaka: [
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Bishwo Shahitto Kendro",
+        district: "Dhaka",
+        date: "14, 15, 16 September 2024",
+        participants: 30,
+      },
+      {
+        category: "Training of Trainers (TOT)",
+        location: "Dhaka",
+        district: "Dhaka",
+        date: "06–09 December 2024",
+        participants: 25,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Daffodil International University",
+        district: "Dhaka",
+        date: "26–28 January 2025",
+        participants: 30,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Sher-e-Bangla Agricultural University",
+        district: "Dhaka",
+        date: "10–12 April 2025",
+        participants: 30,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "DUET, Gazipur",
+        district: "Gazipur",
+        date: "12–14 April 2025",
+        participants: 33,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "State University",
+        district: "Dhaka",
+        date: "09–11 October 2025",
+        participants: 30,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Manikganj",
+        district: "Manikganj",
+        date: "14–16 November 2025",
+        participants: 35,
+      },
+    ],
 
-  Chattogram: [
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "CVASU",
-      district: "Chattogram",
-      date: "06–08 February 2025",
-      participants: 25,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Cox's Bazar International University",
-      district: "Cox's Bazar",
-      date: "27 Feb – 01 March 2025",
-      participants: 22,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Noakhali",
-      district: "Noakhali",
-      date: "14–16 September 2025",
-      participants: 33,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Bandarban",
-      district: "Bandarban",
-      date: "22–24 September 2025",
-      participants: 28,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Cumilla",
-      district: "Cumilla",
-      date: "02–04 December 2025",
-      participants: 36,
-    },
-  ],
+    Chattogram: [
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "CVASU",
+        district: "Chattogram",
+        date: "06–08 February 2025",
+        participants: 25,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Cox's Bazar International University",
+        district: "Cox's Bazar",
+        date: "27 Feb – 01 March 2025",
+        participants: 22,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Noakhali",
+        district: "Noakhali",
+        date: "14–16 September 2025",
+        participants: 33,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Bandarban",
+        district: "Bandarban",
+        date: "22–24 September 2025",
+        participants: 28,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Cumilla",
+        district: "Cumilla",
+        date: "02–04 December 2025",
+        participants: 36,
+      },
+    ],
 
-  Khulna: [
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Khulna University",
-      district: "Khulna",
-      date: "30 Jan – 01 Feb 2025",
-      participants: 31,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Jhenaidah",
-      district: "Jhenaidah",
-      date: "12–14 September 2025",
-      participants: 31,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Jessore",
-      district: "Jessore",
-      date: "19–21 November 2025",
-      participants: 35,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Satkhira (Tala)",
-      district: "Satkhira",
-      date: "17–19 December 2025",
-      participants: 36,
-    },
-  ],
+    Khulna: [
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Khulna University",
+        district: "Khulna",
+        date: "30 Jan – 01 Feb 2025",
+        participants: 31,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Jhenaidah",
+        district: "Jhenaidah",
+        date: "12–14 September 2025",
+        participants: 31,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Jessore",
+        district: "Jessore",
+        date: "19–21 November 2025",
+        participants: 35,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Satkhira (Tala)",
+        district: "Satkhira",
+        date: "17–19 December 2025",
+        participants: 36,
+      },
+    ],
 
-  Barishal: [
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "University of Barishal",
-      district: "Barishal",
-      date: "26–28 February 2025",
-      participants: 35,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Patuakhali Science & Technology University",
-      district: "Patuakhali",
-      date: "13–15 April 2025",
-      participants: 33,
-    },
-  ],
+    Barishal: [
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "University of Barishal",
+        district: "Barishal",
+        date: "26–28 February 2025",
+        participants: 35,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Patuakhali Science & Technology University",
+        district: "Patuakhali",
+        date: "13–15 April 2025",
+        participants: 33,
+      },
+    ],
 
-  Sylhet: [
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Habiganj",
-      district: "Habiganj",
-      date: "26–28 February 2025",
-      participants: 30,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Sylhet Agricultural University",
-      district: "Sylhet",
-      date: "16–18 October 2025",
-      participants: 29,
-    },
-  ],
+    Sylhet: [
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Habiganj",
+        district: "Habiganj",
+        date: "26–28 February 2025",
+        participants: 30,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Sylhet Agricultural University",
+        district: "Sylhet",
+        date: "16–18 October 2025",
+        participants: 29,
+      },
+    ],
 
-  Rajshahi: [
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Rajshahi University",
-      district: "Rajshahi",
-      date: "28–30 August 2025",
-      participants: 30,
-    },
-    {
-      category: "Food Systems Youth Leadership Training",
-      location: "Pabna",
-      district: "Pabna",
-      date: "10–12 December 2025",
-      participants: 35,
-    },
-  ],
-};
+    Rajshahi: [
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Rajshahi University",
+        district: "Rajshahi",
+        date: "28–30 August 2025",
+        participants: 30,
+      },
+      {
+        category: "Food Systems Youth Leadership Training",
+        location: "Pabna",
+        district: "Pabna",
+        date: "10–12 December 2025",
+        participants: 35,
+      },
+    ],
+  };
 
 
   const handleMapHover = (divisionName, event) => {
@@ -342,7 +342,7 @@ function Home() {
       { cx: 325, cy: 110, label: 'Dinajpur' },
       { cx: 300, cy: 70, label: 'Panchagarh' },
       { cx: 355, cy: 90, label: 'Lalmonirhat' },
-      { cx: 330, cy: 180, label: 'Bogura' }, 
+      { cx: 330, cy: 180, label: 'Bogura' },
     ],
     'Chattogram': [ // Corrected from 'Chittagong' to match data key
       { cx: 480, cy: 300, label: 'Cumilla' },
@@ -386,7 +386,7 @@ function Home() {
         pagination={{
           clickable: true,
         }}
-        
+
         navigation={false}
         modules={[Pagination, Navigation, Autoplay]}>
         <SwiperSlide>
@@ -546,7 +546,7 @@ function Home() {
       <Grid container spacing={2} sx={{ bgcolor: '#f5821f', color: '#fff', py: 4 }}>
         <Grid size={{ md: 3, xs: 12 }}>
           <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 50, textAlign: 'center' }}>
-          55
+            55
           </Typography>
           <Typography variant="body1" sx={{ mt: 1, textAlign: 'center', fontWeight: 400, fontSize: 20 }}>
             Facilitators Trained
@@ -562,15 +562,15 @@ function Home() {
         </Grid>
         <Grid size={{ md: 3, xs: 12 }}>
           <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 50, textAlign: 'center' }}>
-           214 
+            214
           </Typography>
           <Typography variant="body1" sx={{ mt: 1, textAlign: 'center', fontWeight: 400, fontSize: 20 }}>
-           Youth-Led Collective Actions
+            Youth-Led Collective Actions
           </Typography>
         </Grid>
         <Grid size={{ md: 3, xs: 12 }}>
           <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 50, textAlign: 'center' }}>
-           40 Districts
+            40 Districts
           </Typography>
           <Typography variant="body1" sx={{ mt: 1, textAlign: 'center', fontWeight: 400, fontSize: 20 }}>
             Geographic Coverage
@@ -676,39 +676,39 @@ function Home() {
               <Typography variant="h6" sx={{ color: theme.palette.primary.main, fontWeight: 'bold' }}>{hoveredInfo.name}
 
               </Typography>
-             {Array.isArray(hoveredInfo.data) && hoveredInfo.data.length > 0 ? (
-  hoveredInfo.data.map((item, index) => (
-    <Box key={index} sx={{ mt: index > 0 ? 1.5 : 0 }}>
-      <Typography variant="body2" color="#fff">
-        Category: {item.category}
-      </Typography>
+              {Array.isArray(hoveredInfo.data) && hoveredInfo.data.length > 0 ? (
+                hoveredInfo.data.map((item, index) => (
+                  <Box key={index} sx={{ mt: index > 0 ? 1.5 : 0 }}>
+                    <Typography variant="body2" color="#fff">
+                      Category: {item.category}
+                    </Typography>
 
-      <Typography variant="body2" color="#fff">
-        Location: {item.location}
-      </Typography>
+                    <Typography variant="body2" color="#fff">
+                      Location: {item.location}
+                    </Typography>
 
-      <Typography variant="body2" color="#fff">
-        District: {item.district}
-      </Typography>
+                    <Typography variant="body2" color="#fff">
+                      District: {item.district}
+                    </Typography>
 
-      <Typography variant="body2" color="#fff">
-        Training Date: {item.date}
-      </Typography>
+                    <Typography variant="body2" color="#fff">
+                      Training Date: {item.date}
+                    </Typography>
 
-      <Typography variant="body2" color="#fff">
-        Total Participants: {item.participants}
-      </Typography>
+                    <Typography variant="body2" color="#fff">
+                      Total Participants: {item.participants}
+                    </Typography>
 
-      {index < hoveredInfo.data.length - 1 && (
-        <Divider sx={{ my: 1, bgcolor: "rgba(255,255,255,0.5)" }} />
-      )}
-    </Box>
-  ))
-) : (
-  <Typography variant="body2" color="#fff">
-    No data available
-  </Typography>
-)}
+                    {index < hoveredInfo.data.length - 1 && (
+                      <Divider sx={{ my: 1, bgcolor: "rgba(255,255,255,0.5)" }} />
+                    )}
+                  </Box>
+                ))
+              ) : (
+                <Typography variant="body2" color="#fff">
+                  No data available
+                </Typography>
+              )}
 
             </Paper>
           )}
@@ -731,7 +731,7 @@ function Home() {
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 6 }} >
             {/* <img src="/assets/bangladesh.png" alt="" width={"100%"} /> */}
-             <BangladeshMap onSelect={(division) => console.log(division)} onHover={handleMapHover} onLeave={handleMapLeave} pins={pins} />
+            <BangladeshMap onSelect={(division) => console.log(division)} onHover={handleMapHover} onLeave={handleMapLeave} pins={pins} />
           </Grid>
         </Grid>
 
@@ -811,9 +811,9 @@ function Home() {
         </Grid> */}
 
         {/* Heading */}
-        <Typography variant="h4" align="center" sx={{ fontWeight: 700, my: { xs: 4, md: 8 } }}>
+        {/* <Typography variant="h4" align="center" sx={{ fontWeight: 700, my: { xs: 4, md: 8 } }}>
           Youth Organizations Involved
-        </Typography>
+        </Typography> */}
 
         {/* Top stats row */}
         {/* <Grid container spacing={2} justifyContent="center" sx={{ mb: { xs: 6, md: 10 } }}>
@@ -847,11 +847,11 @@ function Home() {
         </Grid> */}
 
         {/* Features row: icons + title + desc */}
-        <Grid container spacing={4} justifyContent="center">
+        {/* <Grid container spacing={4} justifyContent="center">
           {features.map((f, idx) => (
             <Grid key={idx} size={{ xs: 12, sm: 6, md: 3 }}>
               <Box sx={{ textAlign: 'center', px: 2 }}>
-                {/* circular icon */}
+                
                 <Box
                   sx={{
                     width: 120,
@@ -862,7 +862,7 @@ function Home() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    bgcolor: theme.palette.action.hover, // soft background
+                    bgcolor: theme.palette.action.hover, 
                     boxShadow: 1,
                   }}
                 >
@@ -883,13 +883,13 @@ function Home() {
               </Box>
             </Grid>
           ))}
-        </Grid>
-        <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, my: 8, textTransform: "capitalize", fontSize: 40 }}>
-          Resources
+        </Grid> */}
+        <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, my: 6, textTransform: "capitalize", fontSize: 40 }}>
+         News and blogs
         </Typography>
-        <Typography variant="h6" sx={{ textAlign: 'center', fontWeight: 400, my: 6, }}>
+        {/* <Typography variant="h6" sx={{ textAlign: 'center', fontWeight: 400, my: 4, }}>
           Information collected from or submitted by, the Civil Society network and other relevant stakeholders.
-        </Typography>
+        </Typography> */}
 
         <Grid container spacing={3} >
           {latestNews.map((option, index) => (<Grid size={{ xs: 12, sm: 6, md: 3 }} key={index} >
