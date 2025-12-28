@@ -4,6 +4,11 @@ import { Box, Grid, Paper, Stack, Typography, Container, TextField } from '@mui/
 import { useInView } from 'react-intersection-observer'
 import DemographicCards from './components/DemographicCards'
 import theme from '@/utils/theme'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import BangladeshMap from './components/BangladeshMap'
 
 function Home() {
   const getInvolvedOptions = [
@@ -80,81 +85,203 @@ function Home() {
   });
   return (
     <Box bgcolor={"#fff"}>
-      <Box
-        sx={{
-          backgroundImage: "url('assets/banner_image.png')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          width: '100%',
-          minHeight: '65vh',
-          display: 'flex',
-          alignItems: 'flex-end',
-          justifyContent: 'center',
+      <Swiper slidesPerView={1}
+        loop={true}
+        autoplay={{
+          delay: 4000, // 4 seconds পর পর slide change
+          disableOnInteraction: false, // user touch করলেও auto চলবে
         }}
-        role="img"
-        aria-label="Hero background"
-      >
-        <Stack direction={"column"} spacing={3}   >
-          <Typography variant="h3" sx={{ fontWeight: 500, fontSize: 60 }}>
-            The Food Systems Dashboard
-          </Typography>
-          <Typography variant="h3" sx={{ fontWeight: 600, fontSize: 45, color: '#b20933' }}>
-            THEN AND NOW
-          </Typography>
-          <Button variant="contained" color="primary" sx={{ width: 178, height: 56, fontSize: 17, fontWeight: '500', backgroundColor: '#b20933', '&:hover': { backgroundColor: '#b20933' } }}>
-            learn more
-          </Button>
-          <Stack justifyContent={"flex-end"} alignItems={"flex-end"} >
-            <Paper elevation={0} sx={{ mt: 5, px: 4, py: 2, backgroundColor: '#ffff', borderTopLeftRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, width: 1008, }} >
-              <Stack direction={"row"} spacing={2} justifyContent={"space-between"} alignItems={"center"} >
-                <Stack direction={"row"} spacing={4} alignItems={"center"}  >
-                  <img src="/assets/image1.png" alt="" />
-                  <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 19 }}>
-                    70th GEF Council <br />
-                    Meeting – Dec. 2025
+        pagination={{
+          clickable: true,
+        }}
+        
+        navigation={false}
+        modules={[Pagination, Navigation, Autoplay]}>
+        <SwiperSlide>
+          <Box
+            sx={{
+              backgroundImage: `
+            linear-gradient(
+              rgba(38, 37, 37, 0.5),
+              rgba(8, 8, 8, 0.5)
+            ),
+            url('/assets/slider1.jpg')
+          `,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              width: '100%',
+              minHeight: '85vh',
+              display: 'flex',
+              alignItems: 'flex-end',
+              justifyContent: 'center',
+            }}
+            role="img"
+            aria-label="Hero background"
+          >
+            <Stack direction={"column"} spacing={3}   >
+              <Typography variant="h3" sx={{ fontWeight: 500, fontSize: 60, color: '#FFF' }}>
+                The Food Systems Dashboard
+              </Typography>
+              <Typography variant="h3" sx={{ fontWeight: 600, fontSize: 45, color: theme.palette.secondary.main }}>
+                THEN AND NOW
+              </Typography>
+              <Button variant="contained" color="primary" sx={{ width: 178, height: 56, fontSize: 17, fontWeight: '500', backgroundColor: '#b20933', '&:hover': { backgroundColor: '#b20933' } }}>
+                learn more
+              </Button>
+              <Stack justifyContent={"flex-end"} alignItems={"flex-end"} >
+                <Paper elevation={0} sx={{ mt: 5, px: 4, py: 2, backgroundColor: '#ffff', borderTopLeftRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, width: 1008, }} >
+                  <Stack direction={"row"} spacing={2} justifyContent={"space-between"} alignItems={"center"} >
+                    <Stack direction={"row"} spacing={4} alignItems={"center"}  >
+                      <img src="/assets/image1.png" alt="" />
+                      <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 19 }}>
+                        70th GEF Council <br />
+                        Meeting – Dec. 2025
+                      </Typography>
+                    </Stack>
+                    <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 40, color: '#f5821f' }}>
+                      Upcoming Events
+                    </Typography>
+                  </Stack>
+
+                </Paper>
+              </Stack>
+            </Stack>
+          </Box></SwiperSlide>
+        <SwiperSlide>  <Box
+          sx={{
+            backgroundImage: `
+            linear-gradient(
+              rgba(38, 37, 37, 0.5),
+              rgba(8, 8, 8, 0.5)
+            ),
+            url('/assets/slider2.jpg')
+          `,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            width: '100%',
+            minHeight: '85vh',
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+          }}
+          role="img"
+          aria-label="Hero background"
+        >
+          <Stack direction={"column"} spacing={3}   >
+            <Typography variant="h3" sx={{ fontWeight: 500, fontSize: 60, color: '#FFF' }}>
+              The Food Systems Dashboard
+            </Typography>
+            <Typography variant="h3" sx={{ fontWeight: 600, fontSize: 45, color: theme.palette.secondary.main }}>
+              THEN AND NOW
+            </Typography>
+            <Button variant="contained" color="primary" sx={{ width: 178, height: 56, fontSize: 17, fontWeight: '500', backgroundColor: '#b20933', '&:hover': { backgroundColor: '#b20933' } }}>
+              learn more
+            </Button>
+            <Stack justifyContent={"flex-end"} alignItems={"flex-end"} >
+              <Paper elevation={0} sx={{ mt: 5, px: 4, py: 2, backgroundColor: '#ffff', borderTopLeftRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, width: 1008, }} >
+                <Stack direction={"row"} spacing={2} justifyContent={"space-between"} alignItems={"center"} >
+                  <Stack direction={"row"} spacing={4} alignItems={"center"}  >
+                    <img src="/assets/image1.png" alt="" />
+                    <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 19 }}>
+                      70th GEF Council <br />
+                      Meeting – Dec. 2025
+                    </Typography>
+                  </Stack>
+                  <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 40, color: '#f5821f' }}>
+                    Upcoming Events
                   </Typography>
                 </Stack>
-                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 40, color: '#f5821f' }}>
-                  Upcoming Events
-                </Typography>
-              </Stack>
 
-            </Paper>
+              </Paper>
+            </Stack>
           </Stack>
-        </Stack>
-      </Box>
+        </Box></SwiperSlide>
+        <SwiperSlide>  <Box
+          sx={{
+            backgroundImage: `
+            linear-gradient(
+              rgba(38, 37, 37, 0.5),
+              rgba(8, 8, 8, 0.5)
+            ),
+            url('/assets/slider3.jpg')
+          `,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            width: '100%',
+            minHeight: '85vh',
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+          }}
+          role="img"
+          aria-label="Hero background"
+        >
+          <Stack direction={"column"} spacing={3}   >
+            <Typography variant="h3" sx={{ fontWeight: 500, fontSize: 60, color: '#FFF' }}>
+              The Food Systems Dashboard
+            </Typography>
+            <Typography variant="h3" sx={{ fontWeight: 600, fontSize: 45, color: theme.palette.secondary.main }}>
+              THEN AND NOW
+            </Typography>
+            <Button variant="contained" color="primary" sx={{ width: 178, height: 56, fontSize: 17, fontWeight: '500', backgroundColor: '#b20933', '&:hover': { backgroundColor: '#b20933' } }}>
+              learn more
+            </Button>
+            <Stack justifyContent={"flex-end"} alignItems={"flex-end"} >
+              <Paper elevation={0} sx={{ mt: 5, px: 4, py: 2, backgroundColor: '#ffff', borderTopLeftRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, width: 1008, }} >
+                <Stack direction={"row"} spacing={2} justifyContent={"space-between"} alignItems={"center"} >
+                  <Stack direction={"row"} spacing={4} alignItems={"center"}  >
+                    <img src="/assets/image1.png" alt="" />
+                    <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 19 }}>
+                      70th GEF Council <br />
+                      Meeting – Dec. 2025
+                    </Typography>
+                  </Stack>
+                  <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 40, color: '#f5821f' }}>
+                    Upcoming Events
+                  </Typography>
+                </Stack>
+
+              </Paper>
+            </Stack>
+          </Stack>
+        </Box></SwiperSlide>
+
+      </Swiper>
+
       <Grid container spacing={2} sx={{ bgcolor: '#f5821f', color: '#fff', py: 4 }}>
         <Grid size={{ md: 3, xs: 12 }}>
           <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 50, textAlign: 'center' }}>
-            16
+          55
           </Typography>
           <Typography variant="body1" sx={{ mt: 1, textAlign: 'center', fontWeight: 400, fontSize: 20 }}>
-            Regional Focal Points
+            Facilitators Trained
           </Typography>
         </Grid>
         <Grid size={{ md: 3, xs: 12 }}>
           <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 50, textAlign: 'center' }}>
-            5
+            1518
           </Typography>
           <Typography variant="body1" sx={{ mt: 1, textAlign: 'center', fontWeight: 400, fontSize: 20 }}>
-            Indigenous People’s Focal Points
+            Youth Capacitated
           </Typography>
         </Grid>
         <Grid size={{ md: 3, xs: 12 }}>
           <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 50, textAlign: 'center' }}>
-            50
+           214 
           </Typography>
           <Typography variant="body1" sx={{ mt: 1, textAlign: 'center', fontWeight: 400, fontSize: 20 }}>
-            CSO Members
+           Youth-Led Collective Actions
           </Typography>
         </Grid>
         <Grid size={{ md: 3, xs: 12 }}>
           <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 50, textAlign: 'center' }}>
-            30
+           40 Districts
           </Typography>
           <Typography variant="body1" sx={{ mt: 1, textAlign: 'center', fontWeight: 400, fontSize: 20 }}>
-            Member Countries
+            Geographic Coverage
           </Typography>
         </Grid>
 
@@ -255,7 +382,8 @@ function Home() {
             </Stack>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 6 }} >
-            <img src="/assets/bangladesh.png" alt="" width={"100%"} />
+            {/* <img src="/assets/bangladesh.png" alt="" width={"100%"} /> */}
+             <BangladeshMap  />
           </Grid>
         </Grid>
 
@@ -494,20 +622,20 @@ function Home() {
           </Grid>
         </Grid>
       </Box>
-        <Box sx={{
-                py: 6,
-                color: "#fff",
-                backgroundImage: `
+      <Box sx={{
+        py: 6,
+        color: "#fff",
+        backgroundImage: `
     linear-gradient(
       rgba(178, 9, 51, 0.6),
       rgba(178, 9, 51, 0.6)
     ),
     url('/assets/sky-lac-leman.jpg')
   `,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-            }}>
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}>
         <Typography variant="h4" sx={{ textAlign: 'center', mb: 4, fontWeight: 500, textTransform: "capitalize", fontSize: 40 }} >
           Get In Tuch
         </Typography>

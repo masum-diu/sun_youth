@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3045",
     "build": "next build",
-     "export": "next build && next export",
+    "export": "next build && next export",
     "start": "next start -p 3045",
     "lint": "next lint"
   },
@@ -17,6 +17,7 @@
     "next": "13.5.11",
     "react": "^18",
     "react-dom": "^18",
-    "react-intersection-observer": "^10.0.0"
+    "react-intersection-observer": "^10.0.0",
+    "swiper": "^12.0.3"
   }
 }
