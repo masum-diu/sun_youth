@@ -106,12 +106,12 @@ function singleImpactStories() {
       id: "5",
       title:
         "From Classroom to Community: Promoting Nutrition Awareness in Khulna",
-      imageOne: "juhi/image-1.jpg",
+      imageOne: "juhi/image-1.HEIC",
       imageTwo: "juhi/image-2.jpg",
       imageThree: "juhi/image-3.jpg",
       imageFour: "juhi/image-4.jpg",
       imageFive: "juhi/image-5.jpg",
-      imageSix: "juhi/image-6.jpg",
+      imageSix: "juhi/image-6.HEIC",
       textPartOne:
         "In the city of Khulna, Nushrath Jahan Juhi has been working to make nutrition a more visible part of everyday learning. Her journey gained momentum after she joined GAIN’s Food Systems Youth Leadership Training of Trainers, a programme designed to help young people understand food systems and lead local solutions.Reflecting on the experience, she said, “It did not just give us information about food systems. It helped us identify local challenges and think about community driven solutions. I learned how nutrition, education and community health are closely connected, and it encouraged me to think bigger about my role.”",
       textPartTwo:
