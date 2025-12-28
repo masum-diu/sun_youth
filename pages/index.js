@@ -32,20 +32,20 @@ function Home() {
   ]
   const latestNews = [
     {
-          image: "/assets/minhajul/author.JPG",
+      image: "/assets/minhajul/author.JPG",
 
-       title: "Nutritious Khichuri for 10 Taka",
-        description: "Nutritious Khichuri for 10 Taka: How a Young Boy from Lalmonirhat is Feeding Hope", button: "/impact-stories/1", subtile: "News"
+      title: "Nutritious Khichuri for 10 Taka",
+      description: "Nutritious Khichuri for 10 Taka: How a Young Boy from Lalmonirhat is Feeding Hope", button: "/impact-stories/1", subtile: "News"
     },
     {
       image: "/assets/joya-rani/author.jpg",
-        title: "HeartWise Nutrition",
-        description: "HeartWise Nutrition: A Young Leader’s Journey to Make Nutrition Inclusive in Bangladesh", button: "/impact-stories/2", subtile: "News"
+      title: "HeartWise Nutrition",
+      description: "HeartWise Nutrition: A Young Leader’s Journey to Make Nutrition Inclusive in Bangladesh", button: "/impact-stories/2", subtile: "News"
     },
     {
-       image: "/assets/rabby/1.jpg",
-       title: "Reviving the Soul of the Soil",
-        description: "Reviving the Soul of the Soil: Rabby’s Journey to Restoring Land and Hope in Sirajganj", button: "/impact-stories/3", subtile: "News"
+      image: "/assets/rabby/1.jpg",
+      title: "Reviving the Soul of the Soil",
+      description: "Reviving the Soul of the Soil: Rabby’s Journey to Restoring Land and Hope in Sirajganj", button: "/impact-stories/3", subtile: "News"
     },
     {
       image: "/assets/governace.jpg", title: "GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "By GSO Admin . October 12, 2023", subtile: "News"
@@ -590,33 +590,7 @@ function Home() {
       {/* this section get involved */}
       <Box sx={{ py: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
 
-        <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 700, mb: 4 }}>
-          Get Involved
-        </Typography>
 
-        <Grid container spacing={3} mt={15}>
-          {getInvolvedOptions.map((option, index) => (<Grid size={{ xs: 12, sm: 6, md: 3 }} >
-            <Paper key={index} elevation={3} sx={{ position: 'relative', pt: 6, pb: 0, borderRadius: 2, height: '520px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <Box sx={{ position: 'absolute', top: -80, left: '50%', transform: 'translateX(-50%)', bgcolor: '#f7f3ef', width: "100%", maxWidth: "178px", height: 178, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 6px 20px rgba(0,0,0,0.12)' }}>
-                <img src={option.image} alt={option.title} width={92} height={84} />
-              </Box>
-              <Stack direction="column" spacing={2} justifyContent={"center"} alignItems={"center"} height={"100%"} sx={{ px: 3, }}>
-                <Typography variant="h6" sx={{ mt: 2, fontWeight: 700, textAlign: 'center', fontSize: 20 }}>
-                  {option.title}
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
-                  {option.description}
-                </Typography>
-              </Stack>
-              <Button variant="contained" fullWidth sx={{ mt: 3, backgroundColor: '#f5821f', '&:hover': { backgroundColor: '#f5821f' }, borderRadius: 0, py: 1.5, textTransform: "capitalize", fontSize: 18, fontWeight: 700, borderEndEndRadius: 8, borderEndStartRadius: 8, height: 43 }}>
-                {option.button}
-              </Button>
-            </Paper>
-          </Grid>))}
-
-
-
-        </Grid>
 
         <Grid container spacing={3} mt={15}>
           {listItems.map((option, index) => (<Grid size={{ xs: 12, sm: 6, md: 4 }} >
@@ -798,7 +772,7 @@ function Home() {
                 {option.description}
               </Typography>
 
-              <Button component={NextLink} href={option.button} size="small" sx={{ color: '#f5821f', fontWeight: 'bold',display: 'flex', justifyContent: "flex-start"}}>
+              <Button component={NextLink} href={option.button} size="small" sx={{ color: '#f5821f', fontWeight: 'bold', display: 'flex', justifyContent: "flex-start" }}>
                 Read More
               </Button>
 
@@ -897,14 +871,60 @@ function Home() {
             </Grid>
           ))}
         </Grid> */}
-        <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, my: 6, textTransform: "capitalize", fontSize: 40 }}>
-          News and blogs
-        </Typography>
+       
         {/* <Typography variant="h6" sx={{ textAlign: 'center', fontWeight: 400, my: 4, }}>
           Information collected from or submitted by, the Civil Society network and other relevant stakeholders.
         </Typography> */}
 
-        <Grid container spacing={3} >
+       
+        <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, my: 6, textTransform: "capitalize", fontSize: 40 }}>
+          Youth engagement and impact 
+        </Typography>
+
+        <Grid container spacing={5} justifyContent="center" sx={{ mt: 12 }}>
+          <Grid size={{ xs: 12, sm: 6, md: 6 }} >
+            <img src="/assets/femle.png" alt="" width={"100%"} />
+          </Grid>
+          <Grid size={{ xs: 12, sm: 6, md: 6 }} sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap: 2 }}  >
+            <Stack direction={"column"}>
+              <Stack direction={"row"} spacing={3} mb={2} width={"100%"} >
+                <Box sx={{ width: 45, height: 45, bgcolor: "  #f5821f", borderRadius: "50%" }}></Box>
+                <Stack direction={"column"} width={"100%"}>
+                  <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Enabling Policy Environment</Typography>
+                  <Typography variant="body1" fontWeight={400} fontSize={14}  >
+                    The program strengthens a sustainable Youth Network in Bangladesh aligned with national priorities and the global SUN movement, while advocating for policies that support nutrition goals.
+                  </Typography>
+                </Stack>
+              </Stack>
+            </Stack>
+            <Stack direction={"column"} alignItems={"center"}>
+              <Stack direction={"row"} spacing={3} mb={2} width={"100%"} >
+                <Box sx={{ width: 45, height: 45, bgcolor: "  #f5821f", borderRadius: "50%" }}></Box>
+                <Stack direction={"column"} width={"100%"}>
+                  <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Food Systems and Nutrition Action</Typography>
+                  <Typography variant="body1" fontWeight={400} fontSize={14}  >
+                    It promotes evidence-based nutrition practices, supports youth-led innovations and social enterprises, and encourages healthy lifestyles among youth and adolescents.
+                  </Typography>
+                </Stack>
+              </Stack>
+            </Stack>
+            <Stack direction={"column"}>
+              <Stack direction={"row"} spacing={3} mb={2} width={"100%"} >
+                <Box sx={{ width: 45, height: 45, bgcolor: "  #f5821f", borderRadius: "50%" }}></Box>
+                <Stack direction={"column"} width={"100%"}>
+                  <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Nutrition Financing and Advocacy</Typography>
+                  <Typography variant="body1" fontWeight={400} fontSize={14}  >
+                    The initiative works with SUN Networks to engage policymakers, promote youth participation, and support increased investment in effective nutrition policies and programs.
+                  </Typography>
+                </Stack>
+              </Stack>
+            </Stack>
+          </Grid>
+        </Grid>
+         <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, my: 6, textTransform: "capitalize", fontSize: 40 }}>
+          News and blogs
+        </Typography>
+         <Grid container spacing={3} >
           {latestNews.map((option, index) => (<Grid size={{ xs: 12, sm: 6, md: 3 }} key={index} >
 
             <Box>
@@ -931,56 +951,34 @@ function Home() {
 
 
         </Grid>
+      </Box>
+      <Box sx={{ py: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
+        <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 700, mb: 15 }}>
+          Get Involved
+        </Typography>
+
+        <Grid container spacing={3}  >
+          {getInvolvedOptions.map((option, index) => (<Grid size={{ xs: 12, sm: 6, md: 3 }} >
+            <Paper key={index} elevation={3} sx={{ position: 'relative', pt: 6, pb: 0, borderRadius: 2, height: '520px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <Box sx={{ position: 'absolute', top: -80, left: '50%', transform: 'translateX(-50%)', bgcolor: '#f7f3ef', width: "100%", maxWidth: "178px", height: 178, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 6px 20px rgba(0,0,0,0.12)' }}>
+                <img src={option.image} alt={option.title} width={92} height={84} />
+              </Box>
+              <Stack direction="column" spacing={2} justifyContent={"center"} alignItems={"center"} height={"100%"} sx={{ px: 3, }}>
+                <Typography variant="h6" sx={{ mt: 2, fontWeight: 700, textAlign: 'center', fontSize: 20 }}>
+                  {option.title}
+                </Typography>
+                <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
+                  {option.description}
+                </Typography>
+              </Stack>
+              <Button variant="contained" fullWidth sx={{ mt: 3, backgroundColor: '#f5821f', '&:hover': { backgroundColor: '#f5821f' }, borderRadius: 0, py: 1.5, textTransform: "capitalize", fontSize: 18, fontWeight: 700, borderEndEndRadius: 8, borderEndStartRadius: 8, height: 43 }}>
+                {option.button}
+              </Button>
+            </Paper>
+          </Grid>))}
 
 
-        <Grid container spacing={5} justifyContent="center" sx={{ mt: 12 }}>
-          <Grid size={{ xs: 12, sm: 6, md: 6 }} >
-            <img src="/assets/femle.png" alt="" width={"100%"} />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6, md: 6 }} sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap: 2 }}  >
-            <Stack direction={"column"}>
-              <Stack direction={"row"} spacing={3} mb={2} width={"100%"} >
-                <Box sx={{ width: 45, height: 45, bgcolor: "  #f5821f", borderRadius: "50%" }}></Box>
-                <Stack direction={"column"} width={"100%"}>
-                  <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Mollis Mattis</Typography>
-                  <Typography variant="body1" fontWeight={400} fontSize={14}  >
-                    In many parts of the world, female
-                    In many parts of the world, female
-                    -headed households face unique challenges that can impact their food security.
-                    -headed households face unique
-                  </Typography>
-                </Stack>
-              </Stack>
-            </Stack>
-            <Stack direction={"column"} alignItems={"center"}>
-              <Stack direction={"row"} spacing={3} mb={2} width={"100%"} >
-                <Box sx={{ width: 45, height: 45, bgcolor: "  #f5821f", borderRadius: "50%" }}></Box>
-                <Stack direction={"column"} width={"100%"}>
-                  <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Ullamcorper Mattis Etiam</Typography>
-                  <Typography variant="body1" fontWeight={400} fontSize={14}  >
-                    In many parts of the world, female
-                    In many parts of the world, female
-                    -headed households face unique challenges that can impact their food security.
-                    -headed households face unique
-                  </Typography>
-                </Stack>
-              </Stack>
-            </Stack>
-            <Stack direction={"column"}>
-              <Stack direction={"row"} spacing={3} mb={2} width={"100%"} >
-                <Box sx={{ width: 45, height: 45, bgcolor: "  #f5821f", borderRadius: "50%" }}></Box>
-                <Stack direction={"column"} width={"100%"}>
-                  <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Mattis Etiam Justo</Typography>
-                  <Typography variant="body1" fontWeight={400} fontSize={14}  >
-                    In many parts of the world, female
-                    In many parts of the world, female
-                    -headed households face unique challenges that can impact their food security.
-                    -headed households face unique
-                  </Typography>
-                </Stack>
-              </Stack>
-            </Stack>
-          </Grid>
+
         </Grid>
       </Box>
       <Box sx={{
