@@ -7,18 +7,18 @@ const videoData = [
   
   {
     id: '42EBvazc5AU',
-    title: 'Youth Engagement in Food Systems',
-    description: 'A deep dive into how youth are shaping the future of food systems and nutrition in Bangladesh.',
+    title: 'Scaling Up Nutrition (SUN) Youth Network Bangladesh Launched',
+    description: 'The Scaling Up Nutrition (SUN) Youth Network Bangladesh was officially launched on December 8, 2024, in Dhaka, marking a significant step towards empowering young leaders in the fight against malnutrition.',
   },
   {
     id: 'vCNLrZHQ_1I',
-    title: 'Youth Nutrition Advocacy',
-    description: 'Learn how young advocates are making their voices heard for better nutrition policies.',
+    title: 'PUSHTI Canteen Launched in Lalmonirhat | Ensuring Nutritious Food for Students',
+    description: 'To promote safe and nutritious meals in educational institutions, the PUSHTI Canteen initiative was officially inaugurated on January 15, 2025, at the Lalmonirhat Deputy Commissioner’s Office.',
   },
   {
     id: 'tfdMZ0PhYUE',
-    title: 'Community Outreach Success',
-    description: 'See the impact of our community outreach programs on local health and nutrition.',
+    title: 'Food Systems Youth Leadership Training (TOT) | Dhaka Final Highlights',
+    description: 'The Food Systems Youth Leadership Training, organized under the SUN Youth Network Bangladesh with support from GAIN and the Ministry of Health and Family Welfare, brought together passionate young leaders from across the country for a transformative 4-day residential program',
   },
 ];
 
