@@ -32,13 +32,20 @@ function Home() {
   ]
   const latestNews = [
     {
-      image: "/assets/governace.jpg", title: "GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "By GSO Admin . October 12, 2023", subtile: "News"
+          image: "/assets/minhajul/author.JPG",
+
+       title: "Nutritious Khichuri for 10 Taka",
+        description: "Nutritious Khichuri for 10 Taka: How a Young Boy from Lalmonirhat is Feeding Hope", button: "/impact-stories/1", subtile: "News"
     },
     {
-      image: "/assets/governace.jpg", title: "GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "By GSO Admin . October 12, 2023", subtile: "News"
+      image: "/assets/joya-rani/author.jpg",
+        title: "HeartWise Nutrition",
+        description: "HeartWise Nutrition: A Young Leader’s Journey to Make Nutrition Inclusive in Bangladesh", button: "/impact-stories/2", subtile: "News"
     },
     {
-      image: "/assets/governace.jpg", title: "GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "By GSO Admin . October 12, 2023", subtile: "News"
+       image: "/assets/rabby/1.jpg",
+       title: "Reviving the Soul of the Soil",
+        description: "Reviving the Soul of the Soil: Rabby’s Journey to Restoring Land and Hope in Sirajganj", button: "/impact-stories/3", subtile: "News"
     },
     {
       image: "/assets/governace.jpg", title: "GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "By GSO Admin . October 12, 2023", subtile: "News"
@@ -782,14 +789,16 @@ function Home() {
               <Typography variant="h6" sx={{ mt: 2, fontWeight: 700, fontSize: 20 }}>
                 {option.title}
               </Typography>
-              <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
+              {/* 
+                <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
                 {option.button}
-              </Typography>
+                </Typography>
+                */}
               <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
                 {option.description}
               </Typography>
 
-              <Button component={NextLink} href={option.button} size="small" sx={{ color: '#f5821f', fontWeight: 'bold' }}>
+              <Button component={NextLink} href={option.button} size="small" sx={{ color: '#f5821f', fontWeight: 'bold',display: 'flex', justifyContent: "flex-start"}}>
                 Read More
               </Button>
 
