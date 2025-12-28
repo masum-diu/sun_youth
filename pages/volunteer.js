@@ -25,7 +25,7 @@ function VolunteerForm() {
 
         <Box component="form" noValidate autoComplete="off">
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 required
                 fullWidth
@@ -34,7 +34,7 @@ function VolunteerForm() {
                 name="fullName"
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 required
                 fullWidth
@@ -44,7 +44,7 @@ function VolunteerForm() {
                 type="email"
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 required
                 fullWidth
@@ -53,7 +53,7 @@ function VolunteerForm() {
                 name="phone"
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 fullWidth
                 id="address"
@@ -61,7 +61,7 @@ function VolunteerForm() {
                 name="address"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 required
                 fullWidth
@@ -72,7 +72,7 @@ function VolunteerForm() {
                 rows={4}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Button
                 type="submit"
                 variant="contained"

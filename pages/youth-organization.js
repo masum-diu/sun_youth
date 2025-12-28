@@ -25,7 +25,7 @@ function YouthOrganizationForm() {
 
         <Box component="form" noValidate autoComplete="off">
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 required
                 fullWidth
@@ -34,7 +34,7 @@ function YouthOrganizationForm() {
                 name="organizationName"
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 required
                 fullWidth
@@ -43,7 +43,7 @@ function YouthOrganizationForm() {
                 name="contactPerson"
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 required
                 fullWidth
@@ -53,7 +53,7 @@ function YouthOrganizationForm() {
                 type="email"
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 required
                 fullWidth
@@ -62,7 +62,7 @@ function YouthOrganizationForm() {
                 name="phone"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 fullWidth
                 id="website"
@@ -70,7 +70,7 @@ function YouthOrganizationForm() {
                 name="website"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 required
                 fullWidth
@@ -78,10 +78,10 @@ function YouthOrganizationForm() {
                 label="Tell us about your organization and why you want to join"
                 name="message"
                 multiline
-                rows={4}
+                
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Button
                 type="submit"
                 variant="contained"
