@@ -45,12 +45,13 @@ const navLinks = [
     path: "/what-we-do",
     children: [
       { title: "Gallery", path: "/what-we-do/gallery" },
-      { title: "BKBT", path: "/what-we-do/bkbt" },
+    //   { title: "BKBT", path: "/what-we-do/bkbt" },
+       { title: "BKBT", path: "http://bhalokhabobhalothakbo.com/" },
       {
         title: "Food Systems Youth Leadership Training",
         path: "/what-we-do/food-systems-youth-leadership-training",
       },
-      { title: "Youth Voices Summit", path: "/what-we-do/youth-voices-summit" },
+      { title: "FoSYLx", path: "/what-we-do/fosylx" },
       { title: "IMPACT Fellowship", path: "/what-we-do/impact-fellowship" },
     ],
   },

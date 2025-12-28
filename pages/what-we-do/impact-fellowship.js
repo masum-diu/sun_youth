@@ -36,7 +36,7 @@ function impactfellowship() {
               variant="fullWidth"
               sx={{ my: 2 }}
             />
-            <Typography sx={{ fontWeight: 'bold', fontSize: 16, cursor: "pointer", color: router?.route === '/what-we-do/youth-voices-summit' ? "#f5821f" : "#000" }} onClick={() => router.push('/what-we-do/youth-voices-summit')}>Youth Voices Summit</Typography>
+            <Typography sx={{ fontWeight: 'bold', fontSize: 16, cursor: "pointer", color: router?.route === '/what-we-do/fosylx' ? "#f5821f" : "#000" }} onClick={() => router.push('/what-we-do/fosylx')}>FoSYLx</Typography>
             <Divider
               orientation="horizontal"
               variant="fullWidth"
@@ -82,7 +82,7 @@ function impactfellowship() {
         <img src="/assets/Link3.png" alt="" />
         </Grid>
         <Grid size={{ xs: 12, sm: 6, md: 3 }}   >
-        <img src="/assets/Link2.png" alt="" />
+      <img src="/assets/images.png" alt="" style={{width:"210px",height:"120px",objectFit:'contain',border:"1px solid #dedede",padding:"20px",borderRadius:4}} />
         </Grid>
       
       </Grid>

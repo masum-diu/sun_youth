@@ -1,9 +1,9 @@
 import { createTheme } from "@mui/material/styles";
-import { Jost } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 
-const jost = Jost({
+const poppins = Poppins({
   subsets: ['latin'],
-  // weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700', '800', '900'],
 });
 const primary = "#f5821f";
 const secondary = "#FBB03B";
@@ -104,19 +104,19 @@ const theme = createTheme({
     },
   },
   typography: {
-     fontFamily: jost.style.fontFamily,
+     fontFamily: poppins.style.fontFamily,
   },
    MuiButton: {
       styleOverrides: {
         root: {
-           fontFamily: jost.style.fontFamily,
+           fontFamily: poppins.style.fontFamily,
         },
       },
     },
     MuiTypography: {
       styleOverrides: {
         root: {
-          fontFamily: jost.style.fontFamily,
+          fontFamily: poppins.style.fontFamily,
         },
       },
     },
