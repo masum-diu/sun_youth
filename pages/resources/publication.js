@@ -5,37 +5,14 @@ import React from 'react'
 const publicationsData = [
   {
     id: 1,
-    title: 'Annual Report 2023',
-    description: 'A comprehensive overview of our activities and financial performance in 2023.',
+    title: '',
+    // description: 'The active participation of our volunteers and the generous support from our donors have been instrumental in driving our mission forward. This report highlights the milestones we achieved together in 2023.',
     // It's best to place images in the `public` directory
-    imageUrl: '/assets/garden-project.png',
-    fileUrl: '/files/annual-report-2023.pdf',
-    category: 'Annual Report',
+    imageUrl: '/assets/pablication.png',
+    fileUrl: 'https://heyzine.com/flip-book/00f5e4b24a.html#page/4',
+    // category: 'Annual Report',
   },
-  {
-    id: 2,
-    title: 'Summer Program Guide 2023',
-    description: 'Discover the exciting programs and activities we have planned for the youth this summer.',
-    imageUrl: '/assets/garden-project.png',
-    fileUrl: '/files/summer-guide-2023.pdf',
-    category: 'Brochure',
-  },
-  {
-    id: 3,
-    title: 'Quarterly Newsletter - Q2 2023',
-    description: 'The latest news, stories, and updates from our community for the second quarter.',
-    imageUrl: '/assets/garden-project.png',
-    fileUrl: '/files/newsletter-q2-2023.pdf',
-    category: 'Newsletter',
-  },
-  {
-    id: 4,
-    title: 'Annual Report 2022',
-    description: 'A look back at our achievements and milestones from the year 2022.',
-    imageUrl: '/assets/garden-project.png',
-    fileUrl: '/files/annual-report-2022.pdf',
-    category: 'Annual Report',
-  },
+  
 ];
 
 // It's a convention in React to name components with PascalCase.
@@ -58,7 +35,7 @@ function PublicationPage() {
               <h3 style={styles.cardTitle}>{pub.title}</h3>
               <p style={styles.cardDescription}>{pub.description}</p>
               <a href={pub.fileUrl} target="_blank" rel="noopener noreferrer" style={styles.downloadLink}>
-                Download PDF
+                View Publication
               </a>
             </div>
           </div>

@@ -9,7 +9,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import BangladeshMap from './components/BangladeshMap'
-
+import NextLink from 'next/link';
 
 function Home() {
   const getInvolvedOptions = [
@@ -30,7 +30,7 @@ function Home() {
       image: "/assets/governace.jpg", title: "Focal Points", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "Read More"
     },
   ]
-  const     latestNews = [
+  const latestNews = [
     {
       image: "/assets/governace.jpg", title: "GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "By GSO Admin . October 12, 2023", subtile: "News"
     },
@@ -715,18 +715,17 @@ function Home() {
 
           <Grid size={{ xs: 12, sm: 6, md: 6 }} >
             <Stack direction={"column"} spacing={4} justifyContent={"center"} alignItems={"center"} height={"100%"} >
-              <Typography variant="body1" color="initial" fontWeight={500} fontSize={60}>Lorem Ipsum is simply
-                dummy text of the printing </Typography>
+              <Typography variant="body1" color="initial" fontWeight={500} fontSize={60}>Training Components</Typography>
               <Typography variant="body1" color="#7c7c7c">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distributio
+                The program is designed to build youth leadership and encourage practical engagement in food systems through a structured and participatory approach. It begins with a selection process to identify motivated young participants, followed by an intensive three-day Food Systems Youth Leadership Training that strengthens leadership skills, systems thinking, and practical knowledge.
 
-                of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for <br /> <br /> 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                Participants then carry out a six-month collective action project at the community level, applying their learning to real-world challenges. Continuous follow-up, monitoring, and learning documentation support progress tracking, capture key lessons, and ensure meaningful and sustainable outcomes.
               </Typography>
-              <Stack direction={"row"} spacing={2} width={"100%"} >
+              {/* <Stack direction={"row"} spacing={2} width={"100%"} >
                 <Button variant="contained" color="error" fontWeight={500}  >
                   full view
                 </Button>
-              </Stack>
+              </Stack> */}
             </Stack>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 6 }} >
@@ -789,6 +788,11 @@ function Home() {
               <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
                 {option.description}
               </Typography>
+
+              <Button component={NextLink} href={option.button} size="small" sx={{ color: '#f5821f', fontWeight: 'bold' }}>
+                Read More
+              </Button>
+
             </Stack>
 
 
@@ -885,7 +889,7 @@ function Home() {
           ))}
         </Grid> */}
         <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, my: 6, textTransform: "capitalize", fontSize: 40 }}>
-         News and blogs
+          News and blogs
         </Typography>
         {/* <Typography variant="h6" sx={{ textAlign: 'center', fontWeight: 400, my: 4, }}>
           Information collected from or submitted by, the Civil Society network and other relevant stakeholders.

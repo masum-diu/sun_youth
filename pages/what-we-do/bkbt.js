@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Grid, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Divider, Grid, Link, Stack, TextField, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import React from 'react'
 
@@ -36,7 +36,7 @@ function bkbt() {
               variant="fullWidth"
               sx={{ my: 2 }}
             />
-            <Typography sx={{ fontWeight: 'bold', fontSize: 16, cursor: "pointer", color: router?.route === '/what-we-do/youth-voices-summit' ? "#f5821f" : "#000" }} onClick={() => router.push('/what-we-do/youth-voices-summit')}>Youth Voices Summit</Typography>
+            <Typography sx={{ fontWeight: 'bold', fontSize: 16, cursor: "pointer", color: router?.route === '/what-we-do/fosylx' ? "#f5821f" : "#000" }} onClick={() => router.push('/what-we-do/fosylx')}>FoSYLx</Typography>
             <Divider
               orientation="horizontal"
               variant="fullWidth"
@@ -54,16 +54,26 @@ function bkbt() {
 
             <Box
               component="img"
-              src="/assets/gainandsdf.png" // Replace with your actual image path
+              src="/assets/bkbt.jpeg" // Replace with your actual image path
               alt="SUN Youth Network Bangladesh"
               sx={{ width: '100%', objectFit: 'cover', borderRadius: 2, mb: 3 }}
             />
-            <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
-              This is where you can add a detailed description of the SUN Youth Network Bangladesh. You can talk about its history, goals, and the impact it has made. This text will serve as an introduction before the mission and vision statements.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus minus ratione sunt quaerat veniam dolorem, aliquam dignissimos quasi quia iure quisquam animi neque iusto vitae fuga consequatur illo officia! Vitae eum ea repudiandae, magnam perferendis quibusdam totam explicabo consequatur asperiores! Aspernatur minus iusto natus magni commodi unde tempora accusamus aliquid qui? Similique debitis dignissimos eveniet corrupti cumque nobis necessitatibus nesciunt recusandae voluptates tenetur quam magni doloremque, reprehenderit, earum labore eaque nostrum soluta? Esse voluptate, earum facilis sequi inventore quasi asperiores nostrum, non aut provident nemo temporibus amet accusantium quisquam quos cupiditate a quis! Labore esse facere, possimus est iusto cum dolores nihil, sit illo doloremque nesciunt molestiae voluptate exercitationem, adipisci laudantium dolore expedita ratione deleniti! Id deleniti recusandae, ullam eligendi quos illum iusto velit nostrum commodi neque doloribus. Magnam quasi voluptates, quam exercitationem eligendi fuga est et, reprehenderit eius doloribus id. Libero voluptas rem optio. Unde saepe omnis officiis explicabo temporibus dicta totam nesciunt sed, numquam perspiciatis facilis necessitatibus praesentium corrupti assumenda amet minima autem corporis et quis voluptatum aliquam! Nostrum doloremque tempore assumenda voluptatibus, eaque accusamus dicta sunt. Laborum nesciunt facere tempore quibusdam delectus. At culpa quasi esse, ducimus consequuntur incidunt temporibus fuga quidem tempora vero delectus, aut expedita?
-
+            <Typography variant="body1" paragraph sx={{ lineHeight: 1.8, textAlign: 'justify' }}>
+              Bhalo Khabo Bhalo Thakbo (BKBT), which translates to 'Eat Well, Live Well,' is a nationwide campaign dedicated to promoting healthy eating habits and improving nutrition among the youth of Bangladesh. Launched by the SUN Youth Network, BKBT aims to create a mass movement that empowers young people to make informed dietary choices and advocate for better food systems in their communities.
             </Typography>
-
+            <Typography variant="body1" paragraph sx={{ lineHeight: 1.8, textAlign: 'justify' }}>
+              The campaign utilizes a multi-faceted approach, including social media engagement, interactive workshops, community-level activations, and partnerships with educational institutions. Through these activities, BKBT raises awareness about the importance of a balanced diet, the risks of malnutrition, and the benefits of consuming safe and nutritious food. By fostering a generation of health-conscious leaders, the campaign is not just about individual well-being but about building a healthier, more resilient future for Bangladesh.
+            </Typography>
+            <Stack direction="row" spacing={2} alignItems="center" mt={2}>
+              <Button
+                variant="contained"
+                href="http://bhalokhabobhalothakbo.com/"
+                target="_blank"
+                sx={{ backgroundColor: '#f5821f', '&:hover': { backgroundColor: '#e0711b' } }}
+              >
+                Visit Now
+              </Button>
+            </Stack>
 
           </Grid>
         </Grid>
@@ -82,7 +92,7 @@ function bkbt() {
         <img src="/assets/Link3.png" alt="" />
         </Grid>
         <Grid size={{ xs: 12, sm: 6, md: 3 }}   >
-        <img src="/assets/Link2.png" alt="" />
+        <img src="/assets/images.png" alt="" style={{width:"210px",height:"120px",objectFit:'contain',border:"1px solid #dedede",padding:"20px",borderRadius:4}} />
         </Grid>
       
       </Grid>

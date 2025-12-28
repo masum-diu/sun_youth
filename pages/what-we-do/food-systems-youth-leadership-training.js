@@ -36,7 +36,7 @@ function foodsystemsyouthleadershiptraining() {
               variant="fullWidth"
               sx={{ my: 2 }}
             />
-            <Typography sx={{ fontWeight: 'bold', fontSize: 16, cursor: "pointer", color: router?.route === '/what-we-do/youth-voices-summit' ? "#f5821f" : "#000" }} onClick={() => router.push('/what-we-do/youth-voices-summit')}>Youth Voices Summit</Typography>
+            <Typography sx={{ fontWeight: 'bold', fontSize: 16, cursor: "pointer", color: router?.route === '/what-we-do/fosylx' ? "#f5821f" : "#000" }} onClick={() => router.push('/what-we-do/fosylx')}>FoSYLx</Typography>
             <Divider
               orientation="horizontal"
               variant="fullWidth"
@@ -59,8 +59,14 @@ function foodsystemsyouthleadershiptraining() {
               sx={{ width: '100%', objectFit: 'cover', borderRadius: 2, mb: 3 }}
             />
             <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
-              This is where you can add a detailed description of the SUN Youth Network Bangladesh. You can talk about its history, goals, and the impact it has made. This text will serve as an introduction before the mission and vision statements.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus minus ratione sunt quaerat veniam dolorem, aliquam dignissimos quasi quia iure quisquam animi neque iusto vitae fuga consequatur illo officia! Vitae eum ea repudiandae, magnam perferendis quibusdam totam explicabo consequatur asperiores! Aspernatur minus iusto natus magni commodi unde tempora accusamus aliquid qui? Similique debitis dignissimos eveniet corrupti cumque nobis necessitatibus nesciunt recusandae voluptates tenetur quam magni doloremque, reprehenderit, earum labore eaque nostrum soluta? Esse voluptate, earum facilis sequi inventore quasi asperiores nostrum, non aut provident nemo temporibus amet accusantium quisquam quos cupiditate a quis! Labore esse facere, possimus est iusto cum dolores nihil, sit illo doloremque nesciunt molestiae voluptate exercitationem, adipisci laudantium dolore expedita ratione deleniti! Id deleniti recusandae, ullam eligendi quos illum iusto velit nostrum commodi neque doloribus. Magnam quasi voluptates, quam exercitationem eligendi fuga est et, reprehenderit eius doloribus id. Libero voluptas rem optio. Unde saepe omnis officiis explicabo temporibus dicta totam nesciunt sed, numquam perspiciatis facilis necessitatibus praesentium corrupti assumenda amet minima autem corporis et quis voluptatum aliquam! Nostrum doloremque tempore assumenda voluptatibus, eaque accusamus dicta sunt. Laborum nesciunt facere tempore quibusdam delectus. At culpa quasi esse, ducimus consequuntur incidunt temporibus fuga quidem tempora vero delectus, aut expedita?
+               <span style={{fontWeight:700}}>Brief About Food Systems Youth Leadership Training</span> <br /> <br />
+              Since the United Nations Food Systems Summit (UNFSS) 2021, young people have demonstrated strong leadership in advancing the food systems agenda and mobilizing individuals and organizations to engage in meaningful action. To achieve lasting transformation in food systems, it is essential to support this growing youth movement and recognize young people as capable contributors to sustainable change. Investing in youth leadership development not only strengthens individual capacities but also reinforces the idea that food systems transformation is a shared responsibility. At both national and global levels, empowered youth leaders can mobilize communities, influence decision-makers, and amplify youth voices to help build fairer, more sustainable, and more resilient food systems.
+
+              The Food Systems Youth Leadership Training is designed to inspire and equip young individuals to become active leaders within their communities, with a particular focus on food systems transformation. The training aims to increase youth participation in food policy processes, ensuring their perspectives are meaningfully represented in decision-making spaces. Participants will also be encouraged to influence food businesses and promote healthier, more nutritious food and snack options. A key focus of the program is enabling participants to cascade their learning back to their communities, nurturing a new generation of food systems youth leaders committed to positive change.
+
+              This three-day residential training combines interactive learning, peer exchange, and inspirational sessions to strengthen participants’ knowledge, skills, and leadership capacities. It also aims to build a strong and engaged community of youth leaders who support one another and work collectively to design and implement actions for food systems transformation.
+
+
 
             </Typography>
 
@@ -69,37 +75,37 @@ function foodsystemsyouthleadershiptraining() {
         </Grid>
 
       </Box>
-     
+
       <Grid container spacing={5} justifyContent="center" sx={{ width: "95%", maxWidth: "1200px", margin: "0 auto", my: 6 }}>
 
         <Grid size={{ xs: 12, sm: 6, md: 3 }}   >
-        <img src="/assets/Link1.png" alt="" />
+          <img src="/assets/Link1.png" alt="" />
         </Grid>
         <Grid size={{ xs: 12, sm: 6, md: 3 }}   >
-        <img src="/assets/Link4.png" alt="" />
+          <img src="/assets/Link4.png" alt="" />
         </Grid>
         <Grid size={{ xs: 12, sm: 6, md: 3 }}   >
-        <img src="/assets/Link3.png" alt="" />
+          <img src="/assets/Link3.png" alt="" />
         </Grid>
         <Grid size={{ xs: 12, sm: 6, md: 3 }}   >
-        <img src="/assets/Link2.png" alt="" />
+          <img src="/assets/images.png" alt="" style={{ width: "210px", height: "120px", objectFit: 'contain', border: "1px solid #dedede", padding: "20px", borderRadius: 4 }} />
         </Grid>
-      
+
       </Grid>
       <Box sx={{
-                py: 6,
-                color: "#fff",
-                backgroundImage: `
+        py: 6,
+        color: "#fff",
+        backgroundImage: `
     linear-gradient(
       rgba(178, 9, 51, 0.6),
       rgba(178, 9, 51, 0.6)
     ),
     url('/assets/sky-lac-leman.jpg')
   `,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-            }}>
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}>
         <Typography variant="h4" sx={{ textAlign: 'center', mb: 4, fontWeight: 500, textTransform: "capitalize", fontSize: 40 }} >
           Get In Tuch
         </Typography>

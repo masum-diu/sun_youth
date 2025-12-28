@@ -293,7 +293,7 @@ function sunyouthnetworkbrief() {
           <img src="/assets/Link3.png" alt="" />
         </Grid>
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-          <img src="/assets/Link2.png" alt="" />
+         <img src="/assets/images.png" alt="" style={{width:"210px",height:"120px",objectFit:'contain',border:"1px solid #dedede",padding:"20px",borderRadius:4}} />
         </Grid>
       </Grid>
       <Box
