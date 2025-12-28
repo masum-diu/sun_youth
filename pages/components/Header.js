@@ -264,34 +264,40 @@ function Header() {
           </Typography>
           <Grid container spacing={2}>
             <Grid size={{ xs: 12, sm: 6 }}>
-              <Card variant="outlined" sx={{ height: "100%" }}>
-                <CardActionArea
-                  sx={{ p: 3, textAlign: "center", height: "100%" }}
-                >
-                  <GroupIcon sx={{ fontSize: 48, color: "#f5821f" }} />
-                  <CardContent>
-                    <Typography gutterBottom variant="h6" component="div">
-                      Join as Youth Organization
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
+              <NextLink href="/youth-organization" passHref>
+                <Card variant="outlined" sx={{ height: "100%" }}>
+                  <CardActionArea
+                    onClick={handleModalClose}
+                    sx={{ p: 3, textAlign: "center", height: "100%" }}
+                  >
+                    <GroupIcon sx={{ fontSize: 48, color: "#f5821f" }} />
+                    <CardContent>
+                      <Typography gutterBottom variant="h6" component="div">
+                        Join as Youth Organization
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </NextLink>
             </Grid>
             <Grid size={{ xs: 12, sm: 6 }}>
-              <Card variant="outlined" sx={{ height: "100%" }}>
-                <CardActionArea
-                  sx={{ p: 3, textAlign: "center", height: "100%" }}
-                >
-                  <VolunteerActivismIcon
-                    sx={{ fontSize: 48, color: "#f5821f" }}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h6" component="div">
-                      Join as Volunteer
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
+              <NextLink href="/volunteer" passHref>
+                <Card variant="outlined" sx={{ height: "100%" }}>
+                  <CardActionArea
+                    onClick={handleModalClose}
+                    sx={{ p: 3, textAlign: "center", height: "100%" }}
+                  >
+                    <VolunteerActivismIcon
+                      sx={{ fontSize: 48, color: "#f5821f" }}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h6" component="div">
+                        Join as Volunteer
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </NextLink>
             </Grid>
           </Grid>
         </DialogContent>
