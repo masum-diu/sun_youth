@@ -54,7 +54,7 @@ function foodsystemsyouthleadershiptraining() {
 
             <Box
               component="img"
-              src="/assets/gainandsdf.png" // Replace with your actual image path
+              src="/assets/food.jpg" // Replace with your actual image path
               alt="SUN Youth Network Bangladesh"
               sx={{ width: '100%', objectFit: 'cover', borderRadius: 2, mb: 3 }}
             />
