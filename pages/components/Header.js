@@ -46,7 +46,7 @@ const navLinks = [
     children: [
       { title: "Gallery", path: "/what-we-do/gallery" },
     //   { title: "BKBT", path: "/what-we-do/bkbt" },
-       { title: "BKBT", path: "http://bhalokhabobhalothakbo.com/" },
+       { title: "BKBT", path: "/what-we-do/bkbt" },
       {
         title: "Food Systems Youth Leadership Training",
         path: "/what-we-do/food-systems-youth-leadership-training",
@@ -116,10 +116,7 @@ function Header() {
         }}
         title={`Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure`}
       >
-        Contrary to popular belief, Lorem Ipsum is not simply random text. It
-        has roots in a piece of classical Latin literature from 45 BC, making it
-        over 2000 years old. Richard McClintock, a Latin professor at
-        Hampden-Sydney College in Virginia, looked up one of the more obscure
+       Empowering youth across Bangladesh to drive nutrition action, influence policy, and strengthen food systems through a coordinated platform aligned with national priorities and the global SUN Movement.
       </Typography>
       <AppBar position="static" sx={{ bgcolor: "#f0eee2", color: "#000000" }}>
         <Toolbar

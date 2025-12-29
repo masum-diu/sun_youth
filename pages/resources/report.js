@@ -11,7 +11,7 @@ function ReportPage() {
         <Stack direction={"row"} alignItems="center" justifyContent="space-between"
           sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", }}>
           <Typography variant="h5" sx={{ fontWeight: 'bold' }}>RESOURCES</Typography>
-          <Box component="span" sx={{ fontSize: 14, color: "#fff", fontWeight: 600 }}>{router?.route}</Box>
+          {/* <Box component="span" sx={{ fontSize: 14, color: "#fff", fontWeight: 600 }}>{router?.route}</Box> */}
         </Stack>
       </Box>
 

@@ -13,21 +13,21 @@ import NextLink from 'next/link';
 
 function Home() {
   const getInvolvedOptions = [
-    { image: "/assets/group_icon.png", title: "Join a SBN National Network!", description: "Our dynamic networks across Africa, Asia, and Latin America are seeking businesses committed to improving nutrition to join as members.", button: "SBN National Member" },
-    { image: "/assets/public_icon.png", title: "Attend an event", description: "Join over 300 businesses committed to improving nutrition through the SBN Business Membership. Access exclusive resources, networking opportunities, and more.", button: "Events" },
-    { image: "/assets/event_icon.png", title: "Learn more", description: "Participate in our webinars, workshops, and conferences to learn about the latest in business and nutrition, and connect with like-minded professionals.", button: "Resource" },
-    { image: "/assets/email_icon.png", title: "Sign Up for Newsletter", description: "Stay updated with the latest news, resources, and events from SBN by subscribing to our monthly newsletter.", button: "Sign up" },
+    { image: "/assets/group_icon.png", title: "Join a Sun Youth Network!", description: "Our dynamic networks is seeking youth organization committed to improving nutrition.", button: "Sun Youth network Member" },
+    { image: "/assets/public_icon.png", title: "Attend an event", description: "Join over 242 businesses committed to improving nutrition through the Sun Youth Network. Access exclusive resources, networking opportunities, and more.", button: "Events" },
+    { image: "/assets/event_icon.png", title: "Learn more", description: "Participate in our webinars, workshops, and conferences to learn about the latest in business and nutrition, and connect with like-minded Youth.", button: "Resource" },
+    { image: "/assets/email_icon.png", title: "Sign Up for Newsletter", description: "Stay updated with the latest news, resources, and events from Sun Youth Network by subscribing to our monthly newsletter.", button: "Sign up" },
 
   ]
   const listItems = [
     {
-      image: "/assets/governace.jpg", title: "Mission", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "Read More"
+      image: "/assets/governace.jpg", title: "Mission", description: "The mission of the SUN Youth Network Bangladesh is to empower and mobilize youth and adolescents to lead meaningful action on nutrition, strengthen youth voices in policy and community spaces, and support sustained commitment to advancing national and global nutrition goals.", button: "Read More"
     },
     {
-      image: "/assets/governace.jpg", title: "Governance", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "Read More"
+      image: "/assets/governace.jpg", title: "Governance", description: "SUN Youth Network Bangladesh consists of youth-led organizations, youth-led clubs in universities and communities who are intensively working and interested in contributing to nutrition outcome development.", button: "Read More"
     },
     {
-      image: "/assets/governace.jpg", title: "Focal Points", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "Read More"
+      image: "/assets/governace.jpg", title: "Focal Points", description: "The focal point of the SUN Youth Network Bangladesh serves as the primary coordinator and liaison, ensuring effective communication, coordination, and implementation of network activities in alignment with national priorities and the SUN Movement.", button: "Read More"
     },
   ]
   const latestNews = [
@@ -48,7 +48,7 @@ function Home() {
       description: "Reviving the Soul of the Soil: Rabby’s Journey to Restoring Land and Hope in Sirajganj", button: "/impact-stories/3", subtile: "News"
     },
     {
-      image: "/assets/governace.jpg", title: "GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "By GSO Admin . October 12, 2023", subtile: "News"
+      image: "/assets/faizur/author.jpg", title: "From Market Stalls to Mindsets", description: "From Market Stalls to Mindsets: How One Youth Is Transforming Diets in Bangladesh", button: "/impact-stories/4", subtile: "News"
     },
 
   ]
@@ -420,7 +420,7 @@ function Home() {
           >
             <Stack direction={"column"} spacing={3}   >
               <Typography variant="h3" sx={{ fontWeight: 500, fontSize: 60, color: '#FFF' }}>
-                The Food Systems Dashboard
+                SUN Youth Bangladesh
               </Typography>
               <Typography variant="h3" sx={{ fontWeight: 600, fontSize: 45, color: theme.palette.secondary.main }}>
                 THEN AND NOW
@@ -432,10 +432,11 @@ function Home() {
                 <Paper elevation={0} sx={{ mt: 5, px: 4, py: 2, backgroundColor: '#ffff', borderTopLeftRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, width: 1008, }} >
                   <Stack direction={"row"} spacing={2} justifyContent={"space-between"} alignItems={"center"} >
                     <Stack direction={"row"} spacing={4} alignItems={"center"}  >
-                      <img src="/assets/image1.png" alt="" />
+                      <img src="/assets/slider1.jpg" style={{width:"143px",objectFit:"cover"}}/>
                       <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 19 }}>
-                        70th GEF Council <br />
-                        Meeting – Dec. 2025
+                        {/* 70th GEF Council <br />
+                        Meeting – Dec. 2025 */}
+                        Fosylx Training – 2024
                       </Typography>
                     </Stack>
                     <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 40, color: '#f5821f' }}>
@@ -470,7 +471,7 @@ function Home() {
         >
           <Stack direction={"column"} spacing={3}   >
             <Typography variant="h3" sx={{ fontWeight: 500, fontSize: 60, color: '#FFF' }}>
-              The Food Systems Dashboard
+              SUN Youth Bangladesh
             </Typography>
             <Typography variant="h3" sx={{ fontWeight: 600, fontSize: 45, color: theme.palette.secondary.main }}>
               THEN AND NOW
@@ -482,10 +483,11 @@ function Home() {
               <Paper elevation={0} sx={{ mt: 5, px: 4, py: 2, backgroundColor: '#ffff', borderTopLeftRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, width: 1008, }} >
                 <Stack direction={"row"} spacing={2} justifyContent={"space-between"} alignItems={"center"} >
                   <Stack direction={"row"} spacing={4} alignItems={"center"}  >
-                    <img src="/assets/image1.png" alt="" />
+                    <img src="/assets/slider1.jpg" style={{width:"143px",objectFit:"cover"}} alt="" />
                     <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 19 }}>
-                      70th GEF Council <br />
-                      Meeting – Dec. 2025
+                      {/* 70th GEF Council <br />
+                      Meeting – Dec. 2025 */}
+                      Fosylx Training – 2024
                     </Typography>
                   </Stack>
                   <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 40, color: '#f5821f' }}>
@@ -520,7 +522,7 @@ function Home() {
         >
           <Stack direction={"column"} spacing={3}   >
             <Typography variant="h3" sx={{ fontWeight: 500, fontSize: 60, color: '#FFF' }}>
-              The Food Systems Dashboard
+             SUN Youth bangladesh
             </Typography>
             <Typography variant="h3" sx={{ fontWeight: 600, fontSize: 45, color: theme.palette.secondary.main }}>
               THEN AND NOW
@@ -532,10 +534,11 @@ function Home() {
               <Paper elevation={0} sx={{ mt: 5, px: 4, py: 2, backgroundColor: '#ffff', borderTopLeftRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, width: 1008, }} >
                 <Stack direction={"row"} spacing={2} justifyContent={"space-between"} alignItems={"center"} >
                   <Stack direction={"row"} spacing={4} alignItems={"center"}  >
-                    <img src="/assets/image1.png" alt="" />
+                    <img src="/assets/slider1.jpg" style={{width:"143px",objectFit:"cover"}} />
                     <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 19 }}>
-                      70th GEF Council <br />
-                      Meeting – Dec. 2025
+                      {/* 70th GEF Council <br />
+                      Meeting – Dec. 2025 */}
+                      Fosylx Training – 2024
                     </Typography>
                   </Stack>
                   <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 40, color: '#f5821f' }}>
@@ -635,7 +638,7 @@ function Home() {
 
       </Box>
       <Box mt={15} bgcolor={"#f8f7f5"}>
-        <Typography variant="body1" color="initial" fontWeight={700} fontSize={19} sx={{ bgcolor: "#f5821f", maxWidth: 873, textAlign: "right", pr: 5, py: 1, color: "#fff" }}>The map of SUN Civil Society Alliances (CSAs)</Typography>        <Grid container spacing={3} sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", position: 'relative' }} >
+        <Typography variant="body1" color="initial" fontWeight={700} fontSize={19} sx={{ bgcolor: "#f5821f", maxWidth: 873, textAlign: "right", pr: 5, py: 1, color: "#fff" }}>The map of SUN youth Bangladesh</Typography>        <Grid container spacing={3} sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", position: 'relative' }} >
           {hoveredInfo.show && (
             <Paper
               elevation={4}
@@ -696,7 +699,7 @@ function Home() {
 
           <Grid size={{ xs: 12, sm: 6, md: 6 }} >
             <Stack direction={"column"} spacing={4} justifyContent={"center"} alignItems={"center"} height={"100%"} >
-              <Typography variant="body1" color="initial" fontWeight={500} fontSize={60}>Training Components</Typography>
+              <Typography variant="body1" color="initial" fontWeight={500} fontSize={45}>Food system  youth leadership Training</Typography>
               <Typography variant="body1" color="#7c7c7c">
                 The program is designed to build youth leadership and encourage practical engagement in food systems through a structured and participatory approach. It begins with a selection process to identify motivated young participants, followed by an intensive three-day Food Systems Youth Leadership Training that strengthens leadership skills, systems thinking, and practical knowledge.
 
@@ -724,22 +727,22 @@ function Home() {
         <Grid container spacing={3} sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", mb: 4 }} >
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
             <img src="/assets/icons2.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
-            {/* <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>5000+</Typography> */}
+            <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>5000+</Typography>
             <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Volunteer Helpers </Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
             <img src="/assets/icons1.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
-            {/* <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>1200+</Typography> */}
+            <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>1200+</Typography>
             <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Donated</Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"} >
             <img src="/assets/icons3.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
-            {/* <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>300+</Typography> */}
+            <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>300+</Typography>
             <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Products & Gifts</Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"} >
             <img src="/assets/icons2.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
-            {/* <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>50+</Typography> */}
+            <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>50+</Typography>
             <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Volunteer Helpers</Typography>
           </Grid>
         </Grid>
@@ -937,9 +940,9 @@ function Home() {
               <Typography variant="h6" sx={{ mt: 2, fontWeight: 700, fontSize: 20 }}>
                 {option.title}
               </Typography>
-              <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
+              {/* <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
                 {option.button}
-              </Typography>
+              </Typography> */}
               <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
                 {option.description}
               </Typography>
@@ -1002,7 +1005,7 @@ function Home() {
 
           <Grid size={{ xs: 12, sm: 6, md: 12 }} >
             <Stack maxWidth={900} mx={"auto"} direction={"column"} spacing={4} justifyContent={"center"} alignItems={"center"} height={"100%"} >
-              <Typography variant="body1" fontWeight={500} fontSize={20}>Information collected from or submitted by, the Civil Society network and other relevant stakeholders.</Typography>
+              <Typography variant="body1" fontWeight={500} fontSize={20}>Information collected from or submitted by, the Sun Youth network Bangladesh and other relevant stakeholders.</Typography>
               <Stack direction={"row"} spacing={2} width={"100%"} >
                 <TextField
                   type="text"

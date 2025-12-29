@@ -10,7 +10,10 @@ function youthvoicessummit() {
         <Stack direction={"row"} alignItems="center" justifyContent="space-between"
           sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", }}>
           <Typography variant="h5" sx={{ fontWeight: 'bold' }}>WHAT WE DO</Typography>
-          <Box component="span" sx={{ fontSize: 14, color: "#fff", fontWeight: 600 }}>{router?.route}</Box>
+          {/* {router?.asPath
+              ?.split("-")
+              ?.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+              ?.join(" ")} */}
         </Stack>
 
       </Box>
@@ -72,18 +75,15 @@ function youthvoicessummit() {
      
       <Grid container spacing={5} justifyContent="center" sx={{ width: "95%", maxWidth: "1200px", margin: "0 auto", my: 6 }}>
 
-        <Grid size={{ xs: 12, sm: 6, md: 3 }}   >
-        <img src="/assets/Link1.png" alt="" />
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 3 }}   >
-        <img src="/assets/Link4.png" alt="" />
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 3 }}   >
-        <img src="/assets/Link3.png" alt="" />
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 3 }}   >
-       <img src="/assets/images.png" alt="" style={{width:"210px",height:"120px",objectFit:'contain',border:"1px solid #dedede",padding:"20px",borderRadius:4}} />
-        </Grid>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+                 <img src="/assets/Link1.png" alt="" />
+               </Grid>
+                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+                <img src="/assets/images.png" alt="" style={{width:"210px",height:"120px",objectFit:'contain',border:"1px solid #dedede",padding:"20px",borderRadius:4}} />
+               </Grid>
+               <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+                 <img src="/assets/Link4.png" alt="" />
+               </Grid>
       
       </Grid>
       <Box sx={{
@@ -107,7 +107,7 @@ function youthvoicessummit() {
 
           <Grid size={{ xs: 12, sm: 6, md: 12 }} >
             <Stack maxWidth={900} mx={"auto"} direction={"column"} spacing={4} justifyContent={"center"} alignItems={"center"} height={"100%"} >
-              <Typography variant="body1" fontWeight={500} fontSize={20}>Information collected from or submitted by, the Civil Society network and other relevant stakeholders.</Typography>
+              <Typography variant="body1" fontWeight={500} fontSize={20}>Information collected from or submitted by, the SUN Youth Network and other relevant stakeholders.</Typography>
               <Stack direction={"row"} spacing={2} width={"100%"} >
                 <TextField
                   type="text"

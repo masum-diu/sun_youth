@@ -49,7 +49,10 @@ const stories = [
         <Stack direction={"row"} alignItems="center" justifyContent="space-between"
           sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", }}>
           <Typography variant="h5" sx={{ fontWeight: 'bold' }}>RESOURCES</Typography>
-          <Box component="span" sx={{ fontSize: 14, color: "#fff", fontWeight: 600 }}>{router?.route}</Box>
+          {/* {router?.asPath
+              ?.split("-")
+              ?.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+              ?.join(" ")} */}
         </Stack>
       </Box>
 

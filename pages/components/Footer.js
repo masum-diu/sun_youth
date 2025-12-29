@@ -18,7 +18,7 @@ function Footer() {
                             </Box>
                         </Box>
                         <Typography sx={{ mt: 4, color: 'rgba(255,255,255,0.8)', maxWidth: 480, lineHeight: 1.8 }}>
-                            The Network is an independent global alliance of Civil Society Organizations working to address global environmental challenges linked to the focal areas.
+                           SUN Youth Network is a youth-led global alliance advancing environmental sustainability and climate action by empowering young leaders and organizations.
                         </Typography>
                     </Grid>
 
