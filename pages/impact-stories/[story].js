@@ -765,13 +765,13 @@ const AuthorCard = ({ author }) => {
 
   if (!author) return null;
 
-  // On large screens, show normal sticky card
+  // On large screens, show normal fixed card
   if (isLargeScreen) {
     return (
       <Box
         sx={{
           position: "fixed",
-          top: 130,
+          top: 200,
           right: 40,
           border: "2px solid black",
           p: "8px 10px",
@@ -780,6 +780,9 @@ const AuthorCard = ({ author }) => {
           boxSizing: "border-box",
           zIndex: 10,
           background: "white",
+          maxHeight: "calc(100vh - 340px)",
+          overflowY: "auto",
+          WebkitOverflowScrolling: "touch",
         }}
       >
         <Box
@@ -866,7 +869,7 @@ const AuthorCard = ({ author }) => {
             top: "50%",
             transform: "translateY(-50%)",
             zIndex: 1001,
-            backgroundColor: "white",
+            background: "white",
             border: "2px solid black",
             borderRight: "none",
             borderRadius: "4px 0 0 4px",
