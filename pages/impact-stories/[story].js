@@ -1,7 +1,16 @@
-import { Box, Container, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  IconButton,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 function singleImpactStories() {
   const stories = [
@@ -165,8 +174,7 @@ function singleImpactStories() {
     },
     {
       id: "8",
-      title:
-        "Pusti Bondhu: A Youth-Led Initiative to Improve Campus Nutrition",
+      title: "Pusti Bondhu: A Youth-Led Initiative to Improve Campus Nutrition",
       imageOne: "soyed/author.jpg",
       imageTwo: "soyed/image-2.jpg",
       imageThree: "soyed/image-3.jpg",
@@ -304,7 +312,15 @@ function singleImpactStories() {
   // const { singleImpactStories } = router.query;
   // console.log(singleImpactStories?.impact - stories);
   return (
-    <Box sx={{ bgcolor: "white", py: { xs: 6, md: 12 }, position: "relative" }}>
+    <Box
+      sx={{
+        bgcolor: "white",
+        py: { xs: 3, sm: 4, md: 6, lg: 8 },
+        position: "relative",
+        width: "100%",
+        overflowX: "hidden",
+      }}
+    >
       {authorDemo && <AuthorCard author={authorDemo} />}
       {storyDemo && <ImpactStoryCard storyDemo={storyDemo} />}
     </Box>
@@ -315,40 +331,103 @@ export default singleImpactStories;
 
 const ImpactStoryCard = ({ storyDemo }) => {
   return (
-    <Container>
+    <Container
+      maxWidth="lg"
+      sx={{
+        px: { xs: 2, sm: 3, md: 4 },
+        pt: 0,
+        pb: 0,
+      }}
+    >
       <Typography
         fontWeight="600"
-        fontSize="24px"
+        fontSize={{ xs: "18px", sm: "20px", md: "22px", lg: "24px" }}
         color="text.primary"
-        sx={{ mx: "auto", mb: "20px" }}
+        sx={{
+          mx: "auto",
+          mb: { xs: 2, sm: 2.5, md: 3 },
+          mt: 0,
+          wordBreak: "break-word",
+          lineHeight: 1.3,
+        }}
       >
         {storyDemo.title}
       </Typography>
-      <Image
-      style={{objectFit:'cover'}}
-        src={`/assets/${storyDemo.imageOne}`}
-        alt="author image"
-        width={1152}
-        height={720}
-      />
+      <Box
+        sx={{
+          width: "100%",
+          position: "relative",
+          mb: { xs: 2, md: 3 },
+          mt: 0,
+          borderRadius: 1,
+          overflow: "hidden",
+        }}
+      >
+        <Image
+          src={`/assets/${storyDemo.imageOne}`}
+          alt="author image"
+          width={1152}
+          height={720}
+          style={{
+            objectFit: "cover",
+            width: "100%",
+            height: "auto",
+            maxWidth: "100%",
+            display: "block",
+          }}
+        />
+      </Box>
       <Typography
         color="text.primary"
-        sx={{ mx: "auto", mt: "10px", mb: "30px" }}
+        fontSize={{ xs: "14px", sm: "15px", md: "16px" }}
+        sx={{
+          mx: "auto",
+          mt: { xs: 1, md: 2 },
+          mb: { xs: 2, md: 3 },
+          lineHeight: 1.7,
+          wordBreak: "break-word",
+        }}
       >
         {storyDemo.textPartOne}
       </Typography>
 
       {storyDemo?.imageTwo && (
-        <Image
-          objectFit="cover"
-          src={`/assets/${storyDemo.imageTwo}`}
-          alt="author image"
-          width={1152}
-          height={720}
-        />
+        <Box
+          sx={{
+            width: "100%",
+            position: "relative",
+            mb: { xs: 2, md: 3 },
+            mt: { xs: 2, md: 2 },
+            borderRadius: 1,
+            overflow: "hidden",
+          }}
+        >
+          <Image
+            src={`/assets/${storyDemo.imageTwo}`}
+            alt="author image"
+            width={1152}
+            height={720}
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "auto",
+              maxWidth: "100%",
+              display: "block",
+            }}
+          />
+        </Box>
       )}
 
-      <Typography color="text.primary" sx={{ mx: "auto", mt: "10px" }}>
+      <Typography
+        color="text.primary"
+        fontSize={{ xs: "14px", sm: "15px", md: "16px" }}
+        sx={{
+          mx: "auto",
+          mt: { xs: 1, md: 2 },
+          lineHeight: 1.7,
+          wordBreak: "break-word",
+        }}
+      >
         {storyDemo.textPartTwo}
       </Typography>
 
@@ -356,58 +435,140 @@ const ImpactStoryCard = ({ storyDemo }) => {
         <Box
           sx={{
             display: "flex",
-            gap: 2,
+            flexDirection: { xs: "column", sm: "row" },
+            gap: { xs: 2, sm: 2 },
+            mb: { xs: 2, md: 3 },
+            mt: { xs: 2, md: 2 },
           }}
         >
           {storyDemo?.imageThree && (
-            <Image
-              src={`/assets/${storyDemo.imageThree}`}
-              alt="story image three"
-              width={300}
-              height={360}
-              style={{ objectFit: "cover", flex: 1 }}
-            />
+            <Box
+              sx={{
+                flex: 1,
+                position: "relative",
+                width: { xs: "100%", sm: "auto" },
+                minWidth: 0,
+                borderRadius: 1,
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                src={`/assets/${storyDemo.imageThree}`}
+                alt="story image three"
+                width={300}
+                height={360}
+                style={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "auto",
+                  maxWidth: "100%",
+                  display: "block",
+                }}
+              />
+            </Box>
           )}
           {storyDemo?.imageFour && (
-            <Image
-              src={`/assets/${storyDemo.imageFour}`}
-              alt="story image four"
-              width={300}
-              height={360}
-              style={{ objectFit: "cover", flex: 1 }}
-            />
+            <Box
+              sx={{
+                flex: 1,
+                position: "relative",
+                width: { xs: "100%", sm: "auto" },
+                minWidth: 0,
+                borderRadius: 1,
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                src={`/assets/${storyDemo.imageFour}`}
+                alt="story image four"
+                width={300}
+                height={360}
+                style={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "auto",
+                  maxWidth: "100%",
+                  display: "block",
+                }}
+              />
+            </Box>
           )}
         </Box>
       )}
       <Box
         sx={{
           display: "flex",
-          gap: 2,
-          marginTop: "16px",
+          flexDirection: { xs: "column", sm: "row" },
+          gap: { xs: 2, sm: 2 },
+          mt: { xs: 2, md: 2 },
+          mb: { xs: 2, md: 3 },
         }}
       >
         {storyDemo?.imageFive && (
-          <Image
-            src={`/assets/${storyDemo.imageFive}`}
-            alt="story image three"
-            width={300}
-            height={360}
-            style={{ objectFit: "cover", flex: 1 }}
-          />
+          <Box
+            sx={{
+              flex: 1,
+              position: "relative",
+              width: { xs: "100%", sm: "auto" },
+              minWidth: 0,
+              borderRadius: 1,
+              overflow: "hidden",
+            }}
+          >
+            <Image
+              src={`/assets/${storyDemo.imageFive}`}
+              alt="story image five"
+              width={300}
+              height={360}
+              style={{
+                objectFit: "cover",
+                width: "100%",
+                height: "auto",
+                maxWidth: "100%",
+                display: "block",
+              }}
+            />
+          </Box>
         )}
         {storyDemo?.imageSix && (
-          <Image
-            src={`/assets/${storyDemo.imageSix}`}
-            alt="story image four"
-            width={300}
-            height={360}
-            style={{ objectFit: "cover", flex: 1 }}
-          />
+          <Box
+            sx={{
+              flex: 1,
+              position: "relative",
+              width: { xs: "100%", sm: "auto" },
+              minWidth: 0,
+              borderRadius: 1,
+              overflow: "hidden",
+            }}
+          >
+            <Image
+              src={`/assets/${storyDemo.imageSix}`}
+              alt="story image six"
+              width={300}
+              height={360}
+              style={{
+                objectFit: "cover",
+                width: "100%",
+                height: "auto",
+                maxWidth: "100%",
+                display: "block",
+              }}
+            />
+          </Box>
         )}
       </Box>
 
       {storyDemo.textPartThree && (
-        <Typography color="text.primary" sx={{ mx: "auto", mt: "10px" }}>
+        <Typography
+          color="text.primary"
+          fontSize={{ xs: "14px", sm: "15px", md: "16px" }}
+          sx={{
+            mx: "auto",
+            mt: { xs: 1, md: 2 },
+            lineHeight: 1.7,
+            wordBreak: "break-word",
+          }}
+        >
           {storyDemo.textPartThree}
         </Typography>
       )}
@@ -416,64 +577,161 @@ const ImpactStoryCard = ({ storyDemo }) => {
         <Box
           sx={{
             display: "flex",
-            gap: 2,
-            marginTop: "16px",
+            flexDirection: { xs: "column", sm: "row" },
+            gap: { xs: 2, sm: 2 },
+            mt: { xs: 2, md: 2 },
+            mb: { xs: 2, md: 3 },
           }}
         >
           {storyDemo?.imageSeven && (
-            <Image
-              src={`/assets/${storyDemo.imageSeven}`}
-              alt="story image three"
-              width={300}
-              height={360}
-              style={{ objectFit: "cover", flex: 1 }}
-            />
+            <Box
+              sx={{
+                flex: 1,
+                position: "relative",
+                width: { xs: "100%", sm: "auto" },
+                minWidth: 0,
+                borderRadius: 1,
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                src={`/assets/${storyDemo.imageSeven}`}
+                alt="story image seven"
+                width={300}
+                height={360}
+                style={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "auto",
+                  maxWidth: "100%",
+                  display: "block",
+                }}
+              />
+            </Box>
           )}
 
           {storyDemo?.imageEight && (
-            <Image
-              src={`/assets/${storyDemo.imageEight}`}
-              alt="story image four"
-              width={300}
-              height={360}
-              style={{ objectFit: "cover", flex: 1 }}
-            />
+            <Box
+              sx={{
+                flex: 1,
+                position: "relative",
+                width: { xs: "100%", sm: "auto" },
+                minWidth: 0,
+                borderRadius: 1,
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                src={`/assets/${storyDemo.imageEight}`}
+                alt="story image eight"
+                width={300}
+                height={360}
+                style={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "auto",
+                  maxWidth: "100%",
+                  display: "block",
+                }}
+              />
+            </Box>
           )}
         </Box>
       )}
 
       {storyDemo.textPartFour && (
-        <Typography color="text.primary" sx={{ mx: "auto", mt: "10px" }}>
+        <Typography
+          color="text.primary"
+          fontSize={{ xs: "14px", sm: "15px", md: "16px" }}
+          sx={{
+            mx: "auto",
+            mt: { xs: 1, md: 2 },
+            lineHeight: 1.7,
+            wordBreak: "break-word",
+          }}
+        >
           {storyDemo.textPartFour}
         </Typography>
       )}
 
       {storyDemo.imageNine && (
-        <Image
-          src={`/assets/${storyDemo.imageNine}`}
-          alt="story image four"
-          width={1152}
-          height={500}
-          style={{ objectFit: "cover", flex: 1 }}
-        />
+        <Box
+          sx={{
+            width: "100%",
+            position: "relative",
+            mb: { xs: 2, md: 3 },
+            mt: { xs: 2, md: 2 },
+            borderRadius: 1,
+            overflow: "hidden",
+          }}
+        >
+          <Image
+            src={`/assets/${storyDemo.imageNine}`}
+            alt="story image nine"
+            width={1152}
+            height={500}
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "auto",
+              maxWidth: "100%",
+              display: "block",
+            }}
+          />
+        </Box>
       )}
       {storyDemo.imageTen && (
-        <Image
-          src={`/assets/${storyDemo.imageTen}`}
-          alt="story image four"
-          width={1152}
-          height={500}
-          style={{ objectFit: "cover", flex: 1 }}
-        />
+        <Box
+          sx={{
+            width: "100%",
+            position: "relative",
+            mb: { xs: 2, md: 3 },
+            mt: { xs: 2, md: 2 },
+            borderRadius: 1,
+            overflow: "hidden",
+          }}
+        >
+          <Image
+            src={`/assets/${storyDemo.imageTen}`}
+            alt="story image ten"
+            width={1152}
+            height={500}
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "auto",
+              maxWidth: "100%",
+              display: "block",
+            }}
+          />
+        </Box>
       )}
 
       {storyDemo.textPartFive && (
-        <Typography color="text.primary" sx={{ mx: "auto", mt: "10px" }}>
+        <Typography
+          color="text.primary"
+          fontSize={{ xs: "14px", sm: "15px", md: "16px" }}
+          sx={{
+            mx: "auto",
+            mt: { xs: 1, md: 2 },
+            lineHeight: 1.7,
+            wordBreak: "break-word",
+          }}
+        >
           {storyDemo.textPartFive}
         </Typography>
       )}
       {storyDemo.textPartSix && (
-        <Typography color="text.primary" sx={{ mx: "auto", mt: "10px" }}>
+        <Typography
+          color="text.primary"
+          fontSize={{ xs: "14px", sm: "15px", md: "16px" }}
+          sx={{
+            mx: "auto",
+            mt: { xs: 1, md: 2 },
+            lineHeight: 1.7,
+            wordBreak: "break-word",
+          }}
+        >
           {storyDemo.textPartSix}
         </Typography>
       )}
@@ -482,77 +740,248 @@ const ImpactStoryCard = ({ storyDemo }) => {
 };
 
 const AuthorCard = ({ author }) => {
+  const theme = useTheme();
+  // Use custom breakpoint: collapsible when width <= 1855px
+  const isLargeScreen = useMediaQuery("(min-width: 1856px)");
+  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [shouldShowCollapsible, setShouldShowCollapsible] = useState(false);
+
+  useEffect(() => {
+    // Check if screen is small enough that card would overlap content
+    // On screens 1855px and below, enable collapsible behavior
+    const checkScreenSize = () => {
+      const shouldCollapse = !isLargeScreen;
+      setShouldShowCollapsible(shouldCollapse);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, [isLargeScreen]);
+
+  const toggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
   if (!author) return null;
 
+  // On large screens, show normal sticky card
+  if (isLargeScreen) {
+    return (
+      <Box
+        sx={{
+          position: "fixed",
+          top: 130,
+          right: 40,
+          border: "2px solid black",
+          p: "8px 10px",
+          width: 330,
+          maxWidth: 330,
+          boxSizing: "border-box",
+          zIndex: 10,
+          background: "white",
+        }}
+      >
+        <Box
+          sx={{
+            width: "100%",
+            position: "relative",
+            mb: 2,
+            borderRadius: 1,
+            overflow: "hidden",
+            aspectRatio: "1 / 1",
+          }}
+        >
+          <Image
+            src={`/assets/${author.image}`}
+            alt="author image"
+            width={200}
+            height={200}
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </Box>
+
+        <Typography
+          fontWeight={500}
+          fontSize="16px"
+          color="text.primary"
+          sx={{ mb: "4px", wordBreak: "break-word" }}
+        >
+          {author.name}
+        </Typography>
+
+        <Typography
+          fontWeight={500}
+          fontSize="16px"
+          color="text.secondary"
+          sx={{ mb: "4px", wordBreak: "break-word" }}
+        >
+          Role: {author.role}
+        </Typography>
+
+        <Typography
+          fontWeight={500}
+          fontSize="16px"
+          color="text.secondary"
+          sx={{ mb: "4px", wordBreak: "break-word" }}
+        >
+          Contact: {author.contact}
+        </Typography>
+
+        <Typography
+          fontWeight={500}
+          fontSize="16px"
+          color="text.secondary"
+          sx={{ mb: "4px", wordBreak: "break-word" }}
+        >
+          Address: {author.address}
+        </Typography>
+
+        <Typography
+          fontWeight={500}
+          fontSize="16px"
+          color="text.secondary"
+          sx={{ mb: "4px", wordBreak: "break-word" }}
+        >
+          Bio: {author.bio}
+        </Typography>
+      </Box>
+    );
+  }
+
+  // On small/medium screens, show collapsible card
   return (
-    <Box
-      sx={{
-        position: { xs: "relative", lg: "sticky" },
-        top: { lg: 130 }, // Changed from 100 to 230
-        float: { lg: "right" },
-        mb: { xs: 4, lg: 0 },
-        ml: { lg: 3 },
-        border: "2px solid black",
-        p: "8px 10px",
-        width: { xs: "100%", lg: 330 },
-        maxWidth: 330,
-        boxSizing: "border-box",
-        zIndex: 10,
-        bgcolor: "white",
-      }}
-    >
-      <Image
-        src={`/assets/${author.image}`}
-        alt="author image"
-        width={200}
-        height={200}
-        style={{ objectFit: "cover", width: "100%", height: "auto" }}
-      />
+    <>
+      {/* Arrow button - always visible on right edge when collapsible */}
+      {shouldShowCollapsible && (
+        <IconButton
+          onClick={toggleCollapse}
+          sx={{
+            position: "fixed",
+            right: isCollapsed ? 0 : 330,
+            top: "50%",
+            transform: "translateY(-50%)",
+            zIndex: 1001,
+            backgroundColor: "white",
+            border: "2px solid black",
+            borderRight: "none",
+            borderRadius: "4px 0 0 4px",
+            width: 40,
+            height: 60,
+            transition: "right 0.3s ease-in-out",
+            "&:hover": {
+              backgroundColor: "rgba(0, 0, 0, 0.05)",
+            },
+            boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          aria-label={
+            isCollapsed ? "Expand author card" : "Collapse author card"
+          }
+        >
+          {isCollapsed ? (
+            <ChevronLeftIcon sx={{ fontSize: 24, color: "black" }} />
+          ) : (
+            <ChevronRightIcon sx={{ fontSize: 24, color: "black" }} />
+          )}
+        </IconButton>
+      )}
 
-      <Typography
-        fontWeight={500}
-        fontSize="16px"
-        color="text.primary"
-        sx={{ mb: "4px", wordBreak: "break-word" }}
+      {/* Author Card */}
+      <Box
+        sx={{
+          position: "fixed",
+          right: isCollapsed ? -330 : 0,
+          top: 100,
+          bottom: 0,
+          width: 330,
+          maxWidth: "calc(100vw - 40px)",
+          border: "2px solid black",
+          borderRight: "none",
+          p: "8px 10px",
+          boxSizing: "border-box",
+          zIndex: 1000,
+          background: "white",
+          overflowY: "auto",
+          transition: "right 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+          boxShadow: isCollapsed ? "none" : "0 2px 8px rgba(0,0,0,0.15)",
+          WebkitOverflowScrolling: "touch",
+        }}
       >
-        {author.name}
-      </Typography>
+        <Box
+          sx={{
+            width: "100%",
+            position: "relative",
+            mb: 2,
+            borderRadius: 1,
+            overflow: "hidden",
+            aspectRatio: "1 / 1",
+          }}
+        >
+          <Image
+            src={`/assets/${author.image}`}
+            alt="author image"
+            width={200}
+            height={200}
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </Box>
 
-      <Typography
-        fontWeight={500}
-        fontSize="16px"
-        color="text.secondary"
-        sx={{ mb: "4px", wordBreak: "break-word" }}
-      >
-        Role: {author.role}
-      </Typography>
+        <Typography
+          fontWeight={500}
+          fontSize="16px"
+          color="text.primary"
+          sx={{ mb: "4px", wordBreak: "break-word" }}
+        >
+          {author.name}
+        </Typography>
 
-      <Typography
-        fontWeight={500}
-        fontSize="16px"
-        color="text.secondary"
-        sx={{ mb: "4px", wordBreak: "break-word" }}
-      >
-        Contact: {author.contact}
-      </Typography>
+        <Typography
+          fontWeight={500}
+          fontSize="16px"
+          color="text.secondary"
+          sx={{ mb: "4px", wordBreak: "break-word" }}
+        >
+          Role: {author.role}
+        </Typography>
 
-      <Typography
-        fontWeight={500}
-        fontSize="16px"
-        color="text.secondary"
-        sx={{ mb: "4px", wordBreak: "break-word" }}
-      >
-        Address: {author.address}
-      </Typography>
+        <Typography
+          fontWeight={500}
+          fontSize="16px"
+          color="text.secondary"
+          sx={{ mb: "4px", wordBreak: "break-word" }}
+        >
+          Contact: {author.contact}
+        </Typography>
 
-      <Typography
-        fontWeight={500}
-        fontSize="16px"
-        color="text.secondary"
-        sx={{ mb: "4px", wordBreak: "break-word" }}
-      >
-        Bio: {author.bio}
-      </Typography>
-    </Box>
+        <Typography
+          fontWeight={500}
+          fontSize="16px"
+          color="text.secondary"
+          sx={{ mb: "4px", wordBreak: "break-word" }}
+        >
+          Address: {author.address}
+        </Typography>
+
+        <Typography
+          fontWeight={500}
+          fontSize="16px"
+          color="text.secondary"
+          sx={{ mb: "4px", wordBreak: "break-word" }}
+        >
+          Bio: {author.bio}
+        </Typography>
+      </Box>
+    </>
   );
 };
