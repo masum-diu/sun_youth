@@ -16,12 +16,19 @@ import {
   Card,
   CardActionArea,
   CardContent,
+  useMediaQuery,
+  useTheme,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
 } from "@mui/material";
 import NextLink from "next/link";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CloseIcon from "@mui/icons-material/Close";
 import GroupIcon from "@mui/icons-material/Group";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const navLinks = [
   { title: "Home", path: "/", active: true },
@@ -32,12 +39,12 @@ const navLinks = [
         title: "SUN Youth Network Bangladesh Brief",
         path: "/about-us/sun-youth-network-brief",
       },
-    //   { title: "Government (MoHFW)", path: "/about-us/government-mohfw" },
-    //   { title: "SUN Movement", path: "/about-us/sun-movement" },
-    //   {
-    //     title: "Secretariat (GAIN) info and logo",
-    //     path: "/about-us/secretariat-gain",
-    //   },
+      //   { title: "Government (MoHFW)", path: "/about-us/government-mohfw" },
+      //   { title: "SUN Movement", path: "/about-us/sun-movement" },
+      //   {
+      //     title: "Secretariat (GAIN) info and logo",
+      //     path: "/about-us/secretariat-gain",
+      //   },
     ],
   },
   {
@@ -45,8 +52,8 @@ const navLinks = [
     path: "/what-we-do",
     children: [
       { title: "Gallery", path: "/what-we-do/gallery" },
-    //   { title: "BKBT", path: "/what-we-do/bkbt" },
-       { title: "BKBT", path: "/what-we-do/bkbt" },
+      //   { title: "BKBT", path: "/what-we-do/bkbt" },
+      { title: "BKBT", path: "http://bhalokhabobhalothakbo.com/" },
       {
         title: "Food Systems Youth Leadership Training",
         path: "/what-we-do/food-systems-youth-leadership-training",
@@ -76,9 +83,12 @@ const linkStyles = {
 };
 
 function Header() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleMenuOpen = (event, title) => {
     setAnchorEl(event.currentTarget);
@@ -103,16 +113,19 @@ function Header() {
         variant="body1"
         color="initial"
         sx={{
-          px: 2,
-          py: 1,
+          px: { xs: 1, sm: 2 },
+          py: { xs: 0.5, sm: 1 },
           textAlign: "center",
           bgcolor: "#b20933",
           color: "#fff",
           fontWeight: 700,
-          fontSize: 15,
-          whiteSpace: "nowrap",
+          fontSize: { xs: 12, sm: 13, md: 15 },
+          whiteSpace: { xs: "normal", sm: "nowrap" },
           overflow: "hidden",
           textOverflow: "ellipsis",
+          display: { xs: "-webkit-box", sm: "block" },
+          WebkitLineClamp: { xs: 2, sm: 1 },
+          WebkitBoxOrient: "vertical",
         }}
         title={`Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure`}
       >
@@ -122,114 +135,222 @@ function Header() {
         <Toolbar
           disableGutters
           sx={{
-            pl: 0,
-            py: 2,
-            width: "95%",
+            pl: { xs: 1, sm: 2, md: 0 },
+            py: { xs: 1, sm: 2 },
+            width: { xs: "100%", md: "95%" },
             maxWidth: "1700px",
-            margin: "0 auto",
+            margin: { xs: 0, md: "0 auto" },
+            px: { xs: 1, sm: 2 },
           }}
         >
           <Box
             sx={{
               display: "flex",
-              gap: 2,
+              gap: { xs: 1, sm: 2 },
               alignItems: "center",
               justifyContent: "space-between",
               width: "100%",
             }}
           >
-            <img src="/assets/logo.png" alt="" width={233} />
             <Box
-              component="nav"
-              sx={{ display: "flex", gap: 4, alignItems: "center" }}
-            >
+              component="img"
+              src="/assets/logo.png"
+              alt="Logo"
+              sx={{
+                width: { xs: 150, sm: 180, md: 233 },
+                height: "auto",
+              }}
+            />
+            {isMobile ? (
+              <>
+                <IconButton
+                  onClick={() => setMobileMenuOpen(true)}
+                  sx={{ color: "#000000" }}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Drawer
+                  anchor="right"
+                  open={mobileMenuOpen}
+                  onClose={() => setMobileMenuOpen(false)}
+                >
+                  <Box sx={{ width: 280, p: 2 }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        mb: 2,
+                      }}
+                    >
+                      <Typography variant="h6">Menu</Typography>
+                      <IconButton onClick={() => setMobileMenuOpen(false)}>
+                        <CloseIcon />
+                      </IconButton>
+                    </Box>
+                    <List>
+                      {navLinks.map((link) => (
+                        <Box key={link.title}>
+                          {link.path ? (
+                            <ListItem
+                              component={NextLink}
+                              href={link.path}
+                              onClick={() => setMobileMenuOpen(false)}
+                              sx={{
+                                ...linkStyles,
+                                ...(link.active && {
+                                  color: "#f5821f",
+                                  fontWeight: "700",
+                                }),
+                              }}
+                            >
+                              <ListItemText primary={link.title} />
+                            </ListItem>
+                          ) : (
+                            <ListItem
+                              onClick={() => setMobileMenuOpen(false)}
+                              sx={linkStyles}
+                            >
+                              <ListItemText primary={link.title} />
+                            </ListItem>
+                          )}
+                          {link.children &&
+                            link.children.map((child) => (
+                              <ListItem
+                                key={child.title}
+                                component={NextLink}
+                                href={child.path}
+                                onClick={() => setMobileMenuOpen(false)}
+                                sx={{ pl: 4 }}
+                              >
+                                <ListItemText primary={child.title} />
+                              </ListItem>
+                            ))}
+                        </Box>
+                      ))}
+                      <ListItem sx={{ mt: 2 }}>
+                        <Button
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            handleModalOpen();
+                          }}
+                          variant="contained"
+                          fullWidth
+                          sx={{
+                            height: 48,
+                            fontSize: 16,
+                            fontWeight: "700",
+                            backgroundColor: "#f5821f",
+                            "&:hover": { backgroundColor: "#d4701c" },
+                          }}
+                        >
+                          Join the network
+                        </Button>
+                      </ListItem>
+                    </List>
+                  </Box>
+                </Drawer>
+              </>
+            ) : (
               <Box
-                component="ul"
+                component="nav"
                 sx={{
                   display: "flex",
-                  gap: 4,
+                  gap: { md: 3, lg: 4 },
                   alignItems: "center",
-                  listStyle: "none",
-                  p: 0,
-                  m: 0,
                 }}
               >
-                {navLinks.map((link) => (
-                  <li
-                    key={link.title}
-                    onMouseEnter={
-                      link.children
-                        ? (e) => handleMenuOpen(e, link.title)
-                        : undefined
-                    }
-                    onMouseLeave={link.children ? handleMenuClose : undefined}
-                  >
-                    <MuiLink
-                      component={link.path ? NextLink : "div"}
-                      href={link.path || "#"}
-                      sx={{
-                        ...linkStyles,
-                        display: "flex",
-                        alignItems: "center",
-                        ...(link.active && {
-                          color: "#f5821f",
-                          fontWeight: "700",
-                        }),
-                      }}
-                      aria-owns={
-                        openMenu === link.title ? "mouse-over-menu" : undefined
+                <Box
+                  component="ul"
+                  sx={{
+                    display: "flex",
+                    gap: { md: 2, lg: 4 },
+                    alignItems: "center",
+                    listStyle: "none",
+                    p: 0,
+                    m: 0,
+                  }}
+                >
+                  {navLinks.map((link) => (
+                    <li
+                      key={link.title}
+                      onMouseEnter={
+                        link.children
+                          ? (e) => handleMenuOpen(e, link.title)
+                          : undefined
                       }
-                      aria-haspopup={link.children ? "true" : undefined}
+                      onMouseLeave={link.children ? handleMenuClose : undefined}
                     >
-                      {link.title}
-                      {link.children && (
-                        <ExpandMoreIcon sx={{ fontSize: 20, ml: 0.5 }} />
-                      )}
-                    </MuiLink>
-                    {link.children && (
-                      <Menu
-                        id="mouse-over-menu"
-                        anchorEl={anchorEl}
-                        open={openMenu === link.title}
-                        onClose={handleMenuClose}
-                        MenuListProps={{
-                          "aria-labelledby": "basic-button",
-                          onMouseLeave: handleMenuClose,
+                      <MuiLink
+                        component={link.path ? NextLink : "div"}
+                        href={link.path || "#"}
+                        sx={{
+                          ...linkStyles,
+                          fontSize: { md: 14, lg: 16 },
+                          display: "flex",
+                          alignItems: "center",
+                          ...(link.active && {
+                            color: "#f5821f",
+                            fontWeight: "700",
+                          }),
                         }}
-                        elevation={2}
+                        aria-owns={
+                          openMenu === link.title
+                            ? "mouse-over-menu"
+                            : undefined
+                        }
+                        aria-haspopup={link.children ? "true" : undefined}
                       >
-                        {link.children.map((child) => (
-                          <MenuItem
-                            key={child.title}
-                            onClick={handleMenuClose}
-                            component={NextLink}
-                            href={child.path}
-                          >
-                            {child.title}
-                          </MenuItem>
-                        ))}
-                      </Menu>
-                    )}
-                  </li>
-                ))}
-              </Box>
+                        {link.title}
+                        {link.children && (
+                          <ExpandMoreIcon sx={{ fontSize: 20, ml: 0.5 }} />
+                        )}
+                      </MuiLink>
+                      {link.children && (
+                        <Menu
+                          id="mouse-over-menu"
+                          anchorEl={anchorEl}
+                          open={openMenu === link.title}
+                          onClose={handleMenuClose}
+                          MenuListProps={{
+                            "aria-labelledby": "basic-button",
+                            onMouseLeave: handleMenuClose,
+                          }}
+                          elevation={2}
+                        >
+                          {link.children.map((child) => (
+                            <MenuItem
+                              key={child.title}
+                              onClick={handleMenuClose}
+                              component={NextLink}
+                              href={child.path}
+                            >
+                              {child.title}
+                            </MenuItem>
+                          ))}
+                        </Menu>
+                      )}
+                    </li>
+                  ))}
+                </Box>
 
-              <Button
-                onClick={handleModalOpen}
-                variant="contained"
-                color="primary"
-                sx={{
-                  width: 232,
-                  height: 56,
-                  fontSize: 18,
-                  fontWeight: "700",
-                  backgroundColor: "#f5821f",
-                  "&:hover": { backgroundColor: "#d4701c" },
-                }}
-              >
-                Join the network
-              </Button>
-            </Box>
+                <Button
+                  onClick={handleModalOpen}
+                  variant="contained"
+                  color="primary"
+                  sx={{
+                    width: { md: 180, lg: 232 },
+                    height: { md: 48, lg: 56 },
+                    fontSize: { md: 16, lg: 18 },
+                    fontWeight: "700",
+                    backgroundColor: "#f5821f",
+                    "&:hover": { backgroundColor: "#d4701c" },
+                  }}
+                >
+                  Join the network
+                </Button>
+              </Box>
+            )}
           </Box>
         </Toolbar>
       </AppBar>
