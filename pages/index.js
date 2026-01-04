@@ -898,13 +898,14 @@ function Home() {
           ))}
         </Grid>
       </Box>
-      <Box mt={15} bgcolor={"#f8f7f5"}>
+      <Box  bgcolor={"#f8f7f5"}>
         <Typography
           variant="body1"
           color="initial"
           fontWeight={700}
           fontSize={19}
           sx={{
+            mt:{lg:15, xs:0},
             bgcolor: "#f5821f",
             maxWidth: 873,
             textAlign: "right",
@@ -923,6 +924,7 @@ function Home() {
             maxWidth: "1700px",
             margin: "0 auto",
             position: "relative",
+            flexDirection: {lg:"row", xs:"column-reverse"}
           }}
         >
           {hoveredInfo.show && (
@@ -997,14 +999,14 @@ function Home() {
               height={"100%"}
             >
               <Typography
+              sx={{fontSize: {lg:45, xs: 24}, pt: {lg:0, xs:'30px'}}}
                 variant="body1"
                 color="initial"
                 fontWeight={500}
-                fontSize={45}
               >
                 Food system youth leadership Training
               </Typography>
-              <Typography variant="body1" color="#7c7c7c">
+              <Typography sx={{pb:2}} variant="body1" color="#7c7c7c">
                 The program is designed to build youth leadership and encourage
                 practical engagement in food systems through a structured and
                 participatory approach. It begins with a selection process to
@@ -1024,7 +1026,7 @@ function Home() {
               </Stack> */}
             </Stack>
           </Grid>
-          <Grid size={{ xs: 12, sm: 6, md: 6 }}>
+          <Grid sx={{mt:{lg:0, xs:10}}} size={{ xs: 11, sm: 6, md: 6 }}>
             {/* <img src="/assets/bangladesh.png" alt="" width={"100%"} /> */}
             <BangladeshMap
               onSelect={(division) => console.log(division)}
@@ -1045,7 +1047,7 @@ function Home() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          mt: { lg: 60, xs: 10 },
+          mt: { lg: 60, xs: 18 },
           bgcolor: "#f5821f",
         }}
       >
