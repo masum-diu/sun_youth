@@ -1,154 +1,100 @@
-import React, { useState } from "react";
-import Button from "@mui/material/Button";
-import {
-  Box,
-  Grid,
-  Paper,
-  Stack,
-  Typography,
-  Container,
-  TextField,
-  Divider,
-} from "@mui/material";
-import { useInView } from "react-intersection-observer";
+import React, { useState } from 'react'
+import Button from '@mui/material/Button'
+import { Box, Grid, Paper, Stack, Typography, Container, TextField, Divider } from '@mui/material'
+import { useInView } from 'react-intersection-observer'
 
-import theme from "@/utils/theme";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
+import theme from '@/utils/theme'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
-import BangladeshMap from "./components/BangladeshMap";
-import NextLink from "next/link";
-import { blue } from "@mui/material/colors";
+import BangladeshMap from './components/BangladeshMap'
+import NextLink from 'next/link';
 
 function Home() {
   const getInvolvedOptions = [
-    {
-      image: "/assets/group_icon.png",
-      title: "Join a SBN National Network!",
-      description:
-        "Our dynamic networks across Africa, Asia, and Latin America are seeking businesses committed to improving nutrition to join as members.",
-      button: "SBN National Member",
-    },
-    {
-      image: "/assets/public_icon.png",
-      title: "Attend an event",
-      description:
-        "Join over 300 businesses committed to improving nutrition through the SBN Business Membership. Access exclusive resources, networking opportunities, and more.",
-      button: "Events",
-    },
-    {
-      image: "/assets/event_icon.png",
-      title: "Learn more",
-      description:
-        "Participate in our webinars, workshops, and conferences to learn about the latest in business and nutrition, and connect with like-minded professionals.",
-      button: "Resource",
-    },
-    {
-      image: "/assets/email_icon.png",
-      title: "Sign Up for Newsletter",
-      description:
-        "Stay updated with the latest news, resources, and events from SBN by subscribing to our monthly newsletter.",
-      button: "Sign up",
-    },
-  ];
+    { image: "/assets/group_icon.png", title: "Join a SBN National Network!", description: "Our dynamic networks across Africa, Asia, and Latin America are seeking businesses committed to improving nutrition to join as members.", button: "SBN National Member" },
+    { image: "/assets/public_icon.png", title: "Attend an event", description: "Join over 300 businesses committed to improving nutrition through the SBN Business Membership. Access exclusive resources, networking opportunities, and more.", button: "Events" },
+    { image: "/assets/event_icon.png", title: "Learn more", description: "Participate in our webinars, workshops, and conferences to learn about the latest in business and nutrition, and connect with like-minded professionals.", button: "Resource" },
+    { image: "/assets/email_icon.png", title: "Sign Up for Newsletter", description: "Stay updated with the latest news, resources, and events from SBN by subscribing to our monthly newsletter.", button: "Sign up" },
+
+  ]
   const listItems = [
     {
-      image: "/assets/governace.jpg",
-      title: "Mission",
-      description:
-        "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.",
-      button: "Read More",
+      image: "/assets/governace.jpg", title: "Mission", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "Read More"
     },
     {
-      image: "/assets/governace.jpg",
-      title: "Governance",
-      description:
-        "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.",
-      button: "Read More",
+      image: "/assets/governace.jpg", title: "Governance", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "Read More"
     },
     {
-      image: "/assets/governace.jpg",
-      title: "Focal Points",
-      description:
-        "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.",
-      button: "Read More",
+      image: "/assets/governace.jpg", title: "Focal Points", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "Read More"
     },
-  ];
+  ]
   const latestNews = [
     {
-      image: "/assets/minhajul/author.JPG",
+          image: "/assets/minhajul/author.JPG",
 
-      title: "Nutritious Khichuri for 10 Taka",
-      description:
-        "Nutritious Khichuri for 10 Taka: How a Young Boy from Lalmonirhat is Feeding Hope",
-      button: "/impact-stories/1",
-      subtile: "News",
+       title: "Nutritious Khichuri for 10 Taka",
+        description: "Nutritious Khichuri for 10 Taka: How a Young Boy from Lalmonirhat is Feeding Hope", button: "/impact-stories/1", subtile: "News"
     },
     {
       image: "/assets/joya-rani/author.jpg",
-      title: "HeartWise Nutrition",
-      description:
-        "HeartWise Nutrition: A Young Leader’s Journey to Make Nutrition Inclusive in Bangladesh",
-      button: "/impact-stories/2",
-      subtile: "News",
+        title: "HeartWise Nutrition",
+        description: "HeartWise Nutrition: A Young Leader’s Journey to Make Nutrition Inclusive in Bangladesh", button: "/impact-stories/2", subtile: "News"
     },
     {
-      image: "/assets/rabby/1.jpg",
-      title: "Reviving the Soul of the Soil",
-      description:
-        "Reviving the Soul of the Soil: Rabby’s Journey to Restoring Land and Hope in Sirajganj",
-      button: "/impact-stories/3",
-      subtile: "News",
+       image: "/assets/rabby/1.jpg",
+       title: "Reviving the Soul of the Soil",
+        description: "Reviving the Soul of the Soil: Rabby’s Journey to Restoring Land and Hope in Sirajganj", button: "/impact-stories/3", subtile: "News"
     },
     {
-      image: "/assets/governace.jpg",
-      title:
-        "GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action",
-      description:
-        "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.",
-      button: "By GSO Admin . October 12, 2023",
-      subtile: "News",
+      image: "/assets/governace.jpg", title: "GEF-9 Replenishment Meeting in Botswana Highlights CSO Roles in Driving Global Environmental Action", description: "Strengthening civil society partnership with the GEF by enhancing informed participation, contributing to policy development and local action.", button: "By GSO Admin . October 12, 2023", subtile: "News"
     },
-  ];
+
+  ]
 
   const stats = [
-      { num: "", label: "Projects" },
-      { num: "", label: "Locations" },
-      { num: "10", label: "Years" },
-      { num: 15, label: "Countries" },
-    ],
+    { num: "", label: 'Projects' },
+    { num: "", label: 'Locations' },
+    { num: "10", label: 'Years' },
+    { num: 15, label: 'Countries' },
+  ],
     features = [
       {
-        icon: "/assets/goal.png",
-        title: "Lorem Ipsum is simply dummy",
-        desc: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+        icon: '/assets/goal.png',
+        title: 'Lorem Ipsum is simply dummy',
+        desc:
+          'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
       },
       {
-        icon: "/assets/goal.png",
-        title: "Lorem Ipsum is simply dummy",
-        desc: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+        icon: '/assets/goal.png',
+        title: 'Lorem Ipsum is simply dummy',
+        desc:
+          'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
       },
       {
-        icon: "/assets/goal.png",
-        title: "Lorem Ipsum is simply dummy",
-        desc: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+        icon: '/assets/goal.png',
+        title: 'Lorem Ipsum is simply dummy',
+        desc:
+          'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
       },
       {
-        icon: "/assets/goal.png",
-        title: "Lorem Ipsum is simply dummy",
-        desc: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+        icon: '/assets/goal.png',
+        title: 'Lorem Ipsum is simply dummy',
+        desc:
+          'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
       },
     ];
 
+
   const { ref: genderRatioRef, inView: genderRatioInView } = useInView({
     triggerOnce: true, // The animation will only trigger once
-    threshold: 0.3, // Trigger when 30% of the component is visible
+    threshold: 0.3,    // Trigger when 30% of the component is visible
   });
 
   const [hoveredInfo, setHoveredInfo] = useState({
     show: false,
-    name: "",
+    name: '',
     data: null,
     x: 0,
     y: 0,
@@ -158,8 +104,7 @@ function Home() {
   const divisionData = {
     Rangpur: [
       {
-        category:
-          "Food Systems Youth Leadership Training (Community Level Training)",
+        category: "Food Systems Youth Leadership Training (Community Level Training)",
         location: "Panchagarh",
         district: "Panchagarh",
         date: "22, 23, 24 February 2024",
@@ -382,6 +327,7 @@ function Home() {
     ],
   };
 
+
   const handleMapHover = (divisionName, event) => {
     if (divisionData[divisionName]) {
       setHoveredInfo({
@@ -395,52 +341,50 @@ function Home() {
   };
 
   const handleMapLeave = () => {
-    setHoveredInfo({ show: false, name: "", data: null, x: 0, y: 0 });
+    setHoveredInfo({ show: false, name: '', data: null, x: 0, y: 0 });
   };
 
   const pins = {
-    Rangpur: [
-      { cx: 325, cy: 110, label: "Dinajpur" },
-      { cx: 300, cy: 70, label: "Panchagarh" },
-      { cx: 355, cy: 90, label: "Lalmonirhat" },
-      { cx: 330, cy: 180, label: "Bogura" },
+    'Rangpur': [
+      { cx: 325, cy: 110, label: 'Dinajpur' },
+      { cx: 300, cy: 70, label: 'Panchagarh' },
+      { cx: 355, cy: 90, label: 'Lalmonirhat' },
+      { cx: 330, cy: 180, label: 'Bogura' },
     ],
-    Chattogram: [
-      // Corrected from 'Chittagong' to match data key
-      { cx: 480, cy: 300, label: "Cumilla" },
-      { cx: 460, cy: 330, label: "Noakhali" },
-      { cx: 530, cy: 380, label: "CVASU" },
-      { cx: 560, cy: 430, label: "Bandarban" },
+    'Chattogram': [ // Corrected from 'Chittagong' to match data key
+      { cx: 480, cy: 300, label: 'Cumilla' },
+      { cx: 460, cy: 330, label: 'Noakhali' },
+      { cx: 530, cy: 380, label: 'CVASU' },
+      { cx: 560, cy: 430, label: 'Bandarban' },
       { cx: 530, cy: 480, label: "Cox's Bazar" },
     ],
-    Dhaka: [
-      { cx: 410, cy: 280, label: "Dhaka" },
-      { cx: 420, cy: 250, label: "Gazipur" },
-      { cx: 380, cy: 290, label: "Manikganj" },
+    'Dhaka': [
+      { cx: 410, cy: 280, label: 'Dhaka' },
+      { cx: 420, cy: 250, label: 'Gazipur' },
+      { cx: 380, cy: 290, label: 'Manikganj' },
     ],
-    Khulna: [
-      { cx: 350, cy: 360, label: "Khulna" },
-      { cx: 330, cy: 320, label: "Jhenaidah" },
-      { cx: 320, cy: 340, label: "Jessore" },
-      { cx: 330, cy: 400, label: "Satkhira" },
+    'Khulna': [
+      { cx: 350, cy: 360, label: 'Khulna' },
+      { cx: 330, cy: 320, label: 'Jhenaidah' },
+      { cx: 320, cy: 340, label: 'Jessore' },
+      { cx: 330, cy: 400, label: 'Satkhira' },
     ],
-    Barisal: [
-      { cx: 410, cy: 380, label: "Barishal" },
-      { cx: 420, cy: 430, label: "Patuakhali" },
+    'Barisal': [
+      { cx: 410, cy: 380, label: 'Barishal' },
+      { cx: 420, cy: 430, label: 'Patuakhali' },
     ],
-    Sylhet: [
-      { cx: 510, cy: 200, label: "Sylhet" },
-      { cx: 490, cy: 230, label: "Habiganj" },
+    'Sylhet': [
+      { cx: 510, cy: 200, label: 'Sylhet' },
+      { cx: 490, cy: 230, label: 'Habiganj' },
     ],
-    Rajshahi: [
-      { cx: 290, cy: 210, label: "Rajshahi" },
-      { cx: 350, cy: 230, label: "Pabna" },
-    ],
+    'Rajshahi': [
+      { cx: 290, cy: 210, label: 'Rajshahi' },
+      { cx: 350, cy: 230, label: 'Pabna' },
+    ]
   };
   return (
     <Box bgcolor={"#fff"}>
-      <Swiper
-        slidesPerView={1}
+      <Swiper slidesPerView={1}
         loop={true}
         autoplay={{
           delay: 4000, // 4 seconds পর পর slide change
@@ -449,9 +393,9 @@ function Home() {
         pagination={{
           clickable: true,
         }}
+
         navigation={false}
-        modules={[Pagination, Navigation, Autoplay]}
-      >
+        modules={[Pagination, Navigation, Autoplay]}>
         <SwiperSlide>
           <Box
             sx={{
@@ -462,484 +406,230 @@ function Home() {
             ),
             url('/assets/slider1.jpg')
           `,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              width: "100%",
-              minHeight: { lg: "85vh", sm: "200px" },
-              display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "center",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              width: '100%',
+              minHeight: '85vh',
+              display: 'flex',
+              alignItems: 'flex-end',
+              justifyContent: 'center',
             }}
             role="img"
             aria-label="Hero background"
           >
-            <Stack sx={{ mt: "20px" }} direction={"column"} spacing={3}>
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: 500,
-                  fontSize: { lg: 60, xs: 20 },
-                  color: "#FFF",
-                }}
-              >
+            <Stack direction={"column"} spacing={3}   >
+              <Typography variant="h3" sx={{ fontWeight: 500, fontSize: 60, color: '#FFF' }}>
                 The Food Systems Dashboard
               </Typography>
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: 600,
-                  fontSize: { lg: 45, xs: 16 },
-                  color: theme.palette.secondary.main,
-                }}
-              >
+              <Typography variant="h3" sx={{ fontWeight: 600, fontSize: 45, color: theme.palette.secondary.main }}>
                 THEN AND NOW
               </Typography>
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  width: "fit-content",
-                  fontSize: 17,
-                  fontWeight: "500",
-                  padding: { lg: "10px", sm: "0px" },
-                  backgroundColor: "#b20933",
-                  "&:hover": { backgroundColor: "#b20933" },
-                }}
-              >
+              <Button variant="contained" color="primary" sx={{ width: 178, height: 56, fontSize: 17, fontWeight: '500', backgroundColor: '#b20933', '&:hover': { backgroundColor: '#b20933' } }}>
                 learn more
               </Button>
-              <Stack justifyContent={"flex-end"} alignItems={"flex-end"}>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    mt: 5,
-                    px: 4,
-                    py: 2,
-                    backgroundColor: "#ffff",
-                    borderTopLeftRadius: 10,
-                    borderTopRightRadius: 10,
-                    borderBottomLeftRadius: 0,
-                    borderBottomRightRadius: 0,
-                    width: 1008,
-                  }}
-                >
-                  <Stack
-                    direction={"row"}
-                    spacing={2}
-                    justifyContent={"space-between"}
-                    alignItems={"center"}
-                  >
-                    <Stack direction={"row"} spacing={4} alignItems={"center"}>
+              <Stack justifyContent={"flex-end"} alignItems={"flex-end"} >
+                <Paper elevation={0} sx={{ mt: 5, px: 4, py: 2, backgroundColor: '#ffff', borderTopLeftRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, width: 1008, }} >
+                  <Stack direction={"row"} spacing={2} justifyContent={"space-between"} alignItems={"center"} >
+                    <Stack direction={"row"} spacing={4} alignItems={"center"}  >
                       <img src="/assets/image1.png" alt="" />
-                      <Typography
-                        variant="h6"
-                        sx={{ fontWeight: 700, fontSize: 19 }}
-                      >
+                      <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 19 }}>
                         70th GEF Council <br />
                         Meeting – Dec. 2025
                       </Typography>
                     </Stack>
-                    <Typography
-                      variant="h6"
-                      sx={{ fontWeight: 700, fontSize: 40, color: "#f5821f" }}
-                    >
+                    <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 40, color: '#f5821f' }}>
                       Upcoming Events
                     </Typography>
                   </Stack>
+
                 </Paper>
               </Stack>
             </Stack>
-          </Box>
-        </SwiperSlide>
-        <SwiperSlide>
-          {" "}
-          <Box
-            sx={{
-              backgroundImage: `
+          </Box></SwiperSlide>
+        <SwiperSlide>  <Box
+          sx={{
+            backgroundImage: `
             linear-gradient(
               rgba(38, 37, 37, 0.5),
               rgba(8, 8, 8, 0.5)
             ),
             url('/assets/slider2.jpg')
           `,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              width: "100%",
-              minHeight: { lg: "85vh", sm: "200px" },
-              display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "center",
-            }}
-            role="img"
-            aria-label="Hero background"
-          >
-            <Stack sx={{ mt: "20px" }} direction={"column"} spacing={3}>
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: 500,
-                  fontSize: { lg: 60, xs: 20 },
-                  color: "#FFF",
-                }}
-              >
-                The Food Systems Dashboard
-              </Typography>
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: 600,
-                  fontSize: { lg: 45, xs: 16 },
-                  color: theme.palette.secondary.main,
-                }}
-              >
-                THEN AND NOW
-              </Typography>
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  width: "fit-content",
-                  fontSize: 17,
-                  fontWeight: "500",
-                  padding: { lg: "10px", sm: "0px" },
-                  backgroundColor: "#b20933",
-                  "&:hover": { backgroundColor: "#b20933" },
-                }}
-              >
-                learn more
-              </Button>
-              <Stack justifyContent={"flex-end"} alignItems={"flex-end"}>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    mt: 5,
-                    px: 4,
-                    py: 2,
-                    backgroundColor: "#ffff",
-                    borderTopLeftRadius: 10,
-                    borderTopRightRadius: 10,
-                    borderBottomLeftRadius: 0,
-                    borderBottomRightRadius: 0,
-                    width: 1008,
-                  }}
-                >
-                  <Stack
-                    direction={"row"}
-                    spacing={2}
-                    justifyContent={"space-between"}
-                    alignItems={"center"}
-                  >
-                    <Stack direction={"row"} spacing={4} alignItems={"center"}>
-                      <img src="/assets/image1.png" alt="" />
-                      <Typography
-                        variant="h6"
-                        sx={{ fontWeight: 700, fontSize: 19 }}
-                      >
-                        70th GEF Council <br />
-                        Meeting – Dec. 2025
-                      </Typography>
-                    </Stack>
-                    <Typography
-                      variant="h6"
-                      sx={{ fontWeight: 700, fontSize: 40, color: "#f5821f" }}
-                    >
-                      Upcoming Events
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            width: '100%',
+            minHeight: '85vh',
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+          }}
+          role="img"
+          aria-label="Hero background"
+        >
+          <Stack direction={"column"} spacing={3}   >
+            <Typography variant="h3" sx={{ fontWeight: 500, fontSize: 60, color: '#FFF' }}>
+              The Food Systems Dashboard
+            </Typography>
+            <Typography variant="h3" sx={{ fontWeight: 600, fontSize: 45, color: theme.palette.secondary.main }}>
+              THEN AND NOW
+            </Typography>
+            <Button variant="contained" color="primary" sx={{ width: 178, height: 56, fontSize: 17, fontWeight: '500', backgroundColor: '#b20933', '&:hover': { backgroundColor: '#b20933' } }}>
+              learn more
+            </Button>
+            <Stack justifyContent={"flex-end"} alignItems={"flex-end"} >
+              <Paper elevation={0} sx={{ mt: 5, px: 4, py: 2, backgroundColor: '#ffff', borderTopLeftRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, width: 1008, }} >
+                <Stack direction={"row"} spacing={2} justifyContent={"space-between"} alignItems={"center"} >
+                  <Stack direction={"row"} spacing={4} alignItems={"center"}  >
+                    <img src="/assets/image1.png" alt="" />
+                    <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 19 }}>
+                      70th GEF Council <br />
+                      Meeting – Dec. 2025
                     </Typography>
                   </Stack>
-                </Paper>
-              </Stack>
+                  <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 40, color: '#f5821f' }}>
+                    Upcoming Events
+                  </Typography>
+                </Stack>
+
+              </Paper>
             </Stack>
-          </Box>
-        </SwiperSlide>
-        <SwiperSlide>
-          {" "}
-          <Box
-            sx={{
-              backgroundImage: `
+          </Stack>
+        </Box></SwiperSlide>
+        <SwiperSlide>  <Box
+          sx={{
+            backgroundImage: `
             linear-gradient(
               rgba(38, 37, 37, 0.5),
               rgba(8, 8, 8, 0.5)
             ),
             url('/assets/slider3.jpg')
           `,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              width: "100%",
-              minHeight: { lg: "85vh", sm: "200px" },
-              display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "center",
-            }}
-            role="img"
-            aria-label="Hero background"
-          >
-            <Stack sx={{ mt: "20px" }} direction={"column"} spacing={3}>
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: 500,
-                  fontSize: { lg: 60, xs: 20 },
-                  color: "#FFF",
-                }}
-              >
-                The Food Systems Dashboard
-              </Typography>
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: 600,
-                  fontSize: { lg: 45, xs: 16 },
-                  color: theme.palette.secondary.main,
-                }}
-              >
-                THEN AND NOW
-              </Typography>
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  width: "fit-content",
-                  fontSize: 17,
-                  fontWeight: "500",
-                  padding: { lg: "10px", sm: "0px" },
-                  backgroundColor: "#b20933",
-                  "&:hover": { backgroundColor: "#b20933" },
-                }}
-              >
-                learn more
-              </Button>
-              <Stack justifyContent={"flex-end"} alignItems={"flex-end"}>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    mt: 5,
-                    px: 4,
-                    py: 2,
-                    backgroundColor: "#ffff",
-                    borderTopLeftRadius: 10,
-                    borderTopRightRadius: 10,
-                    borderBottomLeftRadius: 0,
-                    borderBottomRightRadius: 0,
-                    width: 1008,
-                  }}
-                >
-                  <Stack
-                    direction={"row"}
-                    spacing={2}
-                    justifyContent={"space-between"}
-                    alignItems={"center"}
-                  >
-                    <Stack direction={"row"} spacing={4} alignItems={"center"}>
-                      <img src="/assets/image1.png" alt="" />
-                      <Typography
-                        variant="h6"
-                        sx={{ fontWeight: 700, fontSize: 19 }}
-                      >
-                        70th GEF Council <br />
-                        Meeting – Dec. 2025
-                      </Typography>
-                    </Stack>
-                    <Typography
-                      variant="h6"
-                      sx={{ fontWeight: 700, fontSize: 40, color: "#f5821f" }}
-                    >
-                      Upcoming Events
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            width: '100%',
+            minHeight: '85vh',
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+          }}
+          role="img"
+          aria-label="Hero background"
+        >
+          <Stack direction={"column"} spacing={3}   >
+            <Typography variant="h3" sx={{ fontWeight: 500, fontSize: 60, color: '#FFF' }}>
+              The Food Systems Dashboard
+            </Typography>
+            <Typography variant="h3" sx={{ fontWeight: 600, fontSize: 45, color: theme.palette.secondary.main }}>
+              THEN AND NOW
+            </Typography>
+            <Button variant="contained" color="primary" sx={{ width: 178, height: 56, fontSize: 17, fontWeight: '500', backgroundColor: '#b20933', '&:hover': { backgroundColor: '#b20933' } }}>
+              learn more
+            </Button>
+            <Stack justifyContent={"flex-end"} alignItems={"flex-end"} >
+              <Paper elevation={0} sx={{ mt: 5, px: 4, py: 2, backgroundColor: '#ffff', borderTopLeftRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, width: 1008, }} >
+                <Stack direction={"row"} spacing={2} justifyContent={"space-between"} alignItems={"center"} >
+                  <Stack direction={"row"} spacing={4} alignItems={"center"}  >
+                    <img src="/assets/image1.png" alt="" />
+                    <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 19 }}>
+                      70th GEF Council <br />
+                      Meeting – Dec. 2025
                     </Typography>
                   </Stack>
-                </Paper>
-              </Stack>
+                  <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 40, color: '#f5821f' }}>
+                    Upcoming Events
+                  </Typography>
+                </Stack>
+
+              </Paper>
             </Stack>
-          </Box>
-        </SwiperSlide>
+          </Stack>
+        </Box></SwiperSlide>
+
       </Swiper>
 
-      <Grid
-        container
-        spacing={2}
-        sx={{ bgcolor: "#f5821f", color: "#fff", py: 4 }}
-      >
+      <Grid container spacing={2} sx={{ bgcolor: '#f5821f', color: '#fff', py: 4 }}>
         <Grid size={{ md: 3, xs: 12 }}>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: 700, fontSize: 50, textAlign: "center" }}
-          >
+          <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 50, textAlign: 'center' }}>
             55
           </Typography>
-          <Typography
-            variant="body1"
-            sx={{ mt: 1, textAlign: "center", fontWeight: 400, fontSize: 20 }}
-          >
+          <Typography variant="body1" sx={{ mt: 1, textAlign: 'center', fontWeight: 400, fontSize: 20 }}>
             Facilitators Trained
           </Typography>
         </Grid>
         <Grid size={{ md: 3, xs: 12 }}>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: 700, fontSize: 50, textAlign: "center" }}
-          >
+          <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 50, textAlign: 'center' }}>
             1518
           </Typography>
-          <Typography
-            variant="body1"
-            sx={{ mt: 1, textAlign: "center", fontWeight: 400, fontSize: 20 }}
-          >
+          <Typography variant="body1" sx={{ mt: 1, textAlign: 'center', fontWeight: 400, fontSize: 20 }}>
             Youth Capacitated
           </Typography>
         </Grid>
         <Grid size={{ md: 3, xs: 12 }}>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: 700, fontSize: 50, textAlign: "center" }}
-          >
+          <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 50, textAlign: 'center' }}>
             214
           </Typography>
-          <Typography
-            variant="body1"
-            sx={{ mt: 1, textAlign: "center", fontWeight: 400, fontSize: 20 }}
-          >
+          <Typography variant="body1" sx={{ mt: 1, textAlign: 'center', fontWeight: 400, fontSize: 20 }}>
             Youth-Led Collective Actions
           </Typography>
         </Grid>
         <Grid size={{ md: 3, xs: 12 }}>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: 700, fontSize: 50, textAlign: "center" }}
-          >
+          <Typography variant="h6" sx={{ fontWeight: 700, fontSize: 50, textAlign: 'center' }}>
             40 Districts
           </Typography>
-          <Typography
-            variant="body1"
-            sx={{ mt: 1, textAlign: "center", fontWeight: 400, fontSize: 20 }}
-          >
+          <Typography variant="body1" sx={{ mt: 1, textAlign: 'center', fontWeight: 400, fontSize: 20 }}>
             Geographic Coverage
           </Typography>
         </Grid>
+
+
       </Grid>
 
       {/* this section get involved */}
       <Box sx={{ py: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
-        <Typography
-          variant="h4"
-          sx={{ textAlign: "center", fontWeight: 700, mb: 4 }}
-        >
+
+        <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 700, mb: 4 }}>
           Get Involved
         </Typography>
 
         <Grid container spacing={3} mt={15}>
-          {getInvolvedOptions.map((option, index) => (
-            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-              <Paper
-                key={index}
-                elevation={3}
-                sx={{
-                  position: "relative",
-                  pt: 6,
-                  pb: 0,
-                  borderRadius: 2,
-                  height: "520px",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Box
-                  sx={{
-                    position: "absolute",
-                    top: -80,
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    bgcolor: "#f7f3ef",
-                    width: "100%",
-                    maxWidth: "178px",
-                    height: 178,
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
-                  }}
-                >
-                  <img
-                    src={option.image}
-                    alt={option.title}
-                    width={92}
-                    height={84}
-                  />
-                </Box>
-                <Stack
-                  direction="column"
-                  spacing={2}
-                  justifyContent={"center"}
-                  alignItems={"center"}
-                  height={"100%"}
-                  sx={{ px: 3 }}
-                >
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      mt: 2,
-                      fontWeight: 700,
-                      textAlign: "center",
-                      fontSize: 20,
-                    }}
-                  >
-                    {option.title}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      mt: 2,
-                      color: "text.secondary",
-                      fontWeight: 500,
-                      fontSize: 16,
-                    }}
-                  >
-                    {option.description}
-                  </Typography>
-                </Stack>
-                <Button
-                  variant="contained"
-                  fullWidth
-                  sx={{
-                    mt: 3,
-                    backgroundColor: "#f5821f",
-                    "&:hover": { backgroundColor: "#f5821f" },
-                    borderRadius: 0,
-                    py: 1.5,
-                    textTransform: "capitalize",
-                    fontSize: 18,
-                    fontWeight: 700,
-                    borderEndEndRadius: 8,
-                    borderEndStartRadius: 8,
-                    height: 43,
-                  }}
-                >
-                  {option.button}
-                </Button>
-              </Paper>
-            </Grid>
-          ))}
+          {getInvolvedOptions.map((option, index) => (<Grid size={{ xs: 12, sm: 6, md: 3 }} >
+            <Paper key={index} elevation={3} sx={{ position: 'relative', pt: 6, pb: 0, borderRadius: 2, height: '520px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <Box sx={{ position: 'absolute', top: -80, left: '50%', transform: 'translateX(-50%)', bgcolor: '#f7f3ef', width: "100%", maxWidth: "178px", height: 178, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 6px 20px rgba(0,0,0,0.12)' }}>
+                <img src={option.image} alt={option.title} width={92} height={84} />
+              </Box>
+              <Stack direction="column" spacing={2} justifyContent={"center"} alignItems={"center"} height={"100%"} sx={{ px: 3, }}>
+                <Typography variant="h6" sx={{ mt: 2, fontWeight: 700, textAlign: 'center', fontSize: 20 }}>
+                  {option.title}
+                </Typography>
+                <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
+                  {option.description}
+                </Typography>
+              </Stack>
+              <Button variant="contained" fullWidth sx={{ mt: 3, backgroundColor: '#f5821f', '&:hover': { backgroundColor: '#f5821f' }, borderRadius: 0, py: 1.5, textTransform: "capitalize", fontSize: 18, fontWeight: 700, borderEndEndRadius: 8, borderEndStartRadius: 8, height: 43 }}>
+                {option.button}
+              </Button>
+            </Paper>
+          </Grid>))}
+
+
+
         </Grid>
 
         <Grid container spacing={3} mt={15}>
-          {listItems.map((option, index) => (
-            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-              <Paper
-                key={index}
-                elevation={3}
-                sx={{
-                  pt: 2,
-                  pb: 4,
-                  borderRadius: 2,
-                  height: "331px",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  alignItems: "flex-end",
-                  backgroundImage: `
+          {listItems.map((option, index) => (<Grid size={{ xs: 12, sm: 6, md: 4 }} >
+            <Paper key={index} elevation={3} sx={{
+              pt: 2,
+              pb: 4,
+              borderRadius: 2,
+              height: '331px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              alignItems: 'flex-end',
+              backgroundImage: `
       linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0.3),
@@ -947,117 +637,53 @@ function Home() {
       ),
       url('${option.image}')
     `,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                  color: "#fff",
-                }}
-              >
-                <Stack
-                  direction="column"
-                  spacing={2}
-                  justifyContent={"flex-end"}
-                  alignItems={"flex-start"}
-                  height={"100%"}
-                  sx={{ px: 3 }}
-                >
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      mt: 2,
-                      fontWeight: 700,
-                      textAlign: "center",
-                      fontSize: 20,
-                    }}
-                  >
-                    {option.title}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ mt: 2, fontWeight: 500, fontSize: 14 }}
-                  >
-                    {option.description}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    fullWidth
-                    sx={{
-                      mt: 3,
-                      borderRadius: 0,
-                      py: 1.5,
-                      textTransform: "uppercase",
-                      fontSize: 14,
-                      fontWeight: 700,
-                      borderEndEndRadius: 8,
-                      borderEndStartRadius: 8,
-                      cursor: "pointer",
-                      color: "#f5821f",
-                    }}
-                  >
-                    {option.button}
-                  </Typography>
-                </Stack>
-              </Paper>
-            </Grid>
-          ))}
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              color: '#fff',
+            }}>
+
+              <Stack direction="column" spacing={2} justifyContent={"flex-end"} alignItems={"flex-start"} height={"100%"} sx={{ px: 3, }}>
+                <Typography variant="h6" sx={{ mt: 2, fontWeight: 700, textAlign: 'center', fontSize: 20 }}>
+                  {option.title}
+                </Typography>
+                <Typography variant="body2" sx={{ mt: 2, fontWeight: 500, fontSize: 14 }}>
+                  {option.description}
+                </Typography>
+                <Typography variant="body2" fullWidth sx={{ mt: 3, borderRadius: 0, py: 1.5, textTransform: "uppercase", fontSize: 14, fontWeight: 700, borderEndEndRadius: 8, borderEndStartRadius: 8, cursor: 'pointer', color: "#f5821f" }}>
+                  {option.button}
+                </Typography>
+              </Stack>
+
+            </Paper>
+          </Grid>))}
         </Grid>
+
       </Box>
-      <Box bgcolor={"#f8f7f5"}>
-        <Typography
-          variant="body1"
-          color="initial"
-          fontWeight={700}
-          fontSize={19}
-          sx={{
-            mt: {lg:15, xs: 0},
-            bgcolor: "#f5821f",
-            maxWidth: 873,
-            textAlign: {lg:"right", xs:"center"},
-            pr: {lg: 5, xs: 2},
-            py: 1,
-            color: "#fff",
-          }}
-        >
-          The map of SUN Civil Society Alliances (CSAs)
-        </Typography>{" "}
-        <Grid
-          container
-          
-          spacing={3}
-          sx={{
-            flexDirection: {lg:"row", xs:"column-reverse"},
-            width: "95%",
-            maxWidth: "1700px",
-            margin: "0 auto",
-            position: "relative",
-          }}
-        >
+      <Box mt={15} bgcolor={"#f8f7f5"}>
+        <Typography variant="body1" color="initial" fontWeight={700} fontSize={19} sx={{ bgcolor: "#f5821f", maxWidth: 873, textAlign: "right", pr: 5, py: 1, color: "#fff" }}>The map of SUN Civil Society Alliances (CSAs)</Typography>        <Grid container spacing={3} sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", position: 'relative' }} >
           {hoveredInfo.show && (
             <Paper
               elevation={4}
               sx={{
-                position: "absolute",
+                position: 'absolute',
                 top: `${hoveredInfo.y - 150}px`, // Adjust position relative to cursor
                 left: `${hoveredInfo.x - 450}px`, // Adjust position relative to cursor
                 p: 2,
-                bgcolor: "rgba(0, 0, 0, 0.8)",
-                color: "white",
+                bgcolor: 'rgba(0, 0, 0, 0.8)',
+                color: 'white',
                 borderRadius: 2,
-                pointerEvents: "none", // Prevent the tooltip from capturing mouse events
+                pointerEvents: 'none', // Prevent the tooltip from capturing mouse events
                 zIndex: 1300, // Ensure it's above other elements
                 minWidth: 200,
                 maxHeight: 300, // Set a max height for the modal
-                overflowY: "auto", // Enable vertical scrolling
+                overflowY: 'auto', // Enable vertical scrolling
               }}
             >
-              <Typography
-                variant="h6"
-                sx={{ color: theme.palette.primary.main, fontWeight: "bold" }}
-              >
-                {hoveredInfo.name}
+              <Typography variant="h6" sx={{ color: theme.palette.primary.main, fontWeight: 'bold' }}>{hoveredInfo.name}
+
               </Typography>
-              {Array.isArray(hoveredInfo.data) &&
-              hoveredInfo.data.length > 0 ? (
+              {Array.isArray(hoveredInfo.data) && hoveredInfo.data.length > 0 ? (
                 hoveredInfo.data.map((item, index) => (
                   <Box key={index} sx={{ mt: index > 0 ? 1.5 : 0 }}>
                     <Typography variant="body2" color="#fff">
@@ -1081,9 +707,7 @@ function Home() {
                     </Typography>
 
                     {index < hoveredInfo.data.length - 1 && (
-                      <Divider
-                        sx={{ my: 1, bgcolor: "rgba(255,255,255,0.5)" }}
-                      />
+                      <Divider sx={{ my: 1, bgcolor: "rgba(255,255,255,0.5)" }} />
                     )}
                   </Box>
                 ))
@@ -1092,40 +716,17 @@ function Home() {
                   No data available
                 </Typography>
               )}
+
             </Paper>
           )}
 
-          <Grid size={{ xs: 12, sm: 6, md: 6 }}>
-            <Stack
-              direction={"column"}
-              spacing={4}
-              justifyContent={"center"}
-              alignItems={"center"}
-              height={"100%"}
-            >
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { lg: 60, sm: 42, xs: 28 }, // desktop stays 60
-                  lineHeight: { lg: 1.2, xs: 1.3 },
-                }}
-                fontWeight={500}
-              >
-                Training Components
-              </Typography>
-
+          <Grid size={{ xs: 12, sm: 6, md: 6 }} >
+            <Stack direction={"column"} spacing={4} justifyContent={"center"} alignItems={"center"} height={"100%"} >
+              <Typography variant="body1" color="initial" fontWeight={500} fontSize={60}>Training Components</Typography>
               <Typography variant="body1" color="#7c7c7c">
-                The program is designed to build youth leadership and encourage
-                practical engagement in food systems through a structured and
-                participatory approach. It begins with a selection process to
-                identify motivated young participants, followed by an intensive
-                three-day Food Systems Youth Leadership Training that
-                strengthens leadership skills, systems thinking, and practical
-                knowledge. Participants then carry out a six-month collective
-                action project at the community level, applying their learning
-                to real-world challenges. Continuous follow-up, monitoring, and
-                learning documentation support progress tracking, capture key
-                lessons, and ensure meaningful and sustainable outcomes.
+                The program is designed to build youth leadership and encourage practical engagement in food systems through a structured and participatory approach. It begins with a selection process to identify motivated young participants, followed by an intensive three-day Food Systems Youth Leadership Training that strengthens leadership skills, systems thinking, and practical knowledge.
+
+                Participants then carry out a six-month collective action project at the community level, applying their learning to real-world challenges. Continuous follow-up, monitoring, and learning documentation support progress tracking, capture key lessons, and ensure meaningful and sustainable outcomes.
               </Typography>
               {/* <Stack direction={"row"} spacing={2} width={"100%"} >
                 <Button variant="contained" color="error" fontWeight={500}  >
@@ -1134,253 +735,80 @@ function Home() {
               </Stack> */}
             </Stack>
           </Grid>
-          <Grid size={{ xs: 12, sm: 6, md: 6 }}>
+          <Grid size={{ xs: 12, sm: 6, md: 6 }} >
             {/* <img src="/assets/bangladesh.png" alt="" width={"100%"} /> */}
-            <BangladeshMap
-              onSelect={(division) => console.log(division)}
-              onHover={handleMapHover}
-              onLeave={handleMapLeave}
-              pins={pins}
-            />
+            <BangladeshMap onSelect={(division) => console.log(division)} onHover={handleMapHover} onLeave={handleMapLeave} pins={pins} />
           </Grid>
         </Grid>
-      </Box>
-      <Paper
-        elevation={0}
-        sx={{
-          position: "relative",
-          pt: 6,
-          pb: 0,
-          height: { lg: "620px", sm: "100%" },
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          mt: { lg: 60, xs: 20 },
-          bgcolor: "#f5821f",
-        }}
-      >
-        <Box
-          sx={{
-            position: "absolute",
-            top: { lg: -400, xs: -130 }, // desktop same, mobile adjusted
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: { lg: "100%", xs: "300px" },
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Box
-            component="img"
-            src="/assets/gainandsdf.png"
-            alt="gain"
-            sx={{
-              width: { lg: 1008, xs: 380 }, // desktop stays 100px
-              height: "auto",
-            }}
-          />
-        </Box>
 
-        <Typography
-          variant="body1"
-          sx={{
-            mt: { lg: 25, xs: 8 },
-            fontSize: { lg: 40, xs: 24 },
-            textAlign: "center",
-          }}
-          color="#fff"
-          fontWeight={500}
-        >
-          How Many Youths Have Been Trained
-        </Typography>
-        <Grid
-          container
-          spacing={{ lg: 3, xs: 2 }} // tighter spacing on small screens
-          sx={{
-            width: { lg: "95%", xs: "100%" },
-            maxWidth: "1000px",
-            margin: {
-              lg: "0 auto", // unchanged desktop
-              sm: "50px auto", // unchanged tablet
-              xs: "32px auto", // mobile fine-tune
-            },
-            mb: { lg: 4, xs: 3 },
-          }}
-        >
-          <Grid
-            sx={{ mb: "20px" }}
-            size={{ xs: 12, sm: 6, md: 3 }}
-            textAlign={"center"}
-          >
-            <img
-              src="/assets/icons2.png"
-              alt=""
-              style={{
-                border: "3px solid #fff",
-                padding: 10,
-                borderRadius: "50%",
-              }}
-            />
+      </Box>
+      <Paper elevation={0} sx={{ position: 'relative', pt: 6, pb: 0, height: '620px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', mt: 60, bgcolor: "#f5821f" }}>
+        <Box sx={{ position: 'absolute', top: -400, left: '50%', transform: 'translateX(-50%)', width: "100%", display: 'flex', alignItems: 'center', justifyContent: 'center', }}>
+          <img src={"/assets/gainandsdf.png"} />
+        </Box>
+        <Typography variant="body1" sx={{ mt: 25, }} color="#fff" fontWeight={500} fontSize={40} textAlign={"center"}>How Many Youths Have Been Trained </Typography>
+        <Grid container spacing={3} sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", mb: 4 }} >
+          <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
+            <img src="/assets/icons2.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
             {/* <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>5000+</Typography> */}
-            <Typography
-              variant="body1"
-              color="#fff"
-              fontWeight={500}
-              fontSize={20}
-              textAlign={"center"}
-            >
-              Volunteer Helpers{" "}
-            </Typography>
+            <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Volunteer Helpers </Typography>
           </Grid>
-          <Grid
-            sx={{ mb: "20px" }}
-            size={{ xs: 12, sm: 6, md: 3 }}
-            textAlign={"center"}
-          >
-            <img
-              src="/assets/icons1.png"
-              alt=""
-              style={{
-                border: "3px solid #fff",
-                padding: 10,
-                borderRadius: "50%",
-              }}
-            />
+          <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
+            <img src="/assets/icons1.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
             {/* <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>1200+</Typography> */}
-            <Typography
-              variant="body1"
-              color="#fff"
-              fontWeight={500}
-              fontSize={20}
-              textAlign={"center"}
-            >
-              Donated
-            </Typography>
+            <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Donated</Typography>
           </Grid>
-          <Grid
-            sx={{ mb: "20px" }}
-            size={{ xs: 12, sm: 6, md: 3 }}
-            textAlign={"center"}
-          >
-            <img
-              src="/assets/icons3.png"
-              alt=""
-              style={{
-                border: "3px solid #fff",
-                padding: 10,
-                borderRadius: "50%",
-              }}
-            />
+          <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"} >
+            <img src="/assets/icons3.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
             {/* <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>300+</Typography> */}
-            <Typography
-              variant="body1"
-              color="#fff"
-              fontWeight={500}
-              fontSize={20}
-              textAlign={"center"}
-            >
-              Products & Gifts
-            </Typography>
+            <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Products & Gifts</Typography>
           </Grid>
-          <Grid
-            sx={{ mb: "20px" }}
-            size={{ xs: 12, sm: 6, md: 3 }}
-            textAlign={"center"}
-          >
-            <img
-              src="/assets/icons2.png"
-              alt=""
-              style={{
-                border: "3px solid #fff",
-                padding: 10,
-                borderRadius: "50%",
-              }}
-            />
+          <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"} >
+            <img src="/assets/icons2.png" alt="" style={{ border: "3px solid #fff", padding: 10, borderRadius: "50%" }} />
             {/* <Typography variant="h3" color="#fff" fontWeight={700} fontSize={40} textAlign={"center"}>50+</Typography> */}
-            <Typography
-              variant="body1"
-              color="#fff"
-              fontWeight={500}
-              fontSize={20}
-              textAlign={"center"}
-            >
-              Volunteer Helpers
-            </Typography>
+            <Typography variant="body1" color="#fff" fontWeight={500} fontSize={20} textAlign={"center"}>Volunteer Helpers</Typography>
           </Grid>
         </Grid>
       </Paper>
       <Box sx={{ py: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
-        <Typography
-          variant="h4"
-          sx={{
-            textAlign: "center",
-            fontWeight: 500,
-            mb: 4,
-            textTransform: "capitalize",
-            fontSize: 40,
-          }}
-        >
+
+        <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, mb: 4, textTransform: "capitalize", fontSize: 40 }}>
           Impact Stories
         </Typography>
 
-        <Grid container spacing={3}>
-          {latestNews.slice(0, 3).map((option, index) => (
-            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
-              <Box>
-                <img src={option.image} alt={option.title} width={"100%"} />
-              </Box>
-              <Stack direction="column" spacing={2}>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    mt: 2,
-                    fontWeight: 700,
-                    fontSize: 17,
-                    color: "#f5821f",
-                  }}
-                >
-                  {option.subtile}
-                </Typography>
-                <Typography
-                  variant="h6"
-                  sx={{ mt: 2, fontWeight: 700, fontSize: 20 }}
-                >
-                  {option.title}
-                </Typography>
-                {/* 
+        <Grid container spacing={3} >
+          {latestNews.slice(0, 3).map((option, index) => (<Grid size={{ xs: 12, sm: 6, md: 4 }} key={index} >
+
+            <Box>
+              <img src={option.image} alt={option.title} width={"100%"} />
+            </Box>
+            <Stack direction="column" spacing={2} >
+              <Typography variant="h6" sx={{ mt: 2, fontWeight: 700, fontSize: 17, color: '#f5821f' }}>
+                {option.subtile}
+              </Typography>
+              <Typography variant="h6" sx={{ mt: 2, fontWeight: 700, fontSize: 20 }}>
+                {option.title}
+              </Typography>
+              {/* 
                 <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
                 {option.button}
                 </Typography>
                 */}
-                <Typography
-                  variant="body2"
-                  sx={{
-                    mt: 2,
-                    color: "text.secondary",
-                    fontWeight: 500,
-                    fontSize: 16,
-                  }}
-                >
-                  {option.description}
-                </Typography>
+              <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
+                {option.description}
+              </Typography>
 
-                <Button
-                  component={NextLink}
-                  href={option.button}
-                  size="small"
-                  sx={{
-                    color: "#f5821f",
-                    fontWeight: "bold",
-                    display: "flex",
-                    justifyContent: "flex-start",
-                  }}
-                >
-                  Read More
-                </Button>
-              </Stack>
-            </Grid>
-          ))}
+              <Button component={NextLink} href={option.button} size="small" sx={{ color: '#f5821f', fontWeight: 'bold',display: 'flex', justifyContent: "flex-start"}}>
+                Read More
+              </Button>
+
+            </Stack>
+
+
+          </Grid>))}
+
+
+
         </Grid>
         {/* <Typography variant="h4" sx={{ mt: 8, textAlign: 'center', fontWeight: 500, textTransform: "capitalize", fontSize: 40 }}>
           Gender Ratio
@@ -1469,167 +897,85 @@ function Home() {
             </Grid>
           ))}
         </Grid> */}
-        <Typography
-          variant="h4"
-          sx={{
-            textAlign: "center",
-            fontWeight: 500,
-            my: 6,
-            textTransform: "capitalize",
-            fontSize: 40,
-          }}
-        >
+        <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 500, my: 6, textTransform: "capitalize", fontSize: 40 }}>
           News and blogs
         </Typography>
         {/* <Typography variant="h6" sx={{ textAlign: 'center', fontWeight: 400, my: 4, }}>
           Information collected from or submitted by, the Civil Society network and other relevant stakeholders.
         </Typography> */}
 
-        <Grid container spacing={3}>
-          {latestNews.map((option, index) => (
-            <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
-              <Box>
-                <img src={option.image} alt={option.title} width={"100%"} />
-              </Box>
-              <Stack direction="column" spacing={2}>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    mt: 2,
-                    fontWeight: 700,
-                    fontSize: 17,
-                    color: "#f5821f",
-                  }}
-                >
-                  {option.subtile}
-                </Typography>
-                <Typography
-                  variant="h6"
-                  sx={{ mt: 2, fontWeight: 700, fontSize: 20 }}
-                >
-                  {option.title}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    mt: 2,
-                    color: "text.secondary",
-                    fontWeight: 500,
-                    fontSize: 16,
-                  }}
-                >
-                  {option.button}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    mt: 2,
-                    color: "text.secondary",
-                    fontWeight: 500,
-                    fontSize: 16,
-                  }}
-                >
-                  {option.description}
-                </Typography>
-              </Stack>
-            </Grid>
-          ))}
+        <Grid container spacing={3} >
+          {latestNews.map((option, index) => (<Grid size={{ xs: 12, sm: 6, md: 3 }} key={index} >
+
+            <Box>
+              <img src={option.image} alt={option.title} width={"100%"} />
+            </Box>
+            <Stack direction="column" spacing={2} >
+              <Typography variant="h6" sx={{ mt: 2, fontWeight: 700, fontSize: 17, color: '#f5821f' }}>
+                {option.subtile}
+              </Typography>
+              <Typography variant="h6" sx={{ mt: 2, fontWeight: 700, fontSize: 20 }}>
+                {option.title}
+              </Typography>
+              <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
+                {option.button}
+              </Typography>
+              <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
+                {option.description}
+              </Typography>
+            </Stack>
+
+
+          </Grid>))}
+
+
+
         </Grid>
 
+
         <Grid container spacing={5} justifyContent="center" sx={{ mt: 12 }}>
-          <Grid size={{ xs: 12, sm: 6, md: 6 }}>
+          <Grid size={{ xs: 12, sm: 6, md: 6 }} >
             <img src="/assets/femle.png" alt="" width={"100%"} />
           </Grid>
-          <Grid
-            size={{ xs: 12, sm: 6, md: 6 }}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-              gap: 2,
-            }}
-          >
+          <Grid size={{ xs: 12, sm: 6, md: 6 }} sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap: 2 }}  >
             <Stack direction={"column"}>
-              <Stack direction={"row"} spacing={3} mb={2} width={"100%"}>
-                <Box
-                  sx={{
-                    width: 45,
-                    height: 45,
-                    bgcolor: "  #f5821f",
-                    borderRadius: "50%",
-                  }}
-                ></Box>
+              <Stack direction={"row"} spacing={3} mb={2} width={"100%"} >
+                <Box sx={{ width: 45, height: 45, bgcolor: "  #f5821f", borderRadius: "50%" }}></Box>
                 <Stack direction={"column"} width={"100%"}>
-                  <Typography
-                    variant="h5"
-                    fontWeight={700}
-                    fontSize={25}
-                    color="#f5821f"
-                  >
-                    Mollis Mattis
-                  </Typography>
-                  <Typography variant="body1" fontWeight={400} fontSize={14}>
-                    In many parts of the world, female In many parts of the
-                    world, female -headed households face unique challenges that
-                    can impact their food security. -headed households face
-                    unique
+                  <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Mollis Mattis</Typography>
+                  <Typography variant="body1" fontWeight={400} fontSize={14}  >
+                    In many parts of the world, female
+                    In many parts of the world, female
+                    -headed households face unique challenges that can impact their food security.
+                    -headed households face unique
                   </Typography>
                 </Stack>
               </Stack>
             </Stack>
             <Stack direction={"column"} alignItems={"center"}>
-              <Stack direction={"row"} spacing={3} mb={2} width={"100%"}>
-                <Box
-                  sx={{
-                    width: 45,
-                    height: 45,
-                    bgcolor: "  #f5821f",
-                    borderRadius: "50%",
-                  }}
-                ></Box>
+              <Stack direction={"row"} spacing={3} mb={2} width={"100%"} >
+                <Box sx={{ width: 45, height: 45, bgcolor: "  #f5821f", borderRadius: "50%" }}></Box>
                 <Stack direction={"column"} width={"100%"}>
-                  <Typography
-                    variant="h5"
-                    fontWeight={700}
-                    fontSize={25}
-                    color="#f5821f"
-                  >
-                    Ullamcorper Mattis Etiam
-                  </Typography>
-                  <Typography variant="body1" fontWeight={400} fontSize={14}>
-                    In many parts of the world, female In many parts of the
-                    world, female -headed households face unique challenges that
-                    can impact their food security. -headed households face
-                    unique
+                  <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Ullamcorper Mattis Etiam</Typography>
+                  <Typography variant="body1" fontWeight={400} fontSize={14}  >
+                    In many parts of the world, female
+                    In many parts of the world, female
+                    -headed households face unique challenges that can impact their food security.
+                    -headed households face unique
                   </Typography>
                 </Stack>
               </Stack>
             </Stack>
             <Stack direction={"column"}>
-              <Stack direction={"row"} spacing={3} mb={2} width={"100%"}>
-                <Box
-                  sx={{
-                    width: 45,
-                    height: 45,
-                    bgcolor: "  #f5821f",
-                    borderRadius: "50%",
-                  }}
-                ></Box>
+              <Stack direction={"row"} spacing={3} mb={2} width={"100%"} >
+                <Box sx={{ width: 45, height: 45, bgcolor: "  #f5821f", borderRadius: "50%" }}></Box>
                 <Stack direction={"column"} width={"100%"}>
-                  <Typography
-                    variant="h5"
-                    fontWeight={700}
-                    fontSize={25}
-                    color="#f5821f"
-                  >
-                    Mattis Etiam Justo
-                  </Typography>
-                  <Typography variant="body1" fontWeight={400} fontSize={14}>
-                    In many parts of the world, female In many parts of the
-                    world, female -headed households face unique challenges that
-                    can impact their food security. -headed households face
-                    unique
+                  <Typography variant="h5" fontWeight={700} fontSize={25} color='#f5821f'>Mattis Etiam Justo</Typography>
+                  <Typography variant="body1" fontWeight={400} fontSize={14}  >
+                    In many parts of the world, female
+                    In many parts of the world, female
+                    -headed households face unique challenges that can impact their food security.
+                    -headed households face unique
                   </Typography>
                 </Stack>
               </Stack>
@@ -1637,50 +983,29 @@ function Home() {
           </Grid>
         </Grid>
       </Box>
-      <Box
-        sx={{
-          py: 6,
-          color: "#fff",
-          backgroundImage: `
+      <Box sx={{
+        py: 6,
+        color: "#fff",
+        backgroundImage: `
     linear-gradient(
       rgba(178, 9, 51, 0.6),
       rgba(178, 9, 51, 0.6)
     ),
     url('/assets/sky-lac-leman.jpg')
   `,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <Typography
-          variant="h4"
-          sx={{
-            textAlign: "center",
-            mb: 4,
-            fontWeight: 500,
-            textTransform: "capitalize",
-            fontSize: 40,
-          }}
-        >
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}>
+        <Typography variant="h4" sx={{ textAlign: 'center', mb: 4, fontWeight: 500, textTransform: "capitalize", fontSize: 40 }} >
           Get In Tuch
         </Typography>
-        <Grid container spacing={3}>
-          <Grid size={{ xs: 12, sm: 6, md: 12 }}>
-            <Stack
-              maxWidth={900}
-              mx={"auto"}
-              direction={"column"}
-              spacing={4}
-              justifyContent={"center"}
-              alignItems={"center"}
-              height={"100%"}
-            >
-              <Typography variant="body1" fontWeight={500} fontSize={20}>
-                Information collected from or submitted by, the Civil Society
-                network and other relevant stakeholders.
-              </Typography>
-              <Stack direction={"row"} spacing={2} width={"100%"}>
+        <Grid container spacing={3}  >
+
+          <Grid size={{ xs: 12, sm: 6, md: 12 }} >
+            <Stack maxWidth={900} mx={"auto"} direction={"column"} spacing={4} justifyContent={"center"} alignItems={"center"} height={"100%"} >
+              <Typography variant="body1" fontWeight={500} fontSize={20}>Information collected from or submitted by, the Civil Society network and other relevant stakeholders.</Typography>
+              <Stack direction={"row"} spacing={2} width={"100%"} >
                 <TextField
                   type="text"
                   placeholder="Full Name"
@@ -1727,28 +1052,8 @@ function Home() {
                   }}
                 />
               </Stack>
-              <textarea
-                placeholder="Your Message"
-                style={{
-                  width: "100%",
-                  height: 150,
-                  borderRadius: 5,
-                  border: "1px solid #ccc",
-                  padding: 10,
-                }}
-              />
-              <Button
-                variant="contained"
-                size="small"
-                color="error"
-                fontWeight={500}
-                sx={{
-                  width: 178,
-                  height: 48,
-                  backgroundColor: "#f5821f",
-                  "&:hover": { backgroundColor: "#f5821f" },
-                }}
-              >
+              <textarea placeholder="Your Message" style={{ width: "100%", height: 150, borderRadius: 5, border: "1px solid #ccc", padding: 10 }} />
+              <Button variant="contained" size="small" color="error" fontWeight={500} sx={{ width: 178, height: 48, backgroundColor: '#f5821f', '&:hover': { backgroundColor: '#f5821f' } }} >
                 Send Message
               </Button>
             </Stack>
@@ -1756,7 +1061,7 @@ function Home() {
         </Grid>
       </Box>
     </Box>
-  );
+  )
 }
 
-export default Home;
+export default Home
