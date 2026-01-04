@@ -463,8 +463,8 @@ function Home() {
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
-              width: "100%",
-              minHeight: "85vh",
+              width: { lg: "100%", xs: "436px" },
+              minHeight: { lg: "85vh", xs: "652px" },
               display: "flex",
               alignItems: "flex-end",
               justifyContent: "center",
@@ -472,10 +472,18 @@ function Home() {
             role="img"
             aria-label="Hero background"
           >
-            <Stack direction={"column"} spacing={3}>
+            <Stack
+              sx={{ textAlign: { lg: "start", xs: "center" } }}
+              direction={"column"}
+              spacing={3}
+            >
               <Typography
                 variant="h3"
-                sx={{ fontWeight: 500, fontSize: 60, color: "#FFF" }}
+                sx={{
+                  fontWeight: 500,
+                  fontSize: { lg: 60, xs: 30 },
+                  color: "#FFF",
+                }}
               >
                 SUN Youth Bangladesh
               </Typography>
@@ -483,26 +491,34 @@ function Home() {
                 variant="h3"
                 sx={{
                   fontWeight: 600,
-                  fontSize: 45,
+                  fontSize: { lg: 45, xs: 25 },
                   color: theme.palette.secondary.main,
                 }}
               >
                 THEN AND NOW
               </Typography>
-              <Button
-                variant="contained"
-                color="primary"
+
+              <Box
                 sx={{
-                  width: 178,
-                  height: 56,
-                  fontSize: 17,
-                  fontWeight: "500",
-                  backgroundColor: "#b20933",
-                  "&:hover": { backgroundColor: "#b20933" },
+                  display: "flex",
+                  justifyContent: { lg: "flex-start", xs: "center" },
                 }}
               >
-                learn more
-              </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{
+                    width: 178,
+                    height: 56,
+                    fontSize: 17,
+                    fontWeight: "500",
+                    backgroundColor: "#b20933",
+                    "&:hover": { backgroundColor: "#b20933" },
+                  }}
+                >
+                  learn more
+                </Button>
+              </Box>
               <Stack justifyContent={"flex-end"} alignItems={"flex-end"}>
                 <Paper
                   elevation={0}
@@ -515,16 +531,29 @@ function Home() {
                     borderTopRightRadius: 10,
                     borderBottomLeftRadius: 0,
                     borderBottomRightRadius: 0,
-                    width: 1008,
+                    mx: {lg: 'start',xs:'auto'},
+                    width: { lg: 1008, xs: "fit-content" },
                   }}
                 >
                   <Stack
-                    direction={"row"}
+                    sx={{
+                      flexDirection: { lg: "row", xs: "column" },
+                      justifyContent: "space-between",
+                      alignItems: { lg: "start", xs: "center" },
+                      alignContent: { lg: "center", xs: "center" },
+                    }}
                     spacing={2}
-                    justifyContent={"space-between"}
-                    alignItems={"center"}
                   >
-                    <Stack direction={"row"} spacing={4} alignItems={"center"}>
+                    <Stack
+                      sx={{
+                        flexDirection: { lg: "row", xs: "column" },
+                        alignItems: { lg: "start", xs: "center" },
+                        justifyContent: "center",
+                        alignContent: { lg: "center", xs: "center" },
+                        gap: { lg: 3, xs: 0 },
+                      }}
+                      spacing={4}
+                    >
                       <img
                         src="/assets/slider1.jpg"
                         style={{ width: "143px", objectFit: "cover" }}
@@ -540,7 +569,11 @@ function Home() {
                     </Stack>
                     <Typography
                       variant="h6"
-                      sx={{ fontWeight: 700, fontSize: 40, color: "#f5821f" }}
+                      sx={{
+                        fontWeight: 700,
+                        fontSize: { lg: 40, xs: 20 },
+                        color: "#f5821f",
+                      }}
                     >
                       Upcoming Events
                     </Typography>
@@ -565,7 +598,7 @@ function Home() {
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               width: "100%",
-              minHeight: "85vh",
+              minHeight: { lg: "85vh", xs: "652px" },
               display: "flex",
               alignItems: "flex-end",
               justifyContent: "center",
@@ -573,10 +606,18 @@ function Home() {
             role="img"
             aria-label="Hero background"
           >
-            <Stack direction={"column"} spacing={3}>
+            <Stack
+              sx={{ textAlign: { lg: "start", xs: "center" } }}
+              direction={"column"}
+              spacing={3}
+            >
               <Typography
                 variant="h3"
-                sx={{ fontWeight: 500, fontSize: 60, color: "#FFF" }}
+                sx={{
+                  fontWeight: 500,
+                  fontSize: { lg: 60, xs: 30 },
+                  color: "#FFF",
+                }}
               >
                 SUN Youth Bangladesh
               </Typography>
@@ -584,26 +625,33 @@ function Home() {
                 variant="h3"
                 sx={{
                   fontWeight: 600,
-                  fontSize: 45,
+                  fontSize: { lg: 45, xs: 25 },
                   color: theme.palette.secondary.main,
                 }}
               >
                 THEN AND NOW
               </Typography>
-              <Button
-                variant="contained"
-                color="primary"
+              <Box
                 sx={{
-                  width: 178,
-                  height: 56,
-                  fontSize: 17,
-                  fontWeight: "500",
-                  backgroundColor: "#b20933",
-                  "&:hover": { backgroundColor: "#b20933" },
+                  display: "flex",
+                  justifyContent: { lg: "flex-start", xs: "center" },
                 }}
               >
-                learn more
-              </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{
+                    width: 178,
+                    height: 56,
+                    fontSize: 17,
+                    fontWeight: "500",
+                    backgroundColor: "#b20933",
+                    "&:hover": { backgroundColor: "#b20933" },
+                  }}
+                >
+                  learn more
+                </Button>
+              </Box>
               <Stack justifyContent={"flex-end"} alignItems={"flex-end"}>
                 <Paper
                   elevation={0}
@@ -616,16 +664,29 @@ function Home() {
                     borderTopRightRadius: 10,
                     borderBottomLeftRadius: 0,
                     borderBottomRightRadius: 0,
-                    width: 1008,
+                    mx: 'auto',
+                    width: { lg: 1008, xs: "fit-content" },
                   }}
                 >
                   <Stack
-                    direction={"row"}
+                    sx={{
+                      flexDirection: { lg: "row", xs: "column" },
+                      justifyContent: "space-between",
+                      alignItems: { lg: "start", xs: "center" },
+                      alignContent: { lg: "center", xs: "center" },
+                    }}
                     spacing={2}
-                    justifyContent={"space-between"}
-                    alignItems={"center"}
                   >
-                    <Stack direction={"row"} spacing={4} alignItems={"center"}>
+                    <Stack
+                      sx={{
+                        flexDirection: { lg: "row", xs: "column" },
+                        alignItems: { lg: "start", xs: "center" },
+                        justifyContent: "center",
+                        alignContent: { lg: "center", xs: "center" },
+                        gap: { lg: 3, xs: 0 },
+                      }}
+                      spacing={4}
+                    >
                       <img
                         src="/assets/slider1.jpg"
                         style={{ width: "143px", objectFit: "cover" }}
@@ -642,7 +703,11 @@ function Home() {
                     </Stack>
                     <Typography
                       variant="h6"
-                      sx={{ fontWeight: 700, fontSize: 40, color: "#f5821f" }}
+                      sx={{
+                        fontWeight: 700,
+                        fontSize: { lg: 40, xs: 20 },
+                        color: "#f5821f",
+                      }}
                     >
                       Upcoming Events
                     </Typography>
@@ -667,7 +732,7 @@ function Home() {
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               width: "100%",
-              minHeight: "85vh",
+              minHeight: { lg: "85vh", xs: "652px" },
               display: "flex",
               alignItems: "flex-end",
               justifyContent: "center",
@@ -675,10 +740,18 @@ function Home() {
             role="img"
             aria-label="Hero background"
           >
-            <Stack direction={"column"} spacing={3}>
+            <Stack
+              sx={{ textAlign: { lg: "start", xs: "center" } }}
+              direction={"column"}
+              spacing={3}
+            >
               <Typography
                 variant="h3"
-                sx={{ fontWeight: 500, fontSize: 60, color: "#FFF" }}
+                sx={{
+                  fontWeight: 500,
+                  fontSize: { lg: 60, xs: 30 },
+                  color: "#FFF",
+                }}
               >
                 SUN Youth bangladesh
               </Typography>
@@ -686,26 +759,33 @@ function Home() {
                 variant="h3"
                 sx={{
                   fontWeight: 600,
-                  fontSize: 45,
+                  fontSize: { lg: 45, xs: 25 },
                   color: theme.palette.secondary.main,
                 }}
               >
                 THEN AND NOW
               </Typography>
-              <Button
-                variant="contained"
-                color="primary"
+              <Box
                 sx={{
-                  width: 178,
-                  height: 56,
-                  fontSize: 17,
-                  fontWeight: "500",
-                  backgroundColor: "#b20933",
-                  "&:hover": { backgroundColor: "#b20933" },
+                  display: "flex",
+                  justifyContent: { lg: "flex-start", xs: "center" },
                 }}
               >
-                learn more
-              </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{
+                    width: 178,
+                    height: 56,
+                    fontSize: 17,
+                    fontWeight: "500",
+                    backgroundColor: "#b20933",
+                    "&:hover": { backgroundColor: "#b20933" },
+                  }}
+                >
+                  learn more
+                </Button>
+              </Box>
               <Stack justifyContent={"flex-end"} alignItems={"flex-end"}>
                 <Paper
                   elevation={0}
@@ -718,16 +798,29 @@ function Home() {
                     borderTopRightRadius: 10,
                     borderBottomLeftRadius: 0,
                     borderBottomRightRadius: 0,
-                    width: 1008,
+                    mx: 'auto',
+                    width: { lg: 1008, xs: "fit-content" },
                   }}
                 >
                   <Stack
-                    direction={"row"}
+                    sx={{
+                      flexDirection: { lg: "row", xs: "column" },
+                      justifyContent: "space-between",
+                      alignItems: { lg: "start", xs: "center" },
+                      alignContent: { lg: "center", xs: "center" },
+                    }}
                     spacing={2}
-                    justifyContent={"space-between"}
-                    alignItems={"center"}
                   >
-                    <Stack direction={"row"} spacing={4} alignItems={"center"}>
+                    <Stack
+                      sx={{
+                        flexDirection: { lg: "row", xs: "column" },
+                        alignItems: { lg: "start", xs: "center" },
+                        justifyContent: "center",
+                        alignContent: { lg: "center", xs: "center" },
+                        gap: { lg: 3, xs: 0 },
+                      }}
+                      spacing={4}
+                    >
                       <img
                         src="/assets/slider1.jpg"
                         style={{ width: "143px", objectFit: "cover" }}
@@ -743,7 +836,11 @@ function Home() {
                     </Stack>
                     <Typography
                       variant="h6"
-                      sx={{ fontWeight: 700, fontSize: 40, color: "#f5821f" }}
+                      sx={{
+                        fontWeight: 700,
+                        fontSize: { lg: 40, xs: 20 },
+                        color: "#f5821f",
+                      }}
                     >
                       Upcoming Events
                     </Typography>
@@ -820,7 +917,7 @@ function Home() {
 
       {/* this section get involved */}
       <Box sx={{ py: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
-        <Grid sx={{mt: {lg: 25, xs: 0}}} container spacing={3} >
+        <Grid sx={{ mt: { lg: 25, xs: 0 } }} container spacing={3}>
           {listItems.map((option, index) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Paper
@@ -898,14 +995,14 @@ function Home() {
           ))}
         </Grid>
       </Box>
-      <Box  bgcolor={"#f8f7f5"}>
+      <Box bgcolor={"#f8f7f5"}>
         <Typography
           variant="body1"
           color="initial"
           fontWeight={700}
           fontSize={19}
           sx={{
-            mt:{lg:15, xs:0},
+            mt: { lg: 15, xs: 0 },
             bgcolor: "#f5821f",
             maxWidth: 873,
             textAlign: "right",
@@ -924,7 +1021,7 @@ function Home() {
             maxWidth: "1700px",
             margin: "0 auto",
             position: "relative",
-            flexDirection: {lg:"row", xs:"column-reverse"}
+            flexDirection: { lg: "row", xs: "column-reverse" },
           }}
         >
           {hoveredInfo.show && (
@@ -999,14 +1096,14 @@ function Home() {
               height={"100%"}
             >
               <Typography
-              sx={{fontSize: {lg:45, xs: 24}, pt: {lg:0, xs:'30px'}}}
+                sx={{ fontSize: { lg: 45, xs: 24 }, pt: { lg: 0, xs: "30px" } }}
                 variant="body1"
                 color="initial"
                 fontWeight={500}
               >
                 Food system youth leadership Training
               </Typography>
-              <Typography sx={{pb:2}} variant="body1" color="#7c7c7c">
+              <Typography sx={{ pb: 2 }} variant="body1" color="#7c7c7c">
                 The program is designed to build youth leadership and encourage
                 practical engagement in food systems through a structured and
                 participatory approach. It begins with a selection process to
@@ -1026,7 +1123,7 @@ function Home() {
               </Stack> */}
             </Stack>
           </Grid>
-          <Grid sx={{mt:{lg:0, xs:10}}} size={{ xs: 11, sm: 6, md: 6 }}>
+          <Grid sx={{ mt: { lg: 0, xs: 10 } }} size={{ xs: 11, sm: 6, md: 6 }}>
             {/* <img src="/assets/bangladesh.png" alt="" width={"100%"} /> */}
             <BangladeshMap
               onSelect={(division) => console.log(division)}
@@ -1549,7 +1646,7 @@ function Home() {
           Get Involved
         </Typography>
 
-        <Grid sx={{gap:{lg:3, xs: '80px'}}} container spacing={3}>
+        <Grid sx={{ gap: { lg: 3, xs: "80px" } }} container spacing={3}>
           {getInvolvedOptions.map((option, index) => (
             <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Paper
@@ -1569,13 +1666,13 @@ function Home() {
                 <Box
                   sx={{
                     position: "absolute",
-                    top: {lg:-80, sm: -50, xs: -50}, 
+                    top: { lg: -80, sm: -50, xs: -50 },
                     left: "50%",
                     transform: "translateX(-50%)",
                     bgcolor: "#f7f3ef",
-                    width: {lg: "100%", xs: "100px"},
+                    width: { lg: "100%", xs: "100px" },
                     maxWidth: "178px",
-                    height: {lg: 178, xs: 100},
+                    height: { lg: 178, xs: 100 },
                     borderRadius: "50%",
                     display: "flex",
                     alignItems: "center",
@@ -1584,7 +1681,11 @@ function Home() {
                   }}
                 >
                   <Box
-                  sx={{width:{lg: "100px", xs: "50px"}, height: {lg: "100px", xs: "50px"}, objectFit: "contain"}}
+                    sx={{
+                      width: { lg: "100px", xs: "50px" },
+                      height: { lg: "100px", xs: "50px" },
+                      objectFit: "contain",
+                    }}
                     component="img"
                     src={option.image}
                     alt={option.title}
@@ -1647,6 +1748,7 @@ function Home() {
       </Box>
       <Box
         sx={{
+          px: 3,
           py: 6,
           color: "#fff",
           backgroundImage: `
@@ -1671,7 +1773,7 @@ function Home() {
             fontSize: 40,
           }}
         >
-          Get In Tuch
+          Get In Touch
         </Typography>
         <Grid container spacing={3}>
           <Grid size={{ xs: 12, sm: 6, md: 12 }}>
