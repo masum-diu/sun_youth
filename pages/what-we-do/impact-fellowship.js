@@ -88,6 +88,7 @@ function impactfellowship() {
       </Grid>
       <Box sx={{
                 py: 6,
+                px:{lg:0, xs:3},
                 color: "#fff",
                 backgroundImage: `
     linear-gradient(
