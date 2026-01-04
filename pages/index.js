@@ -820,7 +820,7 @@ function Home() {
 
       {/* this section get involved */}
       <Box sx={{ py: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
-        <Grid container spacing={3} mt={15}>
+        <Grid sx={{mt: {lg: 25, xs: 0}}} container spacing={3} >
           {listItems.map((option, index) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Paper
@@ -1549,7 +1549,7 @@ function Home() {
           Get Involved
         </Typography>
 
-        <Grid container spacing={3}>
+        <Grid sx={{gap:{lg:3, xs: '80px'}}} container spacing={3}>
           {getInvolvedOptions.map((option, index) => (
             <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Paper
@@ -1569,13 +1569,13 @@ function Home() {
                 <Box
                   sx={{
                     position: "absolute",
-                    top: -80,
+                    top: {lg:-80, sm: -50, xs: -50}, 
                     left: "50%",
                     transform: "translateX(-50%)",
                     bgcolor: "#f7f3ef",
-                    width: "100%",
+                    width: {lg: "100%", xs: "100px"},
                     maxWidth: "178px",
-                    height: 178,
+                    height: {lg: 178, xs: 100},
                     borderRadius: "50%",
                     display: "flex",
                     alignItems: "center",
@@ -1583,11 +1583,11 @@ function Home() {
                     boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
                   }}
                 >
-                  <img
+                  <Box
+                  sx={{width:{lg: "100px", xs: "50px"}, height: {lg: "100px", xs: "50px"}, objectFit: "contain"}}
+                    component="img"
                     src={option.image}
                     alt={option.title}
-                    width={92}
-                    height={84}
                   />
                 </Box>
                 <Stack
