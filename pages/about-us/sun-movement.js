@@ -80,7 +80,7 @@ function sunmovement() {
 
           <Grid size={{ xs: 12, sm: 6, md: 12 }} >
             <Stack maxWidth={900} mx={"auto"} direction={"column"} spacing={4} justifyContent={"center"} alignItems={"center"} height={"100%"} >
-              <Typography variant="body1" fontWeight={500} fontSize={20}>Information collected from or submitted by, the Civil Society network and other relevant stakeholders.</Typography>
+              <Typography variant="body1" fontWeight={500} fontSize={20}>Information collected from or submitted by, the SUN Youth Network and other relevant stakeholders.</Typography>
               <Stack direction={"row"} spacing={2} width={"100%"} >
                 <TextField
                   type="text"

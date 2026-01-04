@@ -1,116 +1,81 @@
-import React from 'react'
+import React from 'react';
+import { Box, Typography, Stack, Grid, Card, CardContent } from '@mui/material';
+import { useRouter } from 'next/router';
 
-// Mock data for multimedia content. In a real application, this would come from a CMS or API.
-const multimediaData = [
+// Sample video data. Replace with your actual YouTube video IDs and details.
+const videoData = [
+  
   {
-    id: 1,
-    title: 'Our Community in Action: Summer 2023',
-    description: 'A look into our summer programs and the positive impact they have on local youth.',
-    thumbnailUrl: '/assets/garden-project.png',
-    contentUrl: 'https://www.youtube.com/watch?v=example', // Replace with your actual video URL
-    type: 'Video',
+    id: '42EBvazc5AU',
+    title: 'Scaling Up Nutrition (SUN) Youth Network Bangladesh Launched',
+    description: 'The Scaling Up Nutrition (SUN) Youth Network Bangladesh was officially launched on December 8, 2024, in Dhaka, marking a significant step towards empowering young leaders in the fight against malnutrition.',
   },
   {
-    id: 2,
-    title: '2023 Annual Gala Highlights',
-    description: 'A photo gallery from our most successful fundraising event of the year.',
-    thumbnailUrl: '/assets/garden-project.png',
-    contentUrl: '/gallery/annual-gala-2023', // Example link to a gallery page
-    type: 'Photo Gallery',
+    id: 'vCNLrZHQ_1I',
+    title: 'PUSHTI Canteen Launched in Lalmonirhat | Ensuring Nutritious Food for Students',
+    description: 'To promote safe and nutritious meals in educational institutions, the PUSHTI Canteen initiative was officially inaugurated on January 15, 2025, at the Lalmonirhat Deputy Commissioner’s Office.',
   },
   {
-    id: 3,
-    title: 'Interview with Our Director',
-    description: 'Our director discusses the future vision and upcoming projects for Sun Youth.',
-    thumbnailUrl: '/assets/garden-project.png',
-    contentUrl: 'https://www.youtube.com/watch?v=example2', // Replace with your actual video URL
-    type: 'Video',
-  },
-  {
-    id: 4,
-    title: 'Youth Art Exhibition 2023',
-    description: 'Explore the incredible artwork created by participants in our youth art program.',
-    thumbnailUrl: '/assets/garden-project.png',
-    contentUrl: '/gallery/youth-art-2023', // Example link to a gallery page
-    type: 'Photo Gallery',
+    id: 'tfdMZ0PhYUE',
+    title: 'Food Systems Youth Leadership Training (TOT) | Dhaka Final Highlights',
+    description: 'The Food Systems Youth Leadership Training, organized under the SUN Youth Network Bangladesh with support from GAIN and the Ministry of Health and Family Welfare, brought together passionate young leaders from across the country for a transformative 4-day residential program',
   },
 ];
 
-// It's a convention in React to name components with PascalCase.
 function MultimediaPage() {
+  const router = useRouter();
   return (
-    <div style={styles.container}>
-      <header style={styles.header}>
-        <h1 style={styles.title}>Multimedia Gallery</h1>
-        <p style={styles.subtitle}>
-          Watch videos and browse photo galleries of our latest events and activities.
-        </p>
-      </header>
+    <React.Fragment>
+      <Box sx={{ bgcolor: "#f5821f", height: 200, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", color: "#fff", }}>
+        <Stack direction={"row"} alignItems="center" justifyContent="space-between"
+          sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", }}>
+          <Typography variant="h5" sx={{ fontWeight: 'bold' }}>RESOURCES</Typography>
+          {/* {router?.asPath
+              ?.split("-")
+              ?.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+              ?.join(" ")} */}
+        </Stack>
+      </Box>
 
-      <main style={styles.grid}>
-        {multimediaData.map((item) => (
-          <div key={item.id} style={styles.card}>
-            <div style={styles.imageContainer}>
-              <img src={item.thumbnailUrl} alt={`Thumbnail for ${item.title}`} style={styles.cardImage} />
-            </div>
-            <div style={styles.cardContent}>
-              <span style={styles.cardCategory}>{item.type}</span>
-              <h3 style={styles.cardTitle}>{item.title}</h3>
-              <p style={styles.cardDescription}>{item.description}</p>
-              <a href={item.contentUrl} target="_blank" rel="noopener noreferrer" style={styles.viewLink}>
-                {item.type === 'Video' ? 'Watch Video' : 'View Gallery'}
-              </a>
-            </div>
-          </div>
-        ))}
-      </main>
-    </div>
+      <Box sx={{ width: "95%", maxWidth: "1700px", margin: "40px auto" }}>
+        <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', mb: 4 }}>
+          Multimedia Gallery
+        </Typography>
+        <Grid container spacing={4}>
+          {videoData.map((video) => (
+            <Grid  key={video.id} size={{ xs: 12, sm: 6, md: 4 }}>
+              <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 3 }}>
+                <Box sx={{ position: 'relative', paddingTop: '56.25%' /* 16:9 Aspect Ratio */ }}>
+                  <iframe
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      border: 0,
+                    }}
+                    src={`https://www.youtube.com/embed/${video.id}`}
+                    title={video.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </Box>
+                <CardContent sx={{ flexGrow: 1 }}>
+                  <Typography gutterBottom variant="h6" component="h2" sx={{ fontWeight: 'bold' }}>
+                    {video.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {video.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    </React.Fragment>
   );
 }
-
-const styles = {
-  container: {
-    fontFamily: "'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
-    color: '#333',
-    padding: '2rem',
-    backgroundColor: '#f9fafb',
-  },
-  header: {
-    textAlign: 'center',
-    marginBottom: '3rem',
-  },
-  title: {
-    fontSize: '2.5rem',
-    fontWeight: 'bold',
-    color: '#111827',
-    marginBottom: '0.5rem',
-  },
-  subtitle: {
-    fontSize: '1.125rem',
-    color: '#6b7280',
-  },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-    gap: '2rem',
-    maxWidth: '1700px',
-    margin: '0 auto',
-  },
-  card: {
-    backgroundColor: '#fff',
-    borderRadius: '8px',
-    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-    overflow: 'hidden',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  imageContainer: { position: 'relative' },
-  cardImage: { width: '100%', height: '200px', objectFit: 'cover', display: 'block' },
-  cardContent: { padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 },
-  cardCategory: { color: '#4f46e5', fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.5rem' },
-  cardTitle: { fontSize: '1.25rem', fontWeight: 'bold', margin: '0 0 0.5rem 0' },
-  cardDescription: { color: '#6b7280', flexGrow: 1, marginBottom: '1rem' },
-  viewLink: { color: '#fff', backgroundColor: '#b20933', padding: '0.75rem 1.5rem', borderRadius: '6px', textDecoration: 'none', textAlign: 'center', fontWeight: '500', transition: 'background-color 0.2s' },
-};
 
 export default MultimediaPage;

@@ -34,12 +34,16 @@ function sunyouthnetworkbrief() {
           <Typography variant="h5" sx={{ fontWeight: "bold" }}>
             ABOUT US
           </Typography>
-          <Box
+          {/* <Box
             component="span"
             sx={{ fontSize: 14, color: "#fff", fontWeight: 600 }}
           >
-            {router?.route}
-          </Box>
+            {router?.asPath
+              ?.split("-")
+              ?.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+              ?.join(" ")}
+          </Box> */}
+
         </Stack>
       </Box>
 
@@ -109,75 +113,75 @@ function sunyouthnetworkbrief() {
               alt="SUN Youth Network Bangladesh"
               sx={{ width: "100%", objectFit: "cover", borderRadius: 2, mb: 3 }}
             />
-              <Typography
-                variant="h5"
-                fontWeight={700}
-                fontSize={16}
-                color="#f5821f"
-              >
-                SUN Youth Network
-              </Typography>
-              <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
-                The SUN Youth Network was established to support the formation
-                and evolution of Youth organizations, and youth-led clubs in SUN
-                countries, as well as facilitate communication and coordination
-                across SUN CSO Network, SUN UN Network, SUN Donor Network, SUN
-                Business Network, SUN Academia Network, and the broader SUN
-                Movement.
-              </Typography>
+            <Typography
+              variant="h5"
+              fontWeight={700}
+              fontSize={16}
+              color="#f5821f"
+            >
+              SUN Youth Network
+            </Typography>
+            <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
+              The SUN Youth Network was established to support the formation
+              and evolution of Youth organizations, and youth-led clubs in SUN
+              countries, as well as facilitate communication and coordination
+              across SUN CSO Network, SUN UN Network, SUN Donor Network, SUN
+              Business Network, SUN Academia Network, and the broader SUN
+              Movement.
+            </Typography>
 
-              <Typography
-                variant="h5"
-                fontWeight={700}
-                fontSize={16}
-                color="#f5821f"
-              >
-                Purpose of the network
-              </Typography>
-              <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
-                The primary purpose of the SUN Youth Network is to encourage the
-                alignment of Youth Organisations’ strategies, programmes and
-                resources with country plans for scaling up nutrition. The SUN
-                Youth Network aims to achieve this through strengthening the
-                support available for and capacity of national and local youth
-                organizations. It is responsible for encouraging effective
-                engagement from adolescents, youth and youth organizations in
-                the SUN process at national and global levels and supports SUN
-                countries to advocate for the development of ambitious plans. It
-                also contributes to the implementation and rolling out of
-                national costed plans.
-              </Typography>
+            <Typography
+              variant="h5"
+              fontWeight={700}
+              fontSize={16}
+              color="#f5821f"
+            >
+              Purpose of the network
+            </Typography>
+            <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
+              The primary purpose of the SUN Youth Network is to encourage the
+              alignment of Youth Organisations’ strategies, programmes and
+              resources with country plans for scaling up nutrition. The SUN
+              Youth Network aims to achieve this through strengthening the
+              support available for and capacity of national and local youth
+              organizations. It is responsible for encouraging effective
+              engagement from adolescents, youth and youth organizations in
+              the SUN process at national and global levels and supports SUN
+              countries to advocate for the development of ambitious plans. It
+              also contributes to the implementation and rolling out of
+              national costed plans.
+            </Typography>
 
-              <Typography
-                variant="h5"
-                fontWeight={700}
-                fontSize={16}
-                color="#f5821f"
-              >
-                SUN Youth Network Bangladesh
-              </Typography>
+            <Typography
+              variant="h5"
+              fontWeight={700}
+              fontSize={16}
+              color="#f5821f"
+            >
+              SUN Youth Network Bangladesh
+            </Typography>
 
-              <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
-                The Government of the People's Republic of Bangladesh signed up
-                for the Scaling Up Nutrition (SUN) Global Movement in September
-                2012. The SUN Secretariat Bangladesh has taken the initiative to
-                establish the SUN Youth Network in Bangladesh in January 2024
-                with the aim of uniting youth organizations to ensure a voice is
-                given to a range of small, dependent, regional and national
-                organizations to further the aim of the SUN movement. The
-                network also aims to build the capacity of youth and promote
-                community actions. The Ministry of Health and Family Welfare,
-                Government of the People's Republic of Bangladesh, has endorsed
-                the Scaling Up Nutrition (SUN) Youth Network Bangladesh to
-                officially commence its activities, effective from 01 November
-                2024. This initiative aims to systematically engage youth and
-                amplify their voices in the nutrition, food, and health sectors
-                to influence programmatic and policy agendas in alignment with
-                Bangladesh's priorities and the Scaling Up Nutrition Strategy
-                3.0. The Global Alliance for Improved Nutrition (GAIN) serves as
-                the secretariat for the Scaling Up Nutrition (SUN) Youth Network
-                Bangladesh.
-              </Typography>
+            <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
+              The Government of the People's Republic of Bangladesh signed up
+              for the Scaling Up Nutrition (SUN) Global Movement in September
+              2012. The SUN Secretariat Bangladesh has taken the initiative to
+              establish the SUN Youth Network in Bangladesh in January 2024
+              with the aim of uniting youth organizations to ensure a voice is
+              given to a range of small, dependent, regional and national
+              organizations to further the aim of the SUN movement. The
+              network also aims to build the capacity of youth and promote
+              community actions. The Ministry of Health and Family Welfare,
+              Government of the People's Republic of Bangladesh, has endorsed
+              the Scaling Up Nutrition (SUN) Youth Network Bangladesh to
+              officially commence its activities, effective from 01 November
+              2024. This initiative aims to systematically engage youth and
+              amplify their voices in the nutrition, food, and health sectors
+              to influence programmatic and policy agendas in alignment with
+              Bangladesh's priorities and the Scaling Up Nutrition Strategy
+              3.0. The Global Alliance for Improved Nutrition (GAIN) serves as
+              the secretariat for the Scaling Up Nutrition (SUN) Youth Network
+              Bangladesh.
+            </Typography>
           </Grid>
         </Grid>
       </Box>
@@ -287,14 +291,15 @@ function sunyouthnetworkbrief() {
           <img src="/assets/Link1.png" alt="" />
         </Grid>
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+          <img src="/assets/images.png" alt="" style={{ width: "210px", height: "120px", objectFit: 'contain', border: "1px solid #dedede", padding: "20px", borderRadius: 4 }} />
+        </Grid>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <img src="/assets/Link4.png" alt="" />
         </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+        {/* <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <img src="/assets/Link3.png" alt="" />
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-         <img src="/assets/images.png" alt="" style={{width:"210px",height:"120px",objectFit:'contain',border:"1px solid #dedede",padding:"20px",borderRadius:4}} />
-        </Grid>
+        </Grid> */}
+
       </Grid>
       <Box
         sx={{
@@ -336,8 +341,7 @@ function sunyouthnetworkbrief() {
               height={"100%"}
             >
               <Typography variant="body1" fontWeight={500} fontSize={20}>
-                Information collected from or submitted by, the Civil Society
-                network and other relevant stakeholders.
+                Information collected from or submitted by, the SUN Youth Network Bangladesh and other relevant stakeholders.
               </Typography>
               <Stack direction={"row"} spacing={2} width={"100%"}>
                 <TextField

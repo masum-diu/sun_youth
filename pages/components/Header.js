@@ -129,10 +129,7 @@ function Header() {
         }}
         title={`Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure`}
       >
-        Contrary to popular belief, Lorem Ipsum is not simply random text. It
-        has roots in a piece of classical Latin literature from 45 BC, making it
-        over 2000 years old. Richard McClintock, a Latin professor at
-        Hampden-Sydney College in Virginia, looked up one of the more obscure
+       Empowering youth across Bangladesh to drive nutrition action, influence policy, and strengthen food systems through a coordinated platform aligned with national priorities and the global SUN Movement.
       </Typography>
       <AppBar position="static" sx={{ bgcolor: "#f0eee2", color: "#000000" }}>
         <Toolbar
@@ -385,34 +382,40 @@ function Header() {
           </Typography>
           <Grid container spacing={2}>
             <Grid size={{ xs: 12, sm: 6 }}>
-              <Card variant="outlined" sx={{ height: "100%" }}>
-                <CardActionArea
-                  sx={{ p: 3, textAlign: "center", height: "100%" }}
-                >
-                  <GroupIcon sx={{ fontSize: 48, color: "#f5821f" }} />
-                  <CardContent>
-                    <Typography gutterBottom variant="h6" component="div">
-                      Join as Youth Organization
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
+              <NextLink href="/youth-organization" passHref>
+                <Card variant="outlined" sx={{ height: "100%" }}>
+                  <CardActionArea
+                    onClick={handleModalClose}
+                    sx={{ p: 3, textAlign: "center", height: "100%" }}
+                  >
+                    <GroupIcon sx={{ fontSize: 48, color: "#f5821f" }} />
+                    <CardContent>
+                      <Typography gutterBottom variant="h6" component="div">
+                        Join as Youth Organization
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </NextLink>
             </Grid>
             <Grid size={{ xs: 12, sm: 6 }}>
-              <Card variant="outlined" sx={{ height: "100%" }}>
-                <CardActionArea
-                  sx={{ p: 3, textAlign: "center", height: "100%" }}
-                >
-                  <VolunteerActivismIcon
-                    sx={{ fontSize: 48, color: "#f5821f" }}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h6" component="div">
-                      Join as Volunteer
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
+              <NextLink href="/volunteer" passHref>
+                <Card variant="outlined" sx={{ height: "100%" }}>
+                  <CardActionArea
+                    onClick={handleModalClose}
+                    sx={{ p: 3, textAlign: "center", height: "100%" }}
+                  >
+                    <VolunteerActivismIcon
+                      sx={{ fontSize: 48, color: "#f5821f" }}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h6" component="div">
+                        Join as Volunteer
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </NextLink>
             </Grid>
           </Grid>
         </DialogContent>
