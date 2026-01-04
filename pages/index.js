@@ -1154,7 +1154,7 @@ function Home() {
             top: { lg: -400, xs: -120 }, // desktop same, mobile adjusted
             left: "50%",
             transform: "translateX(-50%)",
-            width: { lg: "100%", xs: "300px" },
+            width: { lg: "1008px", xs: "300px" },
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -1165,7 +1165,7 @@ function Home() {
             src="/assets/gainandsdf.png"
             alt="gain"
             sx={{
-              width: { lg: "100%", xs: 400 }, // desktop stays 100px
+              width: { lg: "1008px", xs: 400 }, // desktop stays 100px
               height: "auto",
             }}
           />
@@ -1174,7 +1174,7 @@ function Home() {
         <Typography
           variant="body1"
           sx={{
-            mt: { lg: 25, xs: 8 },
+            mt: { lg: 20, xs: 8 },
             mb: { lg: 0, xs: 4 },
             fontSize: { lg: 40, xs: 24 },
           }}
