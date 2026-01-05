@@ -917,7 +917,7 @@ function Home() {
 
       {/* this section get involved */}
       <Box sx={{ py: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
-        <Grid sx={{ mt: { lg: 25, xs: 0 } }} container spacing={3}>
+        <Grid sx={{ mt: { lg: 10, xs: 0 } }} container spacing={3}>
           {listItems.map((option, index) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Paper
