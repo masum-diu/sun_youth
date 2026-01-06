@@ -57,14 +57,13 @@ function youthvoicessummit() {
 
             <Box
               component="img"
-              src="/assets/gainandsdf.png" // Replace with your actual image path
+              src="/assets/fosilack.jpeg" // Replace with your actual image path
               alt="SUN Youth Network Network Bangladesh"
               sx={{ width: '100%', objectFit: 'cover', borderRadius: 2, mb: 3 }}
             />
             <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
-              This is where you can add a detailed description of the SUN Youth Network Network Bangladesh. You can talk about its history, goals, and the impact it has made. This text will serve as an introduction before the mission and vision statements.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus minus ratione Sunt quaerat veniam dolorem, aliquam dignissimos quasi quia iure quisquam animi neque iusto vitae fuga consequatur illo officia! Vitae eum ea repudiandae, magnam perferendis quibusdam totam explicabo consequatur asperiores! Aspernatur minus iusto natus magni commodi unde tempora accusamus aliquid qui? Similique debitis dignissimos eveniet corrupti cumque nobis necessitatibus nesciunt recusandae voluptates tenetur quam magni doloremque, reprehenderit, earum labore eaque nostrum soluta? Esse voluptate, earum facilis sequi inventore quasi asperiores nostrum, non aut provident nemo temporibus amet accusantium quisquam quos cupiditate a quis! Labore esse facere, possimus est iusto cum dolores nihil, sit illo doloremque nesciunt molestiae voluptate exercitationem, adipisci laudantium dolore expedita ratione deleniti! Id deleniti recusandae, ullam eligendi quos illum iusto velit nostrum commodi neque doloribus. Magnam quasi voluptates, quam exercitationem eligendi fuga est et, reprehenderit eius doloribus id. Libero voluptas rem optio. Unde saepe omnis officiis explicabo temporibus dicta totam nesciunt sed, numquam perspiciatis facilis necessitatibus praesentium corrupti assumenda amet minima autem corporis et quis voluptatum aliquam! Nostrum doloremque tempore assumenda voluptatibus, eaque accusamus dicta Sunt. Laborum nesciunt facere tempore quibusdam delectus. At culpa quasi esse, ducimus consequuntur incidunt temporibus fuga quidem tempora vero delectus, aut expedita?
-
+              The Food Systems Youth Leadership (FoSYLx) Online Training is a comprehensive, three-day capacity-building initiative designed to equip young leaders with essential knowledge, leadership skills, and practical tools for meaningful engagement in food systems transformation through online platforms. The training enhances youth understanding of food systems, nutrition challenges, and the critical role of young people as change agents in promoting healthier and more sustainable food environments. A central component of FoSYLx is the Future Action Workshop, which enables participants to translate learning into structured community engagement, collective action, and policy advocacy.
+              The Future Action Workshop was conducted over three days, from 28 to 30 December 2025, at BRAC CDM, Savar, with sessions adapted for online delivery. During this period, youth participants engaged in interactive presentations, group discussions, and practical exercises to analyze local food and nutrition challenges and develop actionable plans aligned with national priorities, which could be shared and implemented digitally. The workshop emphasized collaboration, leadership, and accountability, empowering participants to design community-based initiatives and strengthen their capacity to engage with stakeholders and policy processes. Through this intensive training, FoSYLx cultivated a cohort of committed youth leaders prepared to drive collective action and advocacy for healthier, safer, and more sustainable food systems across Bangladesh via online.
             </Typography>
 
 
@@ -72,35 +71,35 @@ function youthvoicessummit() {
         </Grid>
 
       </Box>
-     
+
       <Grid container spacing={5} justifyContent="center" sx={{ width: "95%", maxWidth: "1200px", margin: "0 auto", my: 6 }}>
 
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                 <img src="/assets/Link1.png" alt="" />
-               </Grid>
-                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                <img src="/assets/images.png" alt="" style={{width:"210px",height:"120px",objectFit:'contain',border:"1px solid #dedede",padding:"20px",borderRadius:4}} />
-               </Grid>
-               <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                 <img src="/assets/Link4.png" alt="" />
-               </Grid>
-      
+          <img src="/assets/Link1.png" alt="" />
+        </Grid>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+          <img src="/assets/images.png" alt="" style={{ width: "210px", height: "120px", objectFit: 'contain', border: "1px solid #dedede", padding: "20px", borderRadius: 4 }} />
+        </Grid>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+          <img src="/assets/Link4.png" alt="" />
+        </Grid>
+
       </Grid>
       <Box sx={{
-                py: 6,
-                px:{lg:0, xs:3},
-                color: "#fff",
-                backgroundImage: `
+        py: 6,
+        px: { lg: 0, xs: 3 },
+        color: "#fff",
+        backgroundImage: `
     linear-gradient(
       rgba(178, 9, 51, 0.6),
       rgba(178, 9, 51, 0.6)
     ),
     url('/assets/sky-lac-leman.jpg')
   `,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-            }}>
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}>
         <Typography variant="h4" sx={{ textAlign: 'center', mb: 4, fontWeight: 500, textTransform: "capitalize", fontSize: 40 }} >
           Get In Tuch
         </Typography>

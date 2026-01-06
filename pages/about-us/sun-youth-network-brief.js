@@ -109,7 +109,7 @@ function Sunyouthnetworkbrief() {
           <Grid size={{ xs: 12, md: 9 }} py={2} pl={{ md: 4 }}>
             <Box
               component="img"
-              src="/assets/gainandsdf.png" // Replace with your actual image path
+              src="/assets/governace2.jpeg" // Replace with your actual image path
               alt="SUN Youth Network Network Bangladesh"
               sx={{ width: "100%", objectFit: "cover", borderRadius: 2, mb: 3 }}
             />

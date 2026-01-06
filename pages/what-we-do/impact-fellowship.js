@@ -57,13 +57,14 @@ function impactfellowship() {
 
             <Box
               component="img"
-              src="/assets/gainandsdf.png" // Replace with your actual image path
+              src="/assets/impcactfull.jpeg" // Replace with your actual image path
               alt="SUN Youth Network Network Bangladesh"
               sx={{ width: '100%', objectFit: 'cover', borderRadius: 2, mb: 3 }}
             />
             <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
-              This is where you can add a detailed description of the SUN Youth Network Network Bangladesh. You can talk about its history, goals, and the impact it has made. This text will serve as an introduction before the mission and vision statements.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus minus ratione Sunt quaerat veniam dolorem, aliquam dignissimos quasi quia iure quisquam animi neque iusto vitae fuga consequatur illo officia! Vitae eum ea repudiandae, magnam perferendis quibusdam totam explicabo consequatur asperiores! Aspernatur minus iusto natus magni commodi unde tempora accusamus aliquid qui? Similique debitis dignissimos eveniet corrupti cumque nobis necessitatibus nesciunt recusandae voluptates tenetur quam magni doloremque, reprehenderit, earum labore eaque nostrum soluta? Esse voluptate, earum facilis sequi inventore quasi asperiores nostrum, non aut provident nemo temporibus amet accusantium quisquam quos cupiditate a quis! Labore esse facere, possimus est iusto cum dolores nihil, sit illo doloremque nesciunt molestiae voluptate exercitationem, adipisci laudantium dolore expedita ratione deleniti! Id deleniti recusandae, ullam eligendi quos illum iusto velit nostrum commodi neque doloribus. Magnam quasi voluptates, quam exercitationem eligendi fuga est et, reprehenderit eius doloribus id. Libero voluptas rem optio. Unde saepe omnis officiis explicabo temporibus dicta totam nesciunt sed, numquam perspiciatis facilis necessitatibus praesentium corrupti assumenda amet minima autem corporis et quis voluptatum aliquam! Nostrum doloremque tempore assumenda voluptatibus, eaque accusamus dicta Sunt. Laborum nesciunt facere tempore quibusdam delectus. At culpa quasi esse, ducimus consequuntur incidunt temporibus fuga quidem tempora vero delectus, aut expedita?
+              The IMPACT Fellowship is a six-month youth leadership programme designed to develop a new generation of public health and nutrition leaders capable of addressing Bangladesh’s evolving nutrition challenges, including maternal and child nutrition, anemia, micronutrient deficiencies, and diet-related non-communicable diseases (NCDs).
+              The fellowship combines expert-led training, practical workshops, peer learning, and community engagement to bridge academic knowledge with real-world impact and policy advocacy. Two cohorts of the fellowship were successfully held, with a total of 60 participants: 30 in Rangpur and 30 in Rajshahi. Fellows were drawn from diverse backgrounds, including medicine, public health, nutrition, agriculture, and food systems, reflecting a multisectoral approach to tackling nutrition challenges. During the training, participants developed leadership skills, learned evidence-based approaches, and gained practical tools to design and implement nutrition interventions.
+              Following the training, all 60 fellows are actively engaged in community-level initiatives, translating their learning into tangible actions that promote healthier diets, safe food environments, and improved nutrition outcomes across their local communities. By fostering youth leadership, collaboration, and advocacy, the IMPACT Fellowship is creating a cohort of empowered young leaders committed to driving sustainable change in Bangladesh’s food and nutrition landscape.
 
             </Typography>
 
@@ -72,35 +73,35 @@ function impactfellowship() {
         </Grid>
 
       </Box>
-     
+
       <Grid container spacing={5} justifyContent="center" sx={{ width: "95%", maxWidth: "1200px", margin: "0 auto", my: 6 }}>
 
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                 <img src="/assets/Link1.png" alt="" />
-               </Grid>
-                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                <img src="/assets/images.png" alt="" style={{width:"210px",height:"120px",objectFit:'contain',border:"1px solid #dedede",padding:"20px",borderRadius:4}} />
-               </Grid>
-               <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                 <img src="/assets/Link4.png" alt="" />
-               </Grid>
-      
+          <img src="/assets/Link1.png" alt="" />
+        </Grid>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+          <img src="/assets/images.png" alt="" style={{ width: "210px", height: "120px", objectFit: 'contain', border: "1px solid #dedede", padding: "20px", borderRadius: 4 }} />
+        </Grid>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+          <img src="/assets/Link4.png" alt="" />
+        </Grid>
+
       </Grid>
       <Box sx={{
-                py: 6,
-                px:{lg:0, xs:3},
-                color: "#fff",
-                backgroundImage: `
+        py: 6,
+        px: { lg: 0, xs: 3 },
+        color: "#fff",
+        backgroundImage: `
     linear-gradient(
       rgba(178, 9, 51, 0.6),
       rgba(178, 9, 51, 0.6)
     ),
     url('/assets/sky-lac-leman.jpg')
   `,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-            }}>
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}>
         <Typography variant="h4" sx={{ textAlign: 'center', mb: 4, fontWeight: 500, textTransform: "capitalize", fontSize: 40 }} >
           Get In Tuch
         </Typography>
