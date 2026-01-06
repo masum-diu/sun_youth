@@ -7,8 +7,8 @@ const videoData = [
   
   {
     id: '42EBvazc5AU',
-    title: 'Scaling Up Nutrition (SUN) Youth Network Bangladesh Launched',
-    description: 'The Scaling Up Nutrition (SUN) Youth Network Bangladesh was officially launched on December 8, 2024, in Dhaka, marking a significant step towards empowering young leaders in the fight against malnutrition.',
+    title: 'Scaling Up Nutrition (Sun) Youth Network Bangladesh Launched',
+    description: 'The Scaling Up Nutrition (Sun) Youth Network Bangladesh was officially launched on December 8, 2024, in Dhaka, marking a significant step towards empowering young leaders in the fight against malnutrition.',
   },
   {
     id: 'vCNLrZHQ_1I',
@@ -18,7 +18,7 @@ const videoData = [
   {
     id: 'tfdMZ0PhYUE',
     title: 'Food Systems Youth Leadership Training (TOT) | Dhaka Final Highlights',
-    description: 'The Food Systems Youth Leadership Training, organized under the SUN Youth Network Bangladesh with support from GAIN and the Ministry of Health and Family Welfare, brought together passionate young leaders from across the country for a transformative 4-day residential program',
+    description: 'The Food Systems Youth Leadership Training, organized under the SUN Youth Network Network Bangladesh with support from GAIN and the Ministry of Health and Family Welfare, brought together passionate young leaders from across the country for a transformative 4-day residential program',
   },
 ];
 

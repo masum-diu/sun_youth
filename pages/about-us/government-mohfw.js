@@ -62,13 +62,13 @@ function governmentmohfw() {
                 fontSize: 16,
                 cursor: "pointer",
                 color:
-                  router?.route === "/about-us/sun-youth-network-brief"
+                  router?.route === "/about-us/Sun-youth-network-brief"
                     ? "#f5821f"
                     : "#000",
               }}
-              onClick={() => router.push("/about-us/sun-youth-network-brief")}
+              onClick={() => router.push("/about-us/Sun-youth-network-brief")}
             >
-              SUN Youth Network Bangladesh Brief
+              SUN Youth Network Network Bangladesh Brief
             </Typography>
             <Divider
               orientation="horizontal"
@@ -100,13 +100,13 @@ function governmentmohfw() {
                 fontSize: 16,
                 cursor: "pointer",
                 color:
-                  router?.route === "/about-us/sun-movement"
+                  router?.route === "/about-us/Sun-movement"
                     ? "#f5821f"
                     : "#000",
               }}
-              onClick={() => router.push("/about-us/sun-movement")}
+              onClick={() => router.push("/about-us/Sun-movement")}
             >
-              SUN Movement
+              Sun Movement
             </Typography>
             <Divider
               orientation="horizontal"
@@ -137,15 +137,15 @@ function governmentmohfw() {
             <Box
               component="img"
               src="/assets/gainandsdf.png" // Replace with your actual image path
-              alt="SUN Youth Network Bangladesh"
+              alt="SUN Youth Network Network Bangladesh"
               sx={{ width: "100%", objectFit: "cover", borderRadius: 2, mb: 3 }}
             />
             <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
-              This is where you can add a detailed description of the SUN Youth
+              This is where you can add a detailed description of the SUN Youth Network
               Network Bangladesh. You can talk about its history, goals, and the
               impact it has made. This text will serve as an introduction before
               the mission and vision statements. Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Delectus minus ratione sunt quaerat
+              consectetur adipisicing elit. Delectus minus ratione Sunt quaerat
               veniam dolorem, aliquam dignissimos quasi quia iure quisquam animi
               neque iusto vitae fuga consequatur illo officia! Vitae eum ea
               repudiandae, magnam perferendis quibusdam totam explicabo
@@ -166,7 +166,7 @@ function governmentmohfw() {
               dicta totam nesciunt sed, numquam perspiciatis facilis
               necessitatibus praesentium corrupti assumenda amet minima autem
               corporis et quis voluptatum aliquam! Nostrum doloremque tempore
-              assumenda voluptatibus, eaque accusamus dicta sunt. Laborum
+              assumenda voluptatibus, eaque accusamus dicta Sunt. Laborum
               nesciunt facere tempore quibusdam delectus. At culpa quasi esse,
               ducimus consequuntur incidunt temporibus fuga quidem tempora vero
               delectus, aut expedita?

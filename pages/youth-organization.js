@@ -20,7 +20,7 @@ function YouthOrganizationForm() {
           Join as a Youth Organization
         </Typography>
         <Typography variant="body1" paragraph sx={{ lineHeight: 1.8, textAlign: 'justify', mb: 4 }}>
-          We are thrilled that you're interested in joining the SUN Youth Network. Please fill out the form below to register your organization. Together, we can make a significant impact on nutrition and health for the youth in Bangladesh.
+          We are thrilled that you're interested in joining the SUN Youth Network Network. Please fill out the form below to register your organization. Together, we can make a significant impact on nutrition and health for the youth in Bangladesh.
         </Typography>
 
         <Box component="form" noValidate autoComplete="off">

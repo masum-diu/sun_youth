@@ -58,12 +58,12 @@ function youthvoicessummit() {
             <Box
               component="img"
               src="/assets/gainandsdf.png" // Replace with your actual image path
-              alt="SUN Youth Network Bangladesh"
+              alt="SUN Youth Network Network Bangladesh"
               sx={{ width: '100%', objectFit: 'cover', borderRadius: 2, mb: 3 }}
             />
             <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
-              This is where you can add a detailed description of the SUN Youth Network Bangladesh. You can talk about its history, goals, and the impact it has made. This text will serve as an introduction before the mission and vision statements.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus minus ratione sunt quaerat veniam dolorem, aliquam dignissimos quasi quia iure quisquam animi neque iusto vitae fuga consequatur illo officia! Vitae eum ea repudiandae, magnam perferendis quibusdam totam explicabo consequatur asperiores! Aspernatur minus iusto natus magni commodi unde tempora accusamus aliquid qui? Similique debitis dignissimos eveniet corrupti cumque nobis necessitatibus nesciunt recusandae voluptates tenetur quam magni doloremque, reprehenderit, earum labore eaque nostrum soluta? Esse voluptate, earum facilis sequi inventore quasi asperiores nostrum, non aut provident nemo temporibus amet accusantium quisquam quos cupiditate a quis! Labore esse facere, possimus est iusto cum dolores nihil, sit illo doloremque nesciunt molestiae voluptate exercitationem, adipisci laudantium dolore expedita ratione deleniti! Id deleniti recusandae, ullam eligendi quos illum iusto velit nostrum commodi neque doloribus. Magnam quasi voluptates, quam exercitationem eligendi fuga est et, reprehenderit eius doloribus id. Libero voluptas rem optio. Unde saepe omnis officiis explicabo temporibus dicta totam nesciunt sed, numquam perspiciatis facilis necessitatibus praesentium corrupti assumenda amet minima autem corporis et quis voluptatum aliquam! Nostrum doloremque tempore assumenda voluptatibus, eaque accusamus dicta sunt. Laborum nesciunt facere tempore quibusdam delectus. At culpa quasi esse, ducimus consequuntur incidunt temporibus fuga quidem tempora vero delectus, aut expedita?
+              This is where you can add a detailed description of the SUN Youth Network Network Bangladesh. You can talk about its history, goals, and the impact it has made. This text will serve as an introduction before the mission and vision statements.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus minus ratione Sunt quaerat veniam dolorem, aliquam dignissimos quasi quia iure quisquam animi neque iusto vitae fuga consequatur illo officia! Vitae eum ea repudiandae, magnam perferendis quibusdam totam explicabo consequatur asperiores! Aspernatur minus iusto natus magni commodi unde tempora accusamus aliquid qui? Similique debitis dignissimos eveniet corrupti cumque nobis necessitatibus nesciunt recusandae voluptates tenetur quam magni doloremque, reprehenderit, earum labore eaque nostrum soluta? Esse voluptate, earum facilis sequi inventore quasi asperiores nostrum, non aut provident nemo temporibus amet accusantium quisquam quos cupiditate a quis! Labore esse facere, possimus est iusto cum dolores nihil, sit illo doloremque nesciunt molestiae voluptate exercitationem, adipisci laudantium dolore expedita ratione deleniti! Id deleniti recusandae, ullam eligendi quos illum iusto velit nostrum commodi neque doloribus. Magnam quasi voluptates, quam exercitationem eligendi fuga est et, reprehenderit eius doloribus id. Libero voluptas rem optio. Unde saepe omnis officiis explicabo temporibus dicta totam nesciunt sed, numquam perspiciatis facilis necessitatibus praesentium corrupti assumenda amet minima autem corporis et quis voluptatum aliquam! Nostrum doloremque tempore assumenda voluptatibus, eaque accusamus dicta Sunt. Laborum nesciunt facere tempore quibusdam delectus. At culpa quasi esse, ducimus consequuntur incidunt temporibus fuga quidem tempora vero delectus, aut expedita?
 
             </Typography>
 
@@ -108,7 +108,7 @@ function youthvoicessummit() {
 
           <Grid size={{ xs: 12, sm: 6, md: 12 }} >
             <Stack maxWidth={900} mx={"auto"} direction={"column"} spacing={4} justifyContent={"center"} alignItems={"center"} height={"100%"} >
-              <Typography variant="body1" fontWeight={500} fontSize={20}>Information collected from or submitted by, the SUN Youth Network and other relevant stakeholders.</Typography>
+              <Typography variant="body1" fontWeight={500} fontSize={20}>Information collected from or submitted by, the SUN Youth Network Network and other relevant stakeholders.</Typography>
               <Stack direction={"row"} spacing={2} width={"100%"} >
                 <TextField
                   type="text"

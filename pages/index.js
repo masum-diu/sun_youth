@@ -19,35 +19,38 @@ import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import BangladeshMap from "./components/BangladeshMap";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 
 function Home() {
+  const router = useRouter();
   const getInvolvedOptions = [
     {
       image: "/assets/group_icon.png",
-      title: "Join a Sun Youth Network!",
+      title: "Join a SUN Youth Network Bangladesh!",
       description:
-        "Our dynamic networks is seeking youth organization committed to improving nutrition.",
-      button: "Sun Youth network Member",
+        "We are seeking youth organization committed to improving nutrition.",
+      button: "SUN Youth Network Member",
     },
     {
       image: "/assets/public_icon.png",
       title: "Attend an event",
       description:
-        "Join over 242 businesses committed to improving nutrition through the Sun Youth Network. Access exclusive resources, networking opportunities, and more.",
+        "Join over 242 Youth Organization committed to improving nutrition through the SUN Youth Network Network. Access exclusive resources, networking opportunities, and more.",
       button: "Events",
     },
     {
       image: "/assets/event_icon.png",
       title: "Learn more",
       description:
-        "Participate in our webinars, workshops, and conferences to learn about the latest in business and nutrition, and connect with like-minded Youth.",
+        " Latest Youth activities around nutrition and connect with like-minded individuals.",
       button: "Resource",
+      link:"/what-we-do/gallery"
     },
     {
       image: "/assets/email_icon.png",
       title: "Sign Up for Newsletter",
       description:
-        "Stay updated with the latest news, resources, and events from Sun Youth Network by subscribing to our monthly newsletter.",
+        "Stay updated with the latest news, resources, and events from SUN Youth Network Network by subscribing to our monthly newsletter.",
       button: "Sign up",
     },
   ];
@@ -56,22 +59,22 @@ function Home() {
       image: "/assets/governace.jpg",
       title: "Mission",
       description:
-        "The mission of the SUN Youth Network Bangladesh is to empower and mobilize youth and adolescents to lead meaningful action on nutrition, strengthen youth voices in policy and community spaces, and support sustained commitment to advancing national and global nutrition goals.",
-      button: "Read More",
+        "The mission of the SUN Youth Network Network Bangladesh is to empower and mobilize youth and adolescents to lead meaningful action on nutrition, strengthen youth voices in policy and community spaces, and support sustained commitment to advancing national and global nutrition goals.",
+     
     },
     {
-      image: "/assets/governace.jpg",
+      image: "/assets/governace.jpeg",
       title: "Governance",
       description:
-        "SUN Youth Network Bangladesh consists of youth-led organizations, youth-led clubs in universities and communities who are intensively working and interested in contributing to nutrition outcome development.",
-      button: "Read More",
+        "SUN Youth Network Network Bangladesh consists of youth-led organizations, youth-led clubs in universities and communities who are intensively working and interested in contributing to nutrition outcome development.",
+     
     },
     {
-      image: "/assets/governace.jpg",
-      title: "Focal Points",
+      image: "/assets/governace2.jpeg",
+      title: "Focal Point",
       description:
-        "The focal point of the SUN Youth Network Bangladesh serves as the primary coordinator and liaison, ensuring effective communication, coordination, and implementation of network activities in alignment with national priorities and the SUN Movement.",
-      button: "Read More",
+        "The focal point of the SUN Youth Network Network Bangladesh serves as the primary coordinator and liaison, ensuring effective communication, coordination, and implementation of network activities in alignment with national priorities and the Sun Movement.",
+    
     },
   ];
   const latestNews = [
@@ -485,9 +488,9 @@ function Home() {
                   color: "#FFF",
                 }}
               >
-                SUN Youth Bangladesh
+                SUN Youth Network Bangladesh
               </Typography>
-              <Typography
+              {/* <Typography
                 variant="h3"
                 sx={{
                   fontWeight: 600,
@@ -496,7 +499,7 @@ function Home() {
                 }}
               >
                 THEN AND NOW
-              </Typography>
+              </Typography> */}
 
               <Box
                 sx={{
@@ -564,7 +567,7 @@ function Home() {
                       >
                         {/* 70th GEF Council <br />
                         Meeting – Dec. 2025 */}
-                        Fosylx Training – 2024
+                        FOSYLx Training – 2026
                       </Typography>
                     </Stack>
                     <Typography
@@ -619,9 +622,9 @@ function Home() {
                   color: "#FFF",
                 }}
               >
-                SUN Youth Bangladesh
+                SUN Youth Network Bangladesh
               </Typography>
-              <Typography
+              {/* <Typography
                 variant="h3"
                 sx={{
                   fontWeight: 600,
@@ -630,7 +633,7 @@ function Home() {
                 }}
               >
                 THEN AND NOW
-              </Typography>
+              </Typography> */}
               <Box
                 sx={{
                   display: "flex",
@@ -640,6 +643,7 @@ function Home() {
                 <Button
                   variant="contained"
                   color="primary"
+                  onClick={()=>(route)}
                   sx={{
                     width: 178,
                     height: 56,
@@ -647,6 +651,7 @@ function Home() {
                     fontWeight: "500",
                     backgroundColor: "#b20933",
                     "&:hover": { backgroundColor: "#b20933" },
+                    
                   }}
                 >
                   learn more
@@ -698,7 +703,7 @@ function Home() {
                       >
                         {/* 70th GEF Council <br />
                       Meeting – Dec. 2025 */}
-                        Fosylx Training – 2024
+                        FOSYLx Training – 2026
                       </Typography>
                     </Stack>
                     <Typography
@@ -753,9 +758,9 @@ function Home() {
                   color: "#FFF",
                 }}
               >
-                SUN Youth bangladesh
+                SUN Youth Network bangladesh
               </Typography>
-              <Typography
+              {/* <Typography
                 variant="h3"
                 sx={{
                   fontWeight: 600,
@@ -764,7 +769,7 @@ function Home() {
                 }}
               >
                 THEN AND NOW
-              </Typography>
+              </Typography> */}
               <Box
                 sx={{
                   display: "flex",
@@ -831,7 +836,7 @@ function Home() {
                       >
                         {/* 70th GEF Council <br />
                       Meeting – Dec. 2025 */}
-                        Fosylx Training – 2024
+                        FOSYLx Training – 2026
                       </Typography>
                     </Stack>
                     <Typography
@@ -904,13 +909,13 @@ function Home() {
             variant="h6"
             sx={{ fontWeight: 700, fontSize: 50, textAlign: "center" }}
           >
-            40 Districts
+            40
           </Typography>
           <Typography
             variant="body1"
             sx={{ mt: 1, textAlign: "center", fontWeight: 400, fontSize: 20 }}
           >
-            Geographic Coverage
+            Districts
           </Typography>
         </Grid>
       </Grid>
@@ -935,8 +940,8 @@ function Home() {
                   backgroundImage: `
       linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.3),
-        rgba(0, 0, 0, 0.9)
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.94)
       ),
       url('${option.image}')
     `,
@@ -1011,7 +1016,7 @@ function Home() {
             color: "#fff",
           }}
         >
-          The map of SUN youth Bangladesh
+          The map of SUN Youth Network Bangladesh
         </Typography>{" "}
         <Grid
           container
@@ -1087,7 +1092,7 @@ function Home() {
             </Paper>
           )}
 
-          <Grid size={{ xs: 12, sm: 6, md: 6 }}>
+          <Grid size={{ xs: 12, sm: 6, md: 4 }}>
             <Stack
               direction={"column"}
               spacing={4}
@@ -1096,14 +1101,14 @@ function Home() {
               height={"100%"}
             >
               <Typography
-                sx={{ fontSize: { lg: 45, xs: 24 }, pt: { lg: 0, xs: "30px" } }}
+                sx={{ fontSize: { lg: 35, xs: 24 }, pt: { lg: 0, xs: "30px" } }}
                 variant="body1"
                 color="initial"
                 fontWeight={500}
               >
                 Food system youth leadership Training
               </Typography>
-              <Typography sx={{ pb: 2 }} variant="body1" color="#7c7c7c">
+              <Typography sx={{ pb: 2 }} variant="body1" color="#7c7c7c" textAlign={"justify"}>
                 The program is designed to build youth leadership and encourage
                 practical engagement in food systems through a structured and
                 participatory approach. It begins with a selection process to
@@ -1123,7 +1128,7 @@ function Home() {
               </Stack> */}
             </Stack>
           </Grid>
-          <Grid sx={{ mt: { lg: 0, xs: 10 } }} size={{ xs: 11, sm: 6, md: 6 }}>
+          <Grid sx={{ mt: { lg: 0, xs: 10 } }} size={{ xs: 11, sm: 6, md: 8 }}>
             {/* <img src="/assets/bangladesh.png" alt="" width={"100%"} /> */}
             <BangladeshMap
               onSelect={(division) => console.log(division)}
@@ -1206,7 +1211,7 @@ function Home() {
               fontSize={40}
               textAlign={"center"}
             >
-              5000+
+            47+
             </Typography>
             <Typography
               variant="body1"
@@ -1215,7 +1220,7 @@ function Home() {
               fontSize={20}
               textAlign={"center"}
             >
-              Volunteer Helpers{" "}
+              Received Grand
             </Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
@@ -1235,7 +1240,7 @@ function Home() {
               fontSize={40}
               textAlign={"center"}
             >
-              1200+
+              839+
             </Typography>
             <Typography
               variant="body1"
@@ -1244,7 +1249,7 @@ function Home() {
               fontSize={20}
               textAlign={"center"}
             >
-              Donated
+              Number of Event Organized
             </Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
@@ -1264,7 +1269,7 @@ function Home() {
               fontSize={40}
               textAlign={"center"}
             >
-              300+
+              1L+
             </Typography>
             <Typography
               variant="body1"
@@ -1273,7 +1278,7 @@ function Home() {
               fontSize={20}
               textAlign={"center"}
             >
-              Products & Gifts
+              Beneficially Reach
             </Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
@@ -1293,7 +1298,7 @@ function Home() {
               fontSize={40}
               textAlign={"center"}
             >
-              50+
+              1.1M+
             </Typography>
             <Typography
               variant="body1"
@@ -1302,7 +1307,7 @@ function Home() {
               fontSize={20}
               textAlign={"center"}
             >
-              Volunteer Helpers
+              Social Media Reach
             </Typography>
           </Grid>
         </Grid>
@@ -1316,6 +1321,7 @@ function Home() {
             mb: 4,
             textTransform: "capitalize",
             fontSize: 40,
+            color: "#B20933",
           }}
         >
           Impact Stories
@@ -1341,7 +1347,7 @@ function Home() {
                 </Typography>
                 <Typography
                   variant="h6"
-                  sx={{ mt: 2, fontWeight: 700, fontSize: 20 }}
+                  sx={{ mt: 2, fontWeight: 700, fontSize: 20,  color: "#B20933" }} 
                 >
                   {option.title}
                 </Typography>
@@ -1478,7 +1484,7 @@ function Home() {
             fontWeight: 500,
             my: 6,
             textTransform: "capitalize",
-            fontSize: 40,
+            fontSize: 40, color: "#B20933"
           }}
         >
           Youth engagement and impact
@@ -1520,7 +1526,7 @@ function Home() {
                   <Typography variant="body1" fontWeight={400} fontSize={14}>
                     The program strengthens a sustainable Youth Network in
                     Bangladesh aligned with national priorities and the global
-                    SUN movement, while advocating for policies that support
+                    Sun movement, while advocating for policies that support
                     nutrition goals.
                   </Typography>
                 </Stack>
@@ -1573,7 +1579,7 @@ function Home() {
                     Nutrition Financing and Advocacy
                   </Typography>
                   <Typography variant="body1" fontWeight={400} fontSize={14}>
-                    The initiative works with SUN Networks to engage
+                    The initiative works with Sun Networks to engage
                     policymakers, promote youth participation, and support
                     increased investment in effective nutrition policies and
                     programs.
@@ -1590,7 +1596,7 @@ function Home() {
             fontWeight: 500,
             my: 6,
             textTransform: "capitalize",
-            fontSize: 40,
+            fontSize: 40, color: "#B20933"
           }}
         >
           News and blogs
@@ -1615,7 +1621,7 @@ function Home() {
                 </Typography>
                 <Typography
                   variant="h6"
-                  sx={{ mt: 2, fontWeight: 700, fontSize: 20 }}
+                  sx={{ mt: 2, fontWeight: 700, fontSize: 20, color: "#B20933" }}
                 >
                   {option.title}
                 </Typography>
@@ -1641,7 +1647,7 @@ function Home() {
       <Box sx={{ py: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
         <Typography
           variant="h4"
-          sx={{ textAlign: "center", fontWeight: 700, mb: 15 }}
+          sx={{ textAlign: "center", fontWeight: 700, mb: 15, color: "#B20933" }}
         >
           Get Involved
         </Typography>
@@ -1728,7 +1734,7 @@ function Home() {
                   sx={{
                     mt: 3,
                     backgroundColor: "#f5821f",
-                    "&:hover": { backgroundColor: "#f5821f" },
+                    "&:hover": { backgroundColor: "#b20933" },
                     borderRadius: 0,
                     py: 1.5,
                     textTransform: "capitalize",
@@ -1787,7 +1793,7 @@ function Home() {
               height={"100%"}
             >
               <Typography variant="body1" fontWeight={500} fontSize={20}>
-                Information collected from or submitted by, the Sun Youth
+                Information collected from or submitted by, the SUN Youth Network
                 network Bangladesh and other relevant stakeholders.
               </Typography>
               <Stack direction={"row"} spacing={2} width={"100%"}>

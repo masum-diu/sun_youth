@@ -40,7 +40,7 @@ const navLinks = [
         path: "/about-us/sun-youth-network-brief",
       },
       //   { title: "Government (MoHFW)", path: "/about-us/government-mohfw" },
-      //   { title: "SUN Movement", path: "/about-us/sun-movement" },
+      //   { title: "Sun Movement", path: "/about-us/Sun-movement" },
       //   {
       //     title: "Secretariat (GAIN) info and logo",
       //     path: "/about-us/secretariat-gain",
@@ -129,7 +129,7 @@ function Header() {
         }}
         title={`Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure`}
       >
-       Empowering youth across Bangladesh to drive nutrition action, influence policy, and strengthen food systems through a coordinated platform aligned with national priorities and the global SUN Movement.
+       Empowering youth across Bangladesh to drive nutrition action, influence policy, and strengthen food systems through a coordinated platform aligned with national priorities and the global Sun Movement.
       </Typography>
       <AppBar position="static" sx={{ bgcolor: "#f0eee2", color: "#000000" }}>
         <Toolbar

@@ -4,6 +4,7 @@ import FacebookIcon from '@mui/icons-material/Facebook'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import InstagramIcon from '@mui/icons-material/Instagram'
+import YouTubeIcon from '@mui/icons-material/YouTube'
 
 function Footer() {
     return (
@@ -14,11 +15,11 @@ function Footer() {
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                             <Box >
                                 {/* Replace with real logo image if available */}
-                                <img src="/assets/logo1.png" alt="Sun Youth" style={{ width: '100%', maxWidth: "487px" }} />
+                                <img src="/assets/logo1.png" alt="SUN Youth Network" style={{ width: '100%', maxWidth: "487px" }} />
                             </Box>
                         </Box>
                         <Typography sx={{ mt: 4, color: 'rgba(255,255,255,0.8)', maxWidth: 480, lineHeight: 1.8 }}>
-                           SUN Youth Network is a youth-led global alliance advancing environmental sustainability and climate action by empowering young leaders and organizations.
+                           SUN Youth Network Bangladesh is a youth-led global alliance advancing environmental sustainability and climate action by empowering young leaders and organizations.
                         </Typography>
                     </Grid>
 
@@ -27,10 +28,10 @@ function Footer() {
                             About
                         </Typography>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                            <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.85)' }}>About the Network</Link>
-                            <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.85)' }}>Network Governance</Link>
-                            <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.85)' }}>Regional Focal Points</Link>
-                            <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.85)' }}>Contact</Link>
+                            {/* <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.85)' }}>About the Network</Link> */}
+                            <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.85)' }}>House 20, Road 99, Gulshan 2, Dhaka 1212</Link>
+                            {/* <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.85)' }}>Regional Focal Points</Link> */}
+                            {/* <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.85)' }}>Contact</Link> */}
                         </Box>
                     </Grid>
 
@@ -40,8 +41,8 @@ function Footer() {
                         </Typography>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                             <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.85)' }}>Membership benefits</Link>
-                            <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.85)' }}>Application Procedure</Link>
-                            <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.85)' }}>Application Form</Link>
+                            {/* <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.85)' }}>Application Procedure</Link>
+                            <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.85)' }}>Application Form</Link> */}
                         </Box>
                     </Grid>
 
@@ -71,9 +72,9 @@ function Footer() {
                     </Box>
                     <Box sx={{ display: 'flex', gap: 2 }}>
                         <FacebookIcon sx={{ color: 'rgba(255,255,255,0.9)' }} />
-                        <TwitterIcon sx={{ color: 'rgba(255,255,255,0.9)' }} />
                         <LinkedInIcon sx={{ color: 'rgba(255,255,255,0.9)' }} />
-                        <InstagramIcon sx={{ color: 'rgba(255,255,255,0.9)' }} />
+                        <YouTubeIcon sx={{ color: 'rgba(255,255,255,0.9)' }} />
+                        
                     </Box>
                 </Box>
             </Box>

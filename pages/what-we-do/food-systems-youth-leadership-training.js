@@ -136,7 +136,7 @@ function foodsystemsyouthleadershiptraining() {
             <Box
               component="img"
               src="/assets/food.jpg" // Replace with your actual image path
-              alt="SUN Youth Network Bangladesh"
+              alt="SUN Youth Network Network Bangladesh"
               sx={{ width: "100%", objectFit: "cover", borderRadius: 2, mb: 3 }}
             />
             <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
@@ -224,7 +224,7 @@ function foodsystemsyouthleadershiptraining() {
 
           <Grid size={{ xs: 12, sm: 6, md: 12 }} >
             <Stack maxWidth={900} mx={"auto"} direction={"column"} spacing={4} justifyContent={"center"} alignItems={"center"} height={"100%"} >
-              <Typography variant="body1" fontWeight={500} fontSize={20}>Information collected from or submitted by, the SUN Youth Network and other relevant stakeholders.</Typography>
+              <Typography variant="body1" fontWeight={500} fontSize={20}>Information collected from or submitted by, the SUN Youth Network Network and other relevant stakeholders.</Typography>
               <Stack direction={"row"} spacing={2} width={"100%"} >
                 <TextField
                   type="text"

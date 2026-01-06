@@ -153,7 +153,7 @@ function bkbt() {
             <Box
               component="img"
               src="/assets/bkbt.jpeg" // Replace with your actual image path
-              alt="SUN Youth Network Bangladesh"
+              alt="SUN Youth Network Network Bangladesh"
               sx={{ width: "100%", objectFit: "cover", borderRadius: 2, mb: 3 }}
             />
             <Typography
@@ -164,7 +164,7 @@ function bkbt() {
               Bhalo Khabo Bhalo Thakbo (BKBT), which translates to 'Eat Well,
               Live Well,' is a nationwide campaign dedicated to promoting
               healthy eating habits and improving nutrition among the youth of
-              Bangladesh. Launched by the SUN Youth Network, BKBT aims to create
+              Bangladesh. Launched by the SUN Youth Network Network, BKBT aims to create
               a mass movement that empowers young people to make informed
               dietary choices and advocate for better food systems in their
               communities.
@@ -272,7 +272,7 @@ function bkbt() {
               height={"100%"}
             >
               <Typography variant="body1" fontWeight={500} fontSize={20}>
-                Information collected from or submitted by, the SUN Youth
+                Information collected from or submitted by, the SUN Youth Network
                 Network and other relevant stakeholders.
               </Typography>
               <Stack direction={"row"} spacing={2} width={"100%"}>
