@@ -1,48 +1,53 @@
-import React from 'react';
-import { Box, Typography, Stack, Container, Grid, Card, CardMedia, CardContent, CardActions, Button } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Typography, Stack, Container, Grid, Card, CardMedia, CardContent, CardActions, Button, ToggleButtonGroup, ToggleButton } from '@mui/material';
 import { useRouter } from 'next/router';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import NextLink from "next/link";
 
 function NewsBlogsPage() {
   // Placeholder data for impact stories
-const stories = [
-  
-  
-  {
-    title: "From Campus Conversations to Global Advocacy",
-    excerpt:
-      "From Campus Conversations to Global Advocacy: Al-Amin’s Journey in Transforming Food Systems",
-    image: "/assets/al-amin/AL AMIN.JPG",
+  const stories = [
 
-    link: "/impact-stories/6",
-  },
-  {
-    title: "Bringing Smiles Through Food",
-    excerpt:
-      "Bringing Smiles Through Food: A Journey with the ‘Tiffiner Hashi’ Project",
-    image: "/assets/sayeda/1.jpg",
 
-    link: "/impact-stories/7",
-  },
-  {
-    title: "Pusti Bondhu",
-    excerpt:
-      "Pusti Bondhu: A Youth-Led Initiative to Improve Campus Nutrition",
-    image: "/assets/soyed/author.jpg",
-
-    link: "/impact-stories/8",
-  },
-  {
-    title: "From Courtyard to Community Change",
-    excerpt:
-      "From Courtyard to Community Change: A Youth-led Nutrition Movement in Rural Bangladesh",
-    image: "/assets/imran-rabby/author.jpg",
-
-    link: "/impact-stories/9",
-  },
-];
+    {
+      title: "From Campus Conversations to Global Advocacy",
+      excerpt:
+        "From Campus Conversations to Global Advocacy: Al-Amin’s Journey in Transforming Food Systems",
+      image: "/assets/al-amin/AL AMIN.JPG",
+      lang: 'en',
+      link: "/impact-stories/6",
+    },
+    {
+      title: "Bringing Smiles Through Food",
+      excerpt:
+        "Bringing Smiles Through Food: A Journey with the ‘Tiffiner Hashi’ Project",
+      image: "/assets/sayeda/1.jpg",
+      lang: 'bn',
+      link: "/impact-stories/7",
+    },
+    {
+      title: "Pusti Bondhu",
+      excerpt:
+        "Pusti Bondhu: A Youth-Led Initiative to Improve Campus Nutrition",
+      image: "/assets/soyed/author.jpg",
+      lang: 'bn',
+      link: "/impact-stories/8",
+    },
+    {
+      title: "From Courtyard to Community Change",
+      excerpt:
+        "From Courtyard to Community Change: A Youth-led Nutrition Movement in Rural Bangladesh",
+      image: "/assets/imran-rabby/author.jpg",
+      lang: 'en',
+      link: "/impact-stories/9",
+    },
+  ];
   const router = useRouter();
+  const [language, setLanguage] = useState('all');
+
+  const handleLangChange = (event, value) => {
+    if (value !== null) setLanguage(value);
+  };
   return (
     <React.Fragment>
       <Box sx={{ bgcolor: "#f5821f", height: 200, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", color: "#fff", }}>
@@ -56,7 +61,7 @@ const stories = [
         </Stack>
       </Box>
 
-       <Box sx={{ bgcolor: "#f0eee2", py: { xs: 6, md: 10 } }}>
+      <Box sx={{ bgcolor: "#f0eee2", py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Typography
             variant="h2"
@@ -77,12 +82,28 @@ const stories = [
             the dedication of our volunteers and the resilience of the
             communities we serve.
           </Typography>
+
         </Container>
       </Box>
 
-    
-        <Grid container spacing={4} sx={{ padding: { xs: 2, md: 4 }, maxWidth: "1700px", margin: "0 auto" }}>
-          {stories.map((story) => (
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end',  alignItems: 'center', width: "95%", maxWidth: "1700px", margin: "0 auto", }}>
+        <ToggleButtonGroup
+          value={language}
+          exclusive
+          onChange={handleLangChange}
+          aria-label="language filter"
+          sx={{ mt: 2.5 }}
+        >
+          <ToggleButton value="all" aria-label="all">All</ToggleButton>
+          <ToggleButton value="en" aria-label="english">English</ToggleButton>
+          <ToggleButton value="bn" aria-label="bangla">Bangla</ToggleButton>
+        </ToggleButtonGroup>
+      </Box>
+
+      <Grid container spacing={4} sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", my: 4 }}>
+        {stories
+          .filter((s) => language === 'all' ? true : s.lang === language)
+          .map((story) => (
             <Grid item key={story.title} size={{ xs: 12, sm: 6, md: 4 }}>
               <Card
                 sx={{
@@ -125,7 +146,7 @@ const stories = [
               </Card>
             </Grid>
           ))}
-        </Grid>
+      </Grid>
     </React.Fragment>
   );
 }

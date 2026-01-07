@@ -122,7 +122,7 @@ function bkbt() {
               }}
               onClick={() => router.push("/what-we-do/fosylx")}
             >
-              FoSYLx
+              FOSYLx
             </Typography>
             <Divider
               orientation="horizontal"

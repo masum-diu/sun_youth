@@ -11,11 +11,11 @@ function YouthOrganizationForm() {
         <Stack direction={"row"} alignItems="center" justifyContent="space-between"
           sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", }}>
           <Typography variant="h5" sx={{ fontWeight: 'bold' }}>JOIN OUR NETWORK</Typography>
-          <Box component="span" sx={{ fontSize: 14, color: "#fff", fontWeight: 600 }}>{router?.route}</Box>
+          {/* <Box component="span" sx={{ fontSize: 14, color: "#fff", fontWeight: 600 }}>{router?.route}</Box> */}
         </Stack>
       </Box>
 
-      <Box sx={{ width: "95%", maxWidth: "1200px", margin: "40px auto" }}>
+      <Box sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto",my:4 }}>
         <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', mb: 2 }}>
           Join as a Youth Organization
         </Typography>

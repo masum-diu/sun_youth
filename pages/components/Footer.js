@@ -8,7 +8,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube'
 
 function Footer() {
     return (
-        <Box component="footer" sx={{ backgroundColor: '#36383A', color: '#eee',  }}>
+        <Box component="footer" sx={{ backgroundColor: '#36383A', color: '#eee', }}>
             <Box sx={{ py: 8, width: '95%', margin: '0 auto', maxWidth: '1700px' }}>
                 <Grid container spacing={4}>
                     <Grid size={{ xs: 12, md: 4 }}>
@@ -19,7 +19,7 @@ function Footer() {
                             </Box>
                         </Box>
                         <Typography sx={{ mt: 4, color: 'rgba(255,255,255,0.8)', maxWidth: 480, lineHeight: 1.8 }}>
-                           SUN Youth Network Bangladesh is a youth-led global alliance advancing environmental sustainability and climate action by empowering young leaders and organizations.
+                            SUN Youth Network Bangladesh is a youth-led global alliance advancing environmental sustainability and climate action by empowering young leaders and organizations.
                         </Typography>
                     </Grid>
 
@@ -64,8 +64,11 @@ function Footer() {
             <Divider sx={{ borderColor: 'rgba(255,255,255,0.12)' }} />
 
             <Box sx={{ py: 3, width: '95%', margin: '0 auto', maxWidth: '1700px' }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
-                    <Typography sx={{ color: 'rgba(255,255,255,0.7)' }}>© 2025 . All rights reserved.</Typography>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2, flexDirection: { xs: 'column', md: 'row' } }}>
+                    <Typography sx={{ color: 'rgba(255,255,255,0.7)' }}>
+                        © 2025. Developed by <Link href="https://www.ethertech.ltd/" target="_blank" underline="none"><span style={{ color: '#f5821f', fontWeight: 700 }}>EtherTech</span></Link>.
+                    </Typography>
+
                     <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
                         <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.7)' }}>Privacy Statement</Link>
                         <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.7)' }}>Code of conduct</Link>
@@ -74,7 +77,7 @@ function Footer() {
                         <FacebookIcon sx={{ color: 'rgba(255,255,255,0.9)' }} />
                         <LinkedInIcon sx={{ color: 'rgba(255,255,255,0.9)' }} />
                         <YouTubeIcon sx={{ color: 'rgba(255,255,255,0.9)' }} />
-                        
+
                     </Box>
                 </Box>
             </Box>

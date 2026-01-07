@@ -1,6 +1,7 @@
-import { Box, Divider, Grid, ImageList, ImageListItem, ImageListItemBar, Stack, Typography } from '@mui/material';
+import { Box, Divider, Grid, ImageList, ImageListItem, ImageListItemBar, Stack, Typography, Dialog, DialogContent, IconButton } from '@mui/material';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 
 function Gallery() {
   const router = useRouter();
@@ -29,6 +30,9 @@ function Gallery() {
     };
   }
 
+  const [open, setOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
   return (
     <React.Fragment>
       <Box sx={{ bgcolor: "#f5821f", height: 200, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", color: "#fff", }}>
@@ -56,7 +60,7 @@ function Gallery() {
             <Divider orientation="horizontal" variant="fullWidth" sx={{ my: 2 }} />
             <Typography sx={{ fontWeight: 'bold', fontSize: 16, cursor: "pointer", color: router?.route === '/what-we-do/food-systems-youth-leadership-training' ? "#f5821f" : "#000" }} onClick={() => router.push('/what-we-do/food-systems-youth-leadership-training')}>Food Systems Youth Leadership Training</Typography>
             <Divider orientation="horizontal" variant="fullWidth" sx={{ my: 2 }} />
-            <Typography sx={{ fontWeight: 'bold', fontSize: 16, cursor: "pointer", color: router?.route === '/what-we-do/fosylx' ? "#f5821f" : "#000" }} onClick={() => router.push('/what-we-do/fosylx')}>FoSYLx</Typography>
+            <Typography sx={{ fontWeight: 'bold', fontSize: 16, cursor: "pointer", color: router?.route === '/what-we-do/fosylx' ? "#f5821f" : "#000" }} onClick={() => router.push('/what-we-do/fosylx')}>FOSYLx</Typography>
             <Divider orientation="horizontal" variant="fullWidth" sx={{ my: 2 }} />
             <Typography sx={{ fontWeight: 'bold', fontSize: 16, cursor: "pointer", color: router?.route === '/what-we-do/impact-fellowship' ? "#f5821f" : "#000" }} onClick={() => router.push('/what-we-do/impact-fellowship')}>IMPACT Fellowship</Typography>
             <Divider orientation="horizontal" variant="fullWidth" sx={{ my: 2 }} />
@@ -70,17 +74,18 @@ function Gallery() {
               Explore moments from our journey to improve nutrition and empower youth across Bangladesh. This gallery captures the energy of our workshops, the impact of our campaigns, and the spirit of our dedicated volunteers and participants.
             </Typography>
 
-            <ImageList
-              variant="quilted"
-              cols={4}
-              rowHeight={121}
-            >
+            <ImageList variant="quilted">
               {itemData.map((item) => (
-                <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
+                <ImageListItem key={item.img}>
                   <img
                     {...srcset(item.img, 121, item.rows, item.cols)}
                     alt={item.title}
                     loading="lazy"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => {
+                      setSelectedImage(item.img);
+                      setOpen(true);
+                    }}
                   />
                   <ImageListItemBar
                     title={item.title}
@@ -93,6 +98,22 @@ function Gallery() {
                 </ImageListItem>
               ))}
             </ImageList>
+
+            <Dialog
+              open={open}
+              onClose={() => setOpen(false)}
+              maxWidth="xl"
+              PaperProps={{ sx: { backgroundColor: 'transparent', boxShadow: 'none' } }}
+            >
+              <DialogContent sx={{ p: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <IconButton onClick={() => setOpen(false)} sx={{ position: 'absolute', top: 8, right: 8, color: '#fff', zIndex: 1300 }}>
+                  <CloseIcon />
+                </IconButton>
+                {selectedImage && (
+                  <img src={selectedImage} alt="Full view" style={{ maxWidth: '90vw', maxHeight: '90vh', objectFit: 'contain' }} />
+                )}
+              </DialogContent>
+            </Dialog>
           </Grid>
         </Grid>
       </Box>

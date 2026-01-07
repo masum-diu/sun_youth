@@ -17,7 +17,7 @@ function foodsystemsyouthleadershiptraining() {
       <Box sx={{ bgcolor: "#f5821f", height: 200, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", color: "#fff", }}>
         <Stack direction={"row"} alignItems="center" justifyContent="space-between"
           sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", }}>
-          <Typography variant="h5" sx={{ fontWeight: 'bold' }}>ABOUT US</Typography>
+          <Typography variant="h5" sx={{ fontWeight: 'bold' }}>WHAT WE DO</Typography>
           {/* {router?.asPath
               ?.split("-")
               ?.map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -105,7 +105,7 @@ function foodsystemsyouthleadershiptraining() {
               }}
               onClick={() => router.push("/what-we-do/fosylx")}
             >
-              FoSYLx
+              FOSYLx
             </Typography>
             <Divider
               orientation="horizontal"

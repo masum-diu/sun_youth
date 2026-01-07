@@ -16,6 +16,8 @@ import {
   Card,
   CardActionArea,
   CardContent,
+  Collapse,
+  ListItemButton,
   useMediaQuery,
   useTheme,
   Drawer,
@@ -29,6 +31,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import GroupIcon from "@mui/icons-material/Group";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import MenuIcon from "@mui/icons-material/Menu";
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 const navLinks = [
   { title: "Home", path: "/", active: true },
@@ -58,7 +61,7 @@ const navLinks = [
         title: "Food Systems Youth Leadership Training",
         path: "/what-we-do/food-systems-youth-leadership-training",
       },
-      { title: "FoSYLx", path: "/what-we-do/fosylx" },
+      { title: "FOSYLx", path: "/what-we-do/fosylx" },
       { title: "IMPACT Fellowship", path: "/what-we-do/impact-fellowship" },
     ],
   },
@@ -76,10 +79,10 @@ const navLinks = [
 
 const linkStyles = {
   cursor: "pointer",
-  "&:hover": { textDecoration: "underline" },
   fontWeight: "500",
   fontSize: 16,
   textDecoration: "none",
+  color: "#000",
 };
 
 function Header() {
@@ -89,6 +92,7 @@ function Header() {
   const [openMenu, setOpenMenu] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedMobile, setExpandedMobile] = useState({});
 
   const handleMenuOpen = (event, title) => {
     setAnchorEl(event.currentTarget);
@@ -106,6 +110,10 @@ function Header() {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
+  };
+
+  const toggleMobileExpand = (title) => {
+    setExpandedMobile((prev) => ({ ...prev, [title]: !prev[title] }));
   };
   return (
     <Box>
@@ -127,9 +135,11 @@ function Header() {
           WebkitLineClamp: { xs: 2, sm: 1 },
           WebkitBoxOrient: "vertical",
         }}
-        title={`Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure`}
+        title={`SUN Youth Network Bangladesh: empowering youth to improve nutrition.`}
       >
-       Empowering youth across Bangladesh to drive nutrition action, influence policy, and strengthen food systems through a coordinated platform aligned with national priorities and the global Sun Movement.
+        {isMobile
+          ? "Empowering youth across Bangladesh to drive nutrition action."
+          : "Empowering youth across Bangladesh to drive nutrition action, influence policy, and strengthen food systems through a coordinated platform aligned with national priorities and the global Sun Movement."}
       </Typography>
       <AppBar position="static" sx={{ bgcolor: "#f0eee2", color: "#000000" }}>
         <Toolbar
@@ -157,7 +167,7 @@ function Header() {
               src="/assets/logo.png"
               alt="Logo"
               sx={{
-                width: { xs: 150, sm: 180, md: 233 },
+                width: { xs: 120, sm: 160, md: 233 },
                 height: "auto",
               }}
             />
@@ -183,7 +193,7 @@ function Header() {
                         mb: 2,
                       }}
                     >
-                      <Typography variant="h6">Menu</Typography>
+                      <img src="/assets/logo.png" alt="Logo"  width={180} style={{objectFit:"cover"}}/>
                       <IconButton onClick={() => setMobileMenuOpen(false)}>
                         <CloseIcon />
                       </IconButton>
@@ -191,59 +201,31 @@ function Header() {
                     <List>
                       {navLinks.map((link) => (
                         <Box key={link.title}>
-                          {link.path ? (
-                            <ListItem
-                              component={NextLink}
-                              href={link.path}
-                              onClick={() => setMobileMenuOpen(false)}
-                              sx={{
-                                ...linkStyles,
-                                ...(link.active && {
-                                  color: "#f5821f",
-                                  fontWeight: "700",
-                                }),
-                              }}
-                            >
-                              <ListItemText primary={link.title} />
-                            </ListItem>
+                          {link.children ? (
+                            <>
+                              <ListItemButton  onClick={() => toggleMobileExpand(link.title)} sx={{ ...linkStyles, justifyContent: 'space-between' }}>
+                                <ListItemText primary={link.title} />
+                                {expandedMobile[link.title] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                              </ListItemButton>
+                              <Collapse in={!!expandedMobile[link.title]} timeout="auto" unmountOnExit>
+                                <List component="div" disablePadding>
+                                  {link.children.map((child) => (
+                                    <ListItem key={child.title} component={NextLink} href={child.path} onClick={() => setMobileMenuOpen(false)} sx={{ pl: 4 }}>
+                                      <ListItemText primary={child.title} />
+                                    </ListItem>
+                                  ))}
+                                </List>
+                              </Collapse>
+                            </>
                           ) : (
-                            <ListItem
-                              onClick={() => setMobileMenuOpen(false)}
-                              sx={linkStyles}
-                            >
+                            <ListItem component={NextLink} href={link.path} onClick={() => setMobileMenuOpen(false)} sx={{ ...linkStyles, ...(link.active && { color: '#f5821f', fontWeight: '700' }) }}>
                               <ListItemText primary={link.title} />
                             </ListItem>
                           )}
-                          {link.children &&
-                            link.children.map((child) => (
-                              <ListItem
-                                key={child.title}
-                                component={NextLink}
-                                href={child.path}
-                                onClick={() => setMobileMenuOpen(false)}
-                                sx={{ pl: 4 }}
-                              >
-                                <ListItemText primary={child.title} />
-                              </ListItem>
-                            ))}
                         </Box>
                       ))}
                       <ListItem sx={{ mt: 2 }}>
-                        <Button
-                          onClick={() => {
-                            setMobileMenuOpen(false);
-                            handleModalOpen();
-                          }}
-                          variant="contained"
-                          fullWidth
-                          sx={{
-                            height: 48,
-                            fontSize: 16,
-                            fontWeight: "700",
-                            backgroundColor: "#f5821f",
-                            "&:hover": { backgroundColor: "#d4701c" },
-                          }}
-                        >
+                        <Button onClick={() => { setMobileMenuOpen(false); handleModalOpen(); }} variant="contained" fullWidth sx={{ height: 48, fontSize: 16, fontWeight: "700", backgroundColor: "#f5821f", "&:hover": { backgroundColor: "#d4701c" } }}>
                           Join the network
                         </Button>
                       </ListItem>

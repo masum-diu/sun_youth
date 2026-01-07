@@ -10,6 +10,10 @@ import {
   TextField,
   Divider,
 } from "@mui/material";
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import EventIcon from '@mui/icons-material/Event';
+import GroupIcon from '@mui/icons-material/Group';
+import PublicIcon from '@mui/icons-material/Public';
 import { useInView } from "react-intersection-observer";
 
 import theme from "@/utils/theme";
@@ -1109,17 +1113,7 @@ function Home() {
                 Food system youth leadership Training
               </Typography>
               <Typography sx={{ pb: 2 }} variant="body1" color="#7c7c7c" textAlign={"justify"}>
-                The program is designed to build youth leadership and encourage
-                practical engagement in food systems through a structured and
-                participatory approach. It begins with a selection process to
-                identify motivated young participants, followed by an intensive
-                three-day Food Systems Youth Leadership Training that
-                strengthens leadership skills, systems thinking, and practical
-                knowledge. Participants then carry out a six-month collective
-                action project at the community level, applying their learning
-                to real-world challenges. Continuous follow-up, monitoring, and
-                learning documentation support progress tracking, capture key
-                lessons, and ensure meaningful and sustainable outcomes.
+                The Food Systems Youth Leadership Training program is designed to nurture young leaders and inspire meaningful, hands-on engagement in food systems through a structured and participatory approach. The program begins with a careful selection process to identify motivated and committed youth participants. This is followed by an intensive three-day training that enhances leadership capacities, strengthens systems thinking, and builds practical knowledge of food systems. After the training, participants implement a six-month community-based collective action project, where they apply their learning to address real-world food system challenges. Throughout the process, continuous follow-up, monitoring, and learning documentation are conducted to track progress, capture key insights, and ensure impactful, sustainable outcomes.s
               </Typography>
               {/* <Stack direction={"row"} spacing={2} width={"100%"} >
                 <Button variant="contained" color="error" fontWeight={500}  >
@@ -1195,21 +1189,16 @@ function Home() {
           sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", mb: 4 }}
         >
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
-            <img
-              src="/assets/icons2.png"
-              alt=""
-              style={{
-                border: "3px solid #fff",
-                padding: 10,
-                borderRadius: "50%",
-              }}
-            />
+            <Box sx={{ width: 100, height: 100, border: '3px solid #fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', mx: 'auto' }}>
+              <MonetizationOnIcon sx={{ color: '#fff', fontSize: 60 }} />
+            </Box>
             <Typography
               variant="h3"
               color="#fff"
               fontWeight={700}
               fontSize={40}
               textAlign={"center"}
+              mt={2}
             >
             47+
             </Typography>
@@ -1224,21 +1213,16 @@ function Home() {
             </Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
-            <img
-              src="/assets/icons1.png"
-              alt=""
-              style={{
-                border: "3px solid #fff",
-                padding: 10,
-                borderRadius: "50%",
-              }}
-            />
+            <Box sx={{ width: 100, height: 100, border: '3px solid #fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', mx: 'auto' }}>
+              <EventIcon sx={{ color: '#fff', fontSize: 60 }} />
+            </Box>
             <Typography
               variant="h3"
               color="#fff"
               fontWeight={700}
               fontSize={40}
               textAlign={"center"}
+              mt={2}
             >
               839+
             </Typography>
@@ -1253,21 +1237,16 @@ function Home() {
             </Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
-            <img
-              src="/assets/icons3.png"
-              alt=""
-              style={{
-                border: "3px solid #fff",
-                padding: 10,
-                borderRadius: "50%",
-              }}
-            />
+            <Box sx={{ width: 100, height: 100, border: '3px solid #fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', mx: 'auto' }}>
+              <GroupIcon sx={{ color: '#fff', fontSize: 60 }} />
+            </Box>
             <Typography
               variant="h3"
               color="#fff"
               fontWeight={700}
               fontSize={40}
               textAlign={"center"}
+              mt={2}
             >
               1L+
             </Typography>
@@ -1282,21 +1261,16 @@ function Home() {
             </Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
-            <img
-              src="/assets/icons2.png"
-              alt=""
-              style={{
-                border: "3px solid #fff",
-                padding: 10,
-                borderRadius: "50%",
-              }}
-            />
+            <Box sx={{ width: 100, height: 100, border: '3px solid #fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', mx: 'auto' }}>
+              <PublicIcon sx={{ color: '#fff', fontSize: 60 }} />
+            </Box>
             <Typography
               variant="h3"
               color="#fff"
               fontWeight={700}
               fontSize={40}
               textAlign={"center"}
+              mt={2}
             >
               1.1M+
             </Typography>
