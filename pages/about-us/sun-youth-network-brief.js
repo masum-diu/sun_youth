@@ -285,9 +285,9 @@ function Sunyouthnetworkbrief() {
         container
         spacing={5}
         justifyContent="center"
-        sx={{ width: "95%", maxWidth: "1200px", margin: "0 auto", my: 6 }}
+        sx={{ width: "95%", maxWidth: "1200px", margin: "0 auto", my: 6 , textAlign: 'center'}}
       >
-        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }} >
           <img src="/assets/Link1.png" alt="" />
         </Grid>
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
@@ -315,8 +315,10 @@ function Sunyouthnetworkbrief() {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
+         
         }}
       >
+        
         <Typography
           variant="h4"
           sx={{
@@ -329,7 +331,7 @@ function Sunyouthnetworkbrief() {
         >
           Get In Tuch
         </Typography>
-        <Grid container spacing={3}>
+        <Grid container spacing={3} sx={{width:"95%",maxWidth:'1700px',mx:"auto"}}>
           <Grid size={{ xs: 12, sm: 6, md: 12 }}>
             <Stack
               maxWidth={900}

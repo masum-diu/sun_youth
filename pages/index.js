@@ -762,7 +762,7 @@ function Home() {
                   color: "#FFF",
                 }}
               >
-                SUN Youth Network bangladesh
+                SUN Youth Network Bangladesh
               </Typography>
               {/* <Typography
                 variant="h3"
