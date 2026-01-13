@@ -24,6 +24,7 @@ import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import BangladeshMap from "./components/BangladeshMap";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
+import ImageFrameUploader from "./components/ImageFrameUploader";
 
 function Home() {
   const router = useRouter();
@@ -158,6 +159,11 @@ function Home() {
     x: 0,
     y: 0,
   });
+
+  const [gallery, setGallery] = useState([])
+  const handleAddToGallery = (dataUrl) => {
+    setGallery((prev) => [dataUrl, ...prev])
+  }
 
   // Sample data for divisions, you can replace this with your actual data
   const divisionData = {
@@ -925,8 +931,8 @@ function Home() {
       </Grid>
 
       {/* this section get involved */}
-      <Box sx={{ py: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
-        <Grid sx={{ mt: { lg: 10, xs: 0 } }} container spacing={3}>
+      <Box sx={{ width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
+        <Grid sx={{ mt: { lg: 10, xs: 3 } }} container spacing={3}>
           {listItems.map((option, index) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Paper
@@ -1011,7 +1017,7 @@ function Home() {
           fontWeight={700}
           fontSize={19}
           sx={{
-            mt: { lg: 15, xs: 0 },
+            mt: { lg: 10, xs: 3 },
             bgcolor: "#f5821f",
             maxWidth: 873,
             textAlign: "right",
@@ -1727,21 +1733,7 @@ function Home() {
         </Grid>
       </Box>
       <Box
-        sx={{
-          px: 3,
-          py: 6,
-          color: "#fff",
-          backgroundImage: `
-    linear-gradient(
-      rgba(178, 9, 51, 0.6),
-      rgba(178, 9, 51, 0.6)
-    ),
-    url('/assets/sky-lac-leman.jpg')
-  `,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        sx={{ width: "95%", margin: "0 auto", maxWidth: "1700px" }}
       >
         <Typography
           variant="h4"
@@ -1753,96 +1745,23 @@ function Home() {
             fontSize: 40,
           }}
         >
-          Get In Touch
+        Gallery 
         </Typography>
-        <Grid container spacing={3}>
+        <Grid container spacing={3} mb={2}>
           <Grid size={{ xs: 12, sm: 6, md: 12 }}>
-            <Stack
-              maxWidth={900}
-              mx={"auto"}
-              direction={"column"}
-              spacing={4}
-              justifyContent={"center"}
-              alignItems={"center"}
-              height={"100%"}
-            >
-              <Typography variant="body1" fontWeight={500} fontSize={20}>
-                Information collected from or submitted by, the SUN Youth Network
-                network Bangladesh and other relevant stakeholders.
-              </Typography>
-              <Stack direction={"row"} spacing={2} width={"100%"}>
-                <TextField
-                  type="text"
-                  placeholder="Full Name"
-                  fullWidth
-                  variant="outlined"
-                  sx={{
-                    input: { color: "#fff" },
-                    "& .MuiOutlinedInput-root fieldset": {
-                      borderColor: "#fff",
-                    },
-                    "& .MuiOutlinedInput-root:hover fieldset": {
-                      borderColor: "#fff",
-                    },
-                    "& .MuiOutlinedInput-root.Mui-focused fieldset": {
-                      borderColor: "#fff",
-                    },
-                    "& input::placeholder": {
-                      color: "#fff",
-                      opacity: 0.7,
-                    },
-                  }}
-                />
 
-                <TextField
-                  type="email"
-                  placeholder="Your Email"
-                  fullWidth
-                  variant="outlined"
-                  sx={{
-                    input: { color: "#fff" },
-                    "& .MuiOutlinedInput-root fieldset": {
-                      borderColor: "#fff",
-                    },
-                    "& .MuiOutlinedInput-root:hover fieldset": {
-                      borderColor: "#fff",
-                    },
-                    "& .MuiOutlinedInput-root.Mui-focused fieldset": {
-                      borderColor: "#fff",
-                    },
-                    "& input::placeholder": {
-                      color: "#fff",
-                      opacity: 0.7,
-                    },
-                  }}
-                />
-              </Stack>
-              <textarea
-                placeholder="Your Message"
-                style={{
-                  width: "100%",
-                  height: 150,
-                  borderRadius: 5,
-                  border: "1px solid #ccc",
-                  padding: 10,
-                }}
-              />
-              <Button
-                variant="contained"
-                size="small"
-                color="error"
-                fontWeight={500}
-                sx={{
-                  width: 178,
-                  height: 48,
-                  backgroundColor: "#f5821f",
-                  "&:hover": { backgroundColor: "#f5821f" },
-                }}
-              >
-                Send Message
-              </Button>
-            </Stack>
+            <ImageFrameUploader onUpload={handleAddToGallery} />
           </Grid>
+
+          {/* {gallery.map((src, idx) => (
+            <Grid size={{ xs: 12, sm: 6, md: 3 }} key={idx}>
+              <Paper sx={{ p: 1, textAlign: 'center' }}>
+                <img src={src} alt={`upload-${idx}`} style={{ width: '100%', objectFit: 'cover', borderRadius: 6 }} />
+                <Button size="small" onClick={() => setGallery(g => g.filter((_, i) => i !== idx))} sx={{ mt: 1 }}>Remove</Button>
+              </Paper>
+            </Grid>
+          ))} */}
+
         </Grid>
       </Box>
     </Box>
