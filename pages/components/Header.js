@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Button from "@mui/material/Button";
 import {
   AppBar,
@@ -90,20 +90,42 @@ function Header() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(null);
+  const closeTimerRef = useRef(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedMobile, setExpandedMobile] = useState({});
 
+  const clearCloseTimer = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  };
+
   const handleMenuOpen = (event, title) => {
+    clearCloseTimer();
     setAnchorEl(event.currentTarget);
     setOpenMenu(title);
   };
 
+  const handleMenuCloseDelayed = () => {
+    clearCloseTimer();
+    closeTimerRef.current = setTimeout(() => {
+      setAnchorEl(null);
+      setOpenMenu(null);
+      closeTimerRef.current = null;
+    }, 150);
+  };
+
+  const handleMenuCloseImmediate = () => {
+    clearCloseTimer();
+    setAnchorEl(null);
+    setOpenMenu(null);
+  };
   const handleMenuClose = () => {
     setAnchorEl(null);
     setOpenMenu(null);
   };
-
   const handleModalOpen = () => {
     setIsModalOpen(true);
   };
@@ -193,7 +215,7 @@ function Header() {
                         mb: 2,
                       }}
                     >
-                      <img src="/assets/logo.png" alt="Logo"  width={180} style={{objectFit:"cover"}}/>
+                      <img src="/assets/logo.png" alt="Logo" width={180} style={{ objectFit: "cover" }} />
                       <IconButton onClick={() => setMobileMenuOpen(false)}>
                         <CloseIcon />
                       </IconButton>
@@ -203,7 +225,7 @@ function Header() {
                         <Box key={link.title}>
                           {link.children ? (
                             <>
-                              <ListItemButton  onClick={() => toggleMobileExpand(link.title)} sx={{ ...linkStyles, justifyContent: 'space-between' }}>
+                              <ListItemButton onClick={() => toggleMobileExpand(link.title)} sx={{ ...linkStyles, justifyContent: 'space-between' }}>
                                 <ListItemText primary={link.title} />
                                 {expandedMobile[link.title] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                               </ListItemButton>
@@ -253,7 +275,7 @@ function Header() {
                     m: 0,
                   }}
                 >
-                  
+
                   {navLinks.map((link) => (
                     <li
                       key={link.title}
@@ -262,7 +284,7 @@ function Header() {
                           ? (e) => handleMenuOpen(e, link.title)
                           : undefined
                       }
-                      onMouseLeave={link.children ? handleMenuClose : undefined}
+                      onMouseLeave={link.children ? handleMenuCloseDelayed : undefined}
                     >
                       <MuiLink
                         component={link.path ? NextLink : "div"}
@@ -272,10 +294,14 @@ function Header() {
                           fontSize: { md: 14, lg: 16 },
                           display: "flex",
                           alignItems: "center",
-                          ...(link.active && {
+                          ...(link.title == "Home" && {
                             color: "#f5821f",
                             fontWeight: "700",
                           }),
+                          color: openMenu === link.title ? "#b20933" : "#f5821f",
+                          "&:hover": {
+                            color: "#b20933",
+                          },
                         }}
                         aria-owns={
                           openMenu === link.title
@@ -295,18 +321,21 @@ function Header() {
                           anchorEl={anchorEl}
                           open={openMenu === link.title}
                           onClose={handleMenuClose}
+                          disableScrollLock
                           MenuListProps={{
-                            "aria-labelledby": "basic-button",
                             onMouseLeave: handleMenuClose,
                           }}
                           elevation={2}
+
                         >
+
                           {link.children.map((child) => (
                             <MenuItem
                               key={child.title}
-                              onClick={handleMenuClose}
+                              onClick={handleMenuCloseImmediate}
                               component={NextLink}
                               href={child.path}
+
                             >
                               {child.title}
                             </MenuItem>
