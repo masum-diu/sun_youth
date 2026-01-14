@@ -8,27 +8,21 @@ function Gallery() {
 
   // Sample data for the gallery. Replace with your actual image paths and titles.
   const itemData = [
-    { img: '/assets/gallery/image1.jpg', title: 'Community Workshop' },
-    { img: '/assets/gallery/image2.jpg', title: 'Youth Leadership Training', rows: 2, cols: 2 },
-    { img: '/assets/gallery/image3.jpg', title: 'Advocacy Event' },
-    { img: '/assets/gallery/image4.jpg', title: 'Field Visit' },
-    { img: '/assets/gallery/image5.jpg', title: 'Team Collaboration', cols: 2 },
-    { img: '/assets/gallery/image6.jpg', title: 'Nutrition Awareness Session', rows: 2, cols: 2 },
-    { img: '/assets/gallery/image7.jpg', title: 'BKBT Campaign Launch' },
-    { img: '/assets/gallery/image8.jpg', title: 'Group Discussion' },
-    { img: '/assets/gallery/image9.jpg', title: 'Celebrating Success', rows: 2, cols: 2 },
-    { img: '/assets/gallery/image10.jpg', title: 'Planning Meeting' },
-    { img: '/assets/gallery/image11.jpg', title: 'Stakeholder Engagement' },
-    { img: '/assets/gallery/image12.jpg', title: 'Volunteers in Action', cols: 2 },
+    { img: '/assets/gallery/image_1.jpg', title: 'Community Workshop' },
+    { img: '/assets/gallery/image_2.jpg', title: 'Youth Leadership Training', rows: 2, cols: 2 },
+    { img: '/assets/gallery/image_3.jpg', title: 'Advocacy Event' },
+    { img: '/assets/gallery/image_4.jpg', title: 'Field Visit' },
+    { img: '/assets/gallery/image_5.jpg', title: 'Team Collaboration', cols: 2 },
+    { img: '/assets/gallery/image_6.jpg', title: 'Nutrition Awareness Session', rows: 2, cols: 2 },
+    { img: '/assets/gallery/image_7.jpg', title: 'BKBT Campaign Launch' },
+    { img: '/assets/gallery/image_8.jpg', title: 'Group Discussion' },
+    { img: '/assets/gallery/image_9.jpg', title: 'Celebrating Success', rows: 2, cols: 2 },
+    { img: '/assets/gallery/image_10.jpg', title: 'Planning Meeting' },
+    { img: '/assets/gallery/image_11.jpg', title: 'Stakeholder Engagement' },
+    { img: '/assets/gallery/image_12.jpg', title: 'Volunteers in Action', cols: 2 },
   ];
 
-  function srcset(image, size, rows = 1, cols = 1) {
-    return {
-      src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
-      srcSet: `${image}?w=${size * cols}&h=${size * rows
-        }&fit=crop&auto=format&dpr=2 2x`,
-    };
-  }
+  
 
   const [open, setOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -78,7 +72,7 @@ function Gallery() {
               {itemData.map((item) => (
                 <ImageListItem key={item.img}>
                   <img
-                    {...srcset(item.img, 121, item.rows, item.cols)}
+                    src={item.img}
                     alt={item.title}
                     loading="lazy"
                     style={{ cursor: 'pointer' }}
