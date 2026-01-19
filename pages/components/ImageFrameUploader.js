@@ -11,6 +11,9 @@ export default function ImageFrameUploader({ onUpload }) {
     { id: 'f1', name: 'Simple Round', src: '/assets/frames/frame1.svg' },
     { id: 'f2', name: 'Corner Accents', src: '/assets/frames/frame2.svg' },
     { id: 'f3', name: 'Square Accents', src: '/assets/frames/frame3.svg' },
+    { id: 'f4', name: 'Square Accents', src: '/assets/frames/frame4.svg' },
+    // { id: 'f5', name: 'Square Accents', src: '/assets/frames/frame5.svg' },
+    // { id: 'f6', name: 'Square Accents', src: '/assets/frames/frame6.svg' },
   ])
 
   useEffect(() => {

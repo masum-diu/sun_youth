@@ -35,6 +35,7 @@ function Home() {
       description:
         "We are seeking youth organization committed to improving nutrition.",
       button: "SUN Youth Network Member",
+      link: "/youth-organization"
     },
     {
       image: "/assets/public_icon.png",
@@ -49,7 +50,7 @@ function Home() {
       description:
         " Latest Youth activities around nutrition and connect with like-minded individuals.",
       button: "Resource",
-      link:"/what-we-do/gallery"
+      link: "/what-we-do/gallery"
     },
     {
       image: "/assets/email_icon.png",
@@ -65,21 +66,21 @@ function Home() {
       title: "Mission",
       description:
         "The mission of the SUN Youth Network Network Bangladesh is to empower and mobilize youth and adolescents to lead meaningful action on nutrition, strengthen youth voices in policy and community spaces, and support sustained commitment to advancing national and global nutrition goals.",
-     
+
     },
     {
       image: "/assets/governace.jpeg",
       title: "Governance",
       description:
         "SUN Youth Network Network Bangladesh consists of youth-led organizations, youth-led clubs in universities and communities who are intensively working and interested in contributing to nutrition outcome development.",
-     
+
     },
     {
       image: "/assets/governace2.jpeg",
       title: "Focal Point",
       description:
         "The focal point of the SUN Youth Network Network Bangladesh serves as the primary coordinator and liaison, ensuring effective communication, coordination, and implementation of network activities in alignment with national priorities and the Sun Movement.",
-    
+
     },
   ];
   const latestNews = [
@@ -119,11 +120,11 @@ function Home() {
   ];
 
   const stats = [
-      { num: "", label: "Projects" },
-      { num: "", label: "Locations" },
-      { num: "10", label: "Years" },
-      { num: 15, label: "Countries" },
-    ],
+    { num: "", label: "Projects" },
+    { num: "", label: "Locations" },
+    { num: "10", label: "Years" },
+    { num: 15, label: "Countries" },
+  ],
     features = [
       {
         icon: "/assets/goal.png",
@@ -544,7 +545,7 @@ function Home() {
                     borderTopRightRadius: 10,
                     borderBottomLeftRadius: 0,
                     borderBottomRightRadius: 0,
-                    mx: {lg: 'start',xs:'auto'},
+                    mx: { lg: 'start', xs: 'auto' },
                     width: { lg: 1008, xs: "fit-content" },
                   }}
                 >
@@ -653,7 +654,7 @@ function Home() {
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={()=>(route)}
+                  onClick={() => (route)}
                   sx={{
                     width: 178,
                     height: 56,
@@ -661,7 +662,7 @@ function Home() {
                     fontWeight: "500",
                     backgroundColor: "#b20933",
                     "&:hover": { backgroundColor: "#b20933" },
-                    
+
                   }}
                 >
                   learn more
@@ -1064,7 +1065,7 @@ function Home() {
                 {hoveredInfo.name}
               </Typography>
               {Array.isArray(hoveredInfo.data) &&
-              hoveredInfo.data.length > 0 ? (
+                hoveredInfo.data.length > 0 ? (
                 hoveredInfo.data.map((item, index) => (
                   <Box key={index} sx={{ mt: index > 0 ? 1.5 : 0 }}>
                     <Typography variant="body2" color="#fff">
@@ -1206,7 +1207,7 @@ function Home() {
               textAlign={"center"}
               mt={2}
             >
-            47+
+              47+
             </Typography>
             <Typography
               variant="body1"
@@ -1327,7 +1328,7 @@ function Home() {
                 </Typography>
                 <Typography
                   variant="h6"
-                  sx={{ mt: 2, fontWeight: 700, fontSize: 20,  color: "#B20933" }} 
+                  sx={{ mt: 2, fontWeight: 700, fontSize: 20, color: "#B20933" }}
                 >
                   {option.title}
                 </Typography>
@@ -1466,109 +1467,76 @@ function Home() {
             textTransform: "capitalize",
             fontSize: 40, color: "#B20933"
           }}
-        >
-          Youth engagement and impact
+        >Quizzes
         </Typography>
 
-        <Grid container spacing={5} justifyContent="center" sx={{ mt: 12 }}>
-          <Grid size={{ xs: 12, sm: 6, md: 6 }}>
-            <img src="/assets/femle.png" alt="" width={"100%"} />
+        <Grid
+          container
+          bgcolor="#B20933"
+          alignItems="stretch"   // 🔥 important
+        >
+          <Grid
+            size={{ xs: 12, sm: 6, md: 6 }}
+            sx={{ display: "flex" }}
+          >
+            <img
+              src="/assets/femle.png"
+              alt="Youth taking a quiz"
+              style={{
+                width: "100%",
+                height: "100%",     // 🔥 important
+                objectFit: "cover"  // image stretch না হয়ে সুন্দর থাকবে
+              }}
+            />
           </Grid>
+
           <Grid
             size={{ xs: 12, sm: 6, md: 6 }}
             sx={{
               display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
               flexDirection: "column",
-              gap: 2,
+              alignItems: "center",
+              justifyContent: "center",
+              bgcolor: "#B20933",
+              textAlign: "center",
+
             }}
           >
-            <Stack direction={"column"}>
-              <Stack direction={"row"} spacing={3} mb={2} width={"100%"}>
-                <Box
-                  sx={{
-                    width: 45,
-                    height: 45,
-                    bgcolor: "  #f5821f",
-                    borderRadius: "50%",
-                  }}
-                ></Box>
-                <Stack direction={"column"} width={"100%"}>
-                  <Typography
-                    variant="h5"
-                    fontWeight={700}
-                    fontSize={25}
-                    color="#f5821f"
-                  >
-                    Enabling Policy Environment
-                  </Typography>
-                  <Typography variant="body1" fontWeight={400} fontSize={14}>
-                    The program strengthens a sustainable Youth Network in
-                    Bangladesh aligned with national priorities and the global
-                    Sun movement, while advocating for policies that support
-                    nutrition goals.
-                  </Typography>
-                </Stack>
-              </Stack>
-            </Stack>
-            <Stack direction={"column"} alignItems={"center"}>
-              <Stack direction={"row"} spacing={3} mb={2} width={"100%"}>
-                <Box
-                  sx={{
-                    width: 45,
-                    height: 45,
-                    bgcolor: "  #f5821f",
-                    borderRadius: "50%",
-                  }}
-                ></Box>
-                <Stack direction={"column"} width={"100%"}>
-                  <Typography
-                    variant="h5"
-                    fontWeight={700}
-                    fontSize={25}
-                    color="#f5821f"
-                  >
-                    Food Systems and Nutrition Action
-                  </Typography>
-                  <Typography variant="body1" fontWeight={400} fontSize={14}>
-                    It promotes evidence-based nutrition practices, supports
-                    youth-led innovations and social enterprises, and encourages
-                    healthy lifestyles among youth and adolescents.
-                  </Typography>
-                </Stack>
-              </Stack>
-            </Stack>
-            <Stack direction={"column"}>
-              <Stack direction={"row"} spacing={3} mb={2} width={"100%"}>
-                <Box
-                  sx={{
-                    width: 45,
-                    height: 45,
-                    bgcolor: "  #f5821f",
-                    borderRadius: "50%",
-                  }}
-                ></Box>
-                <Stack direction={"column"} width={"100%"}>
-                  <Typography
-                    variant="h5"
-                    fontWeight={700}
-                    fontSize={25}
-                    color="#f5821f"
-                  >
-                    Nutrition Financing and Advocacy
-                  </Typography>
-                  <Typography variant="body1" fontWeight={400} fontSize={14}>
-                    The initiative works with Sun Networks to engage
-                    policymakers, promote youth participation, and support
-                    increased investment in effective nutrition policies and
-                    programs.
-                  </Typography>
-                </Stack>
-              </Stack>
-            </Stack>
+            <Typography
+              variant="h4"
+              sx={{ fontWeight: 700, color: "#fff", mb: 2 }}
+            >
+              Test Your Knowledge!
+            </Typography>
+
+            <Typography variant="body1" sx={{ color: "#fff", mb: 3 }}>
+              Engage with our interactive quizzes to learn more about nutrition and youth development.
+            </Typography>
+
+            <Button
+              variant="contained"
+              onClick={() =>
+                window.open(
+                  "https://quiz-point-client.vercel.app/quizzes",
+                  "_blank"
+                )
+              }
+              sx={{
+                backgroundColor: theme.palette.primary.main,
+                "&:hover": {
+                  backgroundColor: "#d4701c",
+                },
+                py: 1.5,
+                px: 4,
+                fontSize: 18,
+                fontWeight: 600,
+              }}
+            >
+              Take a Quiz
+            </Button>
           </Grid>
         </Grid>
+
         <Typography
           variant="h4"
           sx={{
@@ -1711,6 +1679,7 @@ function Home() {
                 <Button
                   variant="contained"
                   fullWidth
+                  onClick={() => router.push(option.link)}
                   sx={{
                     mt: 3,
                     backgroundColor: "#f5821f",
@@ -1745,7 +1714,7 @@ function Home() {
             fontSize: 40,
           }}
         >
-        Gallery 
+          Gallery
         </Typography>
         <Grid container spacing={3} mb={2}>
           <Grid size={{ xs: 12, sm: 6, md: 12 }}>
