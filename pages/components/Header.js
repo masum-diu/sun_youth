@@ -314,7 +314,7 @@ function Header() {
                                     py: 1.5,
                                     color: "#000",
                                     textDecoration: "none",
-                                    fontSize: 14,
+                                    fontSize: 15,
                                     "&:hover": {
                                       color: "#f5821f",
                                     },
