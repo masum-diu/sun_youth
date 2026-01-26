@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import {
   AppBar,
@@ -6,11 +6,6 @@ import {
   Typography,
   Box,
   Link as MuiLink,
-  Menu,
-  MenuItem,
-  Dialog,
-  DialogTitle,
-  DialogContent,
   IconButton,
   Grid,
   Card,
@@ -24,6 +19,10 @@ import {
   List,
   ListItem,
   ListItemText,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Paper,
 } from "@mui/material";
 import NextLink from "next/link";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -42,12 +41,6 @@ const navLinks = [
         title: "SUN Youth Network Bangladesh Brief",
         path: "/about-us/sun-youth-network-brief",
       },
-      //   { title: "Government (MoHFW)", path: "/about-us/government-mohfw" },
-      //   { title: "Sun Movement", path: "/about-us/Sun-movement" },
-      //   {
-      //     title: "Secretariat (GAIN) info and logo",
-      //     path: "/about-us/secretariat-gain",
-      //   },
     ],
   },
   {
@@ -55,7 +48,6 @@ const navLinks = [
     path: "/what-we-do",
     children: [
       { title: "Gallery", path: "/what-we-do/gallery" },
-      //   { title: "BKBT", path: "/what-we-do/bkbt" },
       { title: "BKBT", path: "http://bhalokhabobhalothakbo.com/" },
       {
         title: "Food Systems Youth Leadership Training",
@@ -88,44 +80,11 @@ const linkStyles = {
 function Header() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(null);
-  const closeTimerRef = useRef(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedMobile, setExpandedMobile] = useState({});
 
-  const clearCloseTimer = () => {
-    if (closeTimerRef.current) {
-      clearTimeout(closeTimerRef.current);
-      closeTimerRef.current = null;
-    }
-  };
-
-  const handleMenuOpen = (event, title) => {
-    clearCloseTimer();
-    setAnchorEl(event.currentTarget);
-    setOpenMenu(title);
-  };
-
-  const handleMenuCloseDelayed = () => {
-    clearCloseTimer();
-    closeTimerRef.current = setTimeout(() => {
-      setAnchorEl(null);
-      setOpenMenu(null);
-      closeTimerRef.current = null;
-    }, 150);
-  };
-
-  const handleMenuCloseImmediate = () => {
-    clearCloseTimer();
-    setAnchorEl(null);
-    setOpenMenu(null);
-  };
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    setOpenMenu(null);
-  };
   const handleModalOpen = () => {
     setIsModalOpen(true);
   };
@@ -137,6 +96,7 @@ function Header() {
   const toggleMobileExpand = (title) => {
     setExpandedMobile((prev) => ({ ...prev, [title]: !prev[title] }));
   };
+
   return (
     <Box>
       <Typography
@@ -275,16 +235,20 @@ function Header() {
                     m: 0,
                   }}
                 >
-
                   {navLinks.map((link) => (
                     <li
                       key={link.title}
-                      onMouseEnter={
-                        link.children
-                          ? (e) => handleMenuOpen(e, link.title)
-                          : undefined
-                      }
-                      onMouseLeave={link.children ? handleMenuCloseDelayed : undefined}
+                      style={{ position: "relative" }}
+                      onMouseEnter={() => {
+                        if (link.children) {
+                          setOpenMenu(link.title);
+                        }
+                      }}
+                      onMouseLeave={() => {
+                        if (link.children) {
+                          setOpenMenu(null);
+                        }
+                      }}
                     >
                       <MuiLink
                         component={link.path ? NextLink : "div"}
@@ -294,21 +258,15 @@ function Header() {
                           fontSize: { md: 14, lg: 16 },
                           display: "flex",
                           alignItems: "center",
+                          py: 2,
                           ...(link.title == "Home" && {
                             color: "#f5821f",
-                            fontWeight: "700",
                           }),
                           color: openMenu === link.title ? "#b20933" : "#f5821f",
                           "&:hover": {
                             color: "#b20933",
                           },
                         }}
-                        aria-owns={
-                          openMenu === link.title
-                            ? "mouse-over-menu"
-                            : undefined
-                        }
-                        aria-haspopup={link.children ? "true" : undefined}
                       >
                         {link.title}
                         {link.children && (
@@ -316,31 +274,58 @@ function Header() {
                         )}
                       </MuiLink>
                       {link.children && (
-                        <Menu
-                          id="mouse-over-menu"
-                          anchorEl={anchorEl}
-                          open={openMenu === link.title}
-                          onClose={handleMenuClose}
-                          disableScrollLock
-                          MenuListProps={{
-                            onMouseLeave: handleMenuClose,
+                        <Paper
+                          elevation={3}
+                          sx={{
+                            position: "absolute",
+                            top: "100%",
+                            left: 0,
+                            mt: 0,
+                            minWidth: 250,
+                            display: openMenu === link.title ? "block" : "none",
+                            zIndex: 1300,
+                            bgcolor: "#ffffff",
                           }}
-                          elevation={2}
-
                         >
-
-                          {link.children.map((child) => (
-                            <MenuItem
-                              key={child.title}
-                              onClick={handleMenuCloseImmediate}
-                              component={NextLink}
-                              href={child.path}
-
-                            >
-                              {child.title}
-                            </MenuItem>
-                          ))}
-                        </Menu>
+                          <Box
+                            component="ul"
+                            sx={{
+                              listStyle: "none",
+                              p: 1,
+                              m: 0,
+                            }}
+                          >
+                            {link.children.map((child) => (
+                              <Box
+                                component="li"
+                                key={child.title}
+                                sx={{
+                                  "&:hover": {
+                                    bgcolor: "#f5f5f5",
+                                  },
+                                }}
+                              >
+                                <MuiLink
+                                  component={NextLink}
+                                  href={child.path}
+                                  sx={{
+                                    display: "block",
+                                    px: 2,
+                                    py: 1.5,
+                                    color: "#000",
+                                    textDecoration: "none",
+                                    fontSize: 14,
+                                    "&:hover": {
+                                      color: "#f5821f",
+                                    },
+                                  }}
+                                >
+                                  {child.title}
+                                </MuiLink>
+                              </Box>
+                            ))}
+                          </Box>
+                        </Paper>
                       )}
                     </li>
                   ))}

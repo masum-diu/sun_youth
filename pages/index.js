@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import {
   Box,
@@ -10,10 +10,10 @@ import {
   TextField,
   Divider,
 } from "@mui/material";
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-import EventIcon from '@mui/icons-material/Event';
-import GroupIcon from '@mui/icons-material/Group';
-import PublicIcon from '@mui/icons-material/Public';
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import EventIcon from "@mui/icons-material/Event";
+import GroupIcon from "@mui/icons-material/Group";
+import PublicIcon from "@mui/icons-material/Public";
 import { useInView } from "react-intersection-observer";
 
 import theme from "@/utils/theme";
@@ -27,6 +27,8 @@ import { useRouter } from "next/router";
 import ImageFrameUploader from "./components/ImageFrameUploader";
 
 function Home() {
+  const [isOverTooltip, setIsOverTooltip] = useState(false);
+
   const router = useRouter();
   const getInvolvedOptions = [
     {
@@ -35,7 +37,7 @@ function Home() {
       description:
         "We are seeking youth organization committed to improving nutrition.",
       button: "SUN Youth Network Member",
-      link: "/youth-organization"
+      link: "/youth-organization",
     },
     {
       image: "/assets/public_icon.png",
@@ -50,7 +52,7 @@ function Home() {
       description:
         " Latest Youth activities around nutrition and connect with like-minded individuals.",
       button: "Resource",
-      link: "/what-we-do/gallery"
+      link: "/what-we-do/gallery",
     },
     {
       image: "/assets/email_icon.png",
@@ -66,21 +68,18 @@ function Home() {
       title: "Mission",
       description:
         "The mission of the SUN Youth Network Network Bangladesh is to empower and mobilize youth and adolescents to lead meaningful action on nutrition, strengthen youth voices in policy and community spaces, and support sustained commitment to advancing national and global nutrition goals.",
-
     },
     {
       image: "/assets/governace.jpeg",
       title: "Governance",
       description:
         "SUN Youth Network Network Bangladesh consists of youth-led organizations, youth-led clubs in universities and communities who are intensively working and interested in contributing to nutrition outcome development.",
-
     },
     {
       image: "/assets/governace2.jpeg",
       title: "Focal Point",
       description:
         "The focal point of the SUN Youth Network Network Bangladesh serves as the primary coordinator and liaison, ensuring effective communication, coordination, and implementation of network activities in alignment with national priorities and the Sun Movement.",
-
     },
   ];
   const latestNews = [
@@ -120,11 +119,11 @@ function Home() {
   ];
 
   const stats = [
-    { num: "", label: "Projects" },
-    { num: "", label: "Locations" },
-    { num: "10", label: "Years" },
-    { num: 15, label: "Countries" },
-  ],
+      { num: "", label: "Projects" },
+      { num: "", label: "Locations" },
+      { num: "10", label: "Years" },
+      { num: 15, label: "Countries" },
+    ],
     features = [
       {
         icon: "/assets/goal.png",
@@ -161,10 +160,10 @@ function Home() {
     y: 0,
   });
 
-  const [gallery, setGallery] = useState([])
+  const [gallery, setGallery] = useState([]);
   const handleAddToGallery = (dataUrl) => {
-    setGallery((prev) => [dataUrl, ...prev])
-  }
+    setGallery((prev) => [dataUrl, ...prev]);
+  };
 
   // Sample data for divisions, you can replace this with your actual data
   const divisionData = {
@@ -406,10 +405,6 @@ function Home() {
     }
   };
 
-  const handleMapLeave = () => {
-    setHoveredInfo({ show: false, name: "", data: null, x: 0, y: 0 });
-  };
-
   const pins = {
     Rangpur: [
       { cx: 325, cy: 110, label: "Dinajpur" },
@@ -449,6 +444,14 @@ function Home() {
       { cx: 350, cy: 230, label: "Pabna" },
     ],
   };
+
+  const handleMapLeave = () => {
+    // Don't close if mouse is over tooltip
+    if (!isOverTooltip) {
+      setHoveredInfo({ show: false, name: "", data: null, x: 0, y: 0 });
+    }
+  };
+
   return (
     <Box bgcolor={"#fff"}>
       <Swiper
@@ -545,7 +548,7 @@ function Home() {
                     borderTopRightRadius: 10,
                     borderBottomLeftRadius: 0,
                     borderBottomRightRadius: 0,
-                    mx: { lg: 'start', xs: 'auto' },
+                    mx: { lg: "start", xs: "auto" },
                     width: { lg: 1008, xs: "fit-content" },
                   }}
                 >
@@ -654,7 +657,7 @@ function Home() {
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={() => (route)}
+                  onClick={() => route}
                   sx={{
                     width: 178,
                     height: 56,
@@ -662,7 +665,6 @@ function Home() {
                     fontWeight: "500",
                     backgroundColor: "#b20933",
                     "&:hover": { backgroundColor: "#b20933" },
-
                   }}
                 >
                   learn more
@@ -680,7 +682,7 @@ function Home() {
                     borderTopRightRadius: 10,
                     borderBottomLeftRadius: 0,
                     borderBottomRightRadius: 0,
-                    mx: 'auto',
+                    mx: "auto",
                     width: { lg: 1008, xs: "fit-content" },
                   }}
                 >
@@ -814,7 +816,7 @@ function Home() {
                     borderTopRightRadius: 10,
                     borderBottomLeftRadius: 0,
                     borderBottomRightRadius: 0,
-                    mx: 'auto',
+                    mx: "auto",
                     width: { lg: 1008, xs: "fit-content" },
                   }}
                 >
@@ -951,8 +953,8 @@ function Home() {
                   backgroundImage: `
       linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.6),
-        rgba(0, 0, 0, 0.94)
+        rgba(0, 0, 0, 0.50),
+        rgba(0, 0, 0, 0.50)
       ),
       url('${option.image}')
     `,
@@ -1043,19 +1045,43 @@ function Home() {
           {hoveredInfo.show && (
             <Paper
               elevation={4}
+              onMouseEnter={() => setIsOverTooltip(true)}
+              onMouseLeave={() => {
+                setIsOverTooltip(false);
+                setHoveredInfo({
+                  show: false,
+                  name: "",
+                  data: null,
+                  x: 0,
+                  y: 0,
+                });
+              }}
               sx={{
                 position: "absolute",
-                top: `${hoveredInfo.y - 150}px`, // Adjust position relative to cursor
-                left: `${hoveredInfo.x - 450}px`, // Adjust position relative to cursor
+                top: `${hoveredInfo.y - 150}px`,
+                left: `${hoveredInfo.x - 450}px`,
                 p: 2,
                 bgcolor: "rgba(0, 0, 0, 0.8)",
                 color: "white",
                 borderRadius: 2,
-                pointerEvents: "none", // Prevent the tooltip from capturing mouse events
-                zIndex: 1300, // Ensure it's above other elements
+                pointerEvents: "auto", // Changed to auto so it's scrollable
+                zIndex: 1300,
                 minWidth: 200,
-                maxHeight: 300, // Set a max height for the modal
-                overflowY: "auto", // Enable vertical scrolling
+                maxHeight: 300,
+                overflowY: "auto",
+                "&::-webkit-scrollbar": {
+                  width: "8px",
+                },
+                "&::-webkit-scrollbar-track": {
+                  background: "rgba(255,255,255,0.1)",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  background: "rgba(255,255,255,0.3)",
+                  borderRadius: "4px",
+                  "&:hover": {
+                    background: "rgba(255,255,255,0.5)",
+                  },
+                },
               }}
             >
               <Typography
@@ -1065,29 +1091,24 @@ function Home() {
                 {hoveredInfo.name}
               </Typography>
               {Array.isArray(hoveredInfo.data) &&
-                hoveredInfo.data.length > 0 ? (
+              hoveredInfo.data.length > 0 ? (
                 hoveredInfo.data.map((item, index) => (
                   <Box key={index} sx={{ mt: index > 0 ? 1.5 : 0 }}>
                     <Typography variant="body2" color="#fff">
                       Category: {item.category}
                     </Typography>
-
                     <Typography variant="body2" color="#fff">
                       Location: {item.location}
                     </Typography>
-
                     <Typography variant="body2" color="#fff">
                       District: {item.district}
                     </Typography>
-
                     <Typography variant="body2" color="#fff">
                       Training Date: {item.date}
                     </Typography>
-
                     <Typography variant="body2" color="#fff">
                       Total Participants: {item.participants}
                     </Typography>
-
                     {index < hoveredInfo.data.length - 1 && (
                       <Divider
                         sx={{ my: 1, bgcolor: "rgba(255,255,255,0.5)" }}
@@ -1105,12 +1126,13 @@ function Home() {
 
           <Grid size={{ xs: 12, sm: 6, md: 4 }}>
             <Stack
-              direction={"column"}
-              spacing={4}
-              justifyContent={"center"}
-              alignItems={"center"}
-              height={"100%"}
-            >
+  direction={"column"}
+  spacing={4}
+  justifyContent={"center"}
+  alignItems={"flex-start"}
+  height={"100%"}
+  sx={{ width: "100%", pr: 0 }} 
+>
               <Typography
                 sx={{ fontSize: { lg: 35, xs: 24 }, pt: { lg: 0, xs: "30px" } }}
                 variant="body1"
@@ -1119,8 +1141,26 @@ function Home() {
               >
                 Food system youth leadership Training
               </Typography>
-              <Typography sx={{ pb: 2 }} variant="body1" color="#7c7c7c" textAlign={"justify"}>
-                The Food Systems Youth Leadership Training program is designed to nurture young leaders and inspire meaningful, hands-on engagement in food systems through a structured and participatory approach. The program begins with a careful selection process to identify motivated and committed youth participants. This is followed by an intensive three-day training that enhances leadership capacities, strengthens systems thinking, and builds practical knowledge of food systems. After the training, participants implement a six-month community-based collective action project, where they apply their learning to address real-world food system challenges. Throughout the process, continuous follow-up, monitoring, and learning documentation are conducted to track progress, capture key insights, and ensure impactful, sustainable outcomes.s
+             <Typography
+    sx={{ pb: 2, width: "122%" }}
+    variant="body1"
+    color="#7c7c7c"
+    textAlign={"justify"}
+  >
+                The Food Systems Youth Leadership Training program is designed
+                to nurture young leaders and inspire meaningful, hands-on
+                engagement in food systems through a structured and
+                participatory approach. The program begins with a careful
+                selection process to identify motivated and committed youth
+                participants. This is followed by an intensive three-day
+                training that enhances leadership capacities, strengthens
+                systems thinking, and builds practical knowledge of food
+                systems. After the training, participants implement a six-month
+                community-based collective action project, where they apply
+                their learning to address real-world food system challenges.
+                Throughout the process, continuous follow-up, monitoring, and
+                learning documentation are conducted to track progress, capture
+                key insights, and ensure impactful, sustainable outcomes.s
               </Typography>
               {/* <Stack direction={"row"} spacing={2} width={"100%"} >
                 <Button variant="contained" color="error" fontWeight={500}  >
@@ -1196,8 +1236,19 @@ function Home() {
           sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", mb: 4 }}
         >
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
-            <Box sx={{ width: 100, height: 100, border: '3px solid #fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', mx: 'auto' }}>
-              <MonetizationOnIcon sx={{ color: '#fff', fontSize: 60 }} />
+            <Box
+              sx={{
+                width: 100,
+                height: 100,
+                border: "3px solid #fff",
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                mx: "auto",
+              }}
+            >
+              <MonetizationOnIcon sx={{ color: "#fff", fontSize: 60 }} />
             </Box>
             <Typography
               variant="h3"
@@ -1220,8 +1271,19 @@ function Home() {
             </Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
-            <Box sx={{ width: 100, height: 100, border: '3px solid #fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', mx: 'auto' }}>
-              <EventIcon sx={{ color: '#fff', fontSize: 60 }} />
+            <Box
+              sx={{
+                width: 100,
+                height: 100,
+                border: "3px solid #fff",
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                mx: "auto",
+              }}
+            >
+              <EventIcon sx={{ color: "#fff", fontSize: 60 }} />
             </Box>
             <Typography
               variant="h3"
@@ -1244,8 +1306,19 @@ function Home() {
             </Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
-            <Box sx={{ width: 100, height: 100, border: '3px solid #fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', mx: 'auto' }}>
-              <GroupIcon sx={{ color: '#fff', fontSize: 60 }} />
+            <Box
+              sx={{
+                width: 100,
+                height: 100,
+                border: "3px solid #fff",
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                mx: "auto",
+              }}
+            >
+              <GroupIcon sx={{ color: "#fff", fontSize: 60 }} />
             </Box>
             <Typography
               variant="h3"
@@ -1268,8 +1341,19 @@ function Home() {
             </Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }} textAlign={"center"}>
-            <Box sx={{ width: 100, height: 100, border: '3px solid #fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', mx: 'auto' }}>
-              <PublicIcon sx={{ color: '#fff', fontSize: 60 }} />
+            <Box
+              sx={{
+                width: 100,
+                height: 100,
+                border: "3px solid #fff",
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                mx: "auto",
+              }}
+            >
+              <PublicIcon sx={{ color: "#fff", fontSize: 60 }} />
             </Box>
             <Typography
               variant="h3"
@@ -1328,7 +1412,12 @@ function Home() {
                 </Typography>
                 <Typography
                   variant="h6"
-                  sx={{ mt: 2, fontWeight: 700, fontSize: 20, color: "#B20933" }}
+                  sx={{
+                    mt: 2,
+                    fontWeight: 700,
+                    fontSize: 20,
+                    color: "#B20933",
+                  }}
                 >
                   {option.title}
                 </Typography>
@@ -1465,27 +1554,26 @@ function Home() {
             fontWeight: 500,
             my: 6,
             textTransform: "capitalize",
-            fontSize: 40, color: "#B20933"
+            fontSize: 40,
+            color: "#B20933",
           }}
-        >Quizzes
+        >
+          Quizzes
         </Typography>
 
         <Grid
           container
           bgcolor="#B20933"
-          alignItems="stretch"   // 🔥 important
+          alignItems="stretch" // 🔥 important
         >
-          <Grid
-            size={{ xs: 12, sm: 6, md: 6 }}
-            sx={{ display: "flex" }}
-          >
+          <Grid size={{ xs: 12, sm: 6, md: 6 }} sx={{ display: "flex" }}>
             <img
               src="/assets/femle.png"
               alt="Youth taking a quiz"
               style={{
                 width: "100%",
-                height: "100%",     // 🔥 important
-                objectFit: "cover"  // image stretch না হয়ে সুন্দর থাকবে
+                height: "100%", // 🔥 important
+                objectFit: "cover", // image stretch না হয়ে সুন্দর থাকবে
               }}
             />
           </Grid>
@@ -1499,7 +1587,6 @@ function Home() {
               justifyContent: "center",
               bgcolor: "#B20933",
               textAlign: "center",
-
             }}
           >
             <Typography
@@ -1510,7 +1597,8 @@ function Home() {
             </Typography>
 
             <Typography variant="body1" sx={{ color: "#fff", mb: 3 }}>
-              Engage with our interactive quizzes to learn more about nutrition and youth development.
+              Engage with our interactive quizzes to learn more about nutrition
+              and youth development.
             </Typography>
 
             <Button
@@ -1518,7 +1606,7 @@ function Home() {
               onClick={() =>
                 window.open(
                   "https://quiz-point-client.vercel.app/quizzes",
-                  "_blank"
+                  "_blank",
                 )
               }
               sx={{
@@ -1544,7 +1632,8 @@ function Home() {
             fontWeight: 500,
             my: 6,
             textTransform: "capitalize",
-            fontSize: 40, color: "#B20933"
+            fontSize: 40,
+            color: "#B20933",
           }}
         >
           News and blogs
@@ -1569,7 +1658,12 @@ function Home() {
                 </Typography>
                 <Typography
                   variant="h6"
-                  sx={{ mt: 2, fontWeight: 700, fontSize: 20, color: "#B20933" }}
+                  sx={{
+                    mt: 2,
+                    fontWeight: 700,
+                    fontSize: 20,
+                    color: "#B20933",
+                  }}
                 >
                   {option.title}
                 </Typography>
@@ -1595,7 +1689,12 @@ function Home() {
       <Box sx={{ py: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
         <Typography
           variant="h4"
-          sx={{ textAlign: "center", fontWeight: 700, mb: 15, color: "#B20933" }}
+          sx={{
+            textAlign: "center",
+            fontWeight: 700,
+            mb: 15,
+            color: "#B20933",
+          }}
         >
           Get Involved
         </Typography>
@@ -1701,9 +1800,7 @@ function Home() {
           ))}
         </Grid>
       </Box>
-      <Box
-        sx={{ width: "95%", margin: "0 auto", maxWidth: "1700px" }}
-      >
+      <Box sx={{ width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
         <Typography
           variant="h4"
           sx={{
@@ -1718,7 +1815,6 @@ function Home() {
         </Typography>
         <Grid container spacing={3} mb={2}>
           <Grid size={{ xs: 12, sm: 6, md: 12 }}>
-
             <ImageFrameUploader onUpload={handleAddToGallery} />
           </Grid>
 
@@ -1730,7 +1826,6 @@ function Home() {
               </Paper>
             </Grid>
           ))} */}
-
         </Grid>
       </Box>
     </Box>
