@@ -44,7 +44,7 @@ const BlogDetailsPage = () => {
       case "description":
         return (
           <Typography
-            key={index}
+            key={index}  
             mt={1.5}
             fontSize="15px"
             dangerouslySetInnerHTML={{ __html: item.text }}
