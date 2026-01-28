@@ -1126,13 +1126,13 @@ function Home() {
 
           <Grid size={{ xs: 12, sm: 6, md: 4 }}>
             <Stack
-  direction={"column"}
-  spacing={4}
-  justifyContent={"center"}
-  alignItems={"flex-start"}
-  height={"100%"}
-  sx={{ width: "100%", pr: 0 }} 
->
+              direction={"column"}
+              spacing={4}
+              justifyContent={"center"}
+              alignItems={"flex-start"}
+              height={"100%"}
+              sx={{ width: "100%", pr: 0 }}
+            >
               <Typography
                 sx={{ fontSize: { lg: 35, xs: 24 }, pt: { lg: 0, xs: "30px" } }}
                 variant="body1"
@@ -1141,12 +1141,12 @@ function Home() {
               >
                 Food system youth leadership Training
               </Typography>
-             <Typography
-    sx={{ pb: 2, width: "122%" }}
-    variant="body1"
-    color="#7c7c7c"
-    textAlign={"justify"}
-  >
+              <Typography
+                sx={{ pb: 2, width: "122%" }}
+                variant="body1"
+                color="#7c7c7c"
+                textAlign={"justify"}
+              >
                 The Food Systems Youth Leadership Training program is designed
                 to nurture young leaders and inspire meaningful, hands-on
                 engagement in food systems through a structured and
