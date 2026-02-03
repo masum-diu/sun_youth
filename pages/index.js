@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Button from "@mui/material/Button";
 import {
   Box,
@@ -25,43 +25,79 @@ import BangladeshMap from "./components/BangladeshMap";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import ImageFrameUploader from "./components/ImageFrameUploader";
+import { getHomePage } from "@/utils/apiCalls";
 
 function Home() {
   const [isOverTooltip, setIsOverTooltip] = useState(false);
 
   const router = useRouter();
-  const getInvolvedOptions = [
-    {
-      image: "/assets/group_icon.png",
-      title: "Join a SUN Youth Network Bangladesh!",
-      description:
-        "We are seeking youth organization committed to improving nutrition.",
-      button: "SUN Youth Network Member",
-      link: "/youth-organization",
-    },
-    {
-      image: "/assets/public_icon.png",
-      title: "Attend an event",
-      description:
-        "Join over 242 Youth Organization committed to improving nutrition through the SUN Youth Network Network. Access exclusive resources, networking opportunities, and more.",
-      button: "Events",
-    },
-    {
-      image: "/assets/event_icon.png",
-      title: "Learn more",
-      description:
-        " Latest Youth activities around nutrition and connect with like-minded individuals.",
-      button: "Resource",
-      link: "/what-we-do/gallery",
-    },
-    {
-      image: "/assets/email_icon.png",
-      title: "Sign Up for Newsletter",
-      description:
-        "Stay updated with the latest news, resources, and events from SUN Youth Network Network by subscribing to our monthly newsletter.",
-      button: "Sign up",
-    },
-  ];
+  const getDivisionFromDistrict = (district) => {
+    const divisionMap = {
+      // Rangpur Division
+      Panchagarh: "Rangpur",
+      Rangpur: "Rangpur",
+      Lalmonirhat: "Rangpur",
+      Dinajpur: "Rangpur",
+      Bogura: "Rangpur",
+      // Dhaka Division
+      Dhaka: "Dhaka",
+      Gazipur: "Dhaka",
+      Manikganj: "Dhaka",
+      // Chattogram Division
+      Chattogram: "Chattogram",
+      "Cox's Bazar": "Chattogram",
+      Noakhali: "Chattogram",
+      Bandarban: "Chattogram",
+      Cumilla: "Chattogram",
+      // Khulna Division
+      Khulna: "Khulna",
+      Jhenaidah: "Khulna",
+      Jessore: "Khulna",
+      Satkhira: "Khulna",
+      // Barishal Division
+      Barishal: "Barishal",
+      Patuakhali: "Barishal",
+      // Sylhet Division
+      Habiganj: "Sylhet",
+      Sylhet: "Sylhet",
+      // Rajshahi Division
+      Rajshahi: "Rajshahi",
+      Pabna: "Rajshahi",
+    };
+    return divisionMap[district] || "Other";
+  };
+  // const getInvolvedOptions = [
+  //   {
+  //     image: "/assets/group_icon.png",
+  //     title: "Join a SUN Youth Network Bangladesh!",
+  //     description:
+  //       "We are seeking youth organization committed to improving nutrition.",
+  //     button: "SUN Youth Network Member",
+  //     link: "/youth-organization",
+  //   },
+  //   {
+  //     image: "/assets/public_icon.png",
+  //     title: "Attend an event",
+  //     description:
+  //       "Join over 242 Youth Organization committed to improving nutrition through the SUN Youth Network Network. Access exclusive resources, networking opportunities, and more.",
+  //     button: "Events",
+  //   },
+  //   {
+  //     image: "/assets/event_icon.png",
+  //     title: "Learn more",
+  //     description:
+  //       " Latest Youth activities around nutrition and connect with like-minded individuals.",
+  //     button: "Resource",
+  //     link: "/what-we-do/gallery",
+  //   },
+  //   {
+  //     image: "/assets/email_icon.png",
+  //     title: "Sign Up for Newsletter",
+  //     description:
+  //       "Stay updated with the latest news, resources, and events from SUN Youth Network Network by subscribing to our monthly newsletter.",
+  //     button: "Sign up",
+  //   },
+  // ];
   const listItems = [
     {
       image: "/assets/governace.jpg",
@@ -161,16 +197,17 @@ function Home() {
   });
 
   const [gallery, setGallery] = useState([]);
+  const [homePageData, setHomePageData] = useState(null);
   const handleAddToGallery = (dataUrl) => {
     setGallery((prev) => [dataUrl, ...prev]);
   };
 
   // Sample data for divisions, you can replace this with your actual data
-  const divisionData = {
+  const fallbackDivisionData = {
     Rangpur: [
       {
         category:
-          "Food Systems Youth Leadership Training (Community Level Training)",
+          "Food Systems asik Youth Leadership Training (Community Level Training)",
         location: "Panchagarh",
         district: "Panchagarh",
         date: "22, 23, 24 February 2024",
@@ -393,6 +430,101 @@ function Home() {
     ],
   };
 
+  const divisionData = useMemo(() => {
+    if (
+      homePageData?.mapSection?.[0]?.points &&
+      homePageData.mapSection[0].points.length > 0
+    ) {
+      const transformedData = {};
+
+      homePageData.mapSection[0].points.forEach((point) => {
+        const division = getDivisionFromDistrict(point.district);
+
+        if (!transformedData[division]) {
+          transformedData[division] = [];
+        }
+
+        transformedData[division].push({
+          category: point.category,
+          location: point.location,
+          district: point.district,
+          date: point.trainingDate,
+          participants: point.participants,
+        });
+      });
+
+      console.log("Transformed Division Data:", transformedData);
+      return transformedData;
+    }
+
+    // Return fallback data if no API data available
+    return fallbackDivisionData;
+  }, [homePageData]);
+
+  const getHomePageData = async () => {
+    try {
+      const res = await getHomePage();
+      const data = res?.data;
+
+      const allSections = data?.pageBy?.homePage?.homeSections ?? [];
+
+      const finalData = {
+        pageTitle: data?.pageBy?.title ?? "",
+        pageUri: data?.pageBy?.uri ?? "/",
+        heroSlider: allSections.filter(
+          (section) =>
+            section.__typename === "HomePageHomeSectionsHeroSliderLayout",
+        ),
+        counterSection: allSections.filter(
+          (section) =>
+            section.__typename === "HomePageHomeSectionsCounterSectionLayout",
+        ),
+        missionSection: allSections.filter(
+          (section) =>
+            section.__typename === "HomePageHomeSectionsMissionSectionLayout",
+        ),
+        mapSection: allSections.filter(
+          (section) =>
+            section.__typename === "HomePageHomeSectionsMapSectionLayout",
+        ),
+        featuredStatsSection: allSections.filter(
+          (section) =>
+            section.__typename ===
+            "HomePageHomeSectionsFeaturedStatsSectionLayout",
+        ),
+        impactStoriesSection: allSections.filter(
+          (section) =>
+            section.__typename ===
+            "HomePageHomeSectionsImpactStoriesSectionLayout",
+        ),
+        quizSection: allSections.filter(
+          (section) =>
+            section.__typename === "HomePageHomeSectionsQuizSectionLayout",
+        ),
+        newsBlogsSection: allSections.filter(
+          (section) =>
+            section.__typename === "HomePageHomeSectionsNewsBlogsSectionLayout",
+        ),
+        getInvolvedSection: allSections.filter(
+          (section) =>
+            section.__typename ===
+            "HomePageHomeSectionsGetInvolvedSectionLayout",
+        ),
+      };
+
+      console.log("Home Page Data:", finalData);
+      console.log("Counter Section:", finalData.counterSection);
+      setHomePageData(finalData);
+      return finalData;
+    } catch (error) {
+      console.error("Error fetching home page data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getHomePageData();
+  }, []);
+
   const handleMapHover = (divisionName, event) => {
     if (divisionData[divisionName]) {
       setHoveredInfo({
@@ -404,6 +536,101 @@ function Home() {
       });
     }
   };
+
+  const fallbackHeroSlides = [
+    {
+      slideTitle: "SUN Youth Network Bangladesh",
+      slideButton: {
+        title: "LEARN MORE",
+        url: "/about-us",
+        target: "",
+      },
+      slideImage: {
+        node: {
+          sourceUrl: "/assets/slider1.jpg",
+          altText: "Hero background",
+        },
+      },
+      upcomingEventsTitle: "FOSYLx Training – 2026",
+      upcomingEvents: {
+        nodes: [
+          {
+            title: "FOSYLx Training – 2026",
+            uri: "/events",
+            featuredImage: {
+              node: {
+                sourceUrl: "/assets/slider1.jpg",
+                altText: "Event image",
+              },
+            },
+          },
+        ],
+      },
+    },
+    {
+      slideTitle: "SUN Youth Network Bangladesh",
+      slideButton: {
+        title: "LEARN MORE",
+        url: "/about-us",
+        target: "",
+      },
+      slideImage: {
+        node: {
+          sourceUrl: "/assets/slider2.jpg",
+          altText: "Hero background",
+        },
+      },
+      upcomingEventsTitle: "FOSYLx Training – 2026",
+      upcomingEvents: {
+        nodes: [
+          {
+            title: "FOSYLx Training – 2026",
+            uri: "/events",
+            featuredImage: {
+              node: {
+                sourceUrl: "/assets/slider1.jpg",
+                altText: "Event image",
+              },
+            },
+          },
+        ],
+      },
+    },
+    {
+      slideTitle: "SUN Youth Network Bangladesh",
+      slideButton: {
+        title: "LEARN MORE",
+        url: "/about-us",
+        target: "",
+      },
+      slideImage: {
+        node: {
+          sourceUrl: "/assets/slider3.jpg",
+          altText: "Hero background",
+        },
+      },
+      upcomingEventsTitle: "FOSYLx Training – 2026",
+      upcomingEvents: {
+        nodes: [
+          {
+            title: "FOSYLx Training – 2026",
+            uri: "/events",
+            featuredImage: {
+              node: {
+                sourceUrl: "/assets/slider1.jpg",
+                altText: "Event image",
+              },
+            },
+          },
+        ],
+      },
+    },
+  ];
+
+  const heroSliderData =
+    homePageData?.heroSlider?.length > 0
+      ? homePageData.heroSlider
+      : fallbackHeroSlides;
 
   const pins = {
     Rangpur: [
@@ -452,14 +679,174 @@ function Home() {
     }
   };
 
+  const fallbackCounters = [
+    { countNumber: 55, countLabel: "Facilitators Trained" },
+    { countNumber: 1518, countLabel: "Youth Capacitated" },
+    { countNumber: 214, countLabel: "Youth-Led Collective Actions" },
+    { countNumber: 40, countLabel: "Districts" },
+  ];
+
+  const counterData =
+    homePageData?.counterSection?.length > 0
+      ? homePageData.counterSection
+      : fallbackCounters;
+
+  const impactStoryDescriptions = {
+    "Nutritious Khichuri for 10 Taka":
+      "Nutritious Khichuri for 10 Taka: How a Young Boy from Lalmonirhat is Feeding Hope",
+    "HeartWise Nutrition":
+      "HeartWise Nutrition: A Young Leader's Journey to Make Nutrition Inclusive in Bangladesh",
+    "Reviving the Soul of the Soil":
+      "Reviving the Soul of the Soil: Rabby's Journey to Restoring Land and Hope in Sirajganj",
+    "From Market Stalls to Mindsets":
+      "From Market Stalls to Mindsets: How One Youth Is Transforming Diets in Bangladesh",
+  };
+
+ 
+
+  // Merge API impact stories with static data
+  const impactStories = useMemo(() => {
+    if (
+      homePageData?.impactStoriesSection &&
+      homePageData.impactStoriesSection.length > 0
+    ) {
+      return homePageData.impactStoriesSection
+        .map((section) => {
+          const story = section.stories?.nodes?.[0];
+          if (story) {
+            return {
+              image:
+                story.featuredImage?.node?.sourceUrl ||
+                "/assets/minhajul/author.JPG",
+              title: story.title,
+              description: impactStoryDescriptions[story.title] || story.title,
+              button: story.uri || "/impact-stories/1",
+              subtile: "News",
+            };
+          }
+          return null;
+        })
+        .filter(Boolean);
+    }
+    // Return fallback static data if no API data
+    return latestNews;
+  }, [homePageData]);
+
+  const newsAndBlogs = useMemo(() => {
+    if (
+      homePageData?.newsBlogsSection &&
+      homePageData.newsBlogsSection.length > 0
+    ) {
+      return homePageData.newsBlogsSection
+        .map((section) => {
+          const story = section.items?.nodes?.[0];
+          if (story) {
+            return {
+              image:
+                story.featuredImage?.node?.sourceUrl ||
+                "/assets/minhajul/author.JPG",
+              title: story.title,
+              description: impactStoryDescriptions[story.title] || story.title,
+              button: story.uri || "/impact-stories/1",
+              subtile: "News",
+            };
+          }
+          return null;
+        })
+        .filter(Boolean);
+    }
+    // Return fallback static data if no API data
+    return latestNews;
+  }, [homePageData]);
+
+  // Transform quiz section data
+  const quizData = useMemo(() => {
+    if (homePageData?.quizSection?.[0]) {
+      const quiz = homePageData.quizSection[0];
+      return {
+        image: quiz.image?.node?.sourceUrl || "/assets/femle.png",
+        title: quiz.title || "Test Your Knowledge!",
+        description:
+          quiz.description ||
+          "Engage with our interactive quizzes to learn more about nutrition and youth development.",
+        buttonText: quiz.button?.title || "Take a Quiz",
+        buttonUrl:
+          quiz.button?.url || "https://quiz-point-client.vercel.app/quizzes",
+        buttonTarget: quiz.button?.target || "_blank",
+      };
+    }
+    // Fallback data
+    return {
+      image: "/assets/femle.png",
+      title: "Test Your Knowledge!",
+      description:
+        "Engage with our interactive quizzes to learn more about nutrition and youth development.",
+      buttonText: "Take a Quiz",
+      buttonUrl: "https://quiz-point-client.vercel.app/quizzes",
+      buttonTarget: "_blank",
+    };
+  }, [homePageData]);
+
+  const getInvolvedOptions = useMemo(() => {
+  // Check if getInvolvedSection exists and has cards
+  if (
+    homePageData?.getInvolvedSection?.[0]?.cards &&
+    homePageData.getInvolvedSection[0].cards.length > 0
+  ) {
+    return homePageData.getInvolvedSection[0].cards.map((card) => {
+      return {
+        // Mapping API 'icon' to component 'image'
+        image: card.icon?.node?.sourceUrl || "/assets/group_icon.png",
+        title: card.title || "",
+        description: card.description || "",
+        // Mapping API 'buttonText' to component 'button'
+        button: card.buttonText || "Learn More",
+        // Mapping API 'buttonLink.url' to component 'link'
+        link: card.buttonLink?.url || "#",
+      };
+    });
+  }
+
+  // Fallback static data
+  return [
+    {
+      image: "/assets/group_icon.png",
+      title: "Join a SUN Youth Network Bangladesh!",
+      description: "We are seeking youth organization committed to improving nutrition.",
+      button: "SUN Youth Network Member",
+      link: "/youth-organization",
+    },
+    {
+      image: "/assets/public_icon.png",
+      title: "Attend an event",
+      description: "Join over 242 Youth Organization committed to improving nutrition through the SUN Youth Network Network.",
+      button: "Events",
+      link: "/events", // Added default link for consistency
+    },
+    {
+      image: "/assets/event_icon.png",
+      title: "Learn more",
+      description: "Latest Youth activities around nutrition and connect with like-minded individuals.",
+      button: "Resource",
+      link: "/what-we-do/gallery",
+    },
+    {
+      image: "/assets/email_icon.png",
+      title: "Sign Up for Newsletter",
+      description: "Stay updated with the latest news, resources, and events from SUN Youth Network Network.",
+      button: "Sign up",
+      link: "/newsletter", // Added default link for consistency
+    },
+  ];
+}, [homePageData]);
   return (
     <Box bgcolor={"#fff"}>
       <Swiper
         slidesPerView={1}
         loop={true}
         autoplay={{
-          delay: 4000, // 4 seconds পর পর slide change
-          disableOnInteraction: false, // user touch করলেও auto চলবে
+          delay: 4000,
+          disableOnInteraction: false,
         }}
         pagination={{
           clickable: true,
@@ -467,476 +854,179 @@ function Home() {
         navigation={false}
         modules={[Pagination, Navigation, Autoplay]}
       >
-        <SwiperSlide>
-          <Box
-            sx={{
-              backgroundImage: `
-            linear-gradient(
-              rgba(38, 37, 37, 0.5),
-              rgba(8, 8, 8, 0.5)
-            ),
-            url('/assets/slider1.jpg')
-          `,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              width: { lg: "100%", xs: "436px" },
-              minHeight: { lg: "85vh", xs: "652px" },
-              display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "center",
-            }}
-            role="img"
-            aria-label="Hero background"
-          >
-            <Stack
-              sx={{ textAlign: { lg: "start", xs: "center" } }}
-              direction={"column"}
-              spacing={3}
-            >
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: 500,
-                  fontSize: { lg: 60, xs: 30 },
-                  color: "#FFF",
-                }}
-              >
-                SUN Youth Network Bangladesh
-              </Typography>
-              {/* <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: 600,
-                  fontSize: { lg: 45, xs: 25 },
-                  color: theme.palette.secondary.main,
-                }}
-              >
-                THEN AND NOW
-              </Typography> */}
+        {heroSliderData.map((slide, index) => {
+          const firstEvent = slide.upcomingEvents?.nodes?.[0];
 
+          return (
+            <SwiperSlide key={index}>
               <Box
                 sx={{
+                  backgroundImage: `
+                linear-gradient(
+                  rgba(38, 37, 37, 0.5),
+                  rgba(8, 8, 8, 0.5)
+                ),
+                url('${slide.slideImage?.node?.sourceUrl || "/assets/slider1.jpg"}')
+              `,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  width: "100%",
+                  minHeight: { lg: "85vh", xs: "652px" },
                   display: "flex",
-                  justifyContent: { lg: "flex-start", xs: "center" },
+                  alignItems: "flex-end",
+                  justifyContent: "center",
                 }}
+                role="img"
+                aria-label={
+                  slide.slideImage?.node?.altText || "Hero background"
+                }
               >
-                <Button
-                  variant="contained"
-                  color="primary"
-                  sx={{
-                    width: 178,
-                    height: 56,
-                    fontSize: 17,
-                    fontWeight: "500",
-                    backgroundColor: "#b20933",
-                    "&:hover": { backgroundColor: "#b20933" },
-                  }}
+                <Stack
+                  sx={{ textAlign: { lg: "start", xs: "center" } }}
+                  direction={"column"}
+                  spacing={3}
                 >
-                  learn more
-                </Button>
-              </Box>
-              <Stack justifyContent={"flex-end"} alignItems={"flex-end"}>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    mt: 5,
-                    px: 4,
-                    py: 2,
-                    backgroundColor: "#ffff",
-                    borderTopLeftRadius: 10,
-                    borderTopRightRadius: 10,
-                    borderBottomLeftRadius: 0,
-                    borderBottomRightRadius: 0,
-                    mx: { lg: "start", xs: "auto" },
-                    width: { lg: 1008, xs: "fit-content" },
-                  }}
-                >
-                  <Stack
+                  <Typography
+                    variant="h3"
                     sx={{
-                      flexDirection: { lg: "row", xs: "column" },
-                      justifyContent: "space-between",
-                      alignItems: { lg: "start", xs: "center" },
-                      alignContent: { lg: "center", xs: "center" },
+                      fontWeight: 500,
+                      fontSize: { lg: 60, xs: 30 },
+                      color: "#FFF",
                     }}
-                    spacing={2}
                   >
-                    <Stack
+                    {slide.slideTitle || "SUN Youth Network Bangladesh"}
+                  </Typography>
+
+                  {slide.slideButton?.url && (
+                    <Box
                       sx={{
-                        flexDirection: { lg: "row", xs: "column" },
-                        alignItems: { lg: "start", xs: "center" },
-                        justifyContent: "center",
-                        alignContent: { lg: "center", xs: "center" },
-                        gap: { lg: 3, xs: 0 },
+                        display: "flex",
+                        justifyContent: { lg: "flex-start", xs: "center" },
                       }}
-                      spacing={4}
                     >
-                      <img
-                        src="/assets/slider1.jpg"
-                        style={{ width: "143px", objectFit: "cover" }}
-                      />
-                      <Typography
-                        variant="h6"
-                        sx={{ fontWeight: 700, fontSize: 19 }}
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => router.push(slide.slideButton.url)}
+                        sx={{
+                          width: 178,
+                          height: 56,
+                          fontSize: 17,
+                          fontWeight: "500",
+                          backgroundColor: "#b20933",
+                          "&:hover": { backgroundColor: "#8a0726" },
+                        }}
                       >
-                        {/* 70th GEF Council <br />
-                        Meeting – Dec. 2025 */}
-                        FOSYLx Training – 2026
-                      </Typography>
+                        {slide.slideButton.title || "LEARN MORE"}
+                      </Button>
+                    </Box>
+                  )}
+
+                  {firstEvent && (
+                    <Stack justifyContent={"flex-end"} alignItems={"flex-end"}>
+                      <Paper
+                        elevation={0}
+                        sx={{
+                          mt: 5,
+                          px: 4,
+                          py: 2,
+                          backgroundColor: "#ffff",
+                          borderTopLeftRadius: 10,
+                          borderTopRightRadius: 10,
+                          borderBottomLeftRadius: 0,
+                          borderBottomRightRadius: 0,
+                          mx: { lg: "start", xs: "auto" },
+                          width: { lg: 1008, xs: "fit-content" },
+                        }}
+                      >
+                        <Stack
+                          sx={{
+                            flexDirection: { lg: "row", xs: "column" },
+                            justifyContent: "space-between",
+                            alignItems: { lg: "start", xs: "center" },
+                            alignContent: { lg: "center", xs: "center" },
+                          }}
+                          spacing={2}
+                        >
+                          <Stack
+                            sx={{
+                              flexDirection: { lg: "row", xs: "column" },
+                              alignItems: { lg: "start", xs: "center" },
+                              justifyContent: "center",
+                              alignContent: { lg: "center", xs: "center" },
+                              gap: { lg: 3, xs: 0 },
+                            }}
+                            spacing={4}
+                          >
+                            <Box
+                              component="img"
+                              src={
+                                firstEvent.featuredImage?.node?.sourceUrl ||
+                                "/assets/slider1.jpg"
+                              }
+                              alt={
+                                firstEvent.featuredImage?.node?.altText ||
+                                "Event image"
+                              }
+                              sx={{ width: "143px", objectFit: "cover" }}
+                            />
+                            <Typography
+                              variant="h6"
+                              sx={{ fontWeight: 700, fontSize: 19 }}
+                            >
+                              {slide.upcomingEventsTitle || firstEvent.title}
+                            </Typography>
+                          </Stack>
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              fontWeight: 700,
+                              fontSize: { lg: 40, xs: 20 },
+                              color: "#f5821f",
+                            }}
+                          >
+                            Upcoming Events
+                          </Typography>
+                        </Stack>
+                      </Paper>
                     </Stack>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        fontWeight: 700,
-                        fontSize: { lg: 40, xs: 20 },
-                        color: "#f5821f",
-                      }}
-                    >
-                      Upcoming Events
-                    </Typography>
-                  </Stack>
-                </Paper>
-              </Stack>
-            </Stack>
-          </Box>
-        </SwiperSlide>
-        <SwiperSlide>
-          {" "}
-          <Box
-            sx={{
-              backgroundImage: `
-            linear-gradient(
-              rgba(38, 37, 37, 0.5),
-              rgba(8, 8, 8, 0.5)
-            ),
-            url('/assets/slider2.jpg')
-          `,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              width: "100%",
-              minHeight: { lg: "85vh", xs: "652px" },
-              display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "center",
-            }}
-            role="img"
-            aria-label="Hero background"
-          >
-            <Stack
-              sx={{ textAlign: { lg: "start", xs: "center" } }}
-              direction={"column"}
-              spacing={3}
-            >
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: 500,
-                  fontSize: { lg: 60, xs: 30 },
-                  color: "#FFF",
-                }}
-              >
-                SUN Youth Network Bangladesh
-              </Typography>
-              {/* <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: 600,
-                  fontSize: { lg: 45, xs: 25 },
-                  color: theme.palette.secondary.main,
-                }}
-              >
-                THEN AND NOW
-              </Typography> */}
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: { lg: "flex-start", xs: "center" },
-                }}
-              >
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => route}
-                  sx={{
-                    width: 178,
-                    height: 56,
-                    fontSize: 17,
-                    fontWeight: "500",
-                    backgroundColor: "#b20933",
-                    "&:hover": { backgroundColor: "#b20933" },
-                  }}
-                >
-                  learn more
-                </Button>
+                  )}
+                </Stack>
               </Box>
-              <Stack justifyContent={"flex-end"} alignItems={"flex-end"}>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    mt: 5,
-                    px: 4,
-                    py: 2,
-                    backgroundColor: "#ffff",
-                    borderTopLeftRadius: 10,
-                    borderTopRightRadius: 10,
-                    borderBottomLeftRadius: 0,
-                    borderBottomRightRadius: 0,
-                    mx: "auto",
-                    width: { lg: 1008, xs: "fit-content" },
-                  }}
-                >
-                  <Stack
-                    sx={{
-                      flexDirection: { lg: "row", xs: "column" },
-                      justifyContent: "space-between",
-                      alignItems: { lg: "start", xs: "center" },
-                      alignContent: { lg: "center", xs: "center" },
-                    }}
-                    spacing={2}
-                  >
-                    <Stack
-                      sx={{
-                        flexDirection: { lg: "row", xs: "column" },
-                        alignItems: { lg: "start", xs: "center" },
-                        justifyContent: "center",
-                        alignContent: { lg: "center", xs: "center" },
-                        gap: { lg: 3, xs: 0 },
-                      }}
-                      spacing={4}
-                    >
-                      <img
-                        src="/assets/slider1.jpg"
-                        style={{ width: "143px", objectFit: "cover" }}
-                        alt=""
-                      />
-                      <Typography
-                        variant="h6"
-                        sx={{ fontWeight: 700, fontSize: 19 }}
-                      >
-                        {/* 70th GEF Council <br />
-                      Meeting – Dec. 2025 */}
-                        FOSYLx Training – 2026
-                      </Typography>
-                    </Stack>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        fontWeight: 700,
-                        fontSize: { lg: 40, xs: 20 },
-                        color: "#f5821f",
-                      }}
-                    >
-                      Upcoming Events
-                    </Typography>
-                  </Stack>
-                </Paper>
-              </Stack>
-            </Stack>
-          </Box>
-        </SwiperSlide>
-        <SwiperSlide>
-          {" "}
-          <Box
-            sx={{
-              backgroundImage: `
-            linear-gradient(
-              rgba(38, 37, 37, 0.5),
-              rgba(8, 8, 8, 0.5)
-            ),
-            url('/assets/slider3.jpg')
-          `,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              width: "100%",
-              minHeight: { lg: "85vh", xs: "652px" },
-              display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "center",
-            }}
-            role="img"
-            aria-label="Hero background"
-          >
-            <Stack
-              sx={{ textAlign: { lg: "start", xs: "center" } }}
-              direction={"column"}
-              spacing={3}
-            >
-              <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: 500,
-                  fontSize: { lg: 60, xs: 30 },
-                  color: "#FFF",
-                }}
-              >
-                SUN Youth Network Bangladesh
-              </Typography>
-              {/* <Typography
-                variant="h3"
-                sx={{
-                  fontWeight: 600,
-                  fontSize: { lg: 45, xs: 25 },
-                  color: theme.palette.secondary.main,
-                }}
-              >
-                THEN AND NOW
-              </Typography> */}
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: { lg: "flex-start", xs: "center" },
-                }}
-              >
-                <Button
-                  variant="contained"
-                  color="primary"
-                  sx={{
-                    width: 178,
-                    height: 56,
-                    fontSize: 17,
-                    fontWeight: "500",
-                    backgroundColor: "#b20933",
-                    "&:hover": { backgroundColor: "#b20933" },
-                  }}
-                >
-                  learn more
-                </Button>
-              </Box>
-              <Stack justifyContent={"flex-end"} alignItems={"flex-end"}>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    mt: 5,
-                    px: 4,
-                    py: 2,
-                    backgroundColor: "#ffff",
-                    borderTopLeftRadius: 10,
-                    borderTopRightRadius: 10,
-                    borderBottomLeftRadius: 0,
-                    borderBottomRightRadius: 0,
-                    mx: "auto",
-                    width: { lg: 1008, xs: "fit-content" },
-                  }}
-                >
-                  <Stack
-                    sx={{
-                      flexDirection: { lg: "row", xs: "column" },
-                      justifyContent: "space-between",
-                      alignItems: { lg: "start", xs: "center" },
-                      alignContent: { lg: "center", xs: "center" },
-                    }}
-                    spacing={2}
-                  >
-                    <Stack
-                      sx={{
-                        flexDirection: { lg: "row", xs: "column" },
-                        alignItems: { lg: "start", xs: "center" },
-                        justifyContent: "center",
-                        alignContent: { lg: "center", xs: "center" },
-                        gap: { lg: 3, xs: 0 },
-                      }}
-                      spacing={4}
-                    >
-                      <img
-                        src="/assets/slider1.jpg"
-                        style={{ width: "143px", objectFit: "cover" }}
-                      />
-                      <Typography
-                        variant="h6"
-                        sx={{ fontWeight: 700, fontSize: 19 }}
-                      >
-                        {/* 70th GEF Council <br />
-                      Meeting – Dec. 2025 */}
-                        FOSYLx Training – 2026
-                      </Typography>
-                    </Stack>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        fontWeight: 700,
-                        fontSize: { lg: 40, xs: 20 },
-                        color: "#f5821f",
-                      }}
-                    >
-                      Upcoming Events
-                    </Typography>
-                  </Stack>
-                </Paper>
-              </Stack>
-            </Stack>
-          </Box>
-        </SwiperSlide>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
 
+      {/* counter section */}
       <Grid
         container
         spacing={2}
         sx={{ bgcolor: "#f5821f", color: "#fff", py: 4 }}
       >
-        <Grid size={{ md: 3, xs: 12 }}>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: 700, fontSize: 50, textAlign: "center" }}
-          >
-            55
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{ mt: 1, textAlign: "center", fontWeight: 400, fontSize: 20 }}
-          >
-            Facilitators Trained
-          </Typography>
-        </Grid>
-        <Grid size={{ md: 3, xs: 12 }}>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: 700, fontSize: 50, textAlign: "center" }}
-          >
-            1518
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{ mt: 1, textAlign: "center", fontWeight: 400, fontSize: 20 }}
-          >
-            Youth Capacitated
-          </Typography>
-        </Grid>
-        <Grid size={{ md: 3, xs: 12 }}>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: 700, fontSize: 50, textAlign: "center" }}
-          >
-            214
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{ mt: 1, textAlign: "center", fontWeight: 400, fontSize: 20 }}
-          >
-            Youth-Led Collective Actions
-          </Typography>
-        </Grid>
-        <Grid size={{ md: 3, xs: 12 }}>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: 700, fontSize: 50, textAlign: "center" }}
-          >
-            40
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{ mt: 1, textAlign: "center", fontWeight: 400, fontSize: 20 }}
-          >
-            Districts
-          </Typography>
-        </Grid>
+        {counterData.map((counter, index) => (
+          <Grid key={index} size={{ md: 3, xs: 12 }}>
+            <Typography
+              variant="h6"
+              sx={{ fontWeight: 700, fontSize: 50, textAlign: "center" }}
+            >
+              {counter.countNumber}
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{ mt: 1, textAlign: "center", fontWeight: 400, fontSize: 20 }}
+            >
+              {counter.countLabel}
+            </Typography>
+          </Grid>
+        ))}
       </Grid>
 
-      {/* this section get involved */}
+      {/* mission vision section */}
       <Box sx={{ width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
         <Grid sx={{ mt: { lg: 10, xs: 3 } }} container spacing={3}>
-          {listItems.map((option, index) => (
+          {homePageData?.missionSection.map((option, index) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <Paper
                 key={index}
@@ -956,7 +1046,7 @@ function Home() {
         rgba(0, 0, 0, 0.50),
         rgba(0, 0, 0, 0.50)
       ),
-      url('${option.image}')
+      url('${option.cardBackground.node.sourceUrl || "/assets/governace.jpg"}')
     `,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
@@ -981,13 +1071,13 @@ function Home() {
                       fontSize: 20,
                     }}
                   >
-                    {option.title}
+                    {option.cardTitle}
                   </Typography>
                   <Typography
                     variant="body2"
                     sx={{ mt: 2, fontWeight: 500, fontSize: 14 }}
                   >
-                    {option.description}
+                    {option.cardDescription}
                   </Typography>
                   <Typography
                     variant="body2"
@@ -1013,6 +1103,8 @@ function Home() {
           ))}
         </Grid>
       </Box>
+
+      {/* map section */}
       <Box bgcolor={"#f8f7f5"}>
         <Typography
           variant="body1"
@@ -1139,7 +1231,8 @@ function Home() {
                 color="initial"
                 fontWeight={500}
               >
-                Food system youth leadership Training
+                {homePageData?.mapSection[0]?.leftTitle ||
+                  "Food system youth leadership Training"}
               </Typography>
               <Typography
                 sx={{ pb: 2, width: "122%" }}
@@ -1147,7 +1240,8 @@ function Home() {
                 color="#7c7c7c"
                 textAlign={"justify"}
               >
-                The Food Systems Youth Leadership Training program is designed
+                {homePageData?.mapSection[0]?.leftDescription ||
+                  `The Food Systems Youth Leadership Training program is designed
                 to nurture young leaders and inspire meaningful, hands-on
                 engagement in food systems through a structured and
                 participatory approach. The program begins with a careful
@@ -1160,7 +1254,7 @@ function Home() {
                 their learning to address real-world food system challenges.
                 Throughout the process, continuous follow-up, monitoring, and
                 learning documentation are conducted to track progress, capture
-                key insights, and ensure impactful, sustainable outcomes.s
+                key insights, and ensure impactful, sustainable outcomes.s`}
               </Typography>
               {/* <Stack direction={"row"} spacing={2} width={"100%"} >
                 <Button variant="contained" color="error" fontWeight={500}  >
@@ -1180,6 +1274,8 @@ function Home() {
           </Grid>
         </Grid>
       </Box>
+
+      {/* How many youths section */}
       <Paper
         elevation={0}
         sx={{
@@ -1393,7 +1489,7 @@ function Home() {
         </Typography>
 
         <Grid container spacing={3}>
-          {latestNews.slice(0, 3).map((option, index) => (
+          {impactStories.slice(0, 3).map((option, index) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
               <Box>
                 <img src={option.image} alt={option.title} width={"100%"} />
@@ -1421,11 +1517,6 @@ function Home() {
                 >
                   {option.title}
                 </Typography>
-                {/* 
-                <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
-                {option.button}
-                </Typography>
-                */}
                 <Typography
                   variant="body2"
                   sx={{
@@ -1561,19 +1652,15 @@ function Home() {
           Quizzes
         </Typography>
 
-        <Grid
-          container
-          bgcolor="#B20933"
-          alignItems="stretch" // 🔥 important
-        >
+        <Grid container bgcolor="#B20933" alignItems="stretch">
           <Grid size={{ xs: 12, sm: 6, md: 6 }} sx={{ display: "flex" }}>
             <img
-              src="/assets/femle.png"
-              alt="Youth taking a quiz"
+              src={quizData.image}
+              alt={quizData.title}
               style={{
                 width: "100%",
-                height: "100%", // 🔥 important
-                objectFit: "cover", // image stretch না হয়ে সুন্দর থাকবে
+                height: "100%",
+                objectFit: "cover",
               }}
             />
           </Grid>
@@ -1593,21 +1680,17 @@ function Home() {
               variant="h4"
               sx={{ fontWeight: 700, color: "#fff", mb: 2 }}
             >
-              Test Your Knowledge!
+              {quizData.title}
             </Typography>
 
             <Typography variant="body1" sx={{ color: "#fff", mb: 3 }}>
-              Engage with our interactive quizzes to learn more about nutrition
-              and youth development.
+              {quizData.description}
             </Typography>
 
             <Button
               variant="contained"
               onClick={() =>
-                window.open(
-                  "https://quiz-point-client.vercel.app/quizzes",
-                  "_blank",
-                )
+                window.open(quizData.buttonUrl, quizData.buttonTarget)
               }
               sx={{
                 backgroundColor: theme.palette.primary.main,
@@ -1620,7 +1703,7 @@ function Home() {
                 fontWeight: 600,
               }}
             >
-              Take a Quiz
+              {quizData.buttonText}
             </Button>
           </Grid>
         </Grid>
@@ -1639,7 +1722,7 @@ function Home() {
           News and blogs
         </Typography>
         <Grid container spacing={3}>
-          {latestNews.map((option, index) => (
+          {newsAndBlogs.map((option, index) => (
             <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
               <Box>
                 <img src={option.image} alt={option.title} width={"100%"} />
@@ -1667,9 +1750,6 @@ function Home() {
                 >
                   {option.title}
                 </Typography>
-                {/* <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary', fontWeight: 500, fontSize: 16 }}>
-                {option.button}
-              </Typography> */}
                 <Typography
                   variant="body2"
                   sx={{

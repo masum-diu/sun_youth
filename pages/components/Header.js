@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import {
   AppBar,
@@ -30,7 +30,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import GroupIcon from "@mui/icons-material/Group";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import MenuIcon from "@mui/icons-material/Menu";
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import { getNavbar } from "@/utils/apiCalls";
 
 const navLinks = [
   { title: "Home", path: "/", active: true },
@@ -84,10 +85,50 @@ function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedMobile, setExpandedMobile] = useState({});
-
+  const [navData, setNavData] = useState(null);
   const handleModalOpen = () => {
     setIsModalOpen(true);
   };
+
+ const handleGetHeaderData = async () => {
+  const res = await getNavbar();
+  const data = res?.data;
+
+  const logoNode = data?.headerSettings?.navbarLogo?.navbarLogo?.node;
+  const items = data?.menu?.menuItems?.nodes ?? [];
+
+  const map = items.reduce((acc, item) => ({ ...acc, [item.id]: { ...item, children: [] } }), {});
+  
+  const roots = items.reduce((acc, item) => {
+    if (item.parentId) {
+      map[item.parentId]?.children.push(map[item.id]);
+    } else {
+      acc.push(map[item.id]);
+    }
+    return acc;
+  }, []);
+
+  const sortByOrder = (arr) => arr.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  sortByOrder(roots).forEach(r => sortByOrder(r.children));
+
+  const finalData = {
+    topBarText: data?.headerSettings?.topBar?.topBarText ?? "",
+    logo: logoNode
+      ? { url: logoNode.sourceUrl, alt: logoNode.altText || "Logo" }
+      : null,
+    navItems: roots,
+  };
+
+  setNavData(finalData);
+  return finalData;
+};
+
+useEffect(() => {
+  handleGetHeaderData();
+}, []); // ✅ Only runs once on mount
+
+// ❌ REMOVE THIS LINE - it was causing the infinite loop
+
 
   const handleModalClose = () => {
     setIsModalOpen(false);
@@ -120,8 +161,8 @@ function Header() {
         title={`SUN Youth Network Bangladesh: empowering youth to improve nutrition.`}
       >
         {isMobile
-          ? "Empowering youth across Bangladesh to drive nutrition action."
-          : "Empowering youth across Bangladesh to drive nutrition action, influence policy, and strengthen food systems through a coordinated platform aligned with national priorities and the global Sun Movement."}
+          ? `${navData ? navData.topBarText.slice(0, 60) + "." : "Empowering youth across Bangladesh to drive nutrition action."}`
+          : `${navData ? navData.topBarText : "Empowering youth across Bangladesh to drive nutrition action, influence policy, and strengthen food systems through a coordinated platform aligned with national priorities and the global Sun Movement."}`}
       </Typography>
       <AppBar position="static" sx={{ bgcolor: "#f0eee2", color: "#000000" }}>
         <Toolbar
@@ -146,8 +187,8 @@ function Header() {
           >
             <Box
               component="img"
-              src="/assets/logo.png"
-              alt="Logo"
+              src={navData?.logo?.url || "/assets/logo.png"}
+              alt={navData?.logo?.alt || "Logo"}
               sx={{
                 width: { xs: 120, sm: 160, md: 233 },
                 height: "auto",
@@ -175,7 +216,12 @@ function Header() {
                         mb: 2,
                       }}
                     >
-                      <img src="/assets/logo.png" alt="Logo" width={180} style={{ objectFit: "cover" }} />
+                      <img
+                        src="/assets/logo.png"
+                        alt="Logo"
+                        width={180}
+                        style={{ objectFit: "cover" }}
+                      />
                       <IconButton onClick={() => setMobileMenuOpen(false)}>
                         <CloseIcon />
                       </IconButton>
@@ -185,14 +231,34 @@ function Header() {
                         <Box key={link.title}>
                           {link.children ? (
                             <>
-                              <ListItemButton onClick={() => toggleMobileExpand(link.title)} sx={{ ...linkStyles, justifyContent: 'space-between' }}>
+                              <ListItemButton
+                                onClick={() => toggleMobileExpand(link.title)}
+                                sx={{
+                                  ...linkStyles,
+                                  justifyContent: "space-between",
+                                }}
+                              >
                                 <ListItemText primary={link.title} />
-                                {expandedMobile[link.title] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                                {expandedMobile[link.title] ? (
+                                  <ExpandLessIcon />
+                                ) : (
+                                  <ExpandMoreIcon />
+                                )}
                               </ListItemButton>
-                              <Collapse in={!!expandedMobile[link.title]} timeout="auto" unmountOnExit>
+                              <Collapse
+                                in={!!expandedMobile[link.title]}
+                                timeout="auto"
+                                unmountOnExit
+                              >
                                 <List component="div" disablePadding>
                                   {link.children.map((child) => (
-                                    <ListItem key={child.title} component={NextLink} href={child.path} onClick={() => setMobileMenuOpen(false)} sx={{ pl: 4 }}>
+                                    <ListItem
+                                      key={child.title}
+                                      component={NextLink}
+                                      href={child.path}
+                                      onClick={() => setMobileMenuOpen(false)}
+                                      sx={{ pl: 4 }}
+                                    >
                                       <ListItemText primary={child.title} />
                                     </ListItem>
                                   ))}
@@ -200,14 +266,39 @@ function Header() {
                               </Collapse>
                             </>
                           ) : (
-                            <ListItem component={NextLink} href={link.path} onClick={() => setMobileMenuOpen(false)} sx={{ ...linkStyles, ...(link.active && { color: '#f5821f', fontWeight: '700' }) }}>
+                            <ListItem
+                              component={NextLink}
+                              href={link.path}
+                              onClick={() => setMobileMenuOpen(false)}
+                              sx={{
+                                ...linkStyles,
+                                ...(link.active && {
+                                  color: "#f5821f",
+                                  fontWeight: "700",
+                                }),
+                              }}
+                            >
                               <ListItemText primary={link.title} />
                             </ListItem>
                           )}
                         </Box>
                       ))}
                       <ListItem sx={{ mt: 2 }}>
-                        <Button onClick={() => { setMobileMenuOpen(false); handleModalOpen(); }} variant="contained" fullWidth sx={{ height: 48, fontSize: 16, fontWeight: "700", backgroundColor: "#f5821f", "&:hover": { backgroundColor: "#d4701c" } }}>
+                        <Button
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            handleModalOpen();
+                          }}
+                          variant="contained"
+                          fullWidth
+                          sx={{
+                            height: 48,
+                            fontSize: 16,
+                            fontWeight: "700",
+                            backgroundColor: "#f5821f",
+                            "&:hover": { backgroundColor: "#d4701c" },
+                          }}
+                        >
                           Join the network
                         </Button>
                       </ListItem>
@@ -262,7 +353,8 @@ function Header() {
                           ...(link.title == "Home" && {
                             color: "#f5821f",
                           }),
-                          color: openMenu === link.title ? "#b20933" : "#f5821f",
+                          color:
+                            openMenu === link.title ? "#b20933" : "#f5821f",
                           "&:hover": {
                             color: "#b20933",
                           },
