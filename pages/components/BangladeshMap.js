@@ -1,8 +1,9 @@
+import { pins } from "@/public/assets/fallbackData/homePageFallbackData";
+
 export default function BangladeshMap({
   onSelect,
   onHover,
   onLeave,
-  pins,
   hoveredDivision,
 }) {
   return (
