@@ -441,6 +441,79 @@ export const fallbackDivisionData = {
     },
   ],
 };
+export const fallbackMissionData = [
+  {
+    __typename: "HomePageHomeSectionsMissionSectionLayout",
+    cardTitle: "Mission",
+    cardDescription: "The mission of the SUN Youth Network Network Bangladesh is to empower and mobilize youth and adolescents to lead meaningful action on nutrition, strengthen youth voices in policy and community spaces, and support sustained commitment to advancing national and global nutrition goals.",
+    cardBackground: {
+      node: {
+        sourceUrl: "/assets/governace.jpg",
+        altText: "Mission"
+      }
+    },
+    button: "Learn More"
+  },
+  {
+    __typename: "HomePageHomeSectionsMissionSectionLayout",
+    cardTitle: "Governance",
+    cardDescription: "SUN Youth Network Network Bangladesh consists of youth-led organizations, youth-led clubs in universities and communities who are intensively working and interested in contributing to nutrition outcome development.",
+    cardBackground: {
+      node: {
+        sourceUrl: "/assets/governace.jpg",
+        altText: "Governance"
+      }
+    },
+    button: "Learn More"
+  },
+  {
+    __typename: "HomePageHomeSectionsMissionSectionLayout",
+    cardTitle: "Focal Point",
+    cardDescription: "The focal point of the SUN Youth Network Network Bangladesh serves as the primary coordinator and liaison, ensuring effective communication, coordination, and implementation of network activities in alignment with national priorities and the Sun Movement.",
+    cardBackground: {
+      node: {
+        sourceUrl: "/assets/governace.jpg",
+        altText: "Focal Point"
+      }
+    },
+    button: "Learn More"
+  }
+];
+
+export const getInvolvedFallback = [
+      {
+        image: "/assets/group_icon.png",
+        title: "Join a SUN Youth Network Bangladesh!",
+        description:
+          "We are seeking youth organization committed to improving nutrition.",
+        button: "SUN Youth Network Member",
+        link: "/youth-organization",
+      },
+      {
+        image: "/assets/public_icon.png",
+        title: "Attend an event",
+        description:
+          "Join over 242 Youth Organization committed to improving nutrition through the SUN Youth Network Network.",
+        button: "Events",
+        link: "/events", // Added default link for consistency
+      },
+      {
+        image: "/assets/event_icon.png",
+        title: "Learn more",
+        description:
+          "Latest Youth activities around nutrition and connect with like-minded individuals.",
+        button: "Resource",
+        link: "/what-we-do/gallery",
+      },
+      {
+        image: "/assets/email_icon.png",
+        title: "Sign Up for Newsletter",
+        description:
+          "Stay updated with the latest news, resources, and events from SUN Youth Network Network.",
+        button: "Sign up",
+        link: "/newsletter", // Added default link for consistency
+      },
+    ];
 
 const stats = [
     { num: "", label: "Projects" },
