@@ -1,3 +1,4 @@
+import { getAboutPage } from "@/utils/apiCalls";
 import {
   Box,
   Button,
@@ -8,10 +9,73 @@ import {
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function Sunyouthnetworkbrief() {
+  const [aboutPageData, setAboutPageData] = useState(null);
+
+  const getAboutUsPageData = async () => {
+    try {
+      const res = await getAboutPage();
+      const data = res?.data;
+
+      const allSections = data?.pageBy?.aboutUs?.aboutUsSection ?? [];
+
+      console.log(data);
+
+      const finalData = {
+        pageTitle: data?.pageBy?.title ?? "",
+        pageId: data?.pageBy?.id ?? "",
+        aboutTitle: allSections.filter(
+          (section) =>
+            section.__typename === "AboutUsAboutUsSectionAboutUsTitleLayout",
+        ),
+        buttonSection: allSections.filter(
+          (section) =>
+            section.__typename === "AboutUsAboutUsSectionButtonSectionLayout",
+        ),
+        imageSection: allSections.filter(
+          (section) =>
+            section.__typename === "AboutUsAboutUsSectionImageSectionLayout",
+        ),
+        imageDescriptionSections: allSections.filter(
+          (section) =>
+            section.__typename ===
+            "AboutUsAboutUsSectionImageDescriptionLayout",
+        ),
+        visionSection: allSections.filter(
+          (section) =>
+            section.__typename ===
+            "AboutUsAboutUsSectionVisionOfSunYouthSectionLayout",
+        ),
+        logoSections: allSections.filter(
+          (section) => section.__typename === "AboutUsAboutUsSectionLogoLayout",
+        ),
+        messageSection: allSections.filter(
+          (section) =>
+            section.__typename === "AboutUsAboutUsSectionMessageSectionLayout",
+        ),
+      };
+
+      console.log("About Us Page Data:", finalData);
+      console.log(
+        "Image Description Sections:",
+        finalData.imageDescriptionSections,
+      );
+      setAboutPageData(finalData);
+      return finalData;
+    } catch (error) {
+      console.error("Error fetching about us page data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getAboutUsPageData();
+  }, []);
+
   const router = useRouter();
+
+  const pageTitle = aboutPageData?.aboutTitle[0].title;
   return (
     <React.Fragment>
       <Box
@@ -32,7 +96,7 @@ function Sunyouthnetworkbrief() {
           sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto" }}
         >
           <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-            ABOUT US
+            {pageTitle}
           </Typography>
           {/* <Box
             component="span"
@@ -43,7 +107,6 @@ function Sunyouthnetworkbrief() {
               ?.map(word => word.charAt(0).toUpperCase() + word.slice(1))
               ?.join(" ")}
           </Box> */}
-
         </Stack>
       </Box>
 
@@ -113,75 +176,30 @@ function Sunyouthnetworkbrief() {
               alt="SUN Youth Network Network Bangladesh"
               sx={{ width: "100%", objectFit: "cover", borderRadius: 2, mb: 3 }}
             />
-            <Typography
-              variant="h5"
-              fontWeight={700}
-              fontSize={16}
-              color="#f5821f"
-            >
-              SUN Youth Network Bangladesh
-            </Typography>
-            <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
-              The SUN Youth Network Bangladesh was established to support the formation
-              and evolution of Youth organizations, and youth-led clubs in Sun
-              countries, as well as facilitate communication and coordination
-              across Sun CSO Network, Sun UN Network, Sun Donor Network, Sun
-              Business Network, Sun Academia Network, and the broader Sun
-              Movement.
-            </Typography>
-
-            <Typography
-              variant="h5"
-              fontWeight={700}
-              fontSize={16}
-              color="#f5821f"
-            >
-              Purpose of the network
-            </Typography>
-            <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
-              The primary purpose of the SUN Youth Network Network is to encourage the
-              alignment of Youth Organisations’ strategies, programmes and
-              resources with country plans for scaling up nutrition. The Sun
-              Youth Network aims to achieve this through strengthening the
-              support available for and capacity of national and local youth
-              organizations. It is responsible for encouraging effective
-              engagement from adolescents, youth and youth organizations in
-              the Sun process at national and global levels and supports Sun
-              countries to advocate for the development of ambitious plans. It
-              also contributes to the implementation and rolling out of
-              national costed plans.
-            </Typography>
-
-            <Typography
-              variant="h5"
-              fontWeight={700}
-              fontSize={16}
-              color="#f5821f"
-            >
-              SUN Youth Network Bangladesh
-            </Typography>
-
-            <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
-              The Government of the People's Republic of Bangladesh signed up
-              for the Scaling Up Nutrition (Sun) Global Movement in September
-              2012. The Sun Secretariat Bangladesh has taken the initiative to
-              establish the SUN Youth Network  in Bangladesh in January 2024
-              with the aim of uniting youth organizations to ensure a voice is
-              given to a range of small, dependent, regional and national
-              organizations to further the aim of the Sun movement. The
-              network also aims to build the capacity of youth and promote
-              community actions. The Ministry of Health and Family Welfare,
-              Government of the People's Republic of Bangladesh, has endorsed
-              the Scaling Up Nutrition (Sun) Youth Network Bangladesh to
-              officially commence its activities, effective from 01 November
-              2024. This initiative aims to systematically engage youth and
-              amplify their voices in the nutrition, food, and health sectors
-              to influence programmatic and policy agendas in alignment with
-              Bangladesh's priorities and the Scaling Up Nutrition Strategy
-              3.0. The Global Alliance for Improved Nutrition (GAIN) serves as
-              the secretariat for the Scaling Up Nutrition (Sun) Youth Network
-              Bangladesh.
-            </Typography>
+            {aboutPageData?.imageDescriptionSections?.map((content) => {
+              const title = content.slideTitle;
+              const description = content.slideDescription;
+              return (
+                <>
+                  <Typography
+                    variant="h5"
+                    fontWeight={700}
+                    fontSize={16}
+                    color="#f5821f"
+                  >
+                    {title}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    paragraph
+                    sx={{ lineHeight: 1.8 }}
+                  >
+                    {description}
+                  </Typography>
+                </>
+              );
+            })}
+            
           </Grid>
         </Grid>
       </Box>
@@ -285,13 +303,30 @@ function Sunyouthnetworkbrief() {
         container
         spacing={5}
         justifyContent="center"
-        sx={{ width: "95%", maxWidth: "1200px", margin: "0 auto", my: 6 , textAlign: 'center'}}
+        sx={{
+          width: "95%",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          my: 6,
+          textAlign: "center",
+        }}
       >
-        <Grid size={{ xs: 12, sm: 6, md: 3 }} >
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <img src="/assets/Link1.png" alt="" />
         </Grid>
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-          <img src="/assets/images.png" alt="" style={{ width: "210px", height: "120px", objectFit: 'contain', border: "1px solid #dedede", padding: "20px", borderRadius: 4 }} />
+          <img
+            src="/assets/images.png"
+            alt=""
+            style={{
+              width: "210px",
+              height: "120px",
+              objectFit: "contain",
+              border: "1px solid #dedede",
+              padding: "20px",
+              borderRadius: 4,
+            }}
+          />
         </Grid>
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <img src="/assets/Link4.png" alt="" />
@@ -299,7 +334,6 @@ function Sunyouthnetworkbrief() {
         {/* <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <img src="/assets/Link3.png" alt="" />
         </Grid> */}
-
       </Grid>
       <Box
         sx={{
@@ -315,10 +349,8 @@ function Sunyouthnetworkbrief() {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
-         
         }}
       >
-        
         <Typography
           variant="h4"
           sx={{
@@ -331,7 +363,11 @@ function Sunyouthnetworkbrief() {
         >
           Get In Tuch
         </Typography>
-        <Grid container spacing={3} sx={{width:"95%",maxWidth:'1700px',mx:"auto"}}>
+        <Grid
+          container
+          spacing={3}
+          sx={{ width: "95%", maxWidth: "1700px", mx: "auto" }}
+        >
           <Grid size={{ xs: 12, sm: 6, md: 12 }}>
             <Stack
               maxWidth={900}
@@ -343,7 +379,8 @@ function Sunyouthnetworkbrief() {
               height={"100%"}
             >
               <Typography variant="body1" fontWeight={500} fontSize={20}>
-                Information collected from or submitted by, the SUN Youth Network Bangladesh and other relevant stakeholders.
+                Information collected from or submitted by, the SUN Youth
+                Network Bangladesh and other relevant stakeholders.
               </Typography>
               <Stack direction={"row"} spacing={2} width={"100%"}>
                 <TextField
