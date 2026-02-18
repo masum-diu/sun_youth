@@ -18,6 +18,24 @@ export const ABOUT_US_QUERY = `query AboutUsData {
           }
         }
 
+        ... on AboutUsAboutUsSectionImageSectionLayout {
+          slideImage {
+            node {
+              sourceUrl
+              altText
+            }
+          }
+        }
+
+        ... on AboutUsAboutUsSectionLogoLayout {
+          logo {
+            node {
+              sourceUrl
+              altText
+            }
+          }
+        }
+
         ... on AboutUsAboutUsSectionImageDescriptionLayout {
           slideTitle
           slideDescription
