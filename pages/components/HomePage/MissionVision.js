@@ -65,7 +65,7 @@ const MissionVision = ({ homePageData }) => {
                 >
                   {option?.cardDescription || "Description not available"}
                 </Typography>
-                <Typography
+                {/* <Typography
                   variant="body2"
                   sx={{
                     mt: 3,
@@ -81,7 +81,7 @@ const MissionVision = ({ homePageData }) => {
                   }}
                 >
                   {option?.button || "Learn More"}
-                </Typography>
+                </Typography>*/}
               </Stack>
             </Paper>
           </Grid>

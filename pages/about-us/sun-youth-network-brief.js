@@ -145,16 +145,28 @@ function Sunyouthnetworkbrief() {
         </Stack>
       </Box>
 
-      <Box sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto" }}>
-        <Grid container spacing={2}>
+      <Box
+        sx={{
+          width: "95%",
+          maxWidth: "1700px",
+          margin: "0 auto",
+          pt: { xs: 0, md: 3 },
+        }}
+      >
+        <Grid container spacing={2} alignItems="flex-start">
+          {" "}
+          {/* add alignItems */}
           <Grid
             size={{ xs: 12, md: 3 }}
             p={2}
             sx={{
               borderRight: { md: "5px solid #f5821f" },
+              borderBottom: { xs: "5px solid #f5821f", md: "none" }, // border on bottom for mobile
               pr: 2,
               bgcolor: "#f7f3ef",
               height: "fit-content",
+              position: { md: "sticky" }, // optional: makes sidebar sticky
+              top: { md: 20 },
             }}
           >
             <Typography
@@ -182,7 +194,7 @@ function Sunyouthnetworkbrief() {
           <Grid size={{ xs: 12, md: 9 }} py={2} pl={{ md: 4 }}>
             <Box
               component="img"
-              src={image || '/assets/governace2.jpeg'}
+              src={image || "/assets/governace2.jpeg"}
               alt="SUN Youth Network Network Bangladesh"
               sx={{ width: "100%", objectFit: "cover", borderRadius: 2, mb: 3 }}
             />
@@ -221,7 +233,12 @@ function Sunyouthnetworkbrief() {
                   SUN Youth Network Bangladesh
                 </Typography>
                 <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
-                  The SUN Youth Network Bangladesh was established to support the formation and evolution of Youth organizations, and youth-led clubs in Sun countries, as well as facilitate communication and coordination across Sun CSO Network, Sun UN Network, Sun Donor Network, Sun Business Network, Sun Academia Network, and the broader Sun Movement.
+                  The SUN Youth Network Bangladesh was established to support
+                  the formation and evolution of Youth organizations, and
+                  youth-led clubs in Sun countries, as well as facilitate
+                  communication and coordination across Sun CSO Network, Sun UN
+                  Network, Sun Donor Network, Sun Business Network, Sun Academia
+                  Network, and the broader Sun Movement.
                 </Typography>
               </>
             )}
@@ -280,7 +297,7 @@ function Sunyouthnetworkbrief() {
 
       <Grid
         container
-        spacing={5}
+        spacing={3}
         justifyContent="center"
         sx={{
           width: "95%",
@@ -293,8 +310,13 @@ function Sunyouthnetworkbrief() {
         {logos?.map((logoObj, index) => {
           const logoUrl = logoObj?.logo?.node?.sourceUrl;
           return (
-            <Grid key={index} size={{ xs: 12, sm: 6, md: 3 }}>
-              <img src={logoUrl} alt="" />
+            <Grid key={index} size={{ xs: 10, sm: 4, md: 3 }}>
+              <img
+                src={logoUrl}
+                alt=""
+                width="100%"
+                style={{ objectFit: "contain" }}
+              />
             </Grid>
           );
         })}
@@ -326,14 +348,14 @@ function Sunyouthnetworkbrief() {
             fontSize: 40,
           }}
         >
-          {aboutPageData?.messageSection[0]?.messageTitle || 'get tuch'}
+          {aboutPageData?.messageSection[0]?.messageTitle || "get tuch"}
         </Typography>
         <Grid
           container
           spacing={3}
           sx={{ width: "95%", maxWidth: "1700px", mx: "auto" }}
         >
-          <Grid size={{ xs: 12, sm: 6, md: 12 }}>
+          <Grid size={{ xs: 12, sm: 12, md: 12 }}>
             <Stack
               maxWidth={900}
               mx={"auto"}
@@ -344,7 +366,8 @@ function Sunyouthnetworkbrief() {
               height={"100%"}
             >
               <Typography variant="body1" fontWeight={500} fontSize={20}>
-                {aboutPageData?.messageSection[0]?.description || 'Information collected from or submitted by, the SUN Youth Network Bangladesh and other relevant stakeholders.'}
+                {aboutPageData?.messageSection[0]?.description ||
+                  "Information collected from or submitted by, the SUN Youth Network Bangladesh and other relevant stakeholders."}
               </Typography>
               <Stack direction={"row"} spacing={2} width={"100%"}>
                 <TextField

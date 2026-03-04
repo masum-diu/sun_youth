@@ -46,7 +46,7 @@ const Quizzes = ({ homePageData }) => {
         Quizzes
       </Typography>
 
-      <Grid container bgcolor="#B20933" alignItems="stretch">
+      <Grid sx={{display:"flex", flexDirection:{md:'row',xs:'column'}, width: "100%", backgroundColor:"#B20933"}} >
         <Grid size={{ xs: 12, sm: 6, md: 6 }} sx={{ display: "flex" }}>
           <img
             src={quizData.image}
@@ -68,6 +68,7 @@ const Quizzes = ({ homePageData }) => {
             justifyContent: "center",
             bgcolor: "#B20933",
             textAlign: "center",
+            marginY:"40px"
           }}
         >
           <Typography
@@ -77,14 +78,21 @@ const Quizzes = ({ homePageData }) => {
             {quizData.title}
           </Typography>
 
-          <Typography variant="body1" sx={{ color: "#fff", mb: 3 }}>
+          <Typography
+            variant="body1"
+            paddingX={{ lg: 3 }}
+            sx={{ color: "#fff", mb: 3 }}
+          >
             {quizData.description}
           </Typography>
 
           <Button
             variant="contained"
             onClick={() =>
-              window.open(quizData.buttonUrl, quizData.buttonTarget)
+              window.open(
+                "https://quiz-point-client.vercel.app/quizzes",
+                "_blank",
+              )
             }
             sx={{
               backgroundColor: theme.palette.primary.main,
@@ -97,7 +105,7 @@ const Quizzes = ({ homePageData }) => {
               fontWeight: 600,
             }}
           >
-            {quizData.buttonText}
+            Take a Quiz
           </Button>
         </Grid>
       </Grid>

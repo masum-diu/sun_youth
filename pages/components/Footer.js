@@ -25,7 +25,7 @@ function Footer() {
 
                     <Grid size={{ xs: 6, md: 2 }}>
                         <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 2, color: '#fff' }}>
-                            About
+                            Address
                         </Typography>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                             {/* <Link href="#" underline="none" sx={{ color: 'rgba(255,255,255,0.85)' }}>About the Network</Link> */}

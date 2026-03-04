@@ -1,6 +1,8 @@
 import { impactStoryDescriptions, latestNews } from "@/public/assets/fallbackData/homePageFallbackData";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import React, { useMemo } from "react";
+import NextLink from "next/link";
+
 
 const NewsAndBlogs = ({homePageData}) => {
      const newsAndBlogs = useMemo(() => {
@@ -46,7 +48,7 @@ const NewsAndBlogs = ({homePageData}) => {
         </Typography>
         <Grid container spacing={3}>
           {newsAndBlogs.map((option, index) => (
-            <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
+            <Grid component={NextLink} href={'/1234'} size={{ xs: 12, sm: 6, md: 3 }} key={index}>
               <Box>
                 <img src={option.image} alt={option.title} width={"100%"} />
               </Box>

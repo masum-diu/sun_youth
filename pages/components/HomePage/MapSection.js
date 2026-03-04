@@ -77,7 +77,7 @@ const MapSection = ({ homePageData }) => {
         sx={{
           mt: { lg: 10, xs: 3 },
           bgcolor: "#f5821f",
-          maxWidth: 873,
+          maxWidth: {lg:700 ,xl:873},
           textAlign: "right",
           pr: 5,
           py: 1,
@@ -186,7 +186,7 @@ const MapSection = ({ homePageData }) => {
             sx={{ width: "100%", pr: 0 }}
           >
             <Typography
-              sx={{ fontSize: { lg: 35, xs: 24 }, pt: { lg: 0, xs: "30px" } }}
+              sx={{ fontSize: { lg: 35, xs: 24 }, pt: { lg: 0, xs: "30px", textWrap: {xs:"auto" ,md:"nowrap"} } }}
               variant="body1"
               color="initial"
               fontWeight={500}
@@ -195,7 +195,7 @@ const MapSection = ({ homePageData }) => {
                 "Food system youth leadership Training"}
             </Typography>
             <Typography
-              sx={{ pb: 2, width: "122%" }}
+              sx={{ pb: 2, width: {sm:"200%", md: "300%", lg:"148%",xl:"122%"} }}
               variant="body1"
               color="#7c7c7c"
               textAlign={"justify"}

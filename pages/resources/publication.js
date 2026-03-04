@@ -49,7 +49,7 @@ function PublicationPage() {
       </Box>
       <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }}>
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography variant="h2" component="h1" fontWeight="bold" gutterBottom>
+          <Typography sx={{fontSize:{xs:30 ,sm:60}}} component="h1" fontWeight="bold" gutterBottom>
             Our Publications
           </Typography>
           <Typography variant="h6" color="text.secondary">

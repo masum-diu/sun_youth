@@ -11,7 +11,7 @@ const YouthsTrained = ({homePageData}) => {
           position: "relative",
           pt: 6,
           pb: 0,
-          height: { lg: "620px", xs: "1080px" },
+          height: { sm:"800px" ,lg: "620px", xs: "1280px" },
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
@@ -36,7 +36,7 @@ const YouthsTrained = ({homePageData}) => {
             src={homePageData?.featuredStatsSection?.[0]?.featuredImage?.node?.sourceUrl||"/assets/gainandsdf.png"}
             alt="gain"
             sx={{
-              width: { lg: "1008px", xs: 400 }, // desktop stays 100px
+              width: { lg: "1008px", sm: 600, xs:350 }, // desktop stays 100px
               height: "auto", 
             }}
           />
@@ -45,9 +45,9 @@ const YouthsTrained = ({homePageData}) => {
         <Typography
           variant="body1"
           sx={{
-            mt: { lg: 20, xs: 8 },
+            mt: { lg: 20, xs: 23 },
             mb: { lg: 0, xs: 4 },
-            fontSize: { lg: 40, xs: 24 },
+            fontSize: { lg: 40, xs: 28 },
           }}
           color="#fff"
           fontWeight={500}

@@ -424,20 +424,31 @@ function NewsBlogsPage() {
                   }}
                 >
                   <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h2"
-                    sx={{ fontWeight: "bold", height: "64px" }}
-                  >
-                    {story.title?.length > 75
-                      ? story.title.substring(0, 75) + "..."
-                      : story.title}
-                  </Typography>
-                  <Typography sx={{ height: "72px" }} color="text.secondary">
-                    {story.excerpt?.length > 180
-                      ? story.excerpt.substring(0, 180) + "..."
-                      : story.excerpt}
-                  </Typography>
+  gutterBottom
+  variant="h5"
+  component="h2"
+  sx={{
+    fontWeight: "bold",
+    display: "-webkit-box",
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden",
+  }}
+>
+  {story.title}
+</Typography>
+
+<Typography
+  color="text.secondary"
+  sx={{
+    display: "-webkit-box",
+    WebkitLineClamp: 3,
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden",
+  }}
+>
+  {story.excerpt}
+</Typography>
                 </CardContent>
                 <CardActions>
                   <Button
