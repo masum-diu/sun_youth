@@ -31,7 +31,4 @@ export function getFoyslxPage() {
   export function getMultimediaPage() {
     return getData(MULTIMEDIA_QUERY);
   }
-  export function getMultimediaPage() {
-    return getData(MULTIMEDIA_QUERY);
-  }
 

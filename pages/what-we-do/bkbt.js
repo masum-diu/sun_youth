@@ -1,3 +1,4 @@
+import { getBkbtPage } from "@/utils/apiCalls";
 import {
   Box,
   Button,
@@ -9,10 +10,33 @@ import {
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function bkbt() {
+  const [pageData, setPageData] = useState();
   const router = useRouter();
+
+  const getPageData = async () => {
+    try {
+      const res = await getBkbtPage();
+      const data = res?.data;
+
+      if(!data){
+        console.error('Failed to fetch Bkbt page data')
+      }
+
+      setPageData(data?.page?.bkbt)
+    } catch (error) {
+      console.error("Error fetching bkbt page data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getPageData();
+  }, []);
+
+  console.log(pageData)
+
   return (
     <React.Fragment>
       <Box
@@ -101,7 +125,7 @@ function bkbt() {
               }}
               onClick={() =>
                 router.push(
-                  "/what-we-do/food-systems-youth-leadership-training"
+                  "/what-we-do/food-systems-youth-leadership-training",
                 )
               }
             >
@@ -164,10 +188,10 @@ function bkbt() {
               Bhalo Khabo Bhalo Thakbo (BKBT), which translates to 'Eat Well,
               Live Well,' is a nationwide campaign dedicated to promoting
               healthy eating habits and improving nutrition among the youth of
-              Bangladesh. Launched by the SUN Youth Network Network, BKBT aims to create
-              a mass movement that empowers young people to make informed
-              dietary choices and advocate for better food systems in their
-              communities.
+              Bangladesh. Launched by the SUN Youth Network Network, BKBT aims
+              to create a mass movement that empowers young people to make
+              informed dietary choices and advocate for better food systems in
+              their communities.
             </Typography>
             <Typography
               variant="body1"
@@ -234,7 +258,7 @@ function bkbt() {
       <Box
         sx={{
           py: 6,
-          px:{lg:0, xs:3},
+          px: { lg: 0, xs: 3 },
           color: "#fff",
           backgroundImage: `
     linear-gradient(
@@ -272,8 +296,8 @@ function bkbt() {
               height={"100%"}
             >
               <Typography variant="body1" fontWeight={500} fontSize={20}>
-                Information collected from or submitted by, the SUN Youth Network
-                Network and other relevant stakeholders.
+                Information collected from or submitted by, the SUN Youth
+                Network Network and other relevant stakeholders.
               </Typography>
               <Stack direction={"row"} spacing={2} width={"100%"}>
                 <TextField

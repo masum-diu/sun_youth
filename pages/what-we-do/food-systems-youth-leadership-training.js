@@ -1,3 +1,4 @@
+import { getFoodsystemPage } from "@/utils/apiCalls";
 import {
   Box,
   Button,
@@ -8,16 +9,54 @@ import {
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function foodsystemsyouthleadershiptraining() {
-  const router = useRouter();
+  const [pageData, setPageData] = useState();
+    const router = useRouter();
+  
+    const getPageData = async () => {
+      try {
+        const res = await getFoodsystemPage();
+        const data = res?.data;
+  
+        if(!data){
+          console.error('Failed to fetch Food System page data')
+        }
+  
+        setPageData(data?.page)
+      } catch (error) {
+        console.error("Error fetching Food System page data:", error);
+      }
+    };
+  
+    useEffect(() => {
+      getPageData();
+    }, []);
+  
+    console.log(pageData)
   return (
     <React.Fragment>
-      <Box sx={{ bgcolor: "#f5821f", height: 200, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", color: "#fff", }}>
-        <Stack direction={"row"} alignItems="center" justifyContent="space-between"
-          sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", }}>
-          <Typography variant="h5" sx={{ fontWeight: 'bold' }}>WHAT WE DO</Typography>
+      <Box
+        sx={{
+          bgcolor: "#f5821f",
+          height: 200,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          color: "#fff",
+        }}
+      >
+        <Stack
+          direction={"row"}
+          alignItems="center"
+          justifyContent="space-between"
+          sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto" }}
+        >
+          <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+            WHAT WE DO
+          </Typography>
           {/* {router?.asPath
               ?.split("-")
               ?.map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -84,7 +123,7 @@ function foodsystemsyouthleadershiptraining() {
               }}
               onClick={() =>
                 router.push(
-                  "/what-we-do/food-systems-youth-leadership-training"
+                  "/what-we-do/food-systems-youth-leadership-training",
                 )
               }
             >
@@ -178,23 +217,37 @@ function foodsystemsyouthleadershiptraining() {
         </Grid>
       </Box>
 
-      <Grid container spacing={5} justifyContent="center" sx={{ width: "95%", maxWidth: "1200px", margin: "0 auto", my: 6 }}>
-
+      <Grid
+        container
+        spacing={5}
+        justifyContent="center"
+        sx={{ width: "95%", maxWidth: "1200px", margin: "0 auto", my: 6 }}
+      >
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                 <img src="/assets/Link1.png" alt="" />
-               </Grid>
-                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                <img src="/assets/images.png" alt="" style={{width:"210px",height:"120px",objectFit:'contain',border:"1px solid #dedede",padding:"20px",borderRadius:4}} />
-               </Grid>
-               <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                 <img src="/assets/Link4.png" alt="" />
-               </Grid>
-
+          <img src="/assets/Link1.png" alt="" />
+        </Grid>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+          <img
+            src="/assets/images.png"
+            alt=""
+            style={{
+              width: "210px",
+              height: "120px",
+              objectFit: "contain",
+              border: "1px solid #dedede",
+              padding: "20px",
+              borderRadius: 4,
+            }}
+          />
+        </Grid>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+          <img src="/assets/Link4.png" alt="" />
+        </Grid>
       </Grid>
       <Box
         sx={{
           py: 6,
-          px:{lg:0, xs:3},
+          px: { lg: 0, xs: 3 },
           color: "#fff",
           backgroundImage: `
     linear-gradient(
@@ -220,12 +273,22 @@ function foodsystemsyouthleadershiptraining() {
         >
           Get In Tuch
         </Typography>
-        <Grid container spacing={3}  >
-
-          <Grid size={{ xs: 12, sm: 6, md: 12 }} >
-            <Stack maxWidth={900} mx={"auto"} direction={"column"} spacing={4} justifyContent={"center"} alignItems={"center"} height={"100%"} >
-              <Typography variant="body1" fontWeight={500} fontSize={20}>Information collected from or submitted by, the SUN Youth Network Network and other relevant stakeholders.</Typography>
-              <Stack direction={"row"} spacing={2} width={"100%"} >
+        <Grid container spacing={3}>
+          <Grid size={{ xs: 12, sm: 6, md: 12 }}>
+            <Stack
+              maxWidth={900}
+              mx={"auto"}
+              direction={"column"}
+              spacing={4}
+              justifyContent={"center"}
+              alignItems={"center"}
+              height={"100%"}
+            >
+              <Typography variant="body1" fontWeight={500} fontSize={20}>
+                Information collected from or submitted by, the SUN Youth
+                Network Network and other relevant stakeholders.
+              </Typography>
+              <Stack direction={"row"} spacing={2} width={"100%"}>
                 <TextField
                   type="text"
                   placeholder="Full Name"
