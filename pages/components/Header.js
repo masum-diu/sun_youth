@@ -32,6 +32,7 @@ import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import MenuIcon from "@mui/icons-material/Menu";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { getNavbar } from "@/utils/apiCalls";
+import Link from "next/link";
 
 const navLinks = [
   { title: "Home", path: "/", active: true },
@@ -185,15 +186,18 @@ useEffect(() => {
               width: "100%",
             }}
           >
-            <Box
-              component="img"
-              src={navData?.logo?.url || "/assets/logo.png"}
-              alt={navData?.logo?.alt || "Logo"}
-              sx={{
-                width: { xs: 120, sm: 160, md: 233 },
-                height: "auto",
-              }}
-            />
+            <Link href="/">
+  <Box
+    component="img"
+    src={navData?.logo?.url || "/assets/logo.png"}
+    alt={navData?.logo?.alt || "Logo"}
+    sx={{
+      width: { xs: 120, sm: 160, md: 233 },
+      height: "auto",
+      cursor: "pointer",
+    }}
+  />
+</Link>
             {isMobile ? (
               <>
                 <IconButton
