@@ -13,6 +13,9 @@ import React, { useEffect, useState } from "react";
 
 function youthvoicessummit() {
   const [pageData, setPageData] = useState();
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   const router = useRouter();
   const parseFosylxSection = (sections) => {
     return sections.reduce(
@@ -92,7 +95,43 @@ function youthvoicessummit() {
   useEffect(() => {
     getPageData();
   }, []);
+ const handleSubmit = async () => {
+    if (!fullName || !email || !message) {
+      alert("Please fill in all fields");
+      return;
+    }
 
+    try {
+      const response = await fetch(process.env.NEXT_PUBLIC_CONTACT_API, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          full_name: fullName,
+          email: email,
+          message: message,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Success:", data);
+        alert("Message sent successfully!");
+
+        // Clear form
+        setFullName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        console.error("Error:", response.status);
+        alert("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again.");
+    }
+  };
   return (
     <React.Fragment>
       <Box
@@ -283,15 +322,14 @@ function youthvoicessummit() {
       <Box
         sx={{
           py: 6,
-          px: { lg: 0, xs: 3 },
           color: "#fff",
           backgroundImage: `
-    linear-gradient(
-      rgba(178, 9, 51, 0.6),
-      rgba(178, 9, 51, 0.6)
-    ),
-    url('/assets/sky-lac-leman.jpg')
-  `,
+            linear-gradient(
+              rgba(178, 9, 51, 0.6),
+              rgba(178, 9, 51, 0.6)
+            ),
+            url('/assets/sky-lac-leman.jpg')
+          `,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -307,10 +345,14 @@ function youthvoicessummit() {
             fontSize: 40,
           }}
         >
-          {pageData?.messageSection?.messageTitle || "Get In Tuch"}
+          {pageData?.messageSection[0]?.messageTitle || "get tuch"}
         </Typography>
-        <Grid container spacing={3}>
-          <Grid size={{ xs: 12, sm: 6, md: 12 }}>
+        <Grid
+          container
+          spacing={3}
+          sx={{ width: "95%", maxWidth: "1700px", mx: "auto" }}
+        >
+          <Grid size={{ xs: 12, sm: 12, md: 12 }}>
             <Stack
               maxWidth={900}
               mx={"auto"}
@@ -321,8 +363,8 @@ function youthvoicessummit() {
               height={"100%"}
             >
               <Typography variant="body1" fontWeight={500} fontSize={20}>
-                {pageData?.messageSection?.description || `Information collected from or submitted by, the SUN Youth
-                Network Network and other relevant stakeholders.`}
+                {pageData?.messageSection[0]?.description ||
+                  "Information collected from or submitted by, the SUN Youth Network Bangladesh and other relevant stakeholders."}
               </Typography>
               <Stack direction={"row"} spacing={2} width={"100%"}>
                 <TextField
@@ -330,6 +372,8 @@ function youthvoicessummit() {
                   placeholder="Full Name"
                   fullWidth
                   variant="outlined"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
                   sx={{
                     input: { color: "#fff" },
                     "& .MuiOutlinedInput-root fieldset": {
@@ -353,6 +397,8 @@ function youthvoicessummit() {
                   placeholder="Your Email"
                   fullWidth
                   variant="outlined"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   sx={{
                     input: { color: "#fff" },
                     "& .MuiOutlinedInput-root fieldset": {
@@ -373,24 +419,27 @@ function youthvoicessummit() {
               </Stack>
               <textarea
                 placeholder="Your Message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 style={{
                   width: "100%",
                   height: 150,
                   borderRadius: 5,
                   border: "1px solid #ccc",
                   padding: 10,
+                  color: "#000",
                 }}
               />
               <Button
                 variant="contained"
                 size="small"
                 color="error"
-                fontWeight={500}
+                onClick={handleSubmit}
                 sx={{
                   width: 178,
                   height: 48,
                   backgroundColor: "#f5821f",
-                  "&:hover": { backgroundColor: "#f5821f" },
+                  "&:hover": { backgroundColor: "#d66f19" },
                 }}
               >
                 Send Message

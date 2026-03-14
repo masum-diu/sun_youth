@@ -13,28 +13,130 @@ import React, { useEffect, useState } from "react";
 
 function foodsystemsyouthleadershiptraining() {
   const [pageData, setPageData] = useState();
-    const router = useRouter();
-  
-    const getPageData = async () => {
-      try {
-        const res = await getFoodsystemPage();
-        const data = res?.data;
-  
-        if(!data){
-          console.error('Failed to fetch Food System page data')
-        }
-  
-        setPageData(data?.page)
-      } catch (error) {
-        console.error("Error fetching Food System page data:", error);
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const router = useRouter();
+
+
+   const handleSubmit = async () => {
+    if (!fullName || !email || !message) {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    try {
+      const response = await fetch(process.env.NEXT_PUBLIC_CONTACT_API, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          full_name: fullName,
+          email: email,
+          message: message,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Success:", data);
+        alert("Message sent successfully!");
+
+        // Clear form
+        setFullName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        console.error("Error:", response.status);
+        alert("Failed to send message. Please try again.");
       }
-    };
-  
-    useEffect(() => {
-      getPageData();
-    }, []);
-  
-    console.log(pageData)
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again.");
+    }
+  };
+
+  const parseFoodSystemsData = (sections) => {
+    return sections.reduce(
+      (acc, item) => {
+        switch (item.__typename) {
+          case "FoodSystemFoodSystemsYouthLeadershipTrainingSectionSectionTitleLayout":
+            acc.sectionTitle = item.sliderTitle || "";
+            break;
+
+          case "FoodSystemFoodSystemsYouthLeadershipTrainingSectionLogoLayout":
+            acc.logos.push({
+              imageUrl: item.logo?.node?.sourceUrl || "",
+              imageAlt: item.logo?.node?.altText || "",
+            });
+            break;
+
+          case "FoodSystemFoodSystemsYouthLeadershipTrainingSectionButtonSectionLayout":
+            acc.sideButton = item.sideButton || null;
+            break;
+
+          case "FoodSystemFoodSystemsYouthLeadershipTrainingSectionImageSectionLayout":
+            acc.imageSection = {
+              imageUrl: item.slideImage?.node?.sourceUrl || null,
+              title: item.title || null,
+              description: item.description || null,
+            };
+            break;
+
+          case "FoodSystemFoodSystemsYouthLeadershipTrainingSectionMessageSectionLayout":
+            acc.messageSection = {
+              messageTitle: item.messageTitle || null,
+              description: item.description || null,
+              yourName: item.yourName || null,
+              yourEmail: item.yourEmail || null,
+            };
+            break;
+
+          default:
+            break;
+        }
+
+        return acc;
+      },
+      {
+        sectionTitle: "",
+        logos: [],
+        sideButton: null,
+        imageSection: null,
+        messageSection: null,
+      },
+    );
+  };
+
+  const getPageData = async () => {
+    try {
+      const res = await getFoodsystemPage();
+      const data = res?.data;
+
+      console.log(data);
+      if (!data) {
+        console.error(
+          "Failed to fetch Food Systems Youth Leadership Training page data",
+        );
+        return;
+      }
+
+      const rawSections =
+        data?.page?.foodSystem?.foodSystemsYouthLeadershipTrainingSection || [];
+      const parsedData = parseFoodSystemsData(rawSections);
+
+      setPageData(parsedData);
+    } catch (error) {
+      console.error("Error fetching Food Systems page data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getPageData();
+  }, []);
+
+  console.log(pageData);
   return (
     <React.Fragment>
       <Box
@@ -55,7 +157,7 @@ function foodsystemsyouthleadershiptraining() {
           sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto" }}
         >
           <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-            WHAT WE DO
+            {pageData?.sectionTitle || "WHAT WE DO"}
           </Typography>
           {/* {router?.asPath
               ?.split("-")
@@ -174,16 +276,18 @@ function foodsystemsyouthleadershiptraining() {
           <Grid size={{ xs: 12, md: 9 }} py={2} pl={{ md: 4 }}>
             <Box
               component="img"
-              src="/assets/food.jpg" // Replace with your actual image path
+              src={pageData?.imageSection?.imageUrl || "/assets/food.jpg"} // Replace with your actual image path
               alt="SUN Youth Network Network Bangladesh"
               sx={{ width: "100%", objectFit: "cover", borderRadius: 2, mb: 3 }}
             />
             <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
               <span style={{ fontWeight: 700 }}>
-                Brief About Food Systems Youth Leadership Training
+                {pageData?.imageSection?.title ||
+                  "Brief About Food Systems Youth Leadership Training"}
               </span>{" "}
               <br /> <br />
-              Since the United Nations Food Systems Summit (UNFSS) 2021, young
+              {pageData?.imageSection?.description ||
+                `Since the United Nations Food Systems Summit (UNFSS) 2021, young
               people have demonstrated strong leadership in advancing the food
               systems agenda and mobilizing individuals and organizations to
               engage in meaningful action. To achieve lasting transformation in
@@ -211,51 +315,35 @@ function foodsystemsyouthleadershiptraining() {
               participants’ knowledge, skills, and leadership capacities. It
               also aims to build a strong and engaged community of youth leaders
               who support one another and work collectively to design and
-              implement actions for food systems transformation.
+              implement actions for food systems transformation.`}
             </Typography>
           </Grid>
         </Grid>
       </Box>
 
       <Grid
-        container
-        spacing={5}
-        justifyContent="center"
-        sx={{ width: "95%", maxWidth: "1200px", margin: "0 auto", my: 6 }}
-      >
-        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-          <img src="/assets/Link1.png" alt="" />
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-          <img
-            src="/assets/images.png"
-            alt=""
-            style={{
-              width: "210px",
-              height: "120px",
-              objectFit: "contain",
-              border: "1px solid #dedede",
-              padding: "20px",
-              borderRadius: 4,
-            }}
-          />
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-          <img src="/assets/Link4.png" alt="" />
-        </Grid>
-      </Grid>
+              container
+              spacing={5}
+              justifyContent="center"
+              sx={{ width: "95%", maxWidth: "1200px", margin: "0 auto", my: 6 }}
+            >
+            {
+            pageData?.logos?.map((logo,index) => <Grid key={index} size={{ xs: 12, sm: 6, md: 3 }}>
+                <img src={logo?.imageUrl || "/assets/Link1.png"} alt="" />
+              </Grid>)
+            }
+            </Grid>
       <Box
         sx={{
           py: 6,
-          px: { lg: 0, xs: 3 },
           color: "#fff",
           backgroundImage: `
-    linear-gradient(
-      rgba(178, 9, 51, 0.6),
-      rgba(178, 9, 51, 0.6)
-    ),
-    url('/assets/sky-lac-leman.jpg')
-  `,
+                  linear-gradient(
+                    rgba(178, 9, 51, 0.6),
+                    rgba(178, 9, 51, 0.6)
+                  ),
+                  url('/assets/sky-lac-leman.jpg')
+                `,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -271,10 +359,14 @@ function foodsystemsyouthleadershiptraining() {
             fontSize: 40,
           }}
         >
-          Get In Tuch
+          {pageData?.messageSection[0]?.messageTitle || "get tuch"}
         </Typography>
-        <Grid container spacing={3}>
-          <Grid size={{ xs: 12, sm: 6, md: 12 }}>
+        <Grid
+          container
+          spacing={3}
+          sx={{ width: "95%", maxWidth: "1700px", mx: "auto" }}
+        >
+          <Grid size={{ xs: 12, sm: 12, md: 12 }}>
             <Stack
               maxWidth={900}
               mx={"auto"}
@@ -285,8 +377,8 @@ function foodsystemsyouthleadershiptraining() {
               height={"100%"}
             >
               <Typography variant="body1" fontWeight={500} fontSize={20}>
-                Information collected from or submitted by, the SUN Youth
-                Network Network and other relevant stakeholders.
+                {pageData?.messageSection[0]?.description ||
+                  "Information collected from or submitted by, the SUN Youth Network Bangladesh and other relevant stakeholders."}
               </Typography>
               <Stack direction={"row"} spacing={2} width={"100%"}>
                 <TextField
@@ -294,6 +386,8 @@ function foodsystemsyouthleadershiptraining() {
                   placeholder="Full Name"
                   fullWidth
                   variant="outlined"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
                   sx={{
                     input: { color: "#fff" },
                     "& .MuiOutlinedInput-root fieldset": {
@@ -317,6 +411,8 @@ function foodsystemsyouthleadershiptraining() {
                   placeholder="Your Email"
                   fullWidth
                   variant="outlined"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   sx={{
                     input: { color: "#fff" },
                     "& .MuiOutlinedInput-root fieldset": {
@@ -337,24 +433,27 @@ function foodsystemsyouthleadershiptraining() {
               </Stack>
               <textarea
                 placeholder="Your Message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 style={{
                   width: "100%",
                   height: 150,
                   borderRadius: 5,
                   border: "1px solid #ccc",
                   padding: 10,
+                  color: "#000",
                 }}
               />
               <Button
                 variant="contained"
                 size="small"
                 color="error"
-                fontWeight={500}
+                onClick={handleSubmit}
                 sx={{
                   width: 178,
                   height: 48,
                   backgroundColor: "#f5821f",
-                  "&:hover": { backgroundColor: "#f5821f" },
+                  "&:hover": { backgroundColor: "#d66f19" },
                 }}
               >
                 Send Message

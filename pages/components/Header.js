@@ -49,7 +49,7 @@ const navLinks = [
     path: "/what-we-do",
     children: [
       { title: "Gallery", path: "/what-we-do/gallery" },
-      { title: "BKBT", path: "http://bhalokhabobhalothakbo.com/" },
+      { title: "BKBT", path: "/what-we-do/bkbt" },
       {
         title: "Food Systems Youth Leadership Training",
         path: "/what-we-do/food-systems-youth-leadership-training",

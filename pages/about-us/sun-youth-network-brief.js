@@ -24,8 +24,6 @@ function Sunyouthnetworkbrief() {
 
       const allSections = data?.pageBy?.aboutUs?.aboutUsSection ?? [];
 
-      console.log(data);
-
       const finalData = {
         pageTitle: data?.pageBy?.title ?? "",
         pageId: data?.pageBy?.id ?? "",
@@ -60,11 +58,6 @@ function Sunyouthnetworkbrief() {
         ),
       };
 
-      console.log("About Us Page Data:", finalData);
-      console.log(
-        "Image Description Sections:",
-        finalData.imageDescriptionSections,
-      );
       setAboutPageData(finalData);
       return finalData;
     } catch (error) {
@@ -118,8 +111,7 @@ function Sunyouthnetworkbrief() {
 
   const pageTitle = aboutPageData?.aboutTitle[0].title;
   const image = aboutPageData?.imageSection[0]?.slideImage?.node?.sourceUrl;
-  const logos = aboutPageData?.logoSections;
-
+  console.log(aboutPageData);
   return (
     <React.Fragment>
       <Box
@@ -297,25 +289,18 @@ function Sunyouthnetworkbrief() {
 
       <Grid
         container
-        spacing={3}
+        spacing={5}
         justifyContent="center"
-        sx={{
-          width: "95%",
-          maxWidth: "1200px",
-          margin: "0 auto",
-          my: 6,
-          textAlign: "center",
-        }}
+        sx={{ width: "95%", maxWidth: "1200px", margin: "0 auto", my: 6 }}
       >
-        {logos?.map((logoObj, index) => {
-          const logoUrl = logoObj?.logo?.node?.sourceUrl;
+        {aboutPageData?.logoSections?.map((logo, index) => {
+          console.log("image", logo?.logo?.node?.sourceUrl);
+
           return (
-            <Grid key={index} size={{ xs: 10, sm: 4, md: 3 }}>
+            <Grid key={index} size={{ xs: 12, sm: 6, md: 3 }}>
               <img
-                src={logoUrl}
+                src={logo?.logo?.node?.sourceUrl || "/assets/Link1.png"}
                 alt=""
-                width="100%"
-                style={{ objectFit: "contain" }}
               />
             </Grid>
           );

@@ -14,20 +14,89 @@ import React, { useEffect, useState } from "react";
 
 function bkbt() {
   const [pageData, setPageData] = useState();
+   const [fullName, setFullName] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
   const router = useRouter();
+
+  const parseBkbtData = (sections) => {
+    return sections.reduce(
+      (acc, item) => {
+        switch (item.__typename) {
+          case "BkbtBkbtSectionSectionTitleLayout":
+            acc.sectionTitle = item.sliderTitle || "";
+            break;
+
+          case "BkbtBkbtSectionButtonSectionLayout":
+            acc.mainButton = {
+              title: item.button?.title || "",
+              url: item.button?.url || "",
+              target: item.button?.target || "",
+            };
+            break;
+
+          case "BkbtBkbtSectionImageSectionLayout":
+            acc.imageSection = {};
+            break;
+
+          case "BkbtBkbtSectionButtonLayout":
+            acc.actionButton = {
+              title: item.slideButton?.title || "",
+              url: item.slideButton?.url || "",
+              target: item.slideButton?.target || "",
+            };
+            break;
+
+          case "BkbtBkbtSectionLogoLayout":
+            acc.logos.push({
+              imageUrl: item.logo?.node?.sourceUrl || "",
+              altText: item.logo?.node?.altText || "",
+            });
+            break;
+
+          case "BkbtBkbtSectionMessageSectionLayout":
+            acc.messageSection = {
+              messageTitle: item.messageTitle || "",
+              description: item.description || "",
+              yourName: item.yourName || null,
+              yourEmail: item.yourEmail || null,
+              message: item.message || null,
+            };
+            break;
+
+          default:
+            break;
+        }
+        return acc;
+      },
+      {
+        sectionTitle: "",
+        mainButton: null,
+        imageSection: null,
+        actionButton: null,
+        logos: [],
+        messageSection: null,
+      },
+    );
+  };
 
   const getPageData = async () => {
     try {
       const res = await getBkbtPage();
       const data = res?.data;
+      console.log('bkbt data:',data)
 
-      if(!data){
-        console.error('Failed to fetch Bkbt page data')
+      if (!data) {
+        console.error("Failed to fetch BKBT page data");
+        return;
       }
 
-      setPageData(data?.page?.bkbt)
+      const rawSections = data?.page?.bkbt?.bkbtSection || [];
+      const parsedData = parseBkbtData(rawSections);
+
+      setPageData(parsedData);
     } catch (error) {
-      console.error("Error fetching bkbt page data:", error);
+      console.error("Error fetching BKBT page data:", error);
     }
   };
 
@@ -35,7 +104,45 @@ function bkbt() {
     getPageData();
   }, []);
 
-  console.log(pageData)
+    const handleSubmit = async () => {
+    if (!fullName || !email || !message) {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    try {
+      const response = await fetch(process.env.NEXT_PUBLIC_CONTACT_API, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          full_name: fullName,
+          email: email,
+          message: message,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Success:", data);
+        alert("Message sent successfully!");
+
+        // Clear form
+        setFullName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        console.error("Error:", response.status);
+        alert("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again.");
+    }
+  };
+
+  console.log(pageData);
 
   return (
     <React.Fragment>
@@ -57,7 +164,7 @@ function bkbt() {
           sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto" }}
         >
           <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-            WHAT WE DO
+            {pageData?.secondTitle}
           </Typography>
           {/* {router?.asPath
               ?.split("-")
@@ -211,14 +318,14 @@ function bkbt() {
             <Stack direction="row" spacing={2} alignItems="center" mt={2}>
               <Button
                 variant="contained"
-                href="http://bhalokhabobhalothakbo.com/"
+                href={pageData?.actionButton?.url}
                 target="_blank"
                 sx={{
                   backgroundColor: "#f5821f",
                   "&:hover": { backgroundColor: "#e0711b" },
                 }}
               >
-                Visit Now
+                {pageData?.actionButton?.title}
               </Button>
             </Stack>
           </Grid>
@@ -255,18 +362,17 @@ function bkbt() {
         <img src="/assets/Link3.png" alt="" />
         </Grid> */}
       </Grid>
-      <Box
+     <Box
         sx={{
           py: 6,
-          px: { lg: 0, xs: 3 },
           color: "#fff",
           backgroundImage: `
-    linear-gradient(
-      rgba(178, 9, 51, 0.6),
-      rgba(178, 9, 51, 0.6)
-    ),
-    url('/assets/sky-lac-leman.jpg')
-  `,
+            linear-gradient(
+              rgba(178, 9, 51, 0.6),
+              rgba(178, 9, 51, 0.6)
+            ),
+            url('/assets/sky-lac-leman.jpg')
+          `,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -282,10 +388,14 @@ function bkbt() {
             fontSize: 40,
           }}
         >
-          Get In Touch
+          {pageData?.messageSection?.messageTitle || "get tuch"}
         </Typography>
-        <Grid container spacing={3}>
-          <Grid size={{ xs: 12, sm: 6, md: 12 }}>
+        <Grid
+          container
+          spacing={3}
+          sx={{ width: "95%", maxWidth: "1700px", mx: "auto" }}
+        >
+          <Grid size={{ xs: 12, sm: 12, md: 12 }}>
             <Stack
               maxWidth={900}
               mx={"auto"}
@@ -296,8 +406,8 @@ function bkbt() {
               height={"100%"}
             >
               <Typography variant="body1" fontWeight={500} fontSize={20}>
-                Information collected from or submitted by, the SUN Youth
-                Network Network and other relevant stakeholders.
+                {pageData?.messageSection?.description ||
+                  "Information collected from or submitted by, the SUN Youth Network Bangladesh and other relevant stakeholders."}
               </Typography>
               <Stack direction={"row"} spacing={2} width={"100%"}>
                 <TextField
@@ -305,6 +415,8 @@ function bkbt() {
                   placeholder="Full Name"
                   fullWidth
                   variant="outlined"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
                   sx={{
                     input: { color: "#fff" },
                     "& .MuiOutlinedInput-root fieldset": {
@@ -328,6 +440,8 @@ function bkbt() {
                   placeholder="Your Email"
                   fullWidth
                   variant="outlined"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   sx={{
                     input: { color: "#fff" },
                     "& .MuiOutlinedInput-root fieldset": {
@@ -348,24 +462,27 @@ function bkbt() {
               </Stack>
               <textarea
                 placeholder="Your Message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 style={{
                   width: "100%",
                   height: 150,
                   borderRadius: 5,
                   border: "1px solid #ccc",
                   padding: 10,
+                  color: "#000",
                 }}
               />
               <Button
                 variant="contained"
                 size="small"
                 color="error"
-                fontWeight={500}
+                onClick={handleSubmit}
                 sx={{
                   width: 178,
                   height: 48,
                   backgroundColor: "#f5821f",
-                  "&:hover": { backgroundColor: "#f5821f" },
+                  "&:hover": { backgroundColor: "#d66f19" },
                 }}
               >
                 Send Message
