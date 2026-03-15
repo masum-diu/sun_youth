@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -16,8 +16,78 @@ import {
 import { useRouter } from "next/router";
 import ConstructionIcon from "@mui/icons-material/Construction";
 import NextLink from "next/link";
+import { getNewsAndBlogsPage } from "@/utils/apiCalls";
 
 function NewsBlogsPage() {
+  const [pageData, setPageData] = useState();
+  const parseNewsAndBlogsSection = (sections) => {
+  return sections.reduce(
+    (acc, item, index) => {
+      switch (item.__typename) {
+        case "NewsAndBlogsNewsAndBlogsSectionResourcesLayout":
+          acc.headerTitle = item.title || "";
+          break;
+
+        case "NewsAndBlogsNewsAndBlogsSectionNewsAndBlogsLayout":
+          acc.pageTitle = item.title || "";
+          acc.pageDescription = item.description || "";
+          break;
+
+        case "NewsAndBlogsNewsAndBlogsSectionStoriesLayout":
+          const story = item.stories?.nodes?.[0];
+
+          if (story) {
+            acc.stories.push({
+              id: story.id || index + 1,
+              title: story.title || "",
+              uri: story.uri || "#",
+              readMoreTitle: item.readMore?.title || "READ MORE",
+              readMoreUrl: item.readMore?.url || "#",
+              target: item.readMore?.target || "",
+            });
+          }
+          break;
+
+        default:
+          break;
+      }
+
+      return acc;
+    },
+    {
+      headerTitle: "",
+      pageTitle: "",
+      pageDescription: "",
+      stories: [],
+    }
+  );
+};
+    const getPageData = async () => {
+  try {
+    const res = await getNewsAndBlogsPage();
+    const data = res?.data;
+
+    if (!data) {
+      console.error("Failed to fetch news and blogs page data");
+      return;
+    }
+
+    const rawSections =
+      data?.page?.newsAndBlogs?.newsAndBlogsSection || [];
+
+    const parsedData = parseNewsAndBlogsSection(rawSections);
+
+    setPageData(parsedData);
+  } catch (error) {
+    console.error("Error fetching news and blogs page data:", error);
+  }
+};
+  
+    useEffect(() => {
+      getPageData();
+    }, []);
+
+    console.log(pageData)
   // Placeholder data for impact stories
   const stories = [
     {
@@ -329,7 +399,7 @@ function NewsBlogsPage() {
           sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto" }}
         >
           <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-            RESOURCES
+            {pageData?.headerTitle || 'loading...'}
           </Typography>
           {/* {router?.asPath
               ?.split("-")
@@ -347,7 +417,7 @@ function NewsBlogsPage() {
             gutterBottom
             sx={{ fontWeight: 700 }}
           >
-            News and Blogs
+            {pageData?.pageTitle}
           </Typography>
           <Typography
             variant="h6"
@@ -355,9 +425,7 @@ function NewsBlogsPage() {
             textAlign="center"
             sx={{ maxWidth: "700px", mx: "auto" }}
           >
-            See the real-world change we are creating. These stories highlight
-            the dedication of our volunteers and the resilience of the
-            communities we serve.
+            {pageData?.pageDescription}
           </Typography>
         </Container>
       </Box>

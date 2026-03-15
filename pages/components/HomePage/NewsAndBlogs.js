@@ -3,10 +3,13 @@ import {
   latestNews,
 } from "@/public/assets/fallbackData/homePageFallbackData";
 import { Box, Grid, Stack, Typography } from "@mui/material";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import NextLink from "next/link";
+import { getNewsAndBlogsPage } from "@/utils/apiCalls";
 
 const NewsAndBlogs = ({ homePageData }) => {
+  
+
   const newsAndBlogs = useMemo(() => {
     if (
       homePageData?.newsBlogsSection &&
@@ -27,7 +30,7 @@ const NewsAndBlogs = ({ homePageData }) => {
             };
           }
           return null;
-        }) 
+        })
         .filter(Boolean);
     }
     // Return fallback static data if no API data

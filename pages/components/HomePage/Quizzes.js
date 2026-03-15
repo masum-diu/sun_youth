@@ -13,8 +13,7 @@ const Quizzes = ({ homePageData }) => {
           quiz.description ||
           "Engage with our interactive quizzes to learn more about nutrition and youth development.",
         buttonText: quiz.button?.title || "Take a Quiz",
-        buttonUrl:
-          quiz.button?.url || "https://quiz-point-client.vercel.app/quizzes",
+        buttonUrl: "https://sunyouthquiz.vercel.app/quizzes",
         buttonTarget: quiz.button?.target || "_blank",
       };
     }
@@ -25,7 +24,7 @@ const Quizzes = ({ homePageData }) => {
       description:
         "Engage with our interactive quizzes to learn more about nutrition and youth development.",
       buttonText: "Take a Quiz",
-      buttonUrl: "https://quiz-point-client.vercel.app/quizzes",
+      buttonUrl: "https://sunyouthquiz.vercel.app/quizzes",
       buttonTarget: "_blank",
     };
   }, [homePageData]);
@@ -46,7 +45,14 @@ const Quizzes = ({ homePageData }) => {
         Quizzes
       </Typography>
 
-      <Grid sx={{display:"flex", flexDirection:{md:'row',xs:'column'}, width: "100%", backgroundColor:"#B20933"}} >
+      <Grid
+        sx={{
+          display: "flex",
+          flexDirection: { md: "row", xs: "column" },
+          width: "100%",
+          backgroundColor: "#B20933",
+        }}
+      >
         <Grid size={{ xs: 12, sm: 6, md: 6 }} sx={{ display: "flex" }}>
           <img
             src={quizData.image}
@@ -68,7 +74,7 @@ const Quizzes = ({ homePageData }) => {
             justifyContent: "center",
             bgcolor: "#B20933",
             textAlign: "center",
-            marginY:"40px"
+            marginY: "40px",
           }}
         >
           <Typography
@@ -89,10 +95,7 @@ const Quizzes = ({ homePageData }) => {
           <Button
             variant="contained"
             onClick={() =>
-              window.open(
-                "https://quiz-point-client.vercel.app/quizzes",
-                "_blank",
-              )
+              window.open("https://sunyouthquiz.vercel.app/quizzes", "_blank")
             }
             sx={{
               backgroundColor: theme.palette.primary.main,
