@@ -6,6 +6,8 @@ import { FOYXLXPAGE_QUERY } from "./graphql/queries/foyslxpage.query";
 import { HOME_PAGE_QUERY, NAVBAR_QUERY } from "./graphql/queries/homepage.query";
 import { IMPACT_FELLOWSHIP_QUERY } from "./graphql/queries/impactfellowpage.query";
 import { MULTIMEDIA_QUERY } from "./graphql/queries/multimedia.query";
+import { NEWS_AND_BLOGS_QUERY } from "./graphql/queries/newsandblogspage.query";
+import { PUBLICATIONS_QUERY } from "./graphql/queries/publicationspage.query";
 
 export function getNavbar() {
   return getData(NAVBAR_QUERY);
@@ -31,4 +33,17 @@ export function getFoyslxPage() {
   export function getMultimediaPage() {
     return getData(MULTIMEDIA_QUERY);
   }
+  
+  // publications = query ready
+  export function getPublicationsPage() {
+    return getData(PUBLICATIONS_QUERY);
+  }
+  
+  // news and blogs = query ready
+  export function getNewsAndBlogsPage() {
+    return getData(NEWS_AND_BLOGS_QUERY);
+  }
+  // gallery = query not ready
+  // impact stories = query not ready
+
 

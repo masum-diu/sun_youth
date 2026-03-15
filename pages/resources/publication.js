@@ -1,66 +1,179 @@
-import { Box, Stack, Typography, Container, Grid, Card, CardMedia, CardContent, Button, CardActions } from '@mui/material';
-import React from 'react'
+import { getPublicationsPage } from "@/utils/apiCalls";
+import {
+  Box,
+  Stack,
+  Typography,
+  Container,
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  Button,
+  CardActions,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
 
 // Mock data for publications. In a real application, you would likely fetch this
 // from a CMS or an API.
 const publicationsData = [
   {
     id: 1,
-    title: 'Annual Report 2026',
-    description: 'The active participation of our volunteers and the generous support from our donors have been instrumental in driving our mission forward. This report highlights the milestones we achieved together in 2023.',
-    imageUrl: '/assets/pablication.png',
-    fileUrl: 'https://heyzine.com/flip-book/00f5e4b24a.html#page/4',
-    category: 'Annual Report',
+    title: "Annual Report 2026",
+    description:
+      "The active participation of our volunteers and the generous support from our donors have been instrumental in driving our mission forward. This report highlights the milestones we achieved together in 2023.",
+    imageUrl: "/assets/pablication.png",
+    fileUrl: "https://heyzine.com/flip-book/00f5e4b24a.html#page/4",
+    category: "Annual Report",
   },
   {
     id: 2,
-    title: 'Quarterly Newsletter - Q4 2026',
-    description: 'A look back at the final quarter of 2023, showcasing our community events, program successes, and stories from those we serve.',
-    imageUrl: '/assets/pablication.png',
-    fileUrl: 'https://heyzine.com/flip-book/00f5e4b24a.html#page/4',
-    category: 'Newsletter',
+    title: "Quarterly Newsletter - Q4 2026",
+    description:
+      "A look back at the final quarter of 2023, showcasing our community events, program successes, and stories from those we serve.",
+    imageUrl: "/assets/pablication.png",
+    fileUrl: "https://heyzine.com/flip-book/00f5e4b24a.html#page/4",
+    category: "Newsletter",
   },
   {
     id: 3,
-    title: 'Impact Study 2026',
-    description: 'A deep dive into the measurable impact of our programs on the community, backed by data and heartfelt testimonials.',
-    imageUrl: '/assets/pablication.png',
-    fileUrl: 'https://heyzine.com/flip-book/00f5e4b24a.html#page/4',
-    category: 'Research',
+    title: "Impact Study 2026",
+    description:
+      "A deep dive into the measurable impact of our programs on the community, backed by data and heartfelt testimonials.",
+    imageUrl: "/assets/pablication.png",
+    fileUrl: "https://heyzine.com/flip-book/00f5e4b24a.html#page/4",
+    category: "Research",
   },
   {
     id: 4,
-    title: 'Volunteer Handbook',
-    description: 'An essential guide for all our new and existing volunteers, outlining our values, procedures, and opportunities for engagement.',
-    imageUrl: '/assets/pablication.png',
-    fileUrl: 'https://heyzine.com/flip-book/00f5e4b24a.html#page/4',
-    category: 'Handbook',
+    title: "Volunteer Handbook",
+    description:
+      "An essential guide for all our new and existing volunteers, outlining our values, procedures, and opportunities for engagement.",
+    imageUrl: "/assets/pablication.png",
+    fileUrl: "https://heyzine.com/flip-book/00f5e4b24a.html#page/4",
+    category: "Handbook",
   },
 ];
 
 function PublicationPage() {
+  const [pageData, setPageData] = useState(null);
+
+  const parsePublicationsSection = (sections) => {
+    return sections.reduce(
+      (acc, item, index) => {
+        switch (item.__typename) {
+          case "OurPublicationsOurPublicationsSectionSliderSectionLayout":
+            acc.headerTitle = item.sliderTitle || "";
+            break;
+
+          case "OurPublicationsOurPublicationsSectionMidSideSliderSectionLayout":
+            acc.pageTitle = item.midSideSliderTitle || "";
+            acc.pageDescription = item.midSideSliderDescription || "";
+            break;
+
+          case "OurPublicationsOurPublicationsSectionCardSectionLayout":
+            acc.publications.push({
+              id: index + 1,
+              imageUrl: item.image?.node?.sourceUrl || "",
+              imageAlt: item.image?.node?.altText || item.title || "",
+              category: item.tag || "",
+              title: item.title || "",
+              description: item.description || "",
+              buttonTitle: item.urlLink?.title || "View Publication",
+              fileUrl: item.urlLink?.url || "#",
+              target: item.urlLink?.target || "_blank",
+            });
+            break;
+
+          default:
+            break;
+        }
+
+        return acc;
+      },
+      {
+        headerTitle: "",
+        pageTitle: "",
+        pageDescription: "",
+        publications: [],
+      },
+    );
+  };
+
+  const getPageData = async () => {
+    try {
+      const res = await getPublicationsPage();
+      const data = res?.data;
+
+      if (!data) {
+        console.error("Failed to fetch publications page data");
+        return;
+      }
+
+      const rawSections =
+        data?.page?.ourPublications?.ourPublicationsSection || [];
+      const parsedData = parsePublicationsSection(rawSections);
+
+      setPageData(parsedData);
+    } catch (error) {
+      console.error("Error fetching publications page data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getPageData();
+  }, []);
+
+  // console.log(pageData)
+
   return (
-    <Box sx={{ bgcolor: 'grey.50', color: 'text.primary' }}>
-      <Box sx={{ bgcolor: "#f5821f", height: 200, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", color: "#fff", }}>
-        <Stack direction={"row"} alignItems="center" justifyContent="space-between"
-          sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", }}>
-          <Typography variant="h5" sx={{ fontWeight: 'bold' }}>RESOURCES</Typography>
+    <Box sx={{ bgcolor: "grey.50", color: "text.primary" }}>
+      <Box
+        sx={{
+          bgcolor: "#f5821f",
+          height: 200,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          color: "#fff",
+        }}
+      >
+        <Stack
+          direction={"row"}
+          alignItems="center"
+          justifyContent="space-between"
+          sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto" }}
+        >
+          <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+            {pageData?.headerTitle || "loading..."}
+          </Typography>
         </Stack>
       </Box>
       <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }}>
-        <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography sx={{fontSize:{xs:30 ,sm:60}}} component="h1" fontWeight="bold" gutterBottom>
-            Our Publications
+        <Box sx={{ textAlign: "center", mb: 6 }}>
+          <Typography
+            sx={{ fontSize: { xs: 30, sm: 60 } }}
+            component="h1"
+            fontWeight="bold"
+            gutterBottom
+          >
+            {pageData?.pageTitle}
           </Typography>
           <Typography variant="h6" color="text.secondary">
-            Explore our annual reports, newsletters, and other documents.
+            {pageData?.pageDescription}
           </Typography>
         </Box>
       </Container>
-      <Grid container spacing={4} sx={{ width: '95%', maxWidth: "1700px", margin: "0 auto" }}>
-        {publicationsData?.map((pub) => (
+      <Grid
+        container
+        spacing={4}
+        sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto" }}
+      >
+        {pageData?.publications?.map((pub) => (
           <Grid key={pub.id} size={{ xs: 12, sm: 6, md: 3 }}>
-            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <Card
+              sx={{ height: "100%", display: "flex", flexDirection: "column" }}
+            >
               <CardMedia
                 component="img"
                 height="200"
@@ -68,10 +181,19 @@ function PublicationPage() {
                 alt={`Cover for ${pub.title}`}
               />
               <CardContent sx={{ flexGrow: 1 }}>
-                <Typography gutterBottom variant="caption" sx={{ color: 'primary.main', fontWeight: 'bold' }}>
+                <Typography
+                  gutterBottom
+                  variant="caption"
+                  sx={{ color: "primary.main", fontWeight: "bold" }}
+                >
                   {pub.category}
                 </Typography>
-                <Typography gutterBottom variant="h5" component="h2" fontWeight="bold">
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  fontWeight="bold"
+                >
                   {pub.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -87,8 +209,8 @@ function PublicationPage() {
                   variant="contained"
                   fullWidth
                   sx={{
-                    bgcolor: '#f5821f',
-                    '&:hover': { bgcolor: '#9e082d' }
+                    bgcolor: "#f5821f",
+                    "&:hover": { bgcolor: "#9e082d" },
                   }}
                 >
                   View Publication
@@ -98,7 +220,6 @@ function PublicationPage() {
           </Grid>
         ))}
       </Grid>
-
     </Box>
   );
 }
