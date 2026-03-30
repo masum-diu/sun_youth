@@ -40,7 +40,7 @@ function foodsystemsyouthleadershiptraining() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Success:", data);
+        // console.log("Success:", data);
         alert("Message sent successfully!");
 
         // Clear form
@@ -114,7 +114,7 @@ function foodsystemsyouthleadershiptraining() {
       const res = await getFoodsystemPage();
       const data = res?.data;
 
-      console.log(data);
+      // console.log(data);
       if (!data) {
         console.error(
           "Failed to fetch Food Systems Youth Leadership Training page data",
@@ -136,7 +136,7 @@ function foodsystemsyouthleadershiptraining() {
     getPageData();
   }, []);
 
-  console.log(pageData);
+  // console.log(pageData);
   return (
     <React.Fragment>
       <Box

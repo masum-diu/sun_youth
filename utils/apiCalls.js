@@ -1,5 +1,6 @@
 import { getData } from "./graphql/graphql";
 import { ABOUT_US_QUERY } from "./graphql/queries/aboutpage.query";
+import { ALL_POSTS_QUERY } from "./graphql/queries/allposts.query";
 import { BKBT_QUERY } from "./graphql/queries/bkbtpage.query";
 import { FOOD_SYSTEM_QUERY } from "./graphql/queries/foodsystempage.query";
 import { FOYXLXPAGE_QUERY } from "./graphql/queries/foyslxpage.query";
@@ -42,6 +43,9 @@ export function getFoyslxPage() {
   // news and blogs = query ready
   export function getNewsAndBlogsPage() {
     return getData(NEWS_AND_BLOGS_QUERY);
+  }
+  export function getAllPosts() {
+    return getData(ALL_POSTS_QUERY);
   }
   // gallery = query not ready
   // impact stories = query not ready

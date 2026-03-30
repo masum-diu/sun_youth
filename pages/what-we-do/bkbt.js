@@ -84,7 +84,7 @@ function bkbt() {
     try {
       const res = await getBkbtPage();
       const data = res?.data;
-      console.log('bkbt data:',data)
+      // console.log('bkbt data:',data)
 
       if (!data) {
         console.error("Failed to fetch BKBT page data");
@@ -125,7 +125,7 @@ function bkbt() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Success:", data);
+        // console.log("Success:", data);
         alert("Message sent successfully!");
 
         // Clear form
@@ -142,7 +142,7 @@ function bkbt() {
     }
   };
 
-  console.log(pageData);
+  // console.log(pageData);
 
   return (
     <React.Fragment>

@@ -116,7 +116,7 @@ function youthvoicessummit() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Success:", data);
+        // console.log("Success:", data);
         alert("Message sent successfully!");
 
         // Clear form

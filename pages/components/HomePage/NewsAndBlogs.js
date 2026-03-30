@@ -56,7 +56,8 @@ const NewsAndBlogs = ({ homePageData }) => {
           <Grid
             component={NextLink}
             href={"/1234"}
-            size={{ xs: 12, sm: 6, md: 3 }}
+            size={{ xs: 12, sm: 6, md: 3}}
+            sx={{textDecoration: "none"}}
             key={index}
           >
             <Box>

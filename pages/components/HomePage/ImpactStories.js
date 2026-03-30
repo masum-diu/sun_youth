@@ -34,6 +34,8 @@ const ImpactStories = ({ homePageData }) => {
     return latestNews;
   }, [homePageData]);
 
+  
+
   return (
     <Box sx={{ py: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
       <Typography

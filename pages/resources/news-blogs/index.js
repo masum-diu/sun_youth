@@ -16,78 +16,79 @@ import {
 import { useRouter } from "next/router";
 import ConstructionIcon from "@mui/icons-material/Construction";
 import NextLink from "next/link";
-import { getNewsAndBlogsPage } from "@/utils/apiCalls";
+import { getAllPosts, getNewsAndBlogsPage } from "@/utils/apiCalls";
 
 function NewsBlogsPage() {
   const [pageData, setPageData] = useState();
   const parseNewsAndBlogsSection = (sections) => {
-  return sections.reduce(
-    (acc, item, index) => {
-      switch (item.__typename) {
-        case "NewsAndBlogsNewsAndBlogsSectionResourcesLayout":
-          acc.headerTitle = item.title || "";
-          break;
+    return sections.reduce(
+      (acc, item, index) => {
+        switch (item.__typename) {
+          case "NewsAndBlogsNewsAndBlogsSectionResourcesLayout":
+            acc.headerTitle = item.title || "";
+            break;
 
-        case "NewsAndBlogsNewsAndBlogsSectionNewsAndBlogsLayout":
-          acc.pageTitle = item.title || "";
-          acc.pageDescription = item.description || "";
-          break;
+          case "NewsAndBlogsNewsAndBlogsSectionNewsAndBlogsLayout":
+            acc.pageTitle = item.title || "";
+            acc.pageDescription = item.description || "";
+            break;
 
-        case "NewsAndBlogsNewsAndBlogsSectionStoriesLayout":
-          const story = item.stories?.nodes?.[0];
+          case "NewsAndBlogsNewsAndBlogsSectionStoriesLayout":
+            const story = item.stories?.nodes?.[0];
 
-          if (story) {
-            acc.stories.push({
-              id: story.id || index + 1,
-              title: story.title || "",
-              uri: story.uri || "#",
-              readMoreTitle: item.readMore?.title || "READ MORE",
-              readMoreUrl: item.readMore?.url || "#",
-              target: item.readMore?.target || "",
-            });
-          }
-          break;
+            if (story) {
+              acc.stories.push({
+                id: story.id || index + 1,
+                title: story.title || "",
+                uri: story.uri || "#",
+                readMoreTitle: item.readMore?.title || "READ MORE",
+                readMoreUrl: item.readMore?.url || "#",
+                target: item.readMore?.target || "",
+              });
+            }
+            break;
 
-        default:
-          break;
+          default:
+            break;
+        }
+
+        return acc;
+      },
+      {
+        headerTitle: "",
+        pageTitle: "",
+        pageDescription: "",
+        stories: [],
+      },
+    );
+  };
+  const getPageData = async () => {
+    try {
+      const res = await getNewsAndBlogsPage();
+      const data = res?.data;
+
+      if (!data) {
+        console.error("Failed to fetch news and blogs page data");
+        return;
       }
 
-      return acc;
-    },
-    {
-      headerTitle: "",
-      pageTitle: "",
-      pageDescription: "",
-      stories: [],
+      const rawSections = data?.page?.newsAndBlogs?.newsAndBlogsSection || [];
+
+      const parsedData = parseNewsAndBlogsSection(rawSections);
+
+      setPageData(parsedData);
+    } catch (error) {
+      console.error("Error fetching news and blogs page data:", error);
     }
-  );
-};
-    const getPageData = async () => {
-  try {
-    const res = await getNewsAndBlogsPage();
-    const data = res?.data;
+  };
 
-    if (!data) {
-      console.error("Failed to fetch news and blogs page data");
-      return;
-    }
+  useEffect(() => {
+    getPageData();
+  }, []);
 
-    const rawSections =
-      data?.page?.newsAndBlogs?.newsAndBlogsSection || [];
+  // console.log(pageData);
 
-    const parsedData = parseNewsAndBlogsSection(rawSections);
-
-    setPageData(parsedData);
-  } catch (error) {
-    console.error("Error fetching news and blogs page data:", error);
-  }
-};
-  
-    useEffect(() => {
-      getPageData();
-    }, []);
-
-    console.log(pageData)
+  // console.log(pageData)
   // Placeholder data for impact stories
   const stories = [
     {
@@ -379,6 +380,33 @@ function NewsBlogsPage() {
   const handleLangChange = (event, value) => {
     if (value !== null) setLanguage(value);
   };
+
+  const [blogs, setBlogs] = useState();
+  const getBlogs = async () => {
+    try {
+      const res = await getAllPosts();
+      const data = res?.data;
+
+      if (!data) {
+        console.error("Failed to fetch ALL POSTS data");
+        return;
+      }
+
+      setBlogs(data);
+    } catch (error) {
+      console.error("Error fetching ALL POSTS data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getBlogs();
+  }, []);
+
+  const newsAndBlogs = blogs?.posts?.nodes?.filter((post) =>
+    post.categories?.nodes?.some((cat) => cat.name === "News and blogs"),
+  );
+
+  // console.log('blogs:', newsAndBlogs);
   return (
     <React.Fragment>
       <Box
@@ -399,7 +427,7 @@ function NewsBlogsPage() {
           sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto" }}
         >
           <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-            {pageData?.headerTitle || 'loading...'}
+            {pageData?.headerTitle || "loading..."}
           </Typography>
           {/* {router?.asPath
               ?.split("-")
@@ -464,9 +492,11 @@ function NewsBlogsPage() {
         spacing={4}
         sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", my: 4 }}
       >
-        {stories
-          .filter((s) => (language === "all" ? true : s.lang === language))
-          .map((story) => (
+        {newsAndBlogs && newsAndBlogs
+          .filter((s) => (language === "all" ? true : s.tags.nodes.some(tag => tag.name === language)))
+          .map((story) => {
+            // console.log('images:',)
+            return (
             <Grid item key={story.title} size={{ xs: 12, sm: 6, md: 4 }}>
               <Card
                 sx={{
@@ -480,7 +510,7 @@ function NewsBlogsPage() {
                 <CardMedia
                   component="img"
                   height="200"
-                  image={story.image}
+                  image={story?.featuredImage?.node?.sourceUrl}
                   alt={story.title}
                 />
                 <CardContent
@@ -514,14 +544,12 @@ function NewsBlogsPage() {
                       WebkitBoxOrient: "vertical",
                       overflow: "hidden",
                     }}
-                  >
-                    {story.excerpt}
-                  </Typography>
+                  dangerouslySetInnerHTML={{ __html: story.excerpt }} />
                 </CardContent>
                 <CardActions>
                   <Button
                     component={NextLink}
-                    href={story.link}
+                    href={'/resources/news-blogs/' + story.slug}
                     size="small"
                     sx={{ color: "#f5821f", fontWeight: "bold" }}
                   >
@@ -530,7 +558,8 @@ function NewsBlogsPage() {
                 </CardActions>
               </Card>
             </Grid>
-          ))}
+          )
+          })}
       </Grid>
     </React.Fragment>
   );

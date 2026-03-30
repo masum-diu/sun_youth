@@ -92,7 +92,7 @@ function Sunyouthnetworkbrief() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Success:", data);
+        // console.log("Success:", data);
         alert("Message sent successfully!");
 
         // Clear form
@@ -111,7 +111,7 @@ function Sunyouthnetworkbrief() {
 
   const pageTitle = aboutPageData?.aboutTitle[0].title;
   const image = aboutPageData?.imageSection[0]?.slideImage?.node?.sourceUrl;
-  console.log(aboutPageData);
+  // console.log(aboutPageData);
   return (
     <React.Fragment>
       <Box
@@ -294,7 +294,7 @@ function Sunyouthnetworkbrief() {
         sx={{ width: "95%", maxWidth: "1200px", margin: "0 auto", my: 6 }}
       >
         {aboutPageData?.logoSections?.map((logo, index) => {
-          console.log("image", logo?.logo?.node?.sourceUrl);
+          // console.log("image", logo?.logo?.node?.sourceUrl);
 
           return (
             <Grid key={index} size={{ xs: 12, sm: 6, md: 3 }}>

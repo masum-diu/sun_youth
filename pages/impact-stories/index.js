@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -12,6 +13,7 @@ import {
   Stack,
 } from "@mui/material";
 import NextLink from "next/link";
+import { getAllPosts } from "@/utils/apiCalls";
 
 // Placeholder data for impact stories
 const stories = [
@@ -71,8 +73,7 @@ const stories = [
   },
   {
     title: "Pusti Bondhu",
-    excerpt:
-      "Pusti Bondhu: A Youth-Led Initiative to Improve Campus Nutrition",
+    excerpt: "Pusti Bondhu: A Youth-Led Initiative to Improve Campus Nutrition",
     image: "/assets/soyed/author.jpg",
 
     link: "/impact-stories/8",
@@ -88,16 +89,58 @@ const stories = [
 ];
 
 function impactStoriesPage() {
+  const [pageData, setPageData] = useState();
+  const getPageData = async () => {
+    try {
+      const res = await getAllPosts();
+      const data = res?.data;
+
+      if (!data) {
+        console.error("Failed to fetch ALL POSTS data");
+        return;
+      }
+
+      setPageData(data);
+    } catch (error) {
+      console.error("Error fetching ALL POSTS data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getPageData();
+  }, []);
+
+  const impactStories = pageData?.posts?.nodes?.filter((post) =>
+    post.categories?.nodes?.some((cat) => cat.name === "Impact Stories"),
+  );
+
+  console.log(impactStories)
   return (
     <>
       <Box sx={{ bgcolor: "#f0eee2", py: { xs: 6, md: 10 } }}>
-         <Box sx={{ bgcolor: "#f5821f", height: 200, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", color: "#fff", }}>
-        <Stack direction={"row"} alignItems="center" justifyContent="space-between"
-          sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", }}>
-          <Typography variant="h5" sx={{ fontWeight: 'bold' }}>IMPACT STORIES</Typography>
-        </Stack>
-      </Box>
-        <Container maxWidth="lg" >
+        <Box
+          sx={{
+            bgcolor: "#f5821f",
+            height: 200,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            color: "#fff",
+          }}
+        >
+          <Stack
+            direction={"row"}
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto" }}
+          >
+            <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+              IMPACT STORIES
+            </Typography>
+          </Stack>
+        </Box>
+        <Container maxWidth="lg">
           <Typography
             variant="h2"
             component="h1"
@@ -121,54 +164,60 @@ function impactStoriesPage() {
         </Container>
       </Box>
 
-
-
-        <Grid container spacing={4} sx={{width:'95%', maxWidth: "1700px", margin: "0 auto",my:4}}>
-          {stories.map((story) => (
-            <Grid item key={story.title} size={{ xs: 12, sm: 6, md: 4 }}>
-              <Card
-                sx={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  boxShadow: 3,
-                  "&:hover": { boxShadow: 6 },
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={story.image}
-                  alt={story.title}
-                />
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h2"
-                    sx={{ fontWeight: "bold" }}
-                  >
-                    {story.title}
-                  </Typography>
-                  <Typography color="text.secondary">
-                    {story.excerpt}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button
-                    component={NextLink}
-                    href={story.link}
-                    size="small"
-                    sx={{ color: "#f5821f", fontWeight: "bold" }}
-                  >
-                    Read More
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-     
+      <Grid
+        container
+        spacing={4}
+        sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", my: 4 }}
+      >
+        {impactStories && impactStories.map((story) => {
+          const image = story.featuredImage?.node?.sourceUrl || '';
+          const title = story.title || '';
+          const excerpt = story.excerpt || '';
+          const link = story.slug || '#';
+          console.log(story)
+          return (
+          <Grid item key={story.title} size={{ xs: 12, sm: 6, md: 4 }}>
+            <Card
+              sx={{
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                boxShadow: 3,
+                "&:hover": { boxShadow: 6 },
+              }}
+            >
+              <CardMedia
+                component="img"
+                height="200"
+                image={image}
+                alt={title}
+              />
+              <CardContent sx={{ flexGrow: 1 }}>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  sx={{ fontWeight: "bold" }}
+                >
+                  {title}
+                </Typography>
+                <Typography  dangerouslySetInnerHTML={{ __html: excerpt }}  color="text.secondary" />
+              </CardContent>
+              <CardActions>
+                <Button
+                  component={NextLink}
+                  href={link}
+                  size="small"
+                  sx={{ color: "#f5821f", fontWeight: "bold" }}
+                >
+                  Read More
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        )
+        })}
+      </Grid>
     </>
   );
 }

@@ -125,8 +125,8 @@ function Home() {
         ),
       };
 
-      console.log("Home Page Data:", finalData);
-      console.log("Counter Section:", finalData.counterSection);
+      // console.log("Home Page Data:", finalData);
+      // console.log("Counter Section:", finalData.counterSection);
       setHomePageData(finalData);
       return finalData;
     } catch (error) {
@@ -138,7 +138,7 @@ function Home() {
     getHomePageData();
   }, []);
 
-  console.log("Get Involved Options:", homePageData);
+  // console.log("Get Involved Options:", homePageData);
   return (
     <Box bgcolor={"#fff"}>
       <HeroSlider homePageData={homePageData} />

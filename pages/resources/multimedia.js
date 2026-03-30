@@ -100,7 +100,7 @@ function MultimediaPage() {
     getPageData();
   }, []);
 
-  console.log(pageData);
+  // console.log(pageData);
   return (
     <React.Fragment>
       <Box

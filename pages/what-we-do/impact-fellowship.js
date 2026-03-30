@@ -93,7 +93,7 @@ function impactfellowship() {
   useEffect(() => {
     getPageData();
   }, []);
-  console.log(pageData);
+  // console.log(pageData);
   return (
     <React.Fragment>
       <Box
