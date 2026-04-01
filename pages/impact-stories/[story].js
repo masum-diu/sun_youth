@@ -349,26 +349,35 @@ function singleImpactStories() {
         {newsAndBlogs?.title}
       </Typography>
       <Typography
-        sx={{
-          "& p": { mb: -4 }, // control spacing here in rem/px/MUI spacing
-          "& h1": { mb: 1, mt: 2 },
-          "& h2": { mb: -4, mt: 5, fontWeight: 500 },
-          "& h3": { mb: -4, mt: 4 },
-          "& ul, & ol": { mb: -4, pl: 4 },
-          "& li": { mb: -3, mt: 2 },
-          "& figure": { width: "100%", mt: -1 },
-
-          // reset browser default margins that WP adds
-          "& p:first-of-type": { mt: 0 },
-          "& *:last-child": { mb: 0 },
-        }}
-        variant=""
-        mb={4}
-        gutterBottom
-        dangerouslySetInnerHTML={{
-          __html: parseWordPressContent(newsAndBlogs?.content),
-        }}
-      ></Typography>
+  component="div"
+  sx={{
+    "& p": { mb: -4 },
+    "& h1": { mb: 1, mt: 2 },
+    "& h2": { mb: -4, mt: 5, fontWeight: 500 },
+    "& h3": { mb: -4, mt: 4 },
+    "& ul, & ol": { mb: -4, pl: 4 },
+    "& li": { mb: -3, mt: 2 },
+    "& figure": { 
+      width: "100%", 
+      mt: -1, 
+      mx: 0,
+      display: "block" 
+    },
+    "& figure img": { 
+      width: "100%", 
+      height: "auto",
+      display: "block",
+      objectFit: "cover"
+    },
+    "& p:first-of-type": { mt: 0 },
+    "& *:last-child": { mb: 0 },
+  }}
+  mb={4}
+  gutterBottom
+  dangerouslySetInnerHTML={{
+    __html: parseWordPressContent(newsAndBlogs?.content),
+  }}
+/>
     </Box>
   );
 }
