@@ -206,7 +206,7 @@ function impactStoriesPage() {
               <CardActions>
                 <Button
                   component={NextLink}
-                  href={link}
+                  href={'/impact-stories/' + link}
                   size="small"
                   sx={{ color: "#f5821f", fontWeight: "bold" }}
                 >

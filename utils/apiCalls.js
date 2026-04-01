@@ -51,12 +51,18 @@ export function getFoyslxPage() {
   export function getGalleryPage() {
     return getData(GALLERY_QUERY);
   }
+  export function getSinglePostBySlug(slug) {
+    return getData(SINGLE_POST_BY_SLUG_QUERY, { slug });
+  }
 
   export function parseWordPressContent(html) {
   if (!html) return '';
 
+
   // Tags that should have spacing after them
   const blockTags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'blockquote', 'figure', 'div'];
+
+  
 
   const tagPattern = new RegExp(
     `(<\/(?:${blockTags.join('|')})>)\\s*(<(?:${blockTags.join('|')})[^>]*>)`,

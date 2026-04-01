@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { getAllPosts, parseWordPressContent } from "@/utils/apiCalls";
 
 function singleImpactStories() {
   const stories = [
@@ -298,31 +299,76 @@ function singleImpactStories() {
       address: "Dhaka",
     },
   ];
-
   const router = useRouter();
+
   const id = router.query.story;
+
+  const [blogs, setBlogs] = useState();
+  const getBlogs = async () => {
+    try {
+      const res = await getAllPosts();
+      const data = res?.data;
+
+      if (!data) {
+        console.error("Failed to fetch ALL POSTS data");
+        return;
+      }
+
+      setBlogs(data);
+    } catch (error) {
+      console.error("Error fetching ALL POSTS data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getBlogs();
+  }, []);
+
+  const newsAndBlogs = blogs?.posts?.nodes?.filter(
+    (post) => post.slug === id,
+  )[0];
+  console.log(newsAndBlogs, "newsAndBlogs");
 
   const storyDemo = stories.find((story) => story.id === id);
   const authorDemo = authors.find((author) => author.id === id);
 
   // console.log(id, storyDemo, authorDemo);
 
-  if (!storyDemo || !authorDemo) return null;
+  // if (!storyDemo || !authorDemo) return null;
 
   // const { singleImpactStories } = router.query;
   // console.log(singleImpactStories?.impact - stories);
   return (
-    <Box
-      sx={{
-        bgcolor: "white",
-        py: { xs: 3, sm: 4, md: 6, lg: 8 },
-        position: "relative",
-        width: "100%",
-        overflowX: "hidden",
-      }}
-    >
-      {authorDemo && <AuthorCard author={authorDemo} />}
-      {storyDemo && <ImpactStoryCard storyDemo={storyDemo} />}
+    <Box maxWidth="1000px" mx="auto" px={2} py={6}>
+      <Typography
+        sx={{ fontSize: "32px" }}
+        mb={4}
+        fontWeight={700}
+        gutterBottom
+      >
+        {newsAndBlogs?.title}
+      </Typography>
+      <Typography
+        sx={{
+          "& p": { mb: -4 }, // control spacing here in rem/px/MUI spacing
+          "& h1": { mb: 1, mt: 2 },
+          "& h2": { mb: -4, mt: 5, fontWeight: 500 },
+          "& h3": { mb: -4, mt: 4 },
+          "& ul, & ol": { mb: -4, pl: 4 },
+          "& li": { mb: -3, mt: 2 },
+          "& figure": { width: "100%", mt: -1 },
+
+          // reset browser default margins that WP adds
+          "& p:first-of-type": { mt: 0 },
+          "& *:last-child": { mb: 0 },
+        }}
+        variant=""
+        mb={4}
+        gutterBottom
+        dangerouslySetInnerHTML={{
+          __html: parseWordPressContent(newsAndBlogs?.content),
+        }}
+      ></Typography>
     </Box>
   );
 }
