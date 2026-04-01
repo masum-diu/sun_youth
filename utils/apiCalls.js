@@ -4,6 +4,7 @@ import { ALL_POSTS_QUERY } from "./graphql/queries/allposts.query";
 import { BKBT_QUERY } from "./graphql/queries/bkbtpage.query";
 import { FOOD_SYSTEM_QUERY } from "./graphql/queries/foodsystempage.query";
 import { FOYXLXPAGE_QUERY } from "./graphql/queries/foyslxpage.query";
+import { GALLERY_QUERY } from "./graphql/queries/gallery.query";
 import { HOME_PAGE_QUERY, NAVBAR_QUERY } from "./graphql/queries/homepage.query";
 import { IMPACT_FELLOWSHIP_QUERY } from "./graphql/queries/impactfellowpage.query";
 import { MULTIMEDIA_QUERY } from "./graphql/queries/multimedia.query";
@@ -47,6 +48,25 @@ export function getFoyslxPage() {
   export function getAllPosts() {
     return getData(ALL_POSTS_QUERY);
   }
+  export function getGalleryPage() {
+    return getData(GALLERY_QUERY);
+  }
+
+  export function parseWordPressContent(html) {
+  if (!html) return '';
+
+  // Tags that should have spacing after them
+  const blockTags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'blockquote', 'figure', 'div'];
+
+  const tagPattern = new RegExp(
+    `(<\/(?:${blockTags.join('|')})>)\\s*(<(?:${blockTags.join('|')})[^>]*>)`,
+    'gi'
+  );
+
+  return html
+    .replace(tagPattern, '$1<br/><br/>$2') // add <br> between block tags
+    .trim();
+}
   // gallery = query not ready
   // impact stories = query not ready
 

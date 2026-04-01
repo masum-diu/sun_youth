@@ -5,6 +5,7 @@ export const ALL_POSTS_QUERY = `query GetPosts {
       title
       slug
       excerpt
+      content
       date
       uri
       categories {

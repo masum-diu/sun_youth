@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -15,15 +15,42 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import { blogArrOfObject } from "@/public/assets/demoData/allNewsAndBlogs";
+import { getAllPosts, parseWordPressContent } from "@/utils/apiCalls";
 
 const BlogDetailsPage = () => {
   const router = useRouter();
   const blogId = router.query.blogDetails;
 
-  
+  const [blogs, setBlogs] = useState();
+  const getBlogs = async () => {
+    try {
+      const res = await getAllPosts();
+      const data = res?.data;
+
+      if (!data) {
+        console.error("Failed to fetch ALL POSTS data");
+        return;
+      }
+
+      setBlogs(data);
+    } catch (error) {
+      console.error("Error fetching ALL POSTS data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getBlogs();
+  }, []);
+
+  const newsAndBlogs = blogs?.posts?.nodes?.filter(
+    (post) => post.slug === blogId,
+  )[0];
+  console.log(newsAndBlogs, "newsAndBlogs");
+
   const BlogObject = blogArrOfObject.find(
     (blog) => blog.id.toString() === blogId,
   );
+  console.log(newsAndBlogs?.featuredImage?.node?.sourceUrl);
 
   const renderContent = (item, index) => {
     switch (item.type) {
@@ -44,7 +71,7 @@ const BlogDetailsPage = () => {
       case "description":
         return (
           <Typography
-            key={index}  
+            key={index}
             mt={1.5}
             fontSize="15px"
             dangerouslySetInnerHTML={{ __html: item.text }}
@@ -114,6 +141,9 @@ const BlogDetailsPage = () => {
 
   return (
     <Box maxWidth="800px" mx="auto" px={2} py={6}>
+      <Typography sx={{fontSize: '32px'}} mb={4} fontWeight={700} gutterBottom>
+        {newsAndBlogs?.title}
+      </Typography>
       <Box
         sx={{
           position: "relative",
@@ -125,16 +155,15 @@ const BlogDetailsPage = () => {
         }}
       >
         <Image
-          src={BlogObject?.coverImage}
-          alt={BlogObject?.mainTitle}
+          src={newsAndBlogs?.featuredImage?.node?.sourceUrl}
+          alt={newsAndBlogs?.title}
           fill
           priority
           style={{ objectFit: "cover" }}
         />
       </Box>
-      <Typography variant="h4" mb={4} fontWeight={700} gutterBottom>
-        {BlogObject?.mainTitle}
-      </Typography>
+
+      {/*
 
       <Typography
         variant="body2"
@@ -173,6 +202,27 @@ const BlogDetailsPage = () => {
       )}
 
       {BlogObject?.content.map(renderContent)}
+
+       */}
+      <Typography
+        sx={{
+          "& p": { mb: -6 }, // control spacing here in rem/px/MUI spacing
+          "& h1": { mb: 1, mt: 2 },
+          "& h2": { mb: -4, mt: 5 },
+          "& h3": { mb: -5, mt: 4 },
+          "& ul, & ol": { mb: -4, pl: 4 },
+          "& li": { mb: -5 },
+          // reset browser default margins that WP adds
+          "& p:first-of-type": { mt: 0 },
+          "& *:last-child": { mb: 0 },
+        }}
+        variant=""
+        mb={4}
+        gutterBottom
+        dangerouslySetInnerHTML={{
+          __html: parseWordPressContent(newsAndBlogs?.content),
+        }}
+      ></Typography>
     </Box>
   );
 };

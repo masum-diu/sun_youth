@@ -406,7 +406,7 @@ function NewsBlogsPage() {
     post.categories?.nodes?.some((cat) => cat.name === "News and blogs"),
   );
 
-  // console.log('blogs:', newsAndBlogs);
+  console.log('blogs:', newsAndBlogs);
   return (
     <React.Fragment>
       <Box
