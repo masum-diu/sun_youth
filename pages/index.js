@@ -17,7 +17,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { useRouter } from "next/router";
 import ImageFrameUploader from "./components/ImageFrameUploader";
-import { getHomePage } from "@/utils/apiCalls";
+import { getAllPosts, getHomePage } from "@/utils/apiCalls";
 import {
   impactStoryDescriptions,
   latestNews,
@@ -138,7 +138,47 @@ function Home() {
     getHomePageData();
   }, []);
 
-  // console.log("Get Involved Options:", homePageData);
+  const [blogs, setBlogs] = useState();
+  const getBlogs = async () => {
+    try {
+      const res = await getAllPosts();
+      const data = res?.data;
+
+      if (!data) {
+        console.error("Failed to fetch ALL POSTS data");
+        return;
+      }
+
+      setBlogs(data);
+    } catch (error) {
+      console.error("Error fetching ALL POSTS data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getBlogs();
+  }, []);
+
+  const impactStories = blogs?.posts?.nodes
+    ?.filter((post) =>
+      post.categories?.nodes?.some((cat) => cat.name === "Impact Stories"),
+    )
+    .reverse()
+    .slice(0, 3);
+
+  const homeBlogs = blogs?.posts?.nodes
+    ?.filter(
+      (p) =>
+        p.categories.nodes?.some((cat) => cat.name === "Impact Stories") &&
+        p.categories.nodes?.some((cat) => cat.name === "News and blogs"),
+    )
+    ?.reverse()
+    ?.slice(0, 4);
+
+  console.log("blogs", homeBlogs);
+
+  
+
   return (
     <Box bgcolor={"#fff"}>
       <HeroSlider homePageData={homePageData} />
@@ -146,9 +186,12 @@ function Home() {
       <MissionVision homePageData={homePageData} />
       <MapSection homePageData={homePageData} />
       <YouthsTrained homePageData={homePageData} />
-      <ImpactStories homePageData={homePageData} />
+      <ImpactStories
+        homePageData={homePageData}
+        impactStories={impactStories}
+      />
       <Quizzes homePageData={homePageData} />
-      <NewsAndBlogs homePageData={homePageData} />
+      <NewsAndBlogs homePageData={homePageData} newsBlogs={homeBlogs} />
       <GetInvolved homePageData={homePageData} />
       <Gallery />
       <Box sx={{ pb: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>

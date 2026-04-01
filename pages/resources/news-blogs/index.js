@@ -402,9 +402,9 @@ function NewsBlogsPage() {
     getBlogs();
   }, []);
 
-  const newsAndBlogs = blogs?.posts?.nodes?.filter((post) =>
-    post.categories?.nodes?.some((cat) => cat.name === "News and blogs"),
-  );
+    const newsAndBlogs = blogs?.posts?.nodes?.filter((post) =>
+      post.categories?.nodes?.some((cat) => cat.name === "News and blogs"),
+    );
 
   console.log('blogs:', newsAndBlogs);
   return (

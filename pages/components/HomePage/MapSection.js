@@ -41,7 +41,6 @@ const MapSection = ({ homePageData }) => {
         });
       });
 
-      console.log("Transformed Division Data:", transformedData);
       return transformedData;
     }
 
