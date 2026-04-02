@@ -36,7 +36,7 @@ const Quizzes = ({ homePageData }) => {
         sx={{
           textAlign: "center",
           fontWeight: 500,
-          my: 6,
+          mb: 4,
           textTransform: "capitalize",
           fontSize: 40,
           color: "#B20933",

@@ -7,7 +7,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import NextLink from "next/link";
 
 const ImpactStories = ({ homePageData, impactStories }) => {
-
   const impactStoriesDemo = useMemo(() => {
     if (
       homePageData?.impactStoriesSection &&
@@ -35,8 +34,6 @@ const ImpactStories = ({ homePageData, impactStories }) => {
     return latestNews;
   }, [homePageData]);
 
-   
-
   return (
     <Box sx={{ py: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
       <Typography
@@ -53,124 +50,132 @@ const ImpactStories = ({ homePageData, impactStories }) => {
         Impact Stories
       </Typography>
 
-      
-
       <Grid container spacing={3}>
-        {impactStories ? impactStories.map((option, index) => {
-          return (
-            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
-              <Box>
-                <img
-                  src={
-                    option.featuredImage?.node?.sourceUrl ||
-                    "/assets/minhajul/author.JPG"
-                  }
-                  alt={option.title}
-                  width={"100%"}
-                />
-              </Box>
-              <Stack direction="column" spacing={2}>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    mt: 2,
-                    fontWeight: 700,
-                    fontSize: 17,
-                    color: "#f5821f",
-                  }}
-                >
-                  {option.subtile}
-                </Typography>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    mt: 2,
-                    fontWeight: 700,
-                    fontSize: 20,
-                    color: "#B20933",
-                  }}
-                >
-                  {option.title}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    mt: 2,
-                    color: "text.secondary",
-                    fontWeight: 500,
-                    fontSize: 16,
-                  }}
-                  dangerouslySetInnerHTML={{ __html: option.excerpt }}
-                />
+        {impactStories
+          ? impactStories.map((option, index) => {
+              return (
+                <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
+                  <Box>
+                    <img
+                      src={
+                        option.featuredImage?.node?.sourceUrl ||
+                        "/assets/minhajul/author.JPG"
+                      }
+                      alt={option.title}
+                      width={"100%"}
+                    />
+                  </Box>
+                  <Stack direction="column" spacing={2}>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        mt: 2,
+                        fontWeight: 700,
+                        fontSize: 17,
+                        color: "#f5821f",
+                      }}
+                    >
+                      {option.subtile}
+                    </Typography>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        mt: 2,
+                        fontWeight: 700,
+                        fontSize: 20,
+                        color: "#B20933",
+                      }}
+                    >
+                      {option.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        mt: 2,
+                        color: "text.secondary",
+                        fontWeight: 500,
+                        fontSize: 16,
+                      }}
+                      dangerouslySetInnerHTML={{ __html: option.excerpt }}
+                    />
 
-                <Button
-                  component={NextLink}
-                  href={option.slug ? "/impact-stories/" + option.slug : "#"}
-                  size="small"
-                  sx={{
-                    color: "#f5821f",
-                    fontWeight: "bold",
-                    display: "flex",
-                    justifyContent: "flex-start",
-                  }}
-                >
-                  Read More
-                </Button>
-              </Stack>
-            </Grid>
-          );
-        }) : impactStoriesDemo.slice(0,3).map((option, index) => (
-          <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
-            <Box>
-              <img
-                src={
-                  option.image ||
-                  "/assets/minhajul/author.JPG"
-                }
-                alt={option.title}
-                width={"100%"}
-              />
-            </Box>
-            <Stack direction="column" spacing={2}>
-              
-              <Typography
-                variant="h6"
-                sx={{
-                  mt: 2,
-                  fontWeight: 700,
-                  fontSize: 20,
-                  color: "#B20933",
-                }}
-              >
-                {option.title}
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  mt: 2,
-                  color: "text.secondary",
-                  fontWeight: 500,
-                  fontSize: 16,
-                }}
-                dangerouslySetInnerHTML={{ __html: option.description }}
-              />
+                    <Button
+                      component={NextLink}
+                      href={
+                        option.slug ? "/impact-stories/" + option.slug : "#"
+                      }
+                      size="small"
+                      sx={{
+                        backgroundColor: "#f5821f",
+                        color: "#fff",
 
-              <Button
-                component={NextLink}
-                href={"#"}
-                size="small"
-                sx={{
-                  color: "#f5821f",
-                  fontWeight: "bold",
-                  display: "flex",
-                  justifyContent: "flex-start",
-                }}
-              >
-                Read More
-              </Button>
-            </Stack>
-          </Grid>
-        )) }
+                        fontWeight: "bold",
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        "&:hover": {
+                          backgroundColor: "#B20933", // change to any color you want
+                        },
+                      }}
+                    >
+                      Read More
+                    </Button>
+                  </Stack>
+                </Grid>
+              );
+            })
+          : impactStoriesDemo.slice(0, 3).map((option, index) => (
+              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
+                <Box>
+                  <img
+                    src={option.image || "/assets/minhajul/author.JPG"}
+                    alt={option.title}
+                    width={"100%"}
+                  />
+                </Box>
+                <Stack direction="column" spacing={2}>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      mt: 2,
+                      fontWeight: 700,
+                      fontSize: 20,
+                      color: "#B20933",
+                    }}
+                  >
+                    {option.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      mt: 2,
+                      color: "text.secondary",
+                      fontWeight: 500,
+                      fontSize: 16,
+                    }}
+                    dangerouslySetInnerHTML={{ __html: option.description }}
+                  />
+
+                  <Button
+                    component={NextLink}
+                    href={"#"}
+                    size="small"
+                    sx={{
+                        backgroundColor: "#f5821f",
+                        color: "#fff",
+
+                        fontWeight: "bold",
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        "&:hover": {
+                          backgroundColor: "#B20933", // change to any color you want
+                        },
+                      }}
+                  >
+                    Read More
+                  </Button>
+                </Stack>
+              </Grid>
+            ))}
       </Grid>
     </Box>
   );

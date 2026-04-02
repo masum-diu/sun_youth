@@ -166,18 +166,12 @@ function Home() {
     .reverse()
     .slice(0, 3);
 
-  const homeBlogs = blogs?.posts?.nodes
-    ?.filter(
-      (p) =>
-        p.categories.nodes?.some((cat) => cat.name === "Impact Stories") &&
-        p.categories.nodes?.some((cat) => cat.name === "News and blogs"),
+ const homeBlogs = blogs?.posts?.nodes
+    ?.filter((post) =>
+      post.categories?.nodes?.some((cat) => cat.name === "News and blogs"),
     )
-    ?.reverse()
-    ?.slice(0, 4);
+    .slice(0, 4);
 
-  console.log("blogs", homeBlogs);
-
-  
 
   return (
     <Box bgcolor={"#fff"}>
