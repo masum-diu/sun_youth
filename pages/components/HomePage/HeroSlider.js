@@ -8,12 +8,15 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useRouter } from "next/navigation";
 
 const HeroSlider = ({ homePageData }) => {
+  const router = useRouter();
   const heroSliderData =
     homePageData?.heroSlider?.length > 0
       ? homePageData.heroSlider
       : fallbackHeroSlides;
+
       
   return (
     <Swiper

@@ -114,7 +114,7 @@ function impactStoriesPage() {
     post.categories?.nodes?.some((cat) => cat.name === "Impact Stories"),
   );
 
-  console.log(impactStories)
+  console.log(impactStories);
   return (
     <>
       <Box sx={{ bgcolor: "#f0eee2", py: { xs: 6, md: 10 } }}>
@@ -169,54 +169,75 @@ function impactStoriesPage() {
         spacing={4}
         sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", my: 4 }}
       >
-        {impactStories && impactStories.map((story) => {
-          const image = story.featuredImage?.node?.sourceUrl || '';
-          const title = story.title || '';
-          const excerpt = story.excerpt || '';
-          const link = story.slug || '#';
-          console.log(story)
-          return (
-          <Grid item key={story.title} size={{ xs: 12, sm: 6, md: 4 }}>
-            <Card
-              sx={{
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                boxShadow: 3,
-                "&:hover": { boxShadow: 6 },
-              }}
-            >
-              <CardMedia
-                component="img"
-                height="200"
-                image={image}
-                alt={title}
-              />
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  component="h2"
-                  sx={{ fontWeight: "bold" }}
+        {!impactStories && (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100%",
+              width: "100%",
+            }}
+          >
+            <img
+              src="/assets/loading.gif"
+              alt="loading..."
+              style={{ width: "50%", height: "200px", objectFit: "contain" }}
+            />
+          </Box>
+        ) }
+        {impactStories &&
+          impactStories.map((story) => {
+            const image = story.featuredImage?.node?.sourceUrl || "";
+            const title = story.title || "";
+            const excerpt = story.excerpt || "";
+            const link = story.slug || "#";
+            console.log(story);
+            return (
+              <Grid item key={story.title} size={{ xs: 12, sm: 6, md: 4 }}>
+                <Card
+                  sx={{
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    boxShadow: 3,
+                    "&:hover": { boxShadow: 6 },
+                  }}
                 >
-                  {title}
-                </Typography>
-                <Typography  dangerouslySetInnerHTML={{ __html: excerpt }}  color="text.secondary" />
-              </CardContent>
-              <CardActions>
-                <Button
-                  component={NextLink}
-                  href={'/impact-stories/' + link}
-                  size="small"
-                  sx={{ color: "#f5821f", fontWeight: "bold" }}
-                >
-                  Read More
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        )
-        })}
+                  <CardMedia
+                    component="img"
+                    height="200"
+                    image={image}
+                    alt={title}
+                  />
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="h2"
+                      sx={{ fontWeight: "bold" }}
+                    >
+                      {title}
+                    </Typography>
+                    <Typography
+                      dangerouslySetInnerHTML={{ __html: excerpt }}
+                      color="text.secondary"
+                    />
+                  </CardContent>
+                  <CardActions>
+                    <Button
+                      component={NextLink}
+                      href={"/impact-stories/" + link}
+                      size="small"
+                      sx={{ color: "#f5821f", fontWeight: "bold" }}
+                    >
+                      Read More
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            );
+          })}
       </Grid>
     </>
   );

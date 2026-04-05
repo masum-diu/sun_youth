@@ -11,17 +11,19 @@ const Gallery = () => {
   return (
     <Box sx={{ width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
       <Typography
-        variant="h4"
-        sx={{
-          textAlign: "center",
-          mb: 4,
-          fontWeight: 500,
-          textTransform: "capitalize",
-          fontSize: 40,
-        }}
-      >
-        Gallery
-      </Typography>
+              variant="h4"
+              sx={{
+                textAlign: "center",
+                fontWeight: 500,
+                mb: 4,
+                mt:2,
+                textTransform: "capitalize",
+                fontSize: 40,
+                color: "#B20933",
+              }}
+            >
+              Gallery
+            </Typography>
       <Grid container spacing={3} mb={2}>
         <Grid size={{ xs: 12, sm: 6, md: 12 }}>
           <ImageFrameUploader onUpload={handleAddToGallery} />

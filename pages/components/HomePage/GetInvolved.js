@@ -29,16 +29,18 @@ const GetInvolved = ({ homePageData }) => {
   return (
     <Box sx={{ py: 8, width: "95%", margin: "0 auto", maxWidth: "1700px" }}>
       <Typography
-        variant="h4"
-        sx={{
-          textAlign: "center",
-          fontWeight: 700,
-          mb: 15,
-          color: "#B20933",
-        }}
-      >
-        Get Involved
-      </Typography>
+              variant="h4"
+              sx={{
+                textAlign: "center",
+                fontWeight: 500,
+                mb: 18,
+                textTransform: "capitalize",
+                fontSize: 40,
+                color: "#B20933",
+              }}
+            >
+              Get Involved
+            </Typography>
 
       <Grid sx={{ gap: { lg: 3, xs: "24px" } }} container spacing={3}>
         {getInvolvedOptions.map((option, index) => (

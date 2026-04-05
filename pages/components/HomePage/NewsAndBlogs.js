@@ -106,7 +106,7 @@ const NewsAndBlogs = ({ homePageData, newsBlogs }) => {
                       fontWeight: 500,
                       fontSize: 16,
                     }}
-                    dangerouslySetInnerHTML={{ __html: option.excerpt }}
+                    dangerouslySetInnerHTML={{ __html: option.excerpt.length > 90 ? option.excerpt.substring(0, 90) + "..." : option.excerpt }}
                   />
                 </Stack>
               </Grid>

@@ -492,6 +492,23 @@ function NewsBlogsPage() {
         spacing={4}
         sx={{ width: "95%", maxWidth: "1700px", margin: "0 auto", my: 4 }}
       >
+      {!newsAndBlogs && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100%",
+                    width: "100%",
+                  }}
+                >
+                  <img
+                    src="/assets/loading.gif"
+                    alt="loading..."
+                    style={{ width: "50%", height: "200px", objectFit: "contain" }}
+                  />
+                </Box>
+              ) }
         {newsAndBlogs && newsAndBlogs
           .filter((s) => (language === "all" ? true : s.tags.nodes.some(tag => tag.name === language)))
           .map((story) => {
